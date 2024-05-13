@@ -41,7 +41,6 @@ bbb //Extra large balloon
 
 //TRANSLATORS: Right, so here's the deal. Pronouns between languages... are complicated. So I've decided that each language gets its own pronoun functions! I'll leave the english functions at the top as an example, you can copy that format if you want, or you can set them up however you need. If you're not sure what to do, talk with me and I can help you with this! The english pronoun functions are heshe, himher, hisher, and hishers. You could also call them something like they, them, their, theirs, if you wanted, if it makes it shorter. Whatever you think will be intuitive for shell developers, as those are the people who will be using these!
 
-
 //English
 heshe
 {
@@ -62,6 +61,13 @@ hisher
 	if gender == "masc"; "his"
 	elseif gender == "fem"; "her"
 	else; "their" //Neutral
+}
+
+hishers
+{
+	if gender == "masc"; "his"
+	elseif gender == "fem"; "hers"
+	else; "theirs" //Neutral
 }
 
 hesshes
@@ -704,4 +710,9 @@ n1
 n2
 {
 	"\f[name,arial]♫\f[name,default]"
+}
+
+Pool
+{
+    if TOINT(_argv[1]); EVAL("%(_argv[0])")
 }
