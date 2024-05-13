@@ -127,7 +127,7 @@ animation0.pattern2,overlay,-1,30,0,0
 //You can set up multiple animations this way, too! Say you wanted to animate little notes around the character, or sparkles, or you wanted their arms to move. You can write as many animations as you want, really.
 
 //There are so many different ways to set this up that it's hard to give you more than that. You may wish to study the files of the master FLUX shell, and some other existing FLUX/FLELE shells.
-//FLUX has a set of intervals that run immediately when the singing surface is called, and they put the arms and head into the starting position by calling animations for them. When those animations finish, they use a method called alternativestart to randomly select another arm/expression animation, so that it's a seamless loop of random arm positions/expressions. More on that here, but it's a bit complicated: https://zichqec.github.io/s-the-skeleton/ping_pong_loops
+//FLUX has a set of animations that run immediately when the singing surface is called, and they put the arms and head into the starting position by calling animations for them. When those animations finish, they use a method called alternativestart to randomly select another arm/expression animation, so that it's a seamless loop of random arm positions/expressions. More on that here, but it's a bit complicated: https://zichqec.github.io/s-the-skeleton/ping_pong_loops
 
 
 //Ok, so that's animations. Now, what about hotspots? Those are essential for FLELE shells, though technically optional for FLUX shells.
@@ -276,7 +276,7 @@ OnCustom_OnShellChanging //Called when the user is changing away from this shell
 OnCustom_OnShellChanged //Called when the user just changed to this shell.
 
 OnCustom_RandomTalk //If you have this function, your shell will be able to say random dialogue, and buttons will appear for that in the menu!
-OnCustom_Menu - If you want to add a button or two in the main menu, for asking some simple questions or something, you can do that with this function. You can go crazy with this, but at that point you might as well just make a whole ghost haha.
+OnCustom_Menu - If you want to add a button or two in the main menu, for asking some simple questions or something, you can do that with this function. You can go crazy with this, but at that point you might as well just make a whole ghost lol.
 OnCustom_Petting //Custom dialogue pool for being pet!
 
 OnCustom_MouseMoveSakura //You can add your own stroking hotspots for the sakura here.
@@ -351,29 +351,10 @@ ARRAYSIZE(ShellList) //This will tell you how many shells the user has installed
 gender //Because of how I had to set up the pronoun system, I opted to create a variable that stores the user's gender choice. It'll be 'masc' for masculine, 'fem' for feminine, or 'undef' for neutral.
 
 
-//There's also my Pool function for dialogues. You can use it to create dialogue pools that have the same probability as normal dialogues. You put this in your OnCustom_RandomTalk (or whatever function you want it in)
-
-parallel Pool("Pool_NameOfYourPool","%(somecondition = 'true')")
-
-//The first argument is the name of the pool function you want to call, and the second function is the if check you want it to depend on. You can put any if check into the envelope there.
-//And then elsewhere in your file, you add an array function with the dialogues
-
-Pool_NameOfYourPool : array //somecondition = 'true'
-{
-	"Dialogue 1\e"
-	"Dialogue 2\e"
-	"Dialogue 3\e"
-	"Dialogue 4\e"
-	"Dialogue 5\e"
-}
-
-//If you need more explanation, check out X. Template or find the Pool function on my website.
-
-
 //When FLUX copies your code into its own files, you can find it in fx_shelldialogue.dic. DO NOT EDIT THAT FILE! I set it up to fill in any blank lines with comments reminding you not to edit that file. IF YOU EDIT THAT FILE, YOUR CHANGES WILL BE LOST WHENEVER IT NEXT LOADS/RELOADS THE SHELL. DON'T EVEN OPEN THAT FILE, YOU DON'T NEED TO BE IN THERE. Seriously, I mistakenly edited that file like 4 times just setting up some of the basic functions...
 //It's worth noting, though, that if you have custom functions turned off, but there are custom functions available, it will have a comment saying so. If no custom functions are available, it will have a comment telling you how you can add custom functions.
 
-//If you end up loading your shell and the ghost keeps complaining about critical errors, you'll need to fix the issue in your dialogue.dic first. With the new YAYA update, the errors should be displayed right in the error log. But if there are a lot, you might need Tama to see them all. Tama is really good for tracking down these errors; if you don't already have it, unzip the file tamadebugger.zip included in this folder and read the instructions.
+//If you end up loading your shell and the ghost keeps complaining about critical errors, you'll need to fix the issue in your dialogue.dic first. With the new YAYA update, the errors should be displayed right in the error log. But if there are a lot, you might need Tama to see them all. Tama is really good for tracking down these errors; if you don't already have it, get it from here and follow the instructions on this page: https://ukagakadreamteam.com/wiki/tool/tama_umeici
 //Once you've found and fixed the problem, you need to use FLUX to reload your shell functions! It needs to refresh the fx_shelldialogue.dic file in order to get rid of the error, so make sure you reload through the shell menu or the reload custom functions button in the menu. If that doesn't work for some reason, you can empty the fx_shelldialogue.dic file, and then reload your shell.
 
 
