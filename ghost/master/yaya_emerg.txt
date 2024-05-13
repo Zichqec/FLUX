@@ -5,7 +5,8 @@ charset.file, UTF-8
 charset.save, UTF-8
 charset.extension, UTF-8
 
-include, system_config.txt
+dicdir, yaya_base
+
 dic, fx_aitalk.dic
 dic, fx_anchor.dic
 dic, fx_bootend.dic

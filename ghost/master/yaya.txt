@@ -5,7 +5,8 @@ charset.file, UTF-8
 charset.save, UTF-8
 charset.extension, UTF-8
 
-include, system_config.txt
+dicdir, yaya_base
+
 dic, fx_aitalk.dic
 dic, fx_anchor.dic
 dic, fx_bootend.dic
@@ -20,7 +21,21 @@ dic, fx_word.dic
 dic, fx_shelldialogue.dic
 
 
+
+
 //log, ayame.log
 
 fncdepth,500
-messagetxt,system/messagetxt/english.txt
+msglang,english
+
+
+//iolog.filter.mode,whitelist
+// iolog.filter.keyword,OnSecondChange
+// iolog.filter.keyword,OnMouse
+//This filters out EVERYTHING that starts with OnMouse?? Which is not the behavior of the above
+
+iolog.filter.keyword,OnNotifyDressupInfo
+
+
+iolog.filter.mode,whitelist
+
