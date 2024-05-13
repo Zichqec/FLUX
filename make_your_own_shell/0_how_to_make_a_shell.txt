@@ -1,4 +1,4 @@
-//Written by Zichqec https://zichqec.github.io/s-the-skeleton/index.html
+//Written by Zichqec https://ukagaka.zichqec.com/
 
 //If you're reading this file, I assume you're interested in making a shell for FLUX. Awesome! This file will mostly focus on FLUX's system for custom shell dialogue, but I will include some basics about shell making here as well, in case you're totally new to this. I highly recommend giving Zarla's ghost walkthrough a read if you're totally new to making shells, at least the shell section! You can find that here: http://ashido.com/ukagaka/
 //If you already have experience making shells and just want to know how to set up custom stuff with FLUX, you can skip ahead to section 3.
@@ -119,7 +119,7 @@ animation0.pattern2,overlay,-1,30,0,0
 
 //After that, you guessed it, it's X and Y coordinates. Again, if all your frames are the same size, you don't need to worry about these at all! Just make them 0,0.
 
-//Now, I will note again that this differs from Zarla's tutorial a bit. In the old definition, the order of this information is slightly different, and the milliseconds use smaller numbers. Otherwise, it's the same concepts! If you want to know more about the differences between the old and new definitions, I wrote a guide that you can find here: https://zichqec.github.io/s-the-skeleton/olddef_vs_newdef (It includes a converter if you want to change from the old definition to the new one!)
+//Now, I will note again that this differs from Zarla's tutorial a bit. In the old definition, the order of this information is slightly different, and the milliseconds use smaller numbers. Otherwise, it's the same concepts! If you want to know more about the differences between the old and new definitions, I wrote a guide that you can find here: https://ukagaka.zichqec.com/guide/old_definition_vs_new_definition (It includes a converter if you want to change from the old definition to the new one!)
 
 
 //Ok, so what about singing animations? Well, one of the easiest ways to set up a simple mouth animation would be to call it with the always method. Animations called with always will always run, and will repeat themselves when they reach the end. It's perfect for something that needs to change regularly, but also can't ever disappear, like a mouth!
@@ -127,7 +127,7 @@ animation0.pattern2,overlay,-1,30,0,0
 //You can set up multiple animations this way, too! Say you wanted to animate little notes around the character, or sparkles, or you wanted their arms to move. You can write as many animations as you want, really.
 
 //There are so many different ways to set this up that it's hard to give you more than that. You may wish to study the files of the master FLUX shell, and some other existing FLUX/FLELE shells.
-//FLUX has a set of animations that run immediately when the singing surface is called, and they put the arms and head into the starting position by calling animations for them. When those animations finish, they use a method called alternativestart to randomly select another arm/expression animation, so that it's a seamless loop of random arm positions/expressions. More on that here, but it's a bit complicated: https://zichqec.github.io/s-the-skeleton/ping_pong_loops
+//FLUX has a set of animations that run immediately when the singing surface is called, and they put the arms and head into the starting position by calling animations for them. When those animations finish, they use a method called alternativestart to randomly select another arm/expression animation, so that it's a seamless loop of random arm positions/expressions. More on that here, but it's a bit complicated: https://ukagaka.zichqec.com/guide/ping_pong_loops
 
 
 //Ok, so that's animations. Now, what about hotspots? Those are essential for FLELE shells, though technically optional for FLUX shells.
@@ -258,7 +258,7 @@ RemoveFlag("Your flag name here, it can be any string")
 
 //This will help keep down the amount of variables that users end up with, and since flags can be any string, you can give them really unique names to ensure no overlap happens!
 
-//Also, I do ask that you not add in any of the base SHIORI functions found on Ukadoc! I may update FLUX in the future, and if your shell has a function that I add later, your shell's functions will no longer load. If you really need a particular function, let me know and I may add it to the FLUX base! And if you're doing really complicated stuff, you might just want to make your own ghost at that point. If you want a music player in your own ghost, you can have a look at FLUX's code for that, I don't mind. If you use it as is, I do ask that you add a credit to me and link back to my website (https://zichqec.github.io/s-the-skeleton/index.html), but otherwise go wild.
+//Also, I do ask that you not add in any of the base SHIORI functions found on Ukadoc! I may update FLUX in the future, and if your shell has a function that I add later, your shell's functions will no longer load. If you really need a particular function, let me know and I may add it to the FLUX base! And if you're doing really complicated stuff, you might just want to make your own ghost at that point. If you want a music player in your own ghost, you can have a look at FLUX's code for that, I don't mind. If you use it as is, I do ask that you add a credit to me and link back to my website (https://ukagaka.zichqec.com/), but otherwise go wild.
 
 //Anyways! With that all out of the way, lets get into it!
 
@@ -379,7 +379,7 @@ else //English - The else will always be english
 //============================Section 4 - Network updates & Publishing==========================
 //==============================================================================================
 
-//If you've made shells or ghosts before, you probably don't need to read this. But, I will remind you to add a homeurl to your shell! One of the main reasons I made FLUX is so that it can automatically check for shell updates, which FLELE doesn't do. Even if you don't THINK you'll be putting up updates, I still recommend setting up a homeurl just in case! If you don't have anywhere to host files, I have a guide on how you can host them for free on github: https://zichqec.github.io/s-the-skeleton/github.html
+//If you've made shells or ghosts before, you probably don't need to read this. But, I will remind you to add a homeurl to your shell! One of the main reasons I made FLUX is so that it can automatically check for shell updates, which FLELE doesn't do. Even if you don't THINK you'll be putting up updates, I still recommend setting up a homeurl just in case! If you don't have anywhere to host files, I have a guide on how you can host them for free on github: https://ukagaka.zichqec.com/guide/network_updates_with_github
 
 //Seriously, it's better to take a few minutes to set up a URL now than regret not doing so later.
 
@@ -387,7 +387,7 @@ else //English - The else will always be english
 
 //When you've got your shell completely ready to be published, drag and drop the whole folder onto FLUX, and click the option to create a .nar. Save your .nar file somewhere, and when it's done creating, that .nar file can now be dragged and dropped onto FLUX or FLELE to install it as a shell! You can distribute that .nar file however you please.
 
-//Just one more thing if you've reached this point: Please tell me! I would love to see any shells that are made for FLUX! I would also be glad to link to them on my own website if they're released publicly, so other people can find your shell too. https://zichqec.github.io/s-the-skeleton/flux.html
+//Just one more thing if you've reached this point: Please tell me! I would love to see any shells that are made for FLUX! I would also be glad to link to them on my own website if they're released publicly, so other people can find your shell too. https://ukagaka.zichqec.com/ghost/flux
 
 //Have fun making shells, and please do let me know if you have any questions! You can find me on the Ukagaka Dream Team Discord server linked at the top, or on any of my socials linked on my website.
 

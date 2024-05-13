@@ -4,7 +4,7 @@ seriko.use_self_alpha,1
 charset,UTF-8
 type,shell
 
-//Change the name of your shell here, and add in your own name and URL so people can find who made it. Your name and URL will automatically be added to the right click menu of FLUX while your shell is being used, too! Don't forget to add a homeurl, too. If you have no place to host files, you can do so on Github for free! I have a guide on how to do that here: https://zichqec.github.io/s-the-skeleton/github.html
+//Change the name of your shell here, and add in your own name and URL so people can find who made it. Your name and URL will automatically be added to the right click menu of FLUX while your shell is being used, too! Don't forget to add a homeurl, too. If you have no place to host files, you can do so on Github for free! I have a guide on how to do that here: https://ukagaka.zichqec.com/guide/network_updates_with_github
 name,Your Shell
 craftman,YourNameHere
 craftmanurl,https://Your-Url-Here.com/

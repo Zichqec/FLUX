@@ -8,7 +8,7 @@ kero.name,Music
 
 craftman,Zichqec
 craftmanw,Zichqec
-craftmanurl,https://zichqec.github.io/s-the-skeleton/index.html
+craftmanurl,https://ukagaka.zichqec.com/
 
 sstp.allowunspecifiedsend,0
 shiori,yaya.dll

@@ -29,6 +29,7 @@ OnDiscordPluginBoot
 	if Singing; _song = "♫ %(CHR(34))%(SPLITPATH(NowPlaying[0])[2])%(CHR(34)) ♫"
 	
 	"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomALL,903843216200179753,,,thumbnail,https://zichqec.github.io/s-the-skeleton/flux,]"
+	"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomALL,903843216200179753,,,thumbnail,https://ukagaka.zichqec.com/ghost/flux,]"
 	--
 	if DiscordDisplay[0]
 	{

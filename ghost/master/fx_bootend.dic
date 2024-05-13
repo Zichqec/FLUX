@@ -643,6 +643,7 @@ FirstBootVars
 	talkoption = 0
 	InstalledShellName = ""
 	shellauthor = ("Zichqec","Zichqec","https://zichqec.github.io/s-the-skeleton/index.html")
+	shellauthor = ("Zichqec","Zichqec","https://ukagaka.zichqec.com/")
 	CurrentPlaylist = IARRAY
 	ShuffledPlaylist = IARRAY
 	DraggedFile = ""

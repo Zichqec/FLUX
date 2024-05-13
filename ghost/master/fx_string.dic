@@ -1,7 +1,6 @@
-//Network Update URL. I recommend using Github Pages to set up a site and store their files! It's free and reliable. I've written up a guide on how to do this here https://zichqec.github.io/s-the-skeleton/github.html
+//Network Update URL. I recommend using Github Pages to set up a site and store their files! It's free and reliable. I've written up a guide on how to do this here https://ukagaka.zichqec.com/guide/network_updates_with_github
 On_homeurl
 {
-	"https://zichqec.github.io/s-the-skeleton/updates/ghosts/flux/"
 }
 
 On_recommendrootbutton.caption //Change this to your username, or change the whole caption to whatever you want. This is the top list of websites
@@ -49,36 +48,36 @@ recommendsites_sakura_placeholder : array //TRANSLATORS: This is where the actua
 
 recommendsites_sakura_deutsch : array
 {
-	"FLUX-Player von Zichqec                  | https://zichqec.github.io/s-the-skeleton/index.html"
+	"FLUX-Player von Zichqec                  | https://ukagaka.zichqec.com/"
 	"%(language)e Übersetzung von Koguri3108  | https://koguri3108.tumblr.com"
 	"%(nowshell) Shell von %(shellauthor[0])  | %(shellauthor[2])"
 }
 
 recommendsites_sakura_русский : array
 {
-	"Плеер FLUX от Zichqec                        | https://zichqec.github.io/s-the-skeleton/index.html"
+	"Плеер FLUX от Zichqec                        | https://ukagaka.zichqec.com/"
 	"Русский перевод от Смоукы                    | https://smokycinnamon.github.io/indifferentsorrel/index.html"
 	"Внешний Вид %(nowshell) от %(shellauthor[0]) | %(shellauthor[2])"
 }
 
 recommendsites_sakura_french : array
 {
-	"Lecteur FLUX par Zichqec                | https://zichqec.github.io/s-the-skeleton/index.html"
+	"Lecteur FLUX par Zichqec                | https://ukagaka.zichqec.com/"
 	"Traduction française par Levidre        | https://azura-levidre.tumblr.com/"
 	"Shell %(nowshell) par %(shellauthor[0]) | %(shellauthor[2])"
 }
 
 recommendsites_sakura_polski : array
 {
-	"Odtwarzacz FLUX od Zichqec               | https://zichqec.github.io/s-the-skeleton/index.html"
+	"Odtwarzacz FLUX od Zichqec               | https://ukagaka.zichqec.com/"
 	"Polskie tłumaczenie od Zdzicha           | https://zdzisiu.github.io/Ukagaka/"
 	"skorupa %(nowshell) od %(shellauthor[0]) | %(shellauthor[2])"
 }
 
 recommendsites_sakura_english : array
 {
-	"FLUX player by Zichqec                 | https://zichqec.github.io/s-the-skeleton/index.html"
-	"%(language) translation by Zichqec     | https://zichqec.github.io/s-the-skeleton/index.html"
+	"FLUX player by Zichqec                 | https://ukagaka.zichqec.com/"
+	"%(language) translation by Zichqec     | https://ukagaka.zichqec.com/"
 	"%(nowshell) shell by %(shellauthor[0]) | %(shellauthor[2])"
 }
  
@@ -128,7 +127,7 @@ portalsites_sakura_placeholder : array //TRANSLATORS: The actual list of links
 
 portalsites_sakura_deutsch : array 
 {
-	"Gebaut mit X. Template YAYA - v.1.0.4 | https://zichqec.github.io/s-the-skeleton/xtemplate.html"
+	"Gebaut mit X. Template YAYA - v.1.0.4 | https://ukagaka.zichqec.com/template/x_template_yaya"
 	"Zarla's Ghost-Vorlage Walkthrough     | http://www.ashido.com/ukagaka/walkthrough.html"
 	"Wie man Updates mit Github aufsetzt   | https://zichqec.github.io/s-the-skeleton/github.html"
 	"Ukagaka Dream Team Discord            | https://ukagakadreamteam.tumblr.com/discord"
@@ -141,7 +140,7 @@ portalsites_sakura_deutsch : array
 
 portalsites_sakura_русский : array
 {
-	"Настроено от X. Template YAYA - v.1.0.4 | https://zichqec.github.io/s-the-skeleton/xtemplate.html"
+	"Настроено от X. Template YAYA - v.1.0.4 | https://ukagaka.zichqec.com/template/x_template_yaya"
 	"Укагакский Образец у Zarla              | http://www.ashido.com/ukagaka/walkthrough.html"
 	"Как настроить обновление с Github       | https://zichqec.github.io/s-the-skeleton/github.html"
 	"Дискорд Ukagaka Dream Team              | https://ukagakadreamteam.tumblr.com/discord"
@@ -154,7 +153,7 @@ portalsites_sakura_русский : array
 
 portalsites_sakura_french : array 
 {
-	"Créé à partir de X. Template YAYA - v.1.0.4 | https://zichqec.github.io/s-the-skeleton/xtemplate.html"
+	"Créé à partir de X. Template YAYA - v.1.0.4 | https://ukagaka.zichqec.com/template/x_template_yaya"
 	"Le tutoriel de Zarla sur les ghosts         | http://www.ashido.com/ukagaka/walkthrough.html"
 	"Comment créer des mise à jour avec github   | https://zichqec.github.io/s-the-skeleton/github.html"
 	"Discord de l'Ukagaka Dream Team             | https://ukagakadreamteam.tumblr.com/discord"
@@ -167,7 +166,7 @@ portalsites_sakura_french : array
 
 portalsites_sakura_polski : array 
 {
-	"Zbudowany na X. Template YAYA - v.1.0.4   | https://zichqec.github.io/s-the-skeleton/xtemplate.html"
+	"Zbudowany na X. Template YAYA - v.1.0.4   | https://ukagaka.zichqec.com/template/x_template_yaya"
 	"Szablon duchów Zarli Walkthrough          | http://www.ashido.com/ukagaka/walkthrough.html"
 	"Jak skonfigurować aktualizacje z Githubem | https://zichqec.github.io/s-the-skeleton/github.html"
 	"Ukagaka Dream Team Discord                | https://ukagakadreamteam.tumblr.com/discord"
@@ -181,7 +180,7 @@ portalsites_sakura_polski : array
 //Same deal as above with the formatting. //I'd appreciate it if you left the X. Template link in your ghost so that other people can find the source <3
 portalsites_sakura_english : array 
 {
-	"Built on X. Template YAYA - v.1.0.4 | https://zichqec.github.io/s-the-skeleton/xtemplate.html"
+	"Built on X. Template YAYA - v.1.0.4 | https://ukagaka.zichqec.com/template/x_template_yaya"
 	"Zarla's Ghost Template Walkthrough  | http://www.ashido.com/ukagaka/walkthrough.html"
 	"How to set up updates with Github   | https://zichqec.github.io/s-the-skeleton/github.html"
 	"Ukagaka Dream Team Discord          | https://ukagakadreamteam.tumblr.com/discord"

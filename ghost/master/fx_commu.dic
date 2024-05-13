@@ -152,7 +152,7 @@ OnNotifySongInfo
 	
 	*/
 	
-	//"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomALL,903843216200179753,Shell: %(CHR(34))%(nowshell)%(CHR(34)),%(_song),thumbnail,https://zichqec.github.io/s-the-skeleton/flux,dev,Developer]"
+	//"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomALL,903843216200179753,Shell: %(CHR(34))%(nowshell)%(CHR(34)),%(_song),thumbnail,https://ukagaka.zichqec.com/ghost/flux,dev,Developer]"
 	--
 	if DiscordDisplay[0]; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,%(_song)]"
 	else; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState, ]"
