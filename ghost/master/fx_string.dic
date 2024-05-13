@@ -1,6 +1,7 @@
 //Network Update URL. I recommend using Github Pages to set up a site and store their files! It's free and reliable. I've written up a guide on how to do this here https://ukagaka.zichqec.com/guide/network_updates_with_github
 On_homeurl
 {
+	"https://raw.githubusercontent.com/Zichqec/FLUX/main/"
 }
 
 On_recommendrootbutton.caption //Change this to your username, or change the whole caption to whatever you want. This is the top list of websites
