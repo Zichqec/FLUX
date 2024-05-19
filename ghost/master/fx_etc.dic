@@ -2226,7 +2226,6 @@ OnUpdateComplete
 			//"[Обновления FLUX закончено.]" //готов?
 			"[Обновление FLUX успешно.\w8\w8 Открыть лог изменение?]"
 			--
-			"\n\n![]\q[Да,OnChangeLog]\n![]\q[Нет,OnCancel]\e"
 			"\n\n\![*]\q[Да,OnChangeLog]\n\![*]\q[Нет,OnCancel]\e"
 		}
 	}
