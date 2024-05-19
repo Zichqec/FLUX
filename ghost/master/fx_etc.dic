@@ -1356,27 +1356,22 @@ OnShellInstallFailure //Installing a shell that is set as FLELE only fails
 	}
 	elseif language == "Deutsch"
 	{
-		"[Diese Shell konnte nicht installiert werden.\w8\w8 Der aufgetretene Fehler ist '%(_error)'.\w8\w8 Bitte kontaktiere \_a[https://zichqec.github.io/s-the-skeleton/]Zichqec\_a für Hilfe.]"
 		"[Diese Shell konnte nicht installiert werden.\w8\w8 Der aufgetretene Fehler ist '%(_error)'.\w8\w8 Bitte kontaktiere \_a[https://ukagaka.zichqec.com/]Zichqec\_a für Hilfe.]"
 	}
 	elseif language == "Русский"
 	{
-		"[Не удалось установить этот внешний вид.\w8\w8 Вот ошибка: '%(_error)'.\w8\w8 Пожалуйста, сообщите \_a[https://zichqec.github.io/s-the-skeleton/]Zichqec\_a за помощь.]" 
 		"[Не удалось установить этот внешний вид.\w8\w8 Вот ошибка: '%(_error)'.\w8\w8 Пожалуйста, сообщите \_a[https://ukagaka.zichqec.com/]Zichqec\_a за помощь.]" 
 	}
 	elseif language == "Français"
 	{
-		"[Impossible d'installer ce shell.\w8\w8 L'erreur renvoyée est '%(_error)'.\w8\w8 Merci de contacter \_a[https://zichqec.github.io/s-the-skeleton/]Zichqec\_a pour de toute assistance.]"
 		"[Impossible d'installer ce shell.\w8\w8 L'erreur renvoyée est '%(_error)'.\w8\w8 Merci de contacter \_a[https://ukagaka.zichqec.com/]Zichqec\_a pour de toute assistance.]"
 	}
 	elseif language == "Polski"
 	{
-		"[Nie można zainstalować tej skorupy. Błąd to: '%(_error)'. Prosimy o kontakt z \a[https://zichqec.github.io/s-the-skeleton/]Zichqec\a w celu uzyskania pomocy.]"
 		"[Nie można zainstalować tej skorupy. Błąd to: '%(_error)'. Prosimy o kontakt z \a[https://ukagaka.zichqec.com/]Zichqec\a w celu uzyskania pomocy.]"
 	}
 	else //English
 	{
-		"[Could not install this shell.\w8\w8 The error returned is '%(_error)'.\w8\w8 Please contact \_a[https://zichqec.github.io/s-the-skeleton/]Zichqec\_a for assistance.]"
 		"[Could not install this shell.\w8\w8 The error returned is '%(_error)'.\w8\w8 Please contact \_a[https://ukagaka.zichqec.com/]Zichqec\_a for assistance.]"
 	}
 	--
@@ -2377,7 +2372,6 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{	
-			"[Die MD5 Werte stimmen nicht mit jenen in '%(_currentfile)' überein.\w8\w8 Du solltest \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a kontaktieren und sie darüber in Kenntnis setzen.]\e"
 			"[Die MD5 Werte stimmen nicht mit jenen in '%(_currentfile)' überein.\w8\w8 Du solltest \_a[https://ukagaka.zichqec.com/]Zichqec\_a kontaktieren und sie darüber in Kenntnis setzen.]\e"
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
@@ -2397,7 +2391,6 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
-			"[Хеш-значении MD5 не согласится друг друга.\w8\w8 Сообщить автором \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a и расскажи нее, что файл '%(_currentfile)' даёт ошибок MD5.]\e"
 			"[Хеш-значении MD5 не согласится друг друга.\w8\w8 Сообщить автором \_a[https://ukagaka.zichqec.com/]Zichqec\_a и расскажи нее, что файл '%(_currentfile)' даёт ошибок MD5.]\e"
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
@@ -2417,7 +2410,6 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
-			"[La valeur MD5 ne correspond pas pour '%(_currentfile)'.\w8\w8 Tu devrais contacter \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a et lui faire savoir.]\e"
 			"[La valeur MD5 ne correspond pas pour '%(_currentfile)'.\w8\w8 Tu devrais contacter \_a[https://ukagaka.zichqec.com/]Zichqec\_a et lui faire savoir.]\e"
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
@@ -2437,7 +2429,6 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
-			"[Wartości MD5 nie zgadzają się na '%(_currentfile)'.\w8\w8 Powinieneś skontaktować się z \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a i dać im znać.]\e"
 			"[Wartości MD5 nie zgadzają się na '%(_currentfile)'.\w8\w8 Powinieneś skontaktować się z \_a[https://ukagaka.zichqec.com/]Zichqec\_a i dać im znać.]\e"
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
@@ -2457,7 +2448,6 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
-			"[The MD5 values don't match on '%(_currentfile)'.\w8\w8 You should contact \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a and let her know.]\e"
 			"[The MD5 values don't match on '%(_currentfile)'.\w8\w8 You should contact \_a[https://ukagaka.zichqec.com/]Zichqec\_a and let her know.]\e"
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
