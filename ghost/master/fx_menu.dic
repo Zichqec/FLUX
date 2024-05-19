@@ -1344,35 +1344,30 @@ Select.BugReport
 	}
 	elseif language == "Deutsch"
 	{
-		"[Bugs in FLUX-Player's Mechaniken können \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 via jeder ihrer Social-Medias gemeldet werden.]\n\n\w8\w8[Bugs in der Shell, die du gerade benutzt, '%(nowshell)',\w4 sollten ihrem Entwickler,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a gemeldet werden.]\n\n\w8\w8[Typos und jegliche andere Fehler in der deutschen Übersetzung von FLUX können \_a[https://koguri3108.tumblr.com]Koguri3108\_a gemeldet werden.]"
 		"[Bugs in FLUX-Player's Mechaniken können \_a[https://ukagaka.zichqec.com/]Zichqec\_a,\w4 via jeder ihrer Social-Medias gemeldet werden.]\n\n\w8\w8[Bugs in der Shell, die du gerade benutzt, '%(nowshell)',\w4 sollten ihrem Entwickler,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a gemeldet werden.]\n\n\w8\w8[Typos und jegliche andere Fehler in der deutschen Übersetzung von FLUX können \_a[https://koguri3108.tumblr.com]Koguri3108\_a gemeldet werden.]"
 		--
 		"\n\n\![*]\q[Zurück zu Einstellungen,OnConfigMenu]\n\![*]\q[Schließen,OnCancel]\e"
 	}
 	elseif language == "Русский"
 	{
-		"[Можно сообщить об ошибки в Функции FLUX к \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 с любое из ее социяльных сетях.]\n\n\w8\w8[Ты должен сообщить обо ошибки во Внешнего Вида, в котором ты сейчас используешь, '%(nowshell)',\w4 к автора,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8[Сообщить, пожалуйста, Смоукы обо ошибки в русском переводе на его \_a[https://ev-n-learning.tumblr.com/]Tumblr\_a.]"
 		"[Можно сообщить об ошибки в Функции FLUX к \_a[https://ukagaka.zichqec.com/]Zichqec\_a,\w4 с любое из ее социяльных сетях.]\n\n\w8\w8[Ты должен сообщить обо ошибки во Внешнего Вида, в котором ты сейчас используешь, '%(nowshell)',\w4 к автора,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8[Сообщить, пожалуйста, Смоукы обо ошибки в русском переводе на его \_a[https://ev-n-learning.tumblr.com/]Tumblr\_a.]"
 		--
 		"\n\n\![*]\q[Назад в Конфигурация,OnConfigMenu]\n\![*]\q[Закрыть,OnCancel]\e"
 	}
 	elseif language == "Français"
 	{
-		"[Les bugs de méchaniques du lecteur FLUX peuvent être rapporté à \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 via n'importe quel réseau social.]\n\n\w8\w8[Les bugs du shell actuellement utilisé, '%(nowshell)',\w4 doivent être rapporté à son developpeur,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8[Toute faute de frappe dans les menus français/dialogues génériques pour FLUX peuvent être rapportés à \_a[https://levidre.github.io/]Levidre\_a.]"
 		"[Les bugs de méchaniques du lecteur FLUX peuvent être rapporté à \_a[https://ukagaka.zichqec.com/]Zichqec\_a,\w4 via n'importe quel réseau social.]\n\n\w8\w8[Les bugs du shell actuellement utilisé, '%(nowshell)',\w4 doivent être rapporté à son developpeur,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8[Toute faute de frappe dans les menus français/dialogues génériques pour FLUX peuvent être rapportés à \_a[https://levidre.github.io/]Levidre\_a.]"
 		--
 		"\n\n\![*]\q[Retour à Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]\e"
 	}
 	elseif language == "Polski"
 	{
-		"[Błędy w mechanice odtwarzacza FLUX można zgłaszać do \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 za pośrednictwem jednego z jej mediów społecznościowych.]\n\n\w8\w8[Błędy w skorupie, którą aktualnie używasz, '%(nowshell)',\w4 powinny być zgłaszane do jej twórcy,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8[Wszelkie literówki w polskim tłumaczeniue dla FLUXa mogą być zgłaszane do \_a[https://zdzisiu.github.io/Ukagaka/]Zdzicha\_a przez Discorda.]"
 		"[Błędy w mechanice odtwarzacza FLUX można zgłaszać do \_a[https://ukagaka.zichqec.com/]Zichqec\_a,\w4 za pośrednictwem jednego z jej mediów społecznościowych.]\n\n\w8\w8[Błędy w skorupie, którą aktualnie używasz, '%(nowshell)',\w4 powinny być zgłaszane do jej twórcy,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8[Wszelkie literówki w polskim tłumaczeniue dla FLUXa mogą być zgłaszane do \_a[https://zdzisiu.github.io/Ukagaka/]Zdzicha\_a przez Discorda.]"
 		--
 		"\n\n\![*]\q[Powrót do ustawień,OnConfigMenu]\n\![*]\q[Zamknij,OnCancel]\e"
 	}
 	else //English
 	{
-		"[Bugs with FLUX player's mechanics can be reported to \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 via any of her social medias.]\n\n\w8\w8[Bugs in the shell you're currently running, '%(nowshell)',\w4 should be reported to it's dev,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8[Any typos in the English menus/generic dialogue for FLUX can be reported to \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a.]"
 		"[Bugs with FLUX player's mechanics can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a,\w4 via any of her social medias.]\n\n\w8\w8[Bugs in the shell you're currently running, '%(nowshell)',\w4 should be reported to it's dev,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8[Any typos in the English menus/generic dialogue for FLUX can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]"
 		--
 		"\n\n\![*]\q[Back to Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]\e"
