@@ -20,7 +20,6 @@ OnAiTalk
 		--
 		lastTalk
 	}
-	else; "\e This prevents aitalk from breaking until this issue is fixed" //TODO if this gets patched, remove this bit
 }
 
 
