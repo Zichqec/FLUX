@@ -11,6 +11,7 @@ OnFileDrop2
 		_filepath = SPLITPATH(_filearray)
 		_filename = _filepath[2]
 		_fileext = TOLOWER(_filepath[3])
+		
 		//Incompatible audio types: cdda, cvs, cvsd, cvu, dvms, fssd, grst, htk, ima, prc, smp, sndr, sndt, sou, txw, vms, vox
 		_imgtypes = (".jpg",".jpeg",".bmp",".png")
 		if ASEARCH(_fileext,_imgtypes) != -1
@@ -556,7 +557,7 @@ SetWallpaper
 			"\n\![*]\q[Strecken,OnWallpaper,%(_file),span]"
 		}
 		--
-		if "Windows 7" || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
+		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
 			"\n\![*]\q[Ausfüllen,OnWallpaper,%(_file),stretch-x]/
 			\n\![*]\q[Anpassen,OnWallpaper,%(_file),stretch-y]"
@@ -582,7 +583,7 @@ SetWallpaper
 			"\n\![*]\q[Охватывающий,OnWallpaper,%(_file),span]"
 		}
 		--
-		if "Windows 7" || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
+		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
 			"\n![]\q[Наполнить,OnWallpaper,%(_file),stretch-x]/
 			\n![]\q[Вписаться,OnWallpaper,%(_file),stretch-y]" 
@@ -609,7 +610,7 @@ SetWallpaper
 			"\n\![*]\q[Espacé,OnWallpaper,%(_file),span]"
 		}
 		--
-		if "Windows 7" || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
+		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
 			"\n\![*]\q[Remplir,OnWallpaper,%(_file),stretch-x]/
 			\n\![*]\q[Ajuster,OnWallpaper,%(_file),stretch-y]"
@@ -635,7 +636,7 @@ SetWallpaper
 			"\n\![*]\q[Rozpięty,OnWallpaper,%(_file),span]"
 		}
 		--
-		if "Windows 7" || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
+		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
 			"\n\![*]\q[Wypełni,OnWallpaper,%(_file),stretch-x]/
 			\n\![*]\q[Dopasuj,OnWallpaper,%(_file),stretch-y]"
@@ -661,7 +662,7 @@ SetWallpaper
 			"\n\![*]\q[Spanned,OnWallpaper,%(_file),span]"
 		}
 		--
-		if "Windows 7" || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
+		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
 			"\n\![*]\q[Fill,OnWallpaper,%(_file),stretch-x]/
 			\n\![*]\q[Fit,OnWallpaper,%(_file),stretch-y]"
@@ -1107,6 +1108,7 @@ OnInstallRefuse
 					
 					if _mov != 1
 					{
+
 						_del2 = RMDIREX("%(_temppath)%(_found)/")
 						"\![raise,OnShellInstallFailure,can't un-nest the directory## something went wrong while moving,%(_mov),%(_del),%(_del2)]"
 						return
@@ -2230,6 +2232,7 @@ OnUpdateComplete
 			"[Обновление FLUX успешно.\w8\w8 Открыть лог изменение?]"
 			--
 			"\n\n![]\q[Да,OnChangeLog]\n![]\q[Нет,OnCancel]\e"
+			"\n\n\![*]\q[Да,OnChangeLog]\n\![*]\q[Нет,OnCancel]\e"
 		}
 	}
 	elseif language == "Français"
