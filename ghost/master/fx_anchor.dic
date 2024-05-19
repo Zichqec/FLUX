@@ -3,15 +3,15 @@ OnTranslate
 	_talk = reference0
 	
 	
-	//---Important other stuff, written by Ponapalt---
+	//--- Important other stuff, written by Ponapalt ---
 	if reference1 == "" && reference2 == ""
 	{ //send input box : no event (ref2) , no special flag (ref1)
-		EVAL('"' + REPLACE(_talk,'"','" + CHR(0x22) + "') + '"')
+		_talk = EVAL('"' + REPLACE(_talk,'"','""') + '"')
 	}
-    else
-	{ //event result from ghost
-		TOSTR(_talk)
+	
 	}
+    
+	TOSTR(_talk)
 }
 
 OnDiscordPluginCustom
