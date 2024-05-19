@@ -106,7 +106,7 @@ OnMusicMenu //Main music menu display; this displays the list of songs and the c
 	--
 	if NowPlaying[0] == "" //TRANSLATORS: This is if no song is loaded in. The text will be grayed out until a song is chosen. _g can be used to make the text gray and _d will put it back to default
 	{
-		_g = "\f[color,150,150,150]"
+		_g = "\f[color,disable]"
 		_d = "\f[default]"
 		if language == "Placeholder"
 		{
