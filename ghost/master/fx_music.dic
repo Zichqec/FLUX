@@ -307,17 +307,12 @@ OnPlaySong //Function that actually plays the songs, nothing needs translated in
 		
 		_send += "\![sound,play,%(CHR(34))%(_path)%(CHR(34)),--volume=%(MusicSettings[0]),--rate=%(MusicSettings[1]),--balance=%(MusicSettings[2]),--sound-only=true]" //Play new song
 		
-		LOGGING("====================================================================")
-		LOGGING("====================================================================")
-		LOGGING("====================================================================")
 		if IsMinimized
 		{
-			LOGGING("Sent with ValueNotify")
 			SHIORI3FW.MakeValueNotify(_send)
 		}
 		else
 		{
-			LOGGING("Sent normally")
 			_send
 		}
 	}
@@ -682,8 +677,6 @@ OnSongLocation
 
 OnSoundStop //When a song ends on its own
 {
-	LOGGING("====================================================================")
-	LOGGING("OnSoundStop")
 	if MusicSettings[5] == 1
 	{
 		LOGGING("===============SHELL IS BEING CHANGED, RESUMING AFTERWARDS...")
@@ -814,8 +807,6 @@ OnSoundError
 		if _playnext; "\n\n\w8\w8[Starting next song...]"
 	}
 	--
-	LOGGING("====================================================================")
-	LOGGING("_playnext: ",_playnext)
 	if _playnext
 	{
 		"\_w[1000]"
@@ -2086,21 +2077,16 @@ OnFindSongs //Checks for music files in folders and multiple files
 	_added = IARRAY
 	_input = IARRAY
 	_recursive = IARRAY
-	LOGGING("FENUM == '%(_argv[1])' ")
-	LOGGING("SIZE: %(ARRAYSIZE(_input))")
 	if _argv[0] != ""
 	{
 		if _argv[1] == ""; {_added = ""; return}
 		else; _input = SPLIT(_argv[1],"|") //If it came from FENUM
-		LOGGING("AFTER FENUM SIZE: %(ARRAYSIZE(_input))")
-		LOGGING("Opened folder %(_argv[0])")
 	}
 	else //If it came from multiple files
 	{
 		for _i = 1; _i < _argc; _i++ //Probably a bug to not be argc - 1... but it seems to be working????
 		{
 			if _argv[_i] != ""; _input ,= _argv[_i]
-			LOGGING("ADDED SIZE: %(ARRAYSIZE(_input))")
 		}
 	}
 	
@@ -2112,21 +2098,14 @@ OnFindSongs //Checks for music files in folders and multiple files
 		{
 			_file = REPLACE(_file,",","%(C_BYTE1)")
 			CurrentPlaylist ,= "%(_argv[0])%(_file)"
-			LOGGING(_argv[0])
 			_added ,= _file
-			LOGGING("Songs so far: %(_added)")
 		}
 		elseif _ext == ""
 		{
-			LOGGING("===START RECURSIVE FUNCTION=== %(_file)")
-			LOGGING("Songs so far: %(_added)")
 			_recursive = OnFindSongs("%(_argv[0])%(_file)\",FENUM("%(_argv[0])%(_file)",'|'))
-			LOGGING("Songs recursed: %(_recursive)")
 			if _recursive != ""; _added ,= _recursive
-			LOGGING(_added)
 		}
 	}
-	LOGGING("FINAL ADD: %(_added)")
 	TOSTR(_added)
 	//_added
 }
@@ -2164,7 +2143,6 @@ ACYCLE
 
 ASCOOTEX
 {
-	LOGGING("ASCOOTEX")
 	_array = _argv //Take in all the arguments as an array
 	_array[1] = IARRAY //Erase the other arguments because we don't want them in the array
 	_array[0] = IARRAY

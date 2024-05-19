@@ -4,21 +4,13 @@
 //reference0 is the file path, which is split up amongst the local variables below
 OnFileDrop2
 {
-	LOGGING("FileDrop2")
 	_filearray = SPLIT(reference.raw[0],C_BYTE1)
-	//reference0 = OnJustMakeThemADamnArrayInTheFirstPlaceEX(reference0)
-	//"%(GETTYPE(reference0))\n\n\_q\_?%(reference0[2])\_?"
-	//"\b4\_q%(GETTYPE(reference0))    %(ARRAYSIZE(reference0))\n\n\_?%(reference0)\_?\x"
-	--
 	
-	
-	//"\_q%(ARRAYSIZE(reference0))\n\n%(GETTYPE(reference0))\n\n%(reference0[1])\e"
 	if ARRAYSIZE(_filearray) == 1 //If it's a single file
 	{
 		_filepath = SPLITPATH(_filearray)
 		_filename = _filepath[2]
 		_fileext = TOLOWER(_filepath[3])
-		LOGGING("Single file")
 		//Incompatible audio types: cdda, cvs, cvsd, cvu, dvms, fssd, grst, htk, ima, prc, smp, sndr, sndt, sou, txw, vms, vox
 		_imgtypes = (".jpg",".jpeg",".bmp",".png")
 		if ASEARCH(_fileext,_imgtypes) != -1
@@ -79,7 +71,6 @@ OnFileDrop2
 		}
 		elseif _fileext == ".m3u"
 		{
-			LOGGING("Playlist")
 			_path = "/../../playlists/"
 			_playlists = FENUM(_path)
 			_playlists = SPLIT(_playlists,",")
@@ -1056,7 +1047,6 @@ OnInstallRefuse
 		}
 		_i = FUNCTIONEX("zarc.dll","unzip","%(_temppath)%(_name).zip","%(_temppath)%(_name)/") //Unzip it
 		if _i != ""; {"\![raise,OnShellInstallFailure,can't extract: %(_i)]"; return}
-		LOGGING("Zarc: %(_i)")
 		_f = FDEL("%(_temppath)%(_name).zip") //Delete the archive since we have the contents in a folder now
 		
 		_dir = "%(_temppath)%(_name)/"
@@ -1088,9 +1078,6 @@ OnInstallRefuse
 		}
 		else //If the proper directory was found
 		{
-			LOGGING("=========================")
-			LOGGING(_file)
-			LOGGING(FENUM(REPLACE(_file,"install.txt",""),","))
 			//_file = "%(_path)%(_name)/install.txt" //Initialize loop variables
 			_found = ""
 			InstalledShellName = ""
@@ -1107,12 +1094,6 @@ OnInstallRefuse
 			
 			if _found != ""
 			{
-				LOGGING("====================================================================")
-				LOGGING("====================================================================")
-				LOGGING("====================================================================")
-				LOGGING("====================================================================")
-				LOGGING("FENUM")
-				LOGGING(REPLACE(FENUM(_path,"|"),"\","/"))
 				if "/%(_found)" _in_ REPLACE(FENUM(_path,"|"),"\","/") //If a folder with this name exists already
 				{
 					"\![raise,OnShellInstallFailure,can't move directory## folder with the target name already exists,%(_mov),%(_del),%(_del2)]"
@@ -1126,11 +1107,6 @@ OnInstallRefuse
 					
 					if _mov != 1
 					{
-						LOGGING("====================================================================")
-						LOGGING("====================================================================")
-						LOGGING("CAN'T UN-NEST")
-						LOGGING("====================================================================")
-						LOGGING("====================================================================")
 						_del2 = RMDIREX("%(_temppath)%(_found)/")
 						"\![raise,OnShellInstallFailure,can't un-nest the directory## something went wrong while moving,%(_mov),%(_del),%(_del2)]"
 						return
@@ -1264,27 +1240,18 @@ OnEmptyTempFolder
 	_files = SPLIT(FENUM(_dir,"|"),"|")
 	foreach _files; _file
 	{
-		LOGGING("====================================================================")
-		LOGGING("To delete: %(_dir)%(_file)")
 		_enum = FENUM("%(_dir)%(_file)","|")
-		LOGGING("FENUM: %(_enum)")
 		if _enum != ""
 		{
-			LOGGING("Using RMDIREX")
 			_del = RMDIREX("%(_dir)%(_file)")
-			LOGGING(_del)
 			if _del == 0; {_error = "Can't delete directory %(_dir)%(_file) with RMDIREX"; break}
 		}
 		else
 		{
-			LOGGING("Using FDEL")
 			_del = FDEL("%(_dir)%(_file)")
-			LOGGING(_del)
 			if _del == 0;
 			{
-				LOGGING("Using RMDIR")
 				_del = RMDIR("%(_dir)%(_file)")
-				LOGGING(_del)
 			}
 			if _del == 0; {_error = "Can't delete file %(_dir)%(_file)"; break}
 		}
@@ -1305,8 +1272,6 @@ RMDIREX
 	{
 		_input = SPLIT(_input,"|") //Split the folder into an array
 		
-		LOGGING("INPUT: %(_input)")
-		
 		foreach _input; _file
 		{
 			_path = SPLITPATH(_file)
@@ -1319,9 +1284,7 @@ RMDIREX
 			}
 			else //If it's a folder
 			{
-				LOGGING("===START RECURSIVE FUNCTION=== : %(_argv[0])\%(_file)")
 				_recursive = RMDIREX("%(_argv[0])\%(_file)")
-				LOGGING("Response: %(_recursive)")
 				if _recursive != 1; {"Recursive call failed: %(_recursive)"; return}
 			}
 		}
@@ -1342,8 +1305,6 @@ OnMoveFolder
 	{
 		_input = SPLIT(_input,"|") //Split the folder into an array
 		
-		LOGGING("INPUT: %(_input)")
-		
 		foreach _input; _file
 		{
 			_path = SPLITPATH(_file)
@@ -1356,9 +1317,7 @@ OnMoveFolder
 			}
 			else //If it's a folder
 			{
-				LOGGING("===START RECURSIVE FUNCTION=== : %(_argv[0])\%(_file) to %(_argv[1])\%(_file)")
 				_recursive = OnMoveFolder("%(_argv[0])\%(_file)","%(_argv[1])\%(_file)")
-				LOGGING("Response: %(_recursive)")
 				if _recursive != 1; {"Recursive call failed: %(_recursive)"; return}
 			}
 		}
@@ -1773,8 +1732,6 @@ OnBIFFComplete
 	headers = ""
 	if reference7 != "" && reference0 < 100 //AHAHAHA I FINALLY FIGURED OUT HOW TO GET AN ARRAY OF THE HEADERS WITH AUTO TYPE CONVERT ON. They're normally in reference7, but since auto type convert changes the C_BYTE1 characters to commas, any headers with commas screw things up badly. But you can get the nonconverted values! Still need a loop to add menu markers and stuff to the display, but that can happen in the other function...
 	{
-		LOGGING("=======")
-		LOGGING(reference.raw[7])
 		headers = SPLIT(reference.raw[7],C_BYTE1)
 	}
 	--
@@ -3573,32 +3530,6 @@ OnBalloonBreak
 	if "\![raise,OnSoundStop]" _in_ SHIORI3FW.LastTalk; "\![raise,OnSoundStop]"
 }
 
-// OnBalloonBreak
-// {
-	//OnSurfaceRestore
-
-// LOGGING("============")
-// LOGGING("_b: %(_b)")
-// LOGGING("TalkingChar: %(TalkingChar)")
-// LOGGING("LastTalk: %(SHIORI3FW.LastTalk)")
-// LOGGING("EventidOld: %(SHIORI3FW.EventidOld)")
-
-	// _script = reference0
-	// _pos = reference2
-	
-	// // _array = SPLIT(_script," ")
-	
-	// // foreach _array; _element
-	// // {
-		
-	// // }
-	
-	// _first = SUBSTR(_script,_0,_pos)
-	// _last = SUBSTR(_script,_pos,(STRLEN(_script) - _pos))
-	
-	// "\_q%(_first)-\n\_qCut that out\n\n%(_last)\_q\n\n\n%(reference2)"
-//}
-
 OnBalloonTimeout
 {
 	//OnSurfaceRestore
@@ -3612,14 +3543,4 @@ OnBalloonClose
 OnCancel
 {
 	OnSurfaceRestore
-}
-
-
-OnTestInput
-{
-	LOGGING("==================")
-	LOGGING(reference0)
-	LOGGING(reference.raw[0])
-	LOGGING(GETTYPE(reference.raw[0]))
-	"\![open,inputbox,OnTestInput,-1]"
 }

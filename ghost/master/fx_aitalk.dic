@@ -1,9 +1,5 @@
 OnAiTalk
 {
-	LOGGING("====================================================================")
-	LOGGING("aitalk")
-	LOGGING("talkoption: ",talkoption)
-	LOGGING("Singing: ",Singing)
 	if talkoption == 0 || (talkoption == 1 && Singing) || (talkoption == 2 && !Singing) || reference0 == "Hotkey" || reference0 == "Menu"
 	{
 		if mikireflag == 0

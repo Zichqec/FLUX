@@ -286,7 +286,6 @@ OnGhostChanged //After switching.
 
 OnShellChanging //Starting to change the shell
 {
-	LOGGING("MusicSettings[5]: ",MusicSettings[5])
 	MusicSettings[5] = 1
 	MusicSettings[6] = SHIORI3FW.LastSurface[0]
 	shellchange = IARRAY
@@ -350,7 +349,6 @@ OnGetCoords //This gets the x and y coordinates when changing shells
 
 OnGetCoords2 //This gets the x and y coordinates when changing shells
 {
-	LOGGING("MusicSettings[5]: ",MusicSettings[5])
 	shellchange[3] = reference0[0] //Head height
 	shellchange[4] = reference0[3] //Feet height
 	shellchange[5] = TOINT(reference0[3]) - TOINT(reference0[1]) //Frame height
@@ -473,11 +471,8 @@ OnChangedShell //I have this here because it takes a moment for it to read the d
 
 RestartSinging
 {
-	LOGGING("RESTART SINGING")
-	LOGGING("MusicSettings[5]: ",MusicSettings[5])
 	if MusicSettings[5] == 2
 	{
-		LOGGING("===RAISING ONSOUNDSTOP AGAIN===")
 		
 		"\![raise,OnSoundStop]"
 	}
