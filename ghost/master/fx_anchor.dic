@@ -163,16 +163,6 @@ OnAnchorSelect
 	{
 		"\j[%(reference0)]\e"
 	}
-	else
-	{
-		case reference0
-		{
-			when "exampleanchor"
-			{
-				//"\0\s[0]You clicked the example!\e"
-			}
-		}
-	}
 }
 
 LanguageMenuDisplay
