@@ -473,7 +473,6 @@ RestartSinging
 {
 	if MusicSettings[5] == 2
 	{
-		
 		"\![raise,OnSoundStop]"
 	}
 	
@@ -509,6 +508,7 @@ OnShellAuthor
 
 OnGetCustomShellDialogue
 {
+	ParsingShell = 1
 	lastTalk = ""
 	_f = FENUM(SHIORI3FW.ShellPath)
 	_files = SPLIT(_f,",")
@@ -615,7 +615,6 @@ FirstBootVars
 	birthday[1] = "???"	//The user's birthday, written in DD/MM format
 	talkrate = "every 5 minutes"
 	aitalkinterval = 300
-	totalpunches = 0
 	//---Petting related variables---
 	stroke[0] = 0		//The stroke value, which resets after each pet
 	stroke[1] = 0		//The stroke value, but it doesn't reset after each pet
@@ -637,7 +636,6 @@ FirstBootVars
 	MusicSettings = (100,100,0,0,"",0)
 	talkoption = 0
 	InstalledShellName = ""
-	shellauthor = ("Zichqec","Zichqec","https://zichqec.github.io/s-the-skeleton/index.html")
 	shellauthor = ("Zichqec","Zichqec","https://ukagaka.zichqec.com/")
 	CurrentPlaylist = IARRAY
 	ShuffledPlaylist = IARRAY
