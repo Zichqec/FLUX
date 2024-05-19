@@ -18,7 +18,8 @@ dic, fx_music.dic
 dic, fx_nameteach.dic
 dic, fx_string.dic
 dic, fx_word.dic
-dic, fx_shelldialogue.dic
+
+include, shell_functions.txt
 
 
 

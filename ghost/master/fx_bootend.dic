@@ -508,8 +508,9 @@ OnShellAuthor
 
 OnGetCustomShellDialogue
 {
-	ParsingShell = 1
 	lastTalk = ""
+	
+	/*
 	_f = FENUM(SHIORI3FW.ShellPath)
 	_files = SPLIT(_f,",")
 	_pathW = "fx_shelldialogue.dic"
@@ -549,7 +550,20 @@ OnGetCustomShellDialogue
 		}
 		_f = FCLOSE(_pathW)
 	}
-	--
+	*/
+	
+	_path = "shell_functions.txt"
+	void FOPEN(_path,"w")
+	
+	_shell_full_path = SPLIT(SHIORI3FW.ShellPath,'/')
+	LOGGING("_shell_full_path: %(_shell_full_path)")
+	_shell_path = _shell_full_path[ARRAYSIZE(_shell_full_path) - 2]
+	LOGGING("ARRAYSIZE(_shell_full_path) - 2: %(ARRAYSIZE(_shell_full_path) - 2)")
+	LOGGING("_shell_path: %(_shell_path)")
+	void FWRITE(_path,"dicif, ../../shell/%(_shell_path)/dialogue.dic")
+	
+	void FCLOSE(_path)
+	
 	"\![reload,shiori]"
 }
 

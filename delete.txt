@@ -1,0 +1,1 @@
+ghost/master/fx_shelldialogue.dic
