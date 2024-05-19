@@ -1052,9 +1052,9 @@ OnMusicSet //Bringing up input boxes
 {
 	"\0%(bb)\_q"
 	--
-	if reference0 == "Balance"; "\![open,inputbox,OnMusicBalance,-1]"
-	elseif reference0 == "Speed"; "\![open,sliderinput,OnMusicSpeed,-1,100,1,300]"
-	else; "\![open,sliderinput,OnMusicVolume,-1,100,1,100]"
+	if reference0 == "Balance"; "\![open,inputbox,OnMusicBalance,-1,__INPUT_BOX_COLOR__]"
+	elseif reference0 == "Speed"; "\![open,sliderinput,OnMusicSpeed,-1,100,1,300,__INPUT_BOX_COLOR__]"
+	else; "\![open,sliderinput,OnMusicVolume,-1,100,1,100,__INPUT_BOX_COLOR__]"
 	--
 	if language == "Placeholder" //TRANSLATORS: Leave the reference0 parts alone, just translate the dialogues. These are for changing the options like volume, balance, and speed
 	{
@@ -1552,7 +1552,7 @@ OnSavePlaylist //Saving a playlist
 		_display += "\q[%(_playlist),OnPlaylistOverwrite,%(_playlist)]\n"
 	}
 	--
-	"\C\![lock,balloonrepaint]\c\0%(bb)\*\_q\![set,autoscroll,disable]\![open,inputbox,OnPlaylistName,-1]"
+	"\C\![lock,balloonrepaint]\c\0%(bb)\*\_q\![set,autoscroll,disable]\![open,inputbox,OnPlaylistName,-1,__INPUT_BOX_COLOR__]"
 	--
 	if language == "Placeholder" //TRANSLATORS: This is saving a playlist. It'll present a list of playlists that already exist, in case the user wants to update an old playlist by overwriting it
 	{

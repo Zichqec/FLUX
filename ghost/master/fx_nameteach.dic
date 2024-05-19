@@ -2,7 +2,7 @@
 
 OnChangeName
 {
-	"\0%(b)\*\![open,inputbox,OnNameTeach,-1]"
+	"\0%(b)\*\![open,inputbox,OnNameTeach,-1,__INPUT_BOX_COLOR__]"
 	--
 	if language == "Placeholder" //TRANSLATORS: Start of changing your name
 	{
@@ -286,7 +286,7 @@ OnPronouns
 OnChangeBirthday //Pulled a lot of this from the GT template, but I also modified it a lot
 {
 	oldbirthday = birthday
-	"\0%(b)\![open,inputbox,OnUserBornMonth,-1]\*"
+	"\0%(b)\![open,inputbox,OnUserBornMonth,-1,__INPUT_BOX_COLOR__]\*"
 	--
 	if language == "Placeholder" //TRANSLATORS: Starting the birthday input
 	{
@@ -424,7 +424,7 @@ OnChangeBirthdayDay
 {
 	birthday[2] = "%(MonthName(birthday[4],language))"
 	
-	"\0%(b)\![open,inputbox,OnUserBornDay,-1]\*"
+	"\0%(b)\![open,inputbox,OnUserBornDay,-1,__INPUT_BOX_COLOR__]\*"
 	--
 	if language == "Placeholder" //TRANSLATORS: Second stage of inputting your birthday. birthday[2] will be the month name that the user put in
 	{
