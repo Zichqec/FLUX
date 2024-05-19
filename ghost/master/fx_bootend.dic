@@ -540,8 +540,6 @@ BootVars
 	runtime[2] = 0
 	AutoUpdates[1] = 0
 	booting = 0
-	waitingcommuS = IARRAY
-	waitingcommuM = IARRAY
 	NowPlaying[0] = ""
 	NowPlaying[2] = ""
 	MusicSettings[4] = ""
@@ -597,8 +595,6 @@ FirstBootVars
 	//nowmode = "Default" //Uncomment if you plan to add more modes
 	installdate = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)","%(ghostver)") //This tracks the exact day and time the ghost was installed, in case you want to mess around with that later. It also tracks what version the user installed, which may be helpful for debugging!
 	//booting = 1 //This will be set to 0 after firstboot is complete
-	waitingcommuS = IARRAY //These two arrays handle the non-interrupt system for communication. They're for storing messages from other ghosts when your ghost is busy talking.
-	waitingcommuM = IARRAY
 	nowballoon = ("Notes",26)
 	
 	NowPlaying = ("",-1,"")

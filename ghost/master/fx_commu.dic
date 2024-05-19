@@ -7,37 +7,8 @@ OnCommunicate
  	else
 	{
  		//Answering another ghost
-		_b = BalloonCheck
-		if _b == 1 && "\![commu-%(reference0)]" !_in_ SHIORI3FW.LastTalk //If the balloon is open and the commu tag does NOT match the current conversation, or does not exist, store this message in the arrays so it can be responded to later
-		{
-			_check = ASEARCH(reference0,waitingcommuS)
-			if _check == -1 //If there are no other messages from this ghost waiting in the queue
-			{
-				waitingcommuS ,= reference0 //Sender - Stores the name of the ghost in an array
-				waitingcommuM ,= reference1 //Message - Stores the message that was sent in an array
-			}
-			else //If there is a message from this ghost waiting in the queue, replace it with the one that was just received
-			{
-				waitingcommuS[_check] = reference0
-				waitingcommuM[_check] = reference1
-			}
-		}
-		else //The balloon is not open, or the conversation tag matches the ghost that is currently sending a message
-		{
-			if reference0 == "|-|waitingcommu|-|" //If this was called because there was a commu waiting
-			{
-				reference0 = waitingcommuS[0]; waitingcommuS[0] = IARRAY //Sets the name of the ghost as reference0 and clears the first element of the array
-				reference1 = waitingcommuM[0]; waitingcommuM[0] = IARRAY //Sets reference1 as the message that was saved and clears the first element of the array
-			}
-			--
-			ReplyToGhost
-		}
+		ReplyToGhost
  	}
-}
-
-WaitingCommu //If a commu message is waiting, trigger OnCommunicate and tell it to use the stored messages
-{
-	"\![raise,OnCommunicate,|-|waitingcommu|-|]"
 }
 
 //This is your ghost starting a conversation with another ghost. It will choose a random one from the currently open ghosts.

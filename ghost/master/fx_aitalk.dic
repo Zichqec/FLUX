@@ -301,11 +301,6 @@ OnSecondChange
 	{
 		EndMikireTalk
 	}
-	elseif ARRAYSIZE(waitingcommuS) > 0 && second % 5 == 0 //Every 5 seconds, check if the balloon is closed and a communication is waiting, and if so trigger a response
-	{
-		_b = BalloonCheck
-		if _b == 0; WaitingCommu
-	}
 	mikireflag = reference1 //reference1 is if the ghost is offscreen or not
 }
 
