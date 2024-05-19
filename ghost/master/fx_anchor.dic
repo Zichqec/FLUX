@@ -213,6 +213,7 @@ MenuCheck
 
 IsMinimized
 {
+	"minimizing" _in_ status
 }
 
 br
