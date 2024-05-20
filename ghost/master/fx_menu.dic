@@ -447,7 +447,7 @@ OnConfigMenu : all
 	_tooltipbtn = ""; if TooltipDisplay == 1; _tooltipbtn = onoff[0]; else; _tooltipbtn = onoff[1]
 	
 	
-	"\0"
+	"\C\![lock,balloonrepaint]\c\0"
 	"\![set,autoscroll,disable]\_q\b[4]\f[anchorvisitedfontcolor,default.anchor]"
 	"\![close,inputbox,OnNameTeach]\![close,inputbox,OnUserBornMonth]\![close,inputbox,OnUserBornDay]"
 	
@@ -712,6 +712,7 @@ OnConfigMenu : all
 		"Enable Uninstall? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
 		"\![*]\q[Back to the menu,OnMenuRun]"
 	}
+	"\![unlock,balloonrepaint]"
 }
 
 OnToggleHemisphere
@@ -1368,7 +1369,7 @@ onoff
 	}
 }
 
-//-----------Shell and Dressups-----------
+//----------- Shell and Dressups -----------
 On_installedshellname //Gathers available shells
 {
 	ShellList = IARRAY
@@ -1378,20 +1379,22 @@ On_installedshellname //Gathers available shells
 	}
 }
 
-OnShellMenu //Menu to display all the shells
+//Menu to display all the shells
+OnShellMenu : all
 {
+	"\C\![lock,balloonrepaint]\c"
 	_display = ""
 	for _i = 0; _i < ARRAYSIZE(ShellList); _i++
 	{
 		if ShellList[_i] == nowshell; _display += "\![*]"
 		_display += "\q[%(ShellList[_i]),OnSwitchShell,%(ShellList[_i])]\n"
 	}
-	--
+	
 	if ARRAYSIZE(ShellList) > 16; "\0\b[4]"
 	else; "\0\b[2]"
-	--
+	
 	"\*\_q\![set,autoscroll,0]"
-	--
+	
 	if language == "Placeholder" //TRANSLATORS: The shell menu. If you're interested in translating the documentation for how to create a FLUX shell, do let me know and I could set it up to open the language-specific documentation
 	{
 		
@@ -1399,88 +1402,74 @@ OnShellMenu //Menu to display all the shells
 	elseif language == "Deutsch"
 	{
 		"\![*]\q[Mehr Shells herunterladen,OnShellUrl]"
-		--
 		"\n\![*]\q[Mache deine eigene Shell,OnCustomShell]"
-		--
 		"\n\![*]\q[Zufällige Shell,OnRandomShell]"
-		--
+		
 		if ARRAYSIZE(ShellList) > 19; "\n\n[half]\![*]\q[Back to menu,OnMenuRun]"
-		--
+		
 		"\n\n%(_display)" //Displays the available shells
-		--
+		
 		"\n\n[half]\![*]\q[zurück zum Hauptmenü,OnMenuRun]"
-		--
 		"\n\![*]\q[Schließen,OnCancel]\e"
 	}
 	elseif language == "Русский"
 	{
 		"\![*]\q[Скачать больше Видов,OnShellUrl]"
-		--
 		"\n\![*]\q[Создать свой собственный Вид,OnCustomShell]"
-		--
 		"\n\![*]\q[Случайный Вид,OnRandomShell]"
-		--
+		
 		if ARRAYSIZE(ShellList) > 19; "\n\n[half]\![*]\q[Назад в Меню,OnMenuRun]"
-		--
+		
 		"\n\n%(_display)" //Displays the available shells
-		--
+		
 		"\n\n[half]\![*]\q[Назад в Меню,OnMenuRun]"
-		--
 		"\n\![*]\q[Закрыть,OnCancel]\e"
 	}
 	elseif language == "Français"
 	{
 		"\![*]\q[Télécharger plus de shells,OnShellUrl]"
-		--
 		"\n\![*]\q[Créer ton propre shell,OnCustomShell]"
-		--
 		"\n\![*]\q[Shell aléatoire,OnRandomShell]"
-		--
+		
 		if ARRAYSIZE(ShellList) > 19; "\n\n[half]\![*]\q[Back to menu,OnMenuRun]"
-		--
+		
 		"\n\n%(_display)" //Displays the available shells
-		--
+		
 		"\n\n[half]\![*]\q[Retour au menu,OnMenuRun]"
-		--
 		"\n\![*]\q[Fermer,OnCancel]\e"
 	}
 	elseif language == "Polski"
 	{
 		"\![*]\q[Pobierz więcej skorup,OnShellUrl]"
-		--
 		"\n\![*]\q[Stwórz własną skorupę,OnCustomShell]"
-		--
 		"\n\![*]\q[Losowa skorupa,OnRandomShell]"
-		--
+		
 		if ARRAYSIZE(ShellList) > 19; "\n\n[half]\![*]\q[Powrót do menu,OnMenuRun]"
-		--
+		
 		"\n\n%(_display)" //Displays the available shells
-		--
+		
 		"\n\n[half]\![*]\q[Powrót do menu,OnMenuRun]"
-		--
 		"\n\![*]\q[Zamknij,OnCancel]\e"
 	}
 	else //English
 	{
 		"\![*]\q[Download more shells,OnShellUrl]"
-		--
 		"\n\![*]\q[Make your own shell,OnCustomShell]"
-		--
 		"\n\![*]\q[Random Shell,OnRandomShell]"
-		--
+		
 		if ARRAYSIZE(ShellList) > 19; "\n\n[half]\![*]\q[Back to menu,OnMenuRun]"
-		--
+		
 		"\n\n%(_display)" //Displays the available shells
-		--
+		
 		"\n\n[half]\![*]\q[Back to menu,OnMenuRun]"
-		--
 		"\n\![*]\q[Close,OnCancel]\e"
 	}
+	"\![unlock,balloonrepaint]"
 }
 
 OnShellUrl //Directs the user to my website where I will link any shells I know of
 {
-	"\C\j[https://zichqec.github.io/s-the-skeleton/flux.html]"
+	"\C\j[https://ukagaka.zichqec.com/ghost/flux]"
 }
 
 OnCustomShell //Opens the documentation file
