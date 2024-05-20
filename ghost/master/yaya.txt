@@ -35,8 +35,9 @@ msglang,english
 // iolog.filter.keyword,OnMouse
 //This filters out EVERYTHING that starts with OnMouse?? Which is not the behavior of the above
 
-iolog.filter.keyword,OnNotifyDressupInfo
+//iolog.filter.keyword,OnNotifyDressupInfo
+ignoreiolog, ID: OnSecondChange //OnSecondChange無視
+ignoreiolog, ID: OnMouse        //OnMouse系無視
 
-
-iolog.filter.mode,whitelist
+//iolog.filter.mode,whitelist
 

@@ -1,4 +1,4 @@
-OpenSakuraMenu : all
+OnSakuraMenu : all
 {
 	if AutoUpdates[3] == 1 || AutoUpdates[4] == 1 || AutoUpdates[5] == 1  //If an update is available, the user will be notified when they try to open the menu
 	{
@@ -177,14 +177,14 @@ OnMenuRun : all //Main menu
 		}
 		elseif NowPlaying[2] != "" //If a song is paused
 		{
-			"[Pausiert: \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[Pausiert: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		else //If a song is playing
 		{
-			"[Jetzt läuft: \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[Jetzt läuft: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		
-		"\n\n\![*]\q[Musik-Bedienung,OnMusicMenu]\n"
+		"\n\n\![*]\q[Musik-Bedienung,OnMusicPlayer.Menu]\n"
 		
 		if lastTalk != ""
 		{
@@ -227,14 +227,14 @@ OnMenuRun : all //Main menu
 		}
 		elseif NowPlaying[2] != "" //If a song is paused
 		{
-			"[Приостановлен: \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[Приостановлен: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		else //If a song is playing
 		{
-			"[Играет Сейчас: \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[Играет Сейчас: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		
-		"\n\n\![*]\q[Контроля Музыки,OnMusicMenu]\n"
+		"\n\n\![*]\q[Контроля Музыки,OnMusicPlayer.Menu]\n"
 		
 		if lastTalk != ""
 		{
@@ -277,14 +277,14 @@ OnMenuRun : all //Main menu
 		}
 		elseif NowPlaying[2] != "" //If a song is paused
 		{
-			"[En pause : \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[En pause : \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		else //If a song is playing
 		{
-			"[Actuellement jouée : \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[Actuellement jouée : \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		
-		"\n\n\![*]\q[Controls de musique,OnMusicMenu]\n"
+		"\n\n\![*]\q[Controls de musique,OnMusicPlayer.Menu]\n"
 		
 		if lastTalk != ""
 		{
@@ -325,14 +325,14 @@ OnMenuRun : all //Main menu
 		}
 		elseif NowPlaying[2] != "" //If a song is paused
 		{
-			"[Wstrzymane: \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[Wstrzymane: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		else //If a song is playing
 		{
-			"[Obecnie gra: \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[Obecnie gra: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		
-		"\n\n\![*]\q[Sterowanie muzyką,OnMusicMenu]\n"
+		"\n\n\![*]\q[Sterowanie muzyką,OnMusicPlayer.Menu]\n"
 		
 		if lastTalk != ""
 		{
@@ -375,14 +375,14 @@ OnMenuRun : all //Main menu
 		}
 		elseif NowPlaying[2] != "" //If a song is paused
 		{
-			"[Paused: \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[Paused: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		else //If a song is playing
 		{
-			"[Currently playing: \_a[OnMusicMenu]%(_currentsong)\_a]"
+			"[Currently playing: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
 		
-		"\n\n\![*]\q[Music Controls,OnMusicMenu]\n"
+		"\n\n\![*]\q[Music Controls,OnMusicPlayer.Menu]\n"
 		
 		if lastTalk != ""
 		{
@@ -432,7 +432,6 @@ OnConfigMenu : all
 	if AutoUpdates[2] == ""; {AutoUpdates[0] = 1; AutoUpdates[2] = onoff[0]}
 	if CustomFuncs[1] == ""; {CustomFuncs[0] = 1; CustomFuncs[1] = onoff[0]}
 	if HourNotifs[1] == ""; {HourNotifs[0] = 0; HourNotifs[1] = onoff[1]}
-	if DiscordDisplay[0] == ""; {DiscordDisplay[0] = 1}
 	if TooltipDisplay == ""; {TooltipDisplay = 1}
 	
 	if birthday[0] == "" || birthday[2] == ""; {birthday = IARRAY; birthday[0] = "???"}
@@ -443,7 +442,6 @@ OnConfigMenu : all
 	_cstfncbtn = ""; if CustomFuncs[0] == 1; _cstfncbtn = onoff[0]; else; _cstfncbtn = onoff[1]
 	_atoupdbtn = ""; if AutoUpdates[0] == 1; _atoupdbtn = onoff[0]; else; _atoupdbtn = onoff[1]
 	_hnotifbtn = ""; if HourNotifs[0] == 1; _hnotifbtn = onoff[0]; else; _hnotifbtn = onoff[1]
-	_discordbtn = ""; if DiscordDisplay[0] == 1; _discordbtn = onoff[0]; else; _discordbtn = onoff[1]
 	_tooltipbtn = ""; if TooltipDisplay == 1; _tooltipbtn = onoff[0]; else; _tooltipbtn = onoff[1]
 	
 	
@@ -1089,28 +1087,6 @@ OnBalloonModeToggle
 	else
 	{
 		balloonmode = 0
-	}
-	--
-	OnConfigMenu
-}
-
-OnToggleDiscordPlugin
-{
-	if DiscordDisplay[0] != 1
-	{
-		if Singing; _song = "♫ %(CHR(34))%(SPLITPATH(NowPlaying[0])[2])%(CHR(34)) ♫"
-
-		DiscordDisplay[0] = 1
-		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,Shell: %(CHR(34))%(nowshell)%(CHR(34))]"
-		--
-		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,%(_song)]"
-	}
-	else
-	{
-		DiscordDisplay[0] = 0
-		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail, ]"
-		--
-		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState, ]"
 	}
 	--
 	OnConfigMenu

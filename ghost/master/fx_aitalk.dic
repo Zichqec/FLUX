@@ -211,29 +211,16 @@ OnSecondChange
 	{
 		runtime[2]++
 	}
-	if Singing
+	if MusicPlayer.Singing
 	{
-		if playtime[2] >= 59
-		{
-			playtime[2] = 0
-			playtime[1]++
-			if playtime[1] >= 59
-			{
-				playtime[1] = 0
-				playtime[0]++
-			}
-		}
-		else
-		{
-			playtime[2]++
-		}
+		MusicPlayer.Playtime++
 	}
-	if DiscordDisplay[1] == 2 && SHIORI3FW.CanTalk //If FLUX was chosen on the Discord plugin and that hasn't been handled yet
+	if MusicPlayer.DiscordDisplayFlag == 2 && SHIORI3FW.CanTalk //If this ghost was chosen in the Discord plugin, and that hasn't been handled yet
 	{
-		DiscordDisplay[1] = 1
-		if BalloonCheck; "\C"
+		MusicPlayer.DiscordDisplayFlag = 1
+		if MusicPlayer.BalloonIsOpen; "\C"
 		--
-		"\![raise,OnDiscordPluginBoot]"
+		"\![raise,OnMusicPlayer.DiscordPluginBoot]"
 	}
 	--
 	if SHIORI3FW.CanTalk //If not talking

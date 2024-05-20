@@ -86,6 +86,16 @@ OnLanguageChosen
 	}
 }
 
+OnInitialize
+{
+	MusicPlayer.OnInitialize
+}
+
+OnDestroy
+{
+	MusicPlayer.OnDestroy
+}
+
 OnBoot //Normal booting
 {
 	BootVars //This sets variables you want to be set on a normal boot, like resetting the runtime. Again, make sure you set these up at the bottom.
@@ -358,7 +368,7 @@ OnGetCoords2 //This gets the x and y coordinates when changing shells
 	"\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]" //Moves the ghost to where they were on the previous shell, and gathers the craftman info for the shell
 	//ERASEVAR("shellchange")
 	--
-	if DiscordDisplay[0]; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,Shell: %(CHR(34))%(shellchange[7])%(CHR(34))]"
+	if MusicPlayer.DiscordDisplay == "On"; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,Shell: ""%(shellchange[7])""]"
 	--
 	if shellchange[7] == nowshell //If the user switches to the shell they're already using
 	{
@@ -477,20 +487,6 @@ RestartSinging
 	MusicSettings[5] = 0
 }
 
-OnBalloonChange
-{
-	nowballoon[0] = reference0
-	_b = BalloonCheck
-	if _b == 1; "\C"
-	--
-	"\0\b[4]\![get,property,OnBalloonLines,currentghost.balloon.scope(0).lines.initial]"
-}
-
-OnBalloonLines
-{
-	nowballoon[1] = TOINT(reference0)
-}
-
 OnShellAuthor
 {
 	shellauthor = IARRAY
@@ -587,8 +583,6 @@ FirstBootVars
 	stroke[0] = 0		//The stroke value, which resets after each pet
 	stroke[1] = 0		//The stroke value, but it doesn't reset after each pet
 	stroke[2] = 0		//The current streak of successful pets
-	pethighscore[0] = 0	//The petting high score, as the number of the stroke value
-	pethighscore[1] = 0	//The petting high score, as the number of pets
 	totalpets = 0		//The total times the ghost has been pet
 	//---
 	deleteshitai = (0,"Off")
@@ -603,15 +597,10 @@ FirstBootVars
 	talkoption = 0
 	InstalledShellName = ""
 	shellauthor = ("Zichqec","Zichqec","https://ukagaka.zichqec.com/")
-	CurrentPlaylist = IARRAY
-	ShuffledPlaylist = IARRAY
 	DraggedFile = ""
-	Hotkeys = IARRAY
 	balloonmode = 0 //Dark mode
 	hemisphere = 0
 	CustomFuncs = (1,"On")
 	
-	playtime = (0,0,0)
-	_path = "../../playlists/"
-	if FENUM(_path) == ""; void MKDIR(_path)
+	MusicPlayer.SetDefaultSettings
 }

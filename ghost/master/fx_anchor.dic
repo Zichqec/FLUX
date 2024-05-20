@@ -27,37 +27,6 @@ OnTranslate
 	TOSTR(_talk)
 }
 
-OnDiscordPluginCustom
-{
-	DiscordDisplay[1] = 2
-}
-
-OnDiscordPluginCustomEnd
-{
-	DiscordDisplay[1] = 0
-}
-
-OnDiscordPluginBoot
-{
-	if Singing; _song = "♫ %(CHR(34))%(SPLITPATH(NowPlaying[0])[2])%(CHR(34)) ♫"
-	
-	"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomALL,903843216200179753,,,thumbnail,https://ukagaka.zichqec.com/ghost/flux,]"
-	--
-	if DiscordDisplay[0]
-	{
-		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,Shell: %(CHR(34))%(nowshell)%(CHR(34))]"
-		--
-		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,%(_song)]"
-	}
-	--
-	if debug
-	{
-		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomSmallImageKey,dev]"
-		--
-		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomSmallImageText,Shell dev]"
-	}
-}
-
 TooltipLabels
 {
 	//Play,Stop,Pause,Resume,Next,Previous,Menu,Music Controls,Clear Playlist,Stop after current song,Minimize,Close FLUX
