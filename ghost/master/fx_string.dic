@@ -128,68 +128,43 @@ portalsites_sakura_placeholder : array //TRANSLATORS: The actual list of links
 
 portalsites_sakura_deutsch : array 
 {
-	"Gebaut mit X. Template YAYA - v.1.0.4 | https://ukagaka.zichqec.com/template/x_template_yaya"
-	"Zarla's Ghost-Vorlage Walkthrough     | http://www.ashido.com/ukagaka/walkthrough.html"
-	"Wie man Updates mit Github aufsetzt   | https://zichqec.github.io/s-the-skeleton/github.html"
 	"Ukagaka Dream Team Discord            | https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)                               | http://ssp.shillest.net/"
-	"Ukadoc (J)                            | http://ssp.shillest.net/ukadoc/manual/list_shiori_event.html"
-	"YAYA Wiki (J)                         | http://emily.shillest.net/ayaya/index.php?"
-	"Crow + SSP Reference (J)              | http://crow.aqrs.jp/reference/all/index.html"
-	"Ghost Dokumentation (J)               | http://usada.sakura.vg/contents/specification.html"
+	"Ukadoc (J)                            | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"YAYA Wiki (J)                         | http://emily.shillest.net/ayaya/index.php"
 }
 
 portalsites_sakura_русский : array
 {
-	"Настроено от X. Template YAYA - v.1.0.4 | https://ukagaka.zichqec.com/template/x_template_yaya"
-	"Укагакский Образец у Zarla              | http://www.ashido.com/ukagaka/walkthrough.html"
-	"Как настроить обновление с Github       | https://zichqec.github.io/s-the-skeleton/github.html"
 	"Дискорд Ukagaka Dream Team              | https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)                                 | http://ssp.shillest.net/"
-	"Укадок (J)                              | http://ssp.shillest.net/ukadoc/manual/list_shiori_event.html"
-	"Вики YAYA (J)                           | http://emily.shillest.net/ayaya/index.php?"
-	"Справочные Crow + SSP (J)               | http://crow.aqrs.jp/reference/all/index.html"
-	"Документация Укагакы (J)                | http://usada.sakura.vg/contents/specification.html"
+	"Укадок (J)                              | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"Вики YAYA (J)                           | http://emily.shillest.net/ayaya/index.php"
 }
 
 portalsites_sakura_french : array 
 {
-	"Créé à partir de X. Template YAYA - v.1.0.4 | https://ukagaka.zichqec.com/template/x_template_yaya"
-	"Le tutoriel de Zarla sur les ghosts         | http://www.ashido.com/ukagaka/walkthrough.html"
-	"Comment créer des mise à jour avec github   | https://zichqec.github.io/s-the-skeleton/github.html"
 	"Discord de l'Ukagaka Dream Team             | https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)                                     | http://ssp.shillest.net/"
-	"Ukadoc (J)                                  | http://ssp.shillest.net/ukadoc/manual/list_shiori_event.html"
-	"Wiki du YAYA (J)                            | http://emily.shillest.net/ayaya/index.php?"
-	"Crow + Reference de SSP (J)                 | http://crow.aqrs.jp/reference/all/index.html"
-	"Documentation sur les Ghosts (J)            | http://usada.sakura.vg/contents/specification.html"
+	"Ukadoc (J)                                  | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"Wiki du YAYA (J)                            | http://emily.shillest.net/ayaya/index.php"
 }
 
 portalsites_sakura_polski : array 
 {
-	"Zbudowany na X. Template YAYA - v.1.0.4   | https://ukagaka.zichqec.com/template/x_template_yaya"
-	"Szablon duchów Zarli Walkthrough          | http://www.ashido.com/ukagaka/walkthrough.html"
-	"Jak skonfigurować aktualizacje z Githubem | https://zichqec.github.io/s-the-skeleton/github.html"
 	"Ukagaka Dream Team Discord                | https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)                                   | http://ssp.shillest.net/"
-	"Ukadoc (J)                                | http://ssp.shillest.net/ukadoc/manual/list_shiori_event.html"
-	"YAYA Wiki (J)                             | http://emily.shillest.net/ayaya/index.php?"
-	"Crow + SSP Reference (J)                  | http://crow.aqrs.jp/reference/all/index.html"
-	"Dokumentacja duchów (J)                   | http://usada.sakura.vg/contents/specification.html"
+	"Ukadoc (J)                                | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"YAYA Wiki (J)                             | http://emily.shillest.net/ayaya/index.php"
 }
 
-//Same deal as above with the formatting. //I'd appreciate it if you left the X. Template link in your ghost so that other people can find the source <3
 portalsites_sakura_english : array 
 {
-	"Built on X. Template YAYA - v.1.0.4 | https://ukagaka.zichqec.com/template/x_template_yaya"
-	"Zarla's Ghost Template Walkthrough  | http://www.ashido.com/ukagaka/walkthrough.html"
-	"How to set up updates with Github   | https://zichqec.github.io/s-the-skeleton/github.html"
+	"Ukagaka Dream Team Wiki             | https://ukagakadreamteam.com/wiki/home" //TODO: changed these links, added this one new
 	"Ukagaka Dream Team Discord          | https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)                             | http://ssp.shillest.net/"
-	"Ukadoc (J)                          | http://ssp.shillest.net/ukadoc/manual/list_shiori_event.html"
-	"YAYA Wiki (J)                       | http://emily.shillest.net/ayaya/index.php?"
-	"Crow + SSP Reference (J)            | http://crow.aqrs.jp/reference/all/index.html"
-	"Ghost Documentation (J)             | http://usada.sakura.vg/contents/specification.html"
+	"Ukadoc                              | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"YAYA Wiki (J)                       | http://emily.shillest.net/ayaya/index.php"
 }
 
 //This is the function that formats the links above! This is based on a function in Konno Yayame that serves a similar purpose. You can see that one here: http://emily.shillest.net/ayaya/index.php?Tips/%E3%81%8A%E6%B0%97%E3%81%AB%E5%85%A5%E3%82%8A%E3%82%92%E6%9B%B8%E3%81%8D%E3%82%84%E3%81%99%E3%81%8F%E3%81%99%E3%82%8B
