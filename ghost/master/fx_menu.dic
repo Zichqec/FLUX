@@ -163,7 +163,7 @@ OnMenuRun : all //Main menu
 	_currentsong = REPLACE(_currentsong,"%(C_BYTE1)",",")
 	_currentsong = REPLACE(_currentsong,"]","\]")
 	
-	"\0%(bb)\_q\![set,autoscroll,disable]"
+	"\0%(bb)\_q\![set,autoscroll,disable]\f[anchorvisitedfontcolor,default.anchor]"
 	
 	if language == "Placeholder" //TRANSLATORS: This is the main menu, use _currentsong for the currently playing song
 	{
@@ -447,7 +447,9 @@ OnConfigMenu : all
 	_tooltipbtn = ""; if TooltipDisplay == 1; _tooltipbtn = onoff[0]; else; _tooltipbtn = onoff[1]
 	
 	
-	"\0\![close,inputbox,OnNameTeach]\![close,inputbox,OnUserBornMonth]\![close,inputbox,OnUserBornDay]\![set,autoscroll,disable]\_q%(bbb)"
+	"\0"
+	"\![set,autoscroll,disable]\_q%(bbb)\f[anchorvisitedfontcolor,default.anchor]"
+	"\![close,inputbox,OnNameTeach]\![close,inputbox,OnUserBornMonth]\![close,inputbox,OnUserBornDay]"
 	
 	if language == "Placeholder" //TRANSLATORS: The config menu. I imagine the pronoun system is going to get tricky between languages, talk to me about this and we can work something out. It's important to be able to pick them, though, because shells aren't necessarily going to be translated and might use these envelopes. If your language doesn't have pronouns, you could put something like 'masculine', 'feminine', or 'neutral' in their place.
 	{
@@ -472,17 +474,18 @@ OnConfigMenu : all
 		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
-			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Dark]Dunkler Modus\_a"
-			
-			"\f[default]  "
-			
-			if balloonmode != 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Light]Heller Modus\_a"
-			
-			"\f[default]\n"
+			switch balloonmode
+			{
+				"\_a[OnBalloonModeToggle,Dark]Dunkler Modus\_a"
+				"\f[color,disable]\__q[OnBalloonModeToggle,Dark]Dunkler Modus\__q\f[color,default]"
+			}
+			"  "
+			switch balloonmode
+			{
+				"\f[color,disable]\__q[OnBalloonModeToggle,Light]Heller Modus\__q\f[color,default]"
+				"\_a[OnBalloonModeToggle,Light]Heller Modus\_a"
+			}
+			"\n"
 		}
 		
 		"\nRedehäufigkeit: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
@@ -522,17 +525,18 @@ OnConfigMenu : all
 		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
-			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Dark]Тёмный режим\_a"
-			
-			"\f[default]  "
-			
-			if balloonmode != 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Light]Светлый режим\_a"
-			
-			"\f[default]\n"
+			switch balloonmode
+			{
+				"\_a[OnBalloonModeToggle,Dark]Тёмный режим\_a"
+				"\f[color,disable]\__q[OnBalloonModeToggle,Dark]Тёмный режим\__q\f[color,default]"
+			}
+			"  "
+			switch balloonmode
+			{
+				"\f[color,disable]\__q[OnBalloonModeToggle,Light]Светлый режим\__q\f[color,default]"
+				"\_a[OnBalloonModeToggle,Light]Светлый режим\_a"
+			}
+			"\n"
 		}
 		
 		"\nВремени разговоров: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
@@ -574,17 +578,18 @@ OnConfigMenu : all
 		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
-			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Dark]Dark mode\_a"
-			
-			"\f[default]  "
-			
-			if balloonmode != 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Light]Light mode\_a"
-			
-			"\f[default]\n"
+			switch balloonmode
+			{
+				"\_a[OnBalloonModeToggle,Dark]Dark mode\_a"
+				"\f[color,disable]\__q[OnBalloonModeToggle,Dark]Dark mode\__q\f[color,default]"
+			}
+			"  "
+			switch balloonmode
+			{
+				"\f[color,disable]\__q[OnBalloonModeToggle,Light]Light mode\__q\f[color,default]"
+				"\_a[OnBalloonModeToggle,Light]Light mode\_a"
+			}
+			"\n"
 		}
 		
 		"\nFréquence des dialogues : \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
@@ -624,17 +629,18 @@ OnConfigMenu : all
 		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
-			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Dark]Tryb ciemny\_a"
-			
-			"\f[default]  "
-			
-			if balloonmode != 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Light]Tryb jasny\_a"
-			
-			"\f[default]\n"
+			switch balloonmode
+			{
+				"\_a[OnBalloonModeToggle,Dark]Tryb ciemny\_a"
+				"\f[color,disable]\__q[OnBalloonModeToggle,Dark]Tryb ciemny\__q\f[color,default]"
+			}
+			"  "
+			switch balloonmode
+			{
+				"\f[color,disable]\__q[OnBalloonModeToggle,Light]Tryb jasny\__q\f[color,default]"
+				"\_a[OnBalloonModeToggle,Light]Tryb jasny\_a"
+			}
+			"\n"
 		}
 		
 		"\nCzęstotliwość rozmowy: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
@@ -674,17 +680,18 @@ OnConfigMenu : all
 		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
-			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Dark]Dark mode\_a"
-			
-			"\f[default]  "
-			
-			if balloonmode != 1; "\f[anchorfontcolor,150,150,150]"
-			
-			"\_a[OnBalloonModeToggle,Light]Light mode\_a"
-			
-			"\f[default]\n"
+			switch balloonmode
+			{
+				"\_a[OnBalloonModeToggle,Dark]Dark mode\_a"
+				"\f[color,disable]\__q[OnBalloonModeToggle,Dark]Dark mode\__q\f[color,default]"
+			}
+			"  "
+			switch balloonmode
+			{
+				"\f[color,disable]\__q[OnBalloonModeToggle,Light]Light mode\__q\f[color,default]"
+				"\_a[OnBalloonModeToggle,Light]Light mode\_a"
+			}
+			"\n"
 		}
 		
 		//TODO Japanese - Need to update this button from Auto FLUX updates
