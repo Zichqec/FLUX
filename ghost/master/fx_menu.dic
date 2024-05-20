@@ -42,7 +42,7 @@ OpenSakuraMenu : all
 			
 			if AutoUpdates[3] == 1; "[Lecteur FLUX]\n\![]"
 			
-			if AutoUpdates[4] == 1; "[Shell  '%(nowshell)']\n\![]"
+			if AutoUpdates[4] == 1; "[Shell '%(nowshell)']\n\![]"
 			
 			if AutoUpdates[5] == 1; "[Ballon '%(SHIORI3FW.BalloonName)']\n"
 			
@@ -560,8 +560,6 @@ OnConfigMenu : all
 	}
 	elseif language == "Français"
 	{
-		//This is here in case the variables get erased. The buttons will be set to default so the user has something to click. This has happened to my users before and resetting them is a painful process. Do not remove these.
-		if username == ""; username = "User"
 		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
