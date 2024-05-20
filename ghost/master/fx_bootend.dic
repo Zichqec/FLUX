@@ -2,14 +2,14 @@ OnFirstBoot //Dialogue when you first open the ghost
 {
 	FirstBootVars //Initialize all your variables at the very bottom!
 	
-	"\1\s[-1]\0\s[50]\w6\*\t\![enter,passivemode]\![raise,OnFirstLangMenu,English]"
+	"\1\s[-1]\0\s[50]\w6\*\t\![raise,OnFirstLangMenu,English]"
 }
 
 OnFirstLangMenu
 {
 	_lang = reference0
 	
-	"\0\*\t%(bb)\_q\![enter,passivemode]"
+	"\0\*\t%(bb)\_q"
 	--
 	if _lang == "Placeholder" //TRANSLATORS: Firstboot language select dialogue. When the user hovers over a language, this text will change to that language. If this text is very long for your language, such that it overlaps the language options, let me know and I can adjust it. It's very important that the buttons not jump around when hovered over.
 	{
@@ -86,8 +86,6 @@ OnLanguageChosen
 	{
 		"[Finished installing FLUX player.]\n\n\w8\w8[To add songs,\w4 drag and drop them onto FLUX.\w8\w8 You can also drag and drop a .m3u playlist.]\n\n\w8\w8[If you want to change the look of FLUX,\w4 check the Shell and Dressup menus.]\n\n\w8\w8[For other options,\w4 including changing languages,\w4 check the Config menu.]"
 	}
-	--
-	"\![leave,passivemode]\e"
 }
 
 OnBoot //Normal booting
