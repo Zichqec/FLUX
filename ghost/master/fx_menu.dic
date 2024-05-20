@@ -1869,127 +1869,92 @@ OnChangeDesign
 	"\C\![set,autoscroll,disable]\0\_q\![bind,%(reference1),%(reference2)] \![raise,OnDressupMenu,%(reference0),%(reference1)]"
 }
 
-OnRandomDressup
+/*
+
+first of all, remove everything
+then we break up the dressups into their respective categories...
+and we also tag them with mustselect and multiple
+then we grab a random dressup from every category, if it's a mustselect we must select at least one, otherwise we have a chance to skip
+if it's multiple we want to do it multiple times
+
+*/
+
+OnRandomDressup : all
 {
-	_command = ""
-	foreach currentdressups; _dressup //Gets the data for all current dressups and removes them
+	"\C\p[%(reference0)]\_q"
+	
+	//—— Unbind all active ——
+	//ID, category, name
+	foreach currentdressups; _dressup
 	{
-		if _dressup[0,C_BYTE1] != TOSTR(reference0); continue
-		_category = _dressup[1,C_BYTE1]
-		_name = _dressup[2,C_BYTE1]
-		_command += "\![bind,%(_category),%(_name),0]"
+		"\![bind,%(_dressup[1,C_BYTE1]),%(_dressup[2,C_BYTE1]),0]"
 	}
-	"\C\p[%(reference0)]%(_command)\![done    removing]" //removes all current dressups
-	--
-	_currentcategories = IARRAY
-	foreach availabledressups; _dressup //For every dressup that the ghost has - This breaks up the big list of all the dressups into categories
+	
+	//—— Break dressups into categories ——
+	_category.key = IARRAY
+	_category.val = IARRAY
+	_category.opt = IARRAY
+	
+	//ID, category, name, opts
+	foreach availabledressups; _dressup
 	{
-		if _dressup[0,C_BYTE1] != TOSTR(reference0); continue
-		_category = _dressup[1,C_BYTE1] //Gather the name and category of the current dressup
-		_name = _dressup[2,C_BYTE1]
+		_dressup = SPLIT(_dressup,C_BYTE1)
+		//Skip all that do not apply to this character
+		if TOINT(_dressup[0]) != reference0; continue
 		
-		_index = ASUB("%(_category)|",_currentcategories)
-		if _index == -1 //If the user is not in a submenu AND we haven't logged this category yet
+		_index = ASEARCH(_dressup[1],_category.key)
+		
+		//Add new category if none found
+		if _index == -1
 		{
-			_adding = _category + C_BYTE1
-			if _dressup[3,C_BYTE1] == "mustselect" || _dressup[4,C_BYTE1] == "mustselect"; _adding += "!-!mustselect!-!" + C_BYTE1 //Add the category to a list
-			if _dressup[3,C_BYTE1] == "multiple" || _dressup[4,C_BYTE1] == "multiple"; _adding += "!-!multiple!-!" + C_BYTE1 //Add the category to a list
-			_adding += _name
-			_currentcategories ,= _adding
-			
+			_category.key ,= _dressup[1]
+			_category.val ,= _dressup[2]
+			_category.opt ,= _dressup[3] //It's ok if this is an empty string...
 		}
 		else
 		{
-			_currentcategories[_index] += C_BYTE1 + _name
+			_category.val[_index] += C_BYTE1 + _dressup[2]
 		}
-		
 	}
-	--
-	_command = ""
-	_skipchance = 3
-	foreach _currentcategories; _category //Picks a random dressup from every category
+	
+	//—— Assign new dressups ——
+	_skipratio = 4 // 1 out of 4
+	for _i = 0; _i < ARRAYSIZE(_category.key); _i++
 	{
-		_temp = REPLACE(_category,C_BYTE1,",") //Changes to comma delimiter
-		_temp = SPLIT(_temp,",") //Makes _temp into a general purpose array
-		_currentctg = _temp[0] //Gets the name of the category
-		
-		_loops = 1 //Always do the loop at least once, I suppose this is what a do-while loop is for haha
 		_multiple = 0
 		_mustselect = 0
+		if "multiple" _in_ _category.opt[_i]; _multiple = 1
+		if "mustselect" _in_ _category.opt[_i]; _mustselect = 1
 		
-		if _temp[1] == "!-!multiple!-!" || _temp[2] == "!-!multiple!-!" //If it's a multiple option, mark it as such and up the number of loops to be 1 for every dressup available
-		{
-			_multicheck = 1
-			_loops = ARRAYSIZE(_temp) - 2
-		}
-		if _temp[1] == "!-!mustselect!-!" || _temp[2] == "!-!mustselect!-!" //If it's a mustselect, mark it as such. If it's also a multiple, reduce the number of times the loop is run, because this is taking up a slot of the array and we don't want to count it
-		{
-			_mustselect = 1
-			if _multicheck == 1; _loops--
-		}
+		//If we're not required to select it, skip sometimes
+		if !_mustselect && RAND(_skipratio) != 0; continue
 		
-		if _temp[2] == "!-!mustselect!-!" || _temp[2] == "!-!multiple!-!" ; _temp[2] = IARRAY //Erase these flags if they're present
-		if _temp[1] == "!-!mustselect!-!" || _temp[1] == "!-!multiple!-!" ; _temp[1] = IARRAY
-		_temp[0] = IARRAY //Erase the category name
+		_category = _category.key[_i]
+		_dressups = SPLIT(_category.val[_i],C_BYTE1)
 		
-		for _i = 0; _i < _loops; _i++ //Run the loop as determined above
+		_dressup_added = 0
+		if _multiple
 		{
-			if RAND(_skipchance) != 0 //If it decides it should skip
+			foreach _dressups; _dressup
 			{
-				if _i == 0 //If it's at the start of the category, skip the whole category
+				if RAND(_skipratio) != 0
 				{
-					if _mustselect == 0; break
-				}
-				else //Otherwise, skip just this one
-				{
-					continue
+					_dressup_added = 1
+					"\![bind,%(_category),%(_dressup),1]"
 				}
 			}
-			
-			_toadd = ANY(_temp) //If it doesn't skip, set _toadd to any dressup on the array
-			_num = LSO //LSO is a function that gets the element number ANY chose
-			_temp[_num] = IARRAY //Erase the dressup that was chosen
-			
-			if _toadd == ""; continue //If it's empty, skip
-			_command += "\![bind,%(_currentctg),%(_toadd),1]" //Otherwise, add to the command
+		}
+		
+		//If this is a pick-one category, or it's multiple but no dressups were added
+		if !_multiple || !_dressup_added
+		{
+			"\![bind,%(_category),%(ANY(_dressups)),1]"
 		}
 	}
-	"%(_command)"
-	--
 	"\b[2] \![raise,OnDressupMenu,%(reference0)]"
 }
 
-// OnNotifyDressupInfo
-// {
-	// availabledressups = IARRAY //This one is to display the dressup menu
-	// currentdressups = IARRAY //This one is so we can display which dressups are currently in use
-	// dressupcharacters = IARRAY //A list of all the characters with dressups available
-	
-	// foreach reference; _dressup //if you just write reference, you get all the references, apparently? Which is super useful
-	// {
-		// //Ok, so here's the deal. When it lists the dressups, the amount of options that can be specified _varies._ It can be empty, 1, 2, or 3. To the best of my knowledge. SO. This inner loop starts at 3 (because elements 0 1 and 2 are static), checks to see if the next element has a keyword, and skips it if it does. Then when it finds the on/off indicator, it breaks the loop. IT DIDNT HAVE TO BE THIS WAY.
-		// _onoff = 0
-		// _must = 0
-		// _mult = 0
-		// for _i = 3; _i < ARRAYSIZE(_dressup); _i++
-		// {
-			// if _dressup[_i] == "default" || _dressup[_i] == ""; continue
-			// elseif _dressup[_i] == "mustselect" {_must = 1; continue}
-			// elseif _dressup[_i] == "multiple" {_mult = 1; continue}
-			// else; _onoff = _dressup[_i]; break
-		// }
-		// _toadd = _dressup[0] + "|" + _dressup[1] + "|" + _dressup[2]
-		// if _must == 1; _toadd += "|mustselect"
-		// if _mult == 1; _toadd += "|multiple"
-		// availabledressups ,= _toadd
-		// if _onoff == 1; currentdressups ,= _dressup[0] + "|" + _dressup[1] + "|" + _dressup[2]
-		
-		// if ASEARCH(_dressup[0],dressupcharacters) == -1; dressupcharacters ,= _dressup[0]
-	// }
-// }
-
 //Character ID, category name, part name, option, valid / invalid 0, thumbnail path
-//I'm so mad. The options are delimited by commas. WHY DOESN'T UKADOC SAY THAT. WHY DID I HAVE TO FIND THAT ON THE SPECIFICATION WIKI.
 OnNotifyDressupInfo
 {
 	availabledressups = IARRAY //This one is to display the dressup menu
@@ -2011,26 +1976,8 @@ OnNotifyDressupInfo
 	}
 }
 
-// OnNotifyDressupInfo
-// {
-	// SakuraDressups = IARRAY
-	// KeroDressups = IARRAY
-	
-	// foreach reference.raw; _dressup //reference.raw because some bits of this are delimited by C_BYTE1
-	// {
-		// _dressup = SPLIT(_dressup,C_BYTE1)
-		
-		// if _dressup[4] == "1" //If it's on
-		// {
-			// _to_add = "%(_dressup[1]),%(_dressup[2])" //Category name,Piece name
-			
-			// if _dressup[0] == "0"; SakuraDressups ,= _to_add
-			// else; KeroDressups ,= _to_add
-		// }
-	// }
-// }
-
-ASUB //ASEARCH but for substrings
+//ASEARCH but for substrings
+ASUB
 {
 	_array = _argv //Takes in all the elements of the array
 	_array[0] = IARRAY //erases _argv[0] since that's the string we're searching for
@@ -2044,7 +1991,6 @@ ASUB //ASEARCH but for substrings
 	}
 	-1
 }
-
 
 
 OnTestVar
