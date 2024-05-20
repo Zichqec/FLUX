@@ -1869,16 +1869,6 @@ OnChangeDesign
 	"\C\![set,autoscroll,disable]\0\_q\![bind,%(reference1),%(reference2)] \![raise,OnDressupMenu,%(reference0),%(reference1)]"
 }
 
-/*
-
-first of all, remove everything
-then we break up the dressups into their respective categories...
-and we also tag them with mustselect and multiple
-then we grab a random dressup from every category, if it's a mustselect we must select at least one, otherwise we have a chance to skip
-if it's multiple we want to do it multiple times
-
-*/
-
 OnRandomDressup : all
 {
 	"\C\p[%(reference0)]\_q"
