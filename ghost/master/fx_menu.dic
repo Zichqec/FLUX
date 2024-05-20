@@ -456,13 +456,12 @@ OnMenuRun //Main menu
 	"\e FLUX main menu"
 }
 
-OnLastTalk //Repeats the last thing the ghost said
+OnLastTalk
 {
-	"%(lastTalk)\e"
+	"%(lastTalk)"
 }
 
-//----------Config Menu----------
-OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, because they're info about the user
+OnConfigMenu : all
 {
 	if deleteshitai[1] == ""; {deleteshitai[0] = 0; deleteshitai[1] = onoff[1]}
 	if AutoUpdates[2] == ""; {AutoUpdates[0] = 1; AutoUpdates[2] = onoff[0]}
@@ -496,17 +495,16 @@ OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, becaus
 		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "alle 5 Minuten"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
-		--
-		"/
-		Dein Name: \_a[OnChangeName]%(username)\_a\n/
-		Deine Pronomen: \_a[OnChangePronoun]%(ersie)/%(ihmihr)/%(ihnsie)/%(seinihr)\_a\n"
-		--
+		
+		"Dein Name: \_a[OnChangeName]%(username)\_a\n"
+		"Deine Pronomen: \_a[OnChangePronoun]%(ersie)/%(ihmihr)/%(ihnsie)/%(seinihr)\_a\n"
+		
 		if birthday[0] == "???"; "Dein Geburtstag: \_a[OnChangeBirthday]???\_a\n"
 		else; "Dein Geburtstag: \_a[OnChangeBirthday]%(MonthName(birthday[4],language)) %(GetDaySuffix(birthday[5],language))\_a\n"
-		--
-		"Deine Hemisphere: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n/
-		Sprache: \_a[OnLanguageMenu]%(language)\_a\n"
-		--
+		
+		"Deine Hemisphere: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
+		"Sprache: \_a[OnLanguageMenu]%(language)\_a\n"
+		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
 			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
@@ -521,42 +519,42 @@ OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, becaus
 			--
 			"\f[default]\n"
 		}
-		--
-		"\nRedehäufigkeit: \_a[OnChangeTalk]%(nowtalkrate)\_a\n/
-		Rede \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n/
-		Nachrichten zu vollen Stunden: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n/
-		Auto-Update-Überprüfungen \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n/
-		\![*]\q[Nach FLUX-Updates suchen,UpdateCheck]\n/
-		\![*]\q[Nach Shell-Updates suchen,UpdateShell]\n/
-		Shell-Spezifische Funktionen/Dialoge \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		--
+		
+		"\nRedehäufigkeit: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
+		"Rede \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"Nachrichten zu vollen Stunden: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
+		"Auto-Update-Überprüfungen \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
+		"\![*]\q[Nach FLUX-Updates suchen,UpdateCheck]\n"
+		"\![*]\q[Nach Shell-Updates suchen,UpdateShell]\n"
+		"Shell-Spezifische Funktionen/Dialoge \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][SHELL-FEHLER: SHELL-SPEZIFISCHE FUNKTIONEN AUSGESCHALTET]\_a\n";
 		else; "\n"
-		--
+		
 		"Derzeitiges Lied und derzeitige Shell auf Discord anzeigen? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		--
+		
 		"Kurzinfo für interaktive Bereiche anzeigen? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
-		--
-		"\![*]\q[Bug melden,BugReport]\n\n/
-		Deinstallieren freischalten? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n/
-		\![*]\q[Zurück zum Hauptmenü,OnMenuRun]\e"
+		
+		"\![*]\q[Bug melden,BugReport]\n\n"
+		"Deinstallieren freischalten? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
+		"\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
 	}
 	elseif language == "Русский"
 	{
 		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
-		--
-		"/
-		Твоя имя: \_a[OnChangeName]%(username)\_a\n/
-		Твои Местоимение: \_a[OnChangePronoun]%(онона)/%(егоее)\_a\n"
-		--
+		
+		
+		"Твоя имя: \_a[OnChangeName]%(username)\_a\n"
+		"Твои Местоимение: \_a[OnChangePronoun]%(онона)/%(егоее)\_a\n"
+		
 		if birthday[0] == "???"; "Твой день рождения: \_a[OnChangeBirthday]???\_a\n"
 		else; "Твой день рождения: \_a[OnChangeBirthday]%(MonthName(birthday[4],language)) %(GetDaySuffix(birthday[5],language))\_a\n"
-		--
-		"Твое полушарие: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n/
-		Язык: \_a[OnLanguageMenu]%(language)\_a\n"
-		--
+		
+		"Твое полушарие: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
+		"Язык: \_a[OnLanguageMenu]%(language)\_a\n"
+		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
 			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
@@ -571,25 +569,25 @@ OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, becaus
 			--
 			"\f[default]\n"
 		}
-		--
-		"\nВремени разговоров: \_a[OnChangeTalk]%(nowtalkrate)\_a\n/
-		Говорить \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n/
-		Уведомление Часов: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n/
-		Авто-обновлении \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n/
-		\![*]\q[Проверять обновление FLUX,UpdateCheck]\n/
-		\![*]\q[Проверять обновление Видов,UpdateShell]\n/
-		Особенные Функции/Разговоры Вида \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		--
+		
+		"\nВремени разговоров: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
+		"Говорить \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"Уведомление Часов: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
+		"Авто-обновлении \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
+		"\![*]\q[Проверять обновление FLUX,UpdateCheck]\n"
+		"\![*]\q[Проверять обновление Видов,UpdateShell]\n"
+		"Особенные Функции/Разговоры Вида \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][ОШИБКА С ВНЕШНОГО ВИДА: ПОЛЬЗОВАТЕЛЬСКИЕ ФУНКЦИЯ ВЫКЛЮЧЕН]\_a\n";
 		else; "\n"
-		--
+		
 		"Показать текущий песня и внешний вид в Дискорд? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		--
+		
 		"Использовать подсказки для горячие точки? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
-		--
-		"\![*]\q[Сообщить о ошибке,BugReport]\n\n/
-		Включить Удаление? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n[70]/
-		\![*]\q[Назад в Меню,OnMenuRun]\e"
+		
+		"\![*]\q[Сообщить о ошибке,BugReport]\n\n"
+		"Включить Удаление? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n[70]"
+		"\![*]\q[Назад в Меню,OnMenuRun]"
 	}
 	elseif language == "Français"
 	{
@@ -598,17 +596,17 @@ OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, becaus
 		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
-		--
-		"/
-		Ton nom : \_a[OnChangeName]%(username)\_a\n/
-		Tes pronoms : \_a[OnChangePronoun]%(Capitalize(ilelle))/%(Capitalize(luielle))/%(Capitalize(celuicelle))\_a\n"
-		--
+		
+		
+		"Ton nom : \_a[OnChangeName]%(username)\_a\n"
+		"Tes pronoms : \_a[OnChangePronoun]%(Capitalize(ilelle))/%(Capitalize(luielle))/%(Capitalize(celuicelle))\_a\n"
+		
 		if birthday[0] == "???"; "Ton anniversaire : \_a[OnChangeBirthday]???\_a\n"
 		else; "Ton anniversaire : \_a[OnChangeBirthday]%(birthday[5]) %(MonthName(birthday[4],language))\_a\n"
-		--
-		"Ton hémisphère: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n/
-		Langage: \_a[OnLanguageMenu]%(language)\_a\n"
-		--
+		
+		"Ton hémisphère: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
+		"Langage: \_a[OnLanguageMenu]%(language)\_a\n"
+		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
 			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
@@ -623,25 +621,25 @@ OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, becaus
 			--
 			"\f[default]\n"
 		}
-		--
-		"\nFréquence des dialogues : \_a[OnChangeTalk]%(nowtalkrate)\_a\n/
-		Parle \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n/
-		Notifications chaque heure : \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n/
-		Vérification auto des mises à jour \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n/
-		\![*]\q[Vérifier les mises à jour de FLUX,UpdateCheck]\n/
-		\![*]\q[Vérifier les mises à jour du shell,UpdateShell]\n/
-		Fonctions/Dialogues personnalisés du shell \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		--
+		
+		"\nFréquence des dialogues : \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
+		"Parle \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"Notifications chaque heure : \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
+		"Vérification auto des mises à jour \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
+		"\![*]\q[Vérifier les mises à jour de FLUX,UpdateCheck]\n"
+		"\![*]\q[Vérifier les mises à jour du shell,UpdateShell]\n"
+		"Fonctions/Dialogues personnalisés du shell \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][ERREUR DE SHELL: FONCTIONS PERSONALISÉES DÉSACTIVÉES]\_a\n"
 		else; "\n"
-		--
+		
 		"Display current song and shell in Discord? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		--
+		
 		"Use tooltips for hotspots? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
-		--
-		"\![*]\q[Reporter un bug,BugReport]\n\n/
-		Activer la désinstallation ? \_a[OnToggleUninstall](%(_uninstbtn))\_a\n\n/
-		\![*]\q[Retourner au menu,OnMenuRun]\e"
+		
+		"\![*]\q[Reporter un bug,BugReport]\n\n"
+		"Activer la désinstallation ? \_a[OnToggleUninstall](%(_uninstbtn))\_a\n\n"
+		"\![*]\q[Retourner au menu,OnMenuRun]"
 	}
 	elseif language == "Polski"
 	{
@@ -649,17 +647,16 @@ OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, becaus
 		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
-		--
-		"/
-		Twoje imię: \_a[OnChangeName]%(username)\_a\n/
-		Twoje zaimki: \_a[OnChangePronoun]%(Capitalize(onona))/%(Capitalize(jejjemu))/%(Capitalize(jejjego))\_a\n"
-		--
+		
+		"Twoje imię: \_a[OnChangeName]%(username)\_a\n"
+		"Twoje zaimki: \_a[OnChangePronoun]%(Capitalize(onona))/%(Capitalize(jejjemu))/%(Capitalize(jejjego))\_a\n"
+		
 		if birthday[0] == "???"; "Twoje urodziny: \_a[OnChangeBirthday]???\_a\n"
 		else; "Twoje urodziny: \_a[OnChangeBirthday]%(GetDaySuffix(birthday[5],language)) %(MonthName(birthday[4],language))\_a\n"
-		--
-		"Twoja półkula: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n/
-		Język: \_a[OnLanguageMenu]%(language)\_a\n"
-		--
+		
+		"Twoja półkula: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
+		"Język: \_a[OnLanguageMenu]%(language)\_a\n"
+		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
 			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
@@ -674,25 +671,25 @@ OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, becaus
 			--
 			"\f[default]\n"
 		}
-		--
-		"\nCzęstotliwość rozmowy: \_a[OnChangeTalk]%(nowtalkrate)\_a\n/
-		Mów \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n/
-		Powiadomienia godzinowe: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n/
-		Automatyczne sprawdzanie aktualizacji \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n/
-		\![*]\q[Sprawdź aktualizacje FLUX,UpdateCheck]\n/
-		\![*]\q[Sprawdź aktualizacje skorupy,UpdateShell]\n/
-		Specjalne funkcje/dialogi skorupy \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		--
+		
+		"\nCzęstotliwość rozmowy: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
+		"Mów \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"Powiadomienia godzinowe: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
+		"Automatyczne sprawdzanie aktualizacji \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
+		"\![*]\q[Sprawdź aktualizacje FLUX,UpdateCheck]\n"
+		"\![*]\q[Sprawdź aktualizacje skorupy,UpdateShell]\n"
+		"Specjalne funkcje/dialogi skorupy \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][BŁĄD SKORUPY: NIESTANDARDOWE FUNKCJE WYŁĄCZONE]\_a\n";
 		else; "\n"
-		--
+		
 		"Wyświetlaj bieżący utwór i skorupę na Discordzie?%(br)\_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		--
+		
 		"Używać etykiet narzędzi dla hotspotów? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
-		--
-		"\![*]\q[Zgłoś błąd,BugReport]\n\n/
-		Włącz odinstalowywanie? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n/
-		\![*]\q[Powrót do menu,OnMenuRun]\e"
+		
+		"\![*]\q[Zgłoś błąd,BugReport]\n\n"
+		"Włącz odinstalowywanie? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
+		"\![*]\q[Powrót do menu,OnMenuRun]"
 	}
 	else //English
 	{
@@ -700,17 +697,16 @@ OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, becaus
 		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
-		--
-		"/
-		Your name: \_a[OnChangeName]%(username)\_a\n/
-		Your pronouns: \_a[OnChangePronoun]%(Capitalize(heshe))/%(Capitalize(himher))/%(Capitalize(hisher))\_a\n"
-		--
+		
+		"Your name: \_a[OnChangeName]%(username)\_a\n"
+		"Your pronouns: \_a[OnChangePronoun]%(Capitalize(heshe))/%(Capitalize(himher))/%(Capitalize(hisher))\_a\n"
+		
 		if birthday[0] == "???"; "Your birthday: \_a[OnChangeBirthday]???\_a\n"
 		else; "Your birthday: \_a[OnChangeBirthday]%(MonthName(birthday[4],language)) %(GetDaySuffix(birthday[5],language))\_a\n"
-		--
-		"Your hemisphere: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n/
-		Language: \_a[OnLanguageMenu]%(language)\_a\n"
-		--
+		
+		"Your hemisphere: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
+		"Language: \_a[OnLanguageMenu]%(language)\_a\n"
+		
 		if SHIORI3FW.BalloonName == "Notes"
 		{
 			if balloonmode == 1; "\f[anchorfontcolor,150,150,150]"
@@ -725,26 +721,26 @@ OnConfigMenu //I moved changing name/pronouns/birthday over to Nameteach, becaus
 			--
 			"\f[default]\n"
 		}
-		--
+		
 		//TODO Japanese - Need to update this button from Auto FLUX updates
-		"\nTalk rate: \_a[OnChangeTalk]%(nowtalkrate)\_a\n/
-		Talk \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n/
-		Hour Notifications: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n/
-		Auto Update Checks \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n/
-		\![*]\q[Check for FLUX updates,UpdateCheck]\n/
-		\![*]\q[Check for shell updates,UpdateShell]\n/
-		Custom Shell Functions/Dialogue \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		--
+		"\nTalk rate: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
+		"Talk \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n"
+		"Hour Notifications: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
+		"Auto Update Checks \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
+		"\![*]\q[Check for FLUX updates,UpdateCheck]\n"
+		"\![*]\q[Check for shell updates,UpdateShell]\n"
+		"Custom Shell Functions/Dialogue \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][SHELL ERROR: CUSTOM FUNCTIONS DISABLED]\_a\n";
 		else; "\n"
-		--
+		
 		"Display current song and shell in Discord? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		--
+		
 		"Use tooltips for hotspots? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
-		--
-		"\![*]\q[Report a bug,BugReport]\n\n/
-		Enable Uninstall? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n/
-		\![*]\q[Back to the menu,OnMenuRun]\e"
+		
+		"\![*]\q[Report a bug,BugReport]\n\n"
+		"Enable Uninstall? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
+		"\![*]\q[Back to the menu,OnMenuRun]"
 	}
 }
 
@@ -1540,7 +1536,7 @@ OnRandomShell
 
 OnDressupMenu //Menu for dressups
 {
-	//This block is to make sure all characters redisplay their surfaces, in case you're using custom shell code to append intervals
+	//This block is to make sure all characters redisplay their surfaces, in case you're using custom shell code to append animations
 	_surfaces = ""
 	_i = 0
 	foreach SHIORI3FW.IsVisible; _isvisible
@@ -1560,9 +1556,9 @@ OnDressupMenu //Menu for dressups
 	
 	foreach availabledressups; _dressup //For every dressup that the ghost has
 	{
-		_character = _dressup[0,"|"]
-		_category = _dressup[1,"|"] //Gather the character, name, and category of the current dressup
-		_name = _dressup[2,"|"]
+		_character = _dressup[0,C_BYTE1]
+		_category = _dressup[1,C_BYTE1] //Gather the character, name, and category of the current dressup
+		_name = _dressup[2,C_BYTE1]
 		
 		if reference0 == "" && ASEARCH(_character,_currentcharacters) == -1
 		{
@@ -1595,19 +1591,19 @@ OnDressupMenu //Menu for dressups
 		elseif _character == reference0 && reference1 == "" && ASEARCH(_category,_currentcategories) == -1 //If the user is not in a submenu AND we haven't logged this category yet
 		{
 			_currentcategories ,= _category //Add the category to a list
-			if ASUB("%(_character)|%(_category)|",currentdressups) != -1; _display += "\![*]" //If a dressup in this category is on, add a menu choice marker to it
+			if ASUB("%(_character)%(C_BYTE1)%(_category)%(C_BYTE1)",currentdressups) != -1; _display += "\![*]" //If a dressup in this category is on, add a menu choice marker to it
 			_display += "\__q[OnDressupMenu,%(_character),%(_category)]%(_category)\__q\n" //Make a menu option for it
 		}
 		elseif _character == reference0 && _category == reference1 //Otherwise, if the user IS in a submenu, AND this item matches the current submenu category
 		{
 			_items++
-			_pos = ASEARCH("%(_character)|%(_category)|%(_name)",currentdressups) //See if the name of this item is in the name of dressups currently being used
+			_pos = ASEARCH("%(_character)%(C_BYTE1)%(_category)%(C_BYTE1)%(_name)",currentdressups) //See if the name of this item is in the name of dressups currently being used
 			if _pos != -1; _display += "\![*]"
 			_display += "\__q[OnChangeDesign,%(_character),%(_category),%(_name)]%(_name)\__q\n"
 		}
 	}
 	--
-	"\C\![lock,balloonrepaint]%(_surfaces)\c\*\_q\![set,autoscroll,0]"
+	"\C\![lock,balloonrepaint]\c%(_surfaces)\*\_q\![set,autoscroll,0]"
 	--
 	if language == "Placeholder" //TRANSLATORS: This is the top of the dressup menu. It looks a bit complicated, but most of it is just back buttons tbh.
 	{
@@ -1914,9 +1910,9 @@ OnRandomDressup
 	_command = ""
 	foreach currentdressups; _dressup //Gets the data for all current dressups and removes them
 	{
-		if _dressup[0,"|"] != TOSTR(reference0); continue
-		_category = _dressup[1,"|"]
-		_name = _dressup[2,"|"]
+		if _dressup[0,C_BYTE1] != TOSTR(reference0); continue
+		_category = _dressup[1,C_BYTE1]
+		_name = _dressup[2,C_BYTE1]
 		_command += "\![bind,%(_category),%(_name),0]"
 	}
 	"\C\p[%(reference0)]%(_command)\![done    removing]" //removes all current dressups
@@ -1924,23 +1920,23 @@ OnRandomDressup
 	_currentcategories = IARRAY
 	foreach availabledressups; _dressup //For every dressup that the ghost has - This breaks up the big list of all the dressups into categories
 	{
-		if _dressup[0,"|"] != TOSTR(reference0); continue
-		_category = _dressup[1,"|"] //Gather the name and category of the current dressup
-		_name = _dressup[2,"|"]
+		if _dressup[0,C_BYTE1] != TOSTR(reference0); continue
+		_category = _dressup[1,C_BYTE1] //Gather the name and category of the current dressup
+		_name = _dressup[2,C_BYTE1]
 		
 		_index = ASUB("%(_category)|",_currentcategories)
 		if _index == -1 //If the user is not in a submenu AND we haven't logged this category yet
 		{
-			_adding = _category + "|"
-			if _dressup[3,"|"] == "mustselect" || _dressup[4,"|"] == "mustselect"; _adding += "!-!mustselect!-!" + "|" //Add the category to a list
-			if _dressup[3,"|"] == "multiple" || _dressup[4,"|"] == "multiple"; _adding += "!-!multiple!-!" + "|" //Add the category to a list
+			_adding = _category + C_BYTE1
+			if _dressup[3,C_BYTE1] == "mustselect" || _dressup[4,C_BYTE1] == "mustselect"; _adding += "!-!mustselect!-!" + C_BYTE1 //Add the category to a list
+			if _dressup[3,C_BYTE1] == "multiple" || _dressup[4,C_BYTE1] == "multiple"; _adding += "!-!multiple!-!" + C_BYTE1 //Add the category to a list
 			_adding += _name
 			_currentcategories ,= _adding
 			
 		}
 		else
 		{
-			_currentcategories[_index] += "|" + _name
+			_currentcategories[_index] += C_BYTE1 + _name
 		}
 		
 	}
@@ -1949,7 +1945,7 @@ OnRandomDressup
 	_skipchance = 3
 	foreach _currentcategories; _category //Picks a random dressup from every category
 	{
-		_temp = REPLACE(_category,"|",",") //Changes to comma delimiter
+		_temp = REPLACE(_category,C_BYTE1,",") //Changes to comma delimiter
 		_temp = SPLIT(_temp,",") //Makes _temp into a general purpose array
 		_currentctg = _temp[0] //Gets the name of the category
 		
@@ -1999,34 +1995,76 @@ OnRandomDressup
 	"%(bb) \![raise,OnDressupMenu,%(reference0)]"
 }
 
+// OnNotifyDressupInfo
+// {
+	// availabledressups = IARRAY //This one is to display the dressup menu
+	// currentdressups = IARRAY //This one is so we can display which dressups are currently in use
+	// dressupcharacters = IARRAY //A list of all the characters with dressups available
+	
+	// foreach reference; _dressup //if you just write reference, you get all the references, apparently? Which is super useful
+	// {
+		// //Ok, so here's the deal. When it lists the dressups, the amount of options that can be specified _varies._ It can be empty, 1, 2, or 3. To the best of my knowledge. SO. This inner loop starts at 3 (because elements 0 1 and 2 are static), checks to see if the next element has a keyword, and skips it if it does. Then when it finds the on/off indicator, it breaks the loop. IT DIDNT HAVE TO BE THIS WAY.
+		// _onoff = 0
+		// _must = 0
+		// _mult = 0
+		// for _i = 3; _i < ARRAYSIZE(_dressup); _i++
+		// {
+			// if _dressup[_i] == "default" || _dressup[_i] == ""; continue
+			// elseif _dressup[_i] == "mustselect" {_must = 1; continue}
+			// elseif _dressup[_i] == "multiple" {_mult = 1; continue}
+			// else; _onoff = _dressup[_i]; break
+		// }
+		// _toadd = _dressup[0] + "|" + _dressup[1] + "|" + _dressup[2]
+		// if _must == 1; _toadd += "|mustselect"
+		// if _mult == 1; _toadd += "|multiple"
+		// availabledressups ,= _toadd
+		// if _onoff == 1; currentdressups ,= _dressup[0] + "|" + _dressup[1] + "|" + _dressup[2]
+		
+		// if ASEARCH(_dressup[0],dressupcharacters) == -1; dressupcharacters ,= _dressup[0]
+	// }
+// }
+
+//Character ID, category name, part name, option, valid / invalid 0, thumbnail path
+//I'm so mad. The options are delimited by commas. WHY DOESN'T UKADOC SAY THAT. WHY DID I HAVE TO FIND THAT ON THE SPECIFICATION WIKI.
 OnNotifyDressupInfo
 {
 	availabledressups = IARRAY //This one is to display the dressup menu
 	currentdressups = IARRAY //This one is so we can display which dressups are currently in use
 	dressupcharacters = IARRAY //A list of all the characters with dressups available
 	
-	foreach reference; _dressup //if you just write reference, you get all the references, apparently? Which is super useful
+	//Has to be reference.raw because parts of this are delimited with C_BYTE1
+	foreach reference.raw; _dressup
 	{
-		//Ok, so here's the deal. When it lists the dressups, the amount of options that can be specified _varies._ It can be empty, 1, 2, or 3. To the best of my knowledge. SO. This inner loop starts at 3 (because elements 0 1 and 2 are static), checks to see if the next element has a keyword, and skips it if it does. Then when it finds the on/off indicator, it breaks the loop. IT DIDNT HAVE TO BE THIS WAY.
-		_onoff = 0
-		_must = 0
-		_mult = 0
-		for _i = 3; _i < ARRAYSIZE(_dressup); _i++
-		{
-			if _dressup[_i] == "default" || _dressup[_i] == ""; continue
-			elseif _dressup[_i] == "mustselect" {_must = 1; continue}
-			elseif _dressup[_i] == "multiple" {_mult = 1; continue}
-			else; _onoff = _dressup[_i]; break
-		}
-		_toadd = _dressup[0] + "|" + _dressup[1] + "|" + _dressup[2]
-		if _must == 1; _toadd += "|mustselect"
-		if _mult == 1; _toadd += "|multiple"
+		_dressup = SPLIT(_dressup,C_BYTE1)
+		
+		_toadd = _dressup[0] + C_BYTE1 + _dressup[1] + C_BYTE1 + _dressup[2]
+		if _dressup[4] == 1; currentdressups ,= _toadd
+		
+		if _dressup[3] != ""; _toadd += C_BYTE1 + _dressup[3]
 		availabledressups ,= _toadd
-		if _onoff == 1; currentdressups ,= _dressup[0] + "|" + _dressup[1] + "|" + _dressup[2]
 		
 		if ASEARCH(_dressup[0],dressupcharacters) == -1; dressupcharacters ,= _dressup[0]
 	}
 }
+
+// OnNotifyDressupInfo
+// {
+	// SakuraDressups = IARRAY
+	// KeroDressups = IARRAY
+	
+	// foreach reference.raw; _dressup //reference.raw because some bits of this are delimited by C_BYTE1
+	// {
+		// _dressup = SPLIT(_dressup,C_BYTE1)
+		
+		// if _dressup[4] == "1" //If it's on
+		// {
+			// _to_add = "%(_dressup[1]),%(_dressup[2])" //Category name,Piece name
+			
+			// if _dressup[0] == "0"; SakuraDressups ,= _to_add
+			// else; KeroDressups ,= _to_add
+		// }
+	// }
+// }
 
 ASUB //ASEARCH but for substrings
 {
