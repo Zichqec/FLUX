@@ -9,7 +9,7 @@ OnFirstLangMenu : all
 {
 	_lang = reference0
 	
-	"\0\*\t%(bb)\_q"
+	"\0\*\t\b[2]\_q"
 	
 	if _lang == "Placeholder" //TRANSLATORS: Firstboot language select dialogue. When the user hovers over a language, this text will change to that language. If this text is very long for your language, such that it overlaps the language options, let me know and I can adjust it. It's very important that the buttons not jump around when hovered over.
 	{
@@ -57,7 +57,7 @@ OnLanguageChosen
 	CustomFuncs[1] = onoff[0]
 	username = DefaultUsername
 	
-	"\0\s[0]%(bb)"
+	"\0\s[0]\b[2]"
 	--
 	if language == "Placeholder" //TRANSLATORS: This is the introduction dialogue, once a language has been chosen.
 	{
@@ -102,7 +102,7 @@ OnBoot //Normal booting
 
 FluxBoot
 {	
-	"\0\s[0]%(b)"
+	"\0\s[0]\b[0]"
 	--
 	if language == "Placeholder" //TRANSLATORS: This is for booting the ghost, both regular booting and changing to FLUX from another ghost
 	{
@@ -148,7 +148,7 @@ OnClose
 
 FluxClose
 {
-	"\0%(b)%(NonSingingSurfaces)"
+	"\0\b[0]%(NonSingingSurfaces)"
 	--
 	if language == "Placeholder" //TRANSLATORS: This is the generic closing dialogue, both for closing and switching to another ghost
 	{
@@ -178,7 +178,7 @@ FluxClose
 
 OnGhostChanging //Changing to another ghost. This is the internal name of your ghost, as written in descript.txt
 {
-	"\0%(b)"
+	"\0\b[0]"
 	--
 	if reference0 == sakuraname //If reloading.
 	{
@@ -239,7 +239,7 @@ OnGhostChanged //After switching.
 	--
 	if reference0 == sakuraname //Finished reloading.
 	{
-		"\0%(b)\s[0]"
+		"\0\b[0]\s[0]"
 		--
 		if language == "Placeholder" //TRANSLATORS: Finished reloading the ghost
 		{
@@ -285,8 +285,8 @@ OnShellChanging //Starting to change the shell
 	shellchange = IARRAY
 	"\1\s[-1]\0\![get,property,OnGetCoords,currentghost.scope(0).rect]" //This gets the current ghost coordinates so that they don't jump around the screen when they change shells
 	--
-	"%(b)"
-		--
+	"\b[0]"
+	--
 	if reference0 == nowshell
 	{
 		if language == "Placeholder" //TRANSLATORS: Dialogue for switching to the same shell again, effectively reloading it
@@ -366,7 +366,7 @@ OnGetCoords2 //This gets the x and y coordinates when changing shells
 		if ISFUNC("OnCustom_trayicon"); OnCustom_trayicon
 		else; "\![set,tasktrayicon,flux.ico]"
 		--
-		"\0%(b)\s[0]"
+		"\0\b[0]\s[0]"
 		--
 		if IsEmergencyMode
 		{
@@ -416,7 +416,7 @@ OnChangedShell //I have this here because it takes a moment for it to read the d
 	reference0 = shellchange[7]
 	reference1 = shellchange[8]
 	reference2 = shellchange[9]
-	"\0%(b)"
+	"\0\b[0]"
 	--
 	if ISFUNC("OnCustom_trayicon"); OnCustom_trayicon
 	else; "\![set,tasktrayicon,flux.ico]"
@@ -458,7 +458,7 @@ OnChangedShell //I have this here because it takes a moment for it to read the d
 	--
 	RestartSinging
 	--
-	//"\_q%(bb)\n\nPrevious shell's Y value: %(shellchange[0])\nPrevious shell's feet level: %(shellchange[1])\nPrevious shell's height: %(shellchange[2])\n\n%(nowshell)'s Y value before moving: %(shellchange[3])\n%(nowshell)'s feet level before moving: %(shellchange[4])\n%(nowshell)'s height: %(shellchange[5])\n%(nowshell)'s new Y value: %(shellchange[6])\x"
+	//"\_q\b[2]\n\nPrevious shell's Y value: %(shellchange[0])\nPrevious shell's feet level: %(shellchange[1])\nPrevious shell's height: %(shellchange[2])\n\n%(nowshell)'s Y value before moving: %(shellchange[3])\n%(nowshell)'s feet level before moving: %(shellchange[4])\n%(nowshell)'s height: %(shellchange[5])\n%(nowshell)'s new Y value: %(shellchange[6])\x"
 	--
 	"\e"
 }
@@ -483,7 +483,7 @@ OnBalloonChange
 	_b = BalloonCheck
 	if _b == 1; "\C"
 	--
-	"%(bbb)\![get,property,OnBalloonLines,currentghost.balloon.scope(0).lines.initial]"
+	"\0\b[4]\![get,property,OnBalloonLines,currentghost.balloon.scope(0).lines.initial]"
 }
 
 OnBalloonLines

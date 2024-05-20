@@ -2,7 +2,7 @@
 
 OnChangeName
 {
-	"\0%(b)\*\![open,inputbox,OnNameTeach,-1,__INPUT_BOX_COLOR__]"
+	"\0\b[0]\*\![open,inputbox,OnNameTeach,-1,__INPUT_BOX_COLOR__]"
 	--
 	if language == "Placeholder" //TRANSLATORS: Start of changing your name
 	{
@@ -77,7 +77,7 @@ OnNameTeach
 	_tempname = REPLACE(_tempname,".","") //removes periods
 	_tempname = REPLACE(_tempname,"-","") //removes dashes
 	
-	"\0%(b)"
+	"\0\b[0]"
 	--
 	if language == "Placeholder" //TRANSLATORS: Setting the new name. FLUX is the only name that is blocked.
 	{
@@ -286,7 +286,7 @@ OnPronouns
 OnChangeBirthday //Pulled a lot of this from the GT template, but I also modified it a lot
 {
 	oldbirthday = birthday
-	"\0%(b)\![open,inputbox,OnUserBornMonth,-1,__INPUT_BOX_COLOR__]\*"
+	"\0\b[0]\![open,inputbox,OnUserBornMonth,-1,__INPUT_BOX_COLOR__]\*"
 	--
 	if language == "Placeholder" //TRANSLATORS: Starting the birthday input
 	{
@@ -386,7 +386,7 @@ OnUserBornMonth
 	elseif ASEARCH(_tempmonth,_month12) != -1; birthday[4] = 12
 	else //if the month isn't a valid month, like 32 or something.
 	{
-		"\0%(b)"
+		"\0\b[0]"
 		--
 		if language == "Placeholder" //TRANSLATORS: If the user inputs an invalid month for their birthday
 		{
@@ -424,7 +424,7 @@ OnChangeBirthdayDay
 {
 	birthday[2] = "%(MonthName(birthday[4],language))"
 	
-	"\0%(b)\![open,inputbox,OnUserBornDay,-1,__INPUT_BOX_COLOR__]\*"
+	"\0\b[0]\![open,inputbox,OnUserBornDay,-1,__INPUT_BOX_COLOR__]\*"
 	--
 	if language == "Placeholder" //TRANSLATORS: Second stage of inputting your birthday. birthday[2] will be the month name that the user put in
 	{
@@ -481,7 +481,7 @@ OnUserBornDay
 	
 	if !IsValidDay(_month,_tempday) //If it isn't a valid day, we open the input box again and have a \e so the dialogue below doesn't play.
 	{
-		"\0%(b)"
+		"\0\b[0]"
 		--
 		if language == "Placeholder" //TRANSLATORS: If the user puts in an invalid day for their birthday
 		{
@@ -523,7 +523,7 @@ OnUserBornDay
 			if ISFUNC("OnCustom_BirthdaySet") && CustomFuncs[0] == 1; REPLACE(OnCustom_BirthdaySet,"\e","")
 			else
 			{
-				"\0%(b)"
+				"\0\b[0]"
 				--
 				if language == "Placeholder" //TRANSLATORS: If the user's birthday was set successfully and is today, AND there's no special shell dialogue for it
 				{
@@ -539,7 +539,7 @@ OnUserBornDay
 				}
 				elseif language == "Français"
 				{
-					"\0%(b)[Anniversaire mis à aujourd'hui.\w8\w8 Bon anniversaire %(username) !]"
+					"\0\b[0][Anniversaire mis à aujourd'hui.\w8\w8 Bon anniversaire %(username) !]"
 				}
 				elseif language == "Polski"
 				{
@@ -561,7 +561,7 @@ OnUserBornDay
 			//birthday[5] - number day
 			//birthday[6] - number birthday, DD/MM format
 			
-			"\0%(b)"
+			"\0\b[0]"
 			--
 			if language == "Placeholder" //TRANSLATORS: Finishing setting the birthday. Above are the variables that you can use to display the user's birthday, pick and choose what you need.
 			{

@@ -28,7 +28,7 @@ RandomTalk
 {
 	if ISFUNC("OnCustom_RandomTalk") && CustomFuncs[0] == 1
 	{
-		if SHIORI3FW.BalloonName == "Notes"; "%(b)"
+		if SHIORI3FW.BalloonName == "Notes"; "\b[0]"
 		--
 		OnCustom_RandomTalk
 	}
@@ -54,7 +54,7 @@ OnMinuteChange
 	{
 		
 		
-		"\0%(b)"
+		"\0\b[0]"
 		--
 		if language == "Placeholder" //TRANSLATORS: Top of the hour notifications, as well as a new years message
 		{
@@ -263,7 +263,7 @@ OnSecondChange
 
 InstalledShellDialogue : all
 {
-	"\0\s[0]%(b)\*"
+	"\0\s[0]\b[0]\*"
 	
 	if language == "Placeholder" //TRANSLATORS: After installing a new shell. This one happens when FLUX uses my workaround to install FLELE shells that are set up to only be installed by FLELE. It should match the normal shell installed dialogue, except for the envelope used. InstalledShellName will be the name of the shell.
 	{
@@ -310,7 +310,7 @@ InstalledShellDialogue : all
 
 MikireTalk //Off the screen dialogue. Ctrl Shift F12 will bring characters back onto the screen
 {
-	"\0%(b)"
+	"\0\b[0]"
 	--
 	if language == "Placeholder" //TRANSLATORS: If FLUX is off screen. Ctrl-Shift-F12 is the key combination to bring it back
 	{
@@ -340,7 +340,7 @@ MikireTalk //Off the screen dialogue. Ctrl Shift F12 will bring characters back 
 
 EndMikireTalk //Being brought back on the screen.
 {
-	"\0%(b)"
+	"\0\b[0]"
 	--
 	if language == "Placeholder" //TRANSLATORS: Bringing FLUX back on screen
 	{

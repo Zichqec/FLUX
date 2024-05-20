@@ -63,8 +63,8 @@ OnMusicMenu //Main music menu display; this displays the list of songs and the c
 	
 	if _currentsong[0] == ""; {_currentsong[0] = _removed; _currentsong[1] = NowPlaying[0]} //,"]","\]")}
 	--
-	if ARRAYSIZE(CurrentPlaylist) > 12; "\0%(bbb)"
-	else; "\0%(bb)"
+	if ARRAYSIZE(CurrentPlaylist) > 12; "\0\b[4]"
+	else; "\0\b[2]"
 	--
 	"\_q\*\![set,autoscroll,disable]\c"
 	--
@@ -579,8 +579,8 @@ OnScootSongMenu
 	}
 	if reference0 == "moved"; "\C\![lock,balloonrepaint]\c"
 	--
-	if ARRAYSIZE(CurrentPlaylist) > 12; "\0%(bbb)"
-	else; "\0%(bb)"
+	if ARRAYSIZE(CurrentPlaylist) > 12; "\0\b[4]"
+	else; "\0\b[2]"
 	--
 	"\_q\![set,autoscroll,disable]\*"
 	--
@@ -759,7 +759,7 @@ OnSoundError
 	_playnext = 0
 	if !(MusicSettings[3] == 2 || MusicSettings[3] == 3 || MusicSettings[4] == "stop after playback" || ARRAYSIZE(CurrentPlaylist) <= 1); _playnext = 1 //If it IS able to play another song
 	
-	"\0%(b)\f[anchorstyle,none]"
+	"\0\b[0]\f[anchorstyle,none]"
 	--
 	if _playnext == 0
 	{
@@ -821,7 +821,7 @@ OnMusicSettings //Settings menu
 	_vol = MusicSettings[0]
 	_speed = MusicSettings[1]
 	_bal = MusicSettings[2]
-	"\C\![lock,balloonrepaint]\c\0\_q\*%(bb)"
+	"\C\![lock,balloonrepaint]\c\0\_q\*\b[2]"
 	--
 	if language == "Placeholder" //TRANSLATORS: this is the settings menu. I'll put notes for each individual block of the english version, for what parts you need to translate
 	{
@@ -975,7 +975,7 @@ OnMusicSettings //Settings menu
 
 OnPlaybackType //Changing the playback type
 {
-	"\0\_q%(bb)"
+	"\0\_q\b[2]"
 	--
 	if language == "Placeholder" //TRANSLATORS: These should match the _mode labels above
 	{
@@ -1050,7 +1050,7 @@ OnPlaybackTypeChange //Actually making the change
 
 OnMusicSet //Bringing up input boxes
 {
-	"\0%(bb)\_q"
+	"\0\b[2]\_q"
 	--
 	if reference0 == "Balance"; "\![open,inputbox,OnMusicBalance,-1,__INPUT_BOX_COLOR__]"
 	elseif reference0 == "Speed"; "\![open,sliderinput,OnMusicSpeed,-1,100,1,300,__INPUT_BOX_COLOR__]"
@@ -1239,7 +1239,7 @@ OnHotkeys
 	_stop = Hotkeys[4]
 	_menu = Hotkeys[5]
 
-	"\0%(bb)\_q\*"
+	"\0\b[2]\_q\*"
 	--
 	if language == "Placeholder" //TRANSLATORS: This is the menu for picking which hotkey to set
 	{
@@ -1310,7 +1310,7 @@ OnChangeHotkey
 	Hotkeys[0] = TOSTR(reference0)
 	_option = ""
 	
-	"\0%(bb)\*\_q"
+	"\0\b[2]\*\_q"
 	--
 	if language == "Placeholder" //TRANSLATORS: Menu for actually changing a hotkey. Make sure to copy the block of reference0 checks and translate the text in them, and then you can use _option in dialogue for which key is being changed
 	{
@@ -1420,7 +1420,7 @@ OnMusicInfo //Information that the user can ask about
 		if FENUM(_path) == ""; void MKDIR(_path)
 	}
 	
-	"\0%(bb)"
+	"\0\b[2]"
 	--
 	if language == "Placeholder" //TRANSLATORS: These are the questions the user can ask about how FLUX works. Only translate the dialogues, not the reference0 checks
 	{
@@ -1508,7 +1508,7 @@ OnMusicInfo //Information that the user can ask about
 
 OnDisplayFileTypes
 {
-	"\0%(bb)\_q\f[anchorstyle,none]"
+	"\0\b[2]\_q\f[anchorstyle,none]"
 	
 	_defballoon = 0
 	if SHIORI3FW.BalloonName == "Notes"; _defballoon = 1
@@ -1552,7 +1552,7 @@ OnSavePlaylist //Saving a playlist
 		_display += "\q[%(_playlist),OnPlaylistOverwrite,%(_playlist)]\n"
 	}
 	--
-	"\C\![lock,balloonrepaint]\c\0%(bb)\*\_q\![set,autoscroll,disable]\![open,inputbox,OnPlaylistName,-1,__INPUT_BOX_COLOR__]"
+	"\C\![lock,balloonrepaint]\c\0\b[2]\*\_q\![set,autoscroll,disable]\![open,inputbox,OnPlaylistName,-1,__INPUT_BOX_COLOR__]"
 	--
 	if language == "Placeholder" //TRANSLATORS: This is saving a playlist. It'll present a list of playlists that already exist, in case the user wants to update an old playlist by overwriting it
 	{
@@ -1626,7 +1626,7 @@ OnPlaylistName //After the user types a name
 		--
 		_f = FCLOSE(_path)
 		--
-		"\![close,inputbox,OnPlaylistName]\0%(bb)\_q"
+		"\![close,inputbox,OnPlaylistName]\0\b[2]\_q"
 		--
 		if language == "Placeholder" //TRANSLATORS: Once the playlist has been saved, or saving has failed. Use _name as the playlist name
 		{
@@ -1705,7 +1705,7 @@ OnPlaylistName //After the user types a name
 			}
 		}
 		--
-		"\x%(bbb) \![raise,OnMusicMenu]"
+		"\x\b[4] \![raise,OnMusicMenu]"
 	}
 }
 
@@ -1713,7 +1713,7 @@ OnPlaylistOverwrite
 {
 	if reference1 == "are you sure"
 	{
-		"\0%(bb)"
+		"\0\b[2]"
 		--
 		if language == "Placeholder" //TRANSLATORS: If the user types the name of a playlist that already exists. reference0 is the name in question
 		{
@@ -1767,7 +1767,7 @@ OnLoadPlaylist //Menu for loading playlists
 		_display += "\q[(x),OnDeletePlaylist,%(_playlist)] \q[%(_playlist),OnSelectPlaylist,%(_playlist)]\n"
 	}
 	--
-	"\C\![lock,balloonrepaint]\c\0\_q%(bb)\*\![set,autoscroll,disable]"
+	"\C\![lock,balloonrepaint]\c\0\_q\b[2]\*\![set,autoscroll,disable]"
 	--
 	if language == "Placeholder" //TRANSLATORS: Loading a playlist, needs a note that if your current playlist is not saved it will be lost
 	{
@@ -1845,7 +1845,7 @@ OnDeletePlaylist
 	_f = FCLOSE(_path)
 	_songs = ARRAYSIZE(_playlist)
 	--
-	"\0%(bb)\*"
+	"\0\b[2]\*"
 	--
 	if language == "Placeholder" //TRANSLATORS: This is confirmation before deleting a playlist. Use reference0 for the playlist name, and _songs for the amount of songs inside it
 	{
@@ -1887,7 +1887,7 @@ OnPlaylistDeleted //Actually deleting the file
 {
 	_path = "/../../playlists/%(reference0).m3u"
 	_f = FDEL(_path)
-	"\0%(bb)"
+	"\0\b[2]"
 	--
 	if language == "Placeholder" //TRANSLATORS: Once a playlist has been deleted, or deleting has failed. Use reference0 for the playlist name.
 	{
@@ -1961,7 +1961,7 @@ OnClearPlaylist
 {
 	_num = ARRAYSIZE(CurrentPlaylist)
 	
-	"\0%(bb)"
+	"\0\b[2]"
 	--
 	if language == "Placeholder" //TRANSLATORS: Confirmation dialogue for clearing the current playlist. _num is the number of songs in the playlist
 	{
@@ -2007,7 +2007,7 @@ OnPlaylistCleared
 	NowPlaying[2] = "" //Paused song
 	"\![sound,stop]%(OnNotifySongInfo)"
 	--
-	"%(NonSingingSurfaces)%(bb)"
+	"%(NonSingingSurfaces)\b[2]"
 	--
 	if reference0 == ""; OnMusicMenu
 	else

@@ -14,7 +14,7 @@ OnCommunicate
 
 	if "FLUXStatsSilent" !_in_ ConvoTag
 	{
-		"\0%(b)"
+		"\0\b[0]"
 		--
 		"[%(n)\w8%(n)\w8%(n)\w4~]"
 	}
