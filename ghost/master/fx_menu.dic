@@ -195,7 +195,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Shell ändern,OnShellMenu]\n"
 		
-		if ARRAYSIZE(availabledressups) > 0; "\![*]\q[Dress-Ups,OnDressupMenu]\n"
+		if ARRAYSIZE(dressups.available) > 0; "\![*]\q[Dress-Ups,OnDressupMenu]\n"
 		
 		if ISFUNC("OnCustom_Menu") && CustomFuncs[0] == 1; "\n%(OnCustom_Menu)\n"
 		
@@ -245,7 +245,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Сменить Внешние Видов,OnShellMenu]\n"
 		
-		if ARRAYSIZE(availabledressups) > 0; "\![*]\q[Одежда,OnDressupMenu]\n"
+		if ARRAYSIZE(dressups.available) > 0; "\![*]\q[Одежда,OnDressupMenu]\n"
 		
 		if ISFUNC("OnCustom_Menu") && CustomFuncs[0] == 1; "\n%(OnCustom_Menu)\n"
 		
@@ -295,7 +295,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Changer le shell,OnShellMenu]\n"
 		
-		if ARRAYSIZE(availabledressups) > 0; "\![*]\q[Habits,OnDressupMenu]\n"
+		if ARRAYSIZE(dressups.available) > 0; "\![*]\q[Habits,OnDressupMenu]\n"
 		
 		"\n\![*]\q[Config,OnConfigMenu]"
 		
@@ -343,7 +343,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Zmiana skorupy,OnShellMenu]\n"
 		
-		if ARRAYSIZE(availabledressups) > 0; "\![*]\q[Ubrania,OnDressupMenu]\n"
+		if ARRAYSIZE(dressups.available) > 0; "\![*]\q[Ubrania,OnDressupMenu]\n"
 		
 		if ISFUNC("OnCustom_Menu") && CustomFuncs[0] == 1; "\n%(OnCustom_Menu)\n"
 		
@@ -393,7 +393,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Change shells,OnShellMenu]\n"
 		
-		if ARRAYSIZE(availabledressups) > 0; "\![*]\q[Dressups,OnDressupMenu]\n"
+		if ARRAYSIZE(dressups.available) > 0; "\![*]\q[Dressups,OnDressupMenu]\n"
 		
 		if ISFUNC("OnCustom_Menu") && CustomFuncs[0] == 1; "\n%(OnCustom_Menu)\n"
 		
@@ -1516,9 +1516,9 @@ OnDressupMenu //Menu for dressups
 	_currentcharacters = IARRAY
 	_currentcategories = IARRAY
 	_items = 0
-	if ARRAYSIZE(dressupcharacters) == 1; {reference0 = dressupcharacters[0]}
+	if ARRAYSIZE(dressups.scopes) == 1; {reference0 = dressups.scopes[0]}
 	
-	foreach availabledressups; _dressup //For every dressup that the ghost has
+	foreach dressups.available; _dressup //For every dressup that the ghost has
 	{
 		_character = _dressup[0,C_BYTE1]
 		_category = _dressup[1,C_BYTE1] //Gather the character, name, and category of the current dressup
@@ -1555,13 +1555,13 @@ OnDressupMenu //Menu for dressups
 		elseif _character == reference0 && reference1 == "" && ASEARCH(_category,_currentcategories) == -1 //If the user is not in a submenu AND we haven't logged this category yet
 		{
 			_currentcategories ,= _category //Add the category to a list
-			if ASUB("%(_character)%(C_BYTE1)%(_category)%(C_BYTE1)",currentdressups) != -1; _display += "\![*]" //If a dressup in this category is on, add a menu choice marker to it
+			if ASUB("%(_character)%(C_BYTE1)%(_category)%(C_BYTE1)",dressups.current) != -1; _display += "\![*]" //If a dressup in this category is on, add a menu choice marker to it
 			_display += "\__q[OnDressupMenu,%(_character),%(_category)]%(_category)\__q\n" //Make a menu option for it
 		}
 		elseif _character == reference0 && _category == reference1 //Otherwise, if the user IS in a submenu, AND this item matches the current submenu category
 		{
 			_items++
-			_pos = ASEARCH("%(_character)%(C_BYTE1)%(_category)%(C_BYTE1)%(_name)",currentdressups) //See if the name of this item is in the name of dressups currently being used
+			_pos = ASEARCH("%(_character)%(C_BYTE1)%(_category)%(C_BYTE1)%(_name)",dressups.current) //See if the name of this item is in the name of dressups currently being used
 			if _pos != -1; _display += "\![*]"
 			_display += "\__q[OnChangeDesign,%(_character),%(_category),%(_name)]%(_name)\__q\n"
 		}
@@ -1589,14 +1589,14 @@ OnDressupMenu //Menu for dressups
 			if ARRAYSIZE(_currentcategories) > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Kategorien:\n\n"
+			if ARRAYSIZE(dressups.scopes) == 1; "Kategorien:\n\n"
 			else; "Charakter %(reference0) Kategorien:\n\n" //Note: This is when the user clicks into a character submenu. So this is the same as the "Character %(_character)" translation above
 			--
 			"\![*]\q[Zufällige Dressups,OnRandomDressup,%(reference0)]"
 			--
 			if ARRAYSIZE(_currentcategories) > 22
 			{
-				if ARRAYSIZE(dressupcharacters) == 1; "\n\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
+				if ARRAYSIZE(dressups.scopes) == 1; "\n\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
 				else; "\n\![*]\q[Zurück,OnDressupMenu]"
 			}
 		}
@@ -1605,7 +1605,7 @@ OnDressupMenu //Menu for dressups
 			if _items > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Kategorie: %(reference1)"
+			if ARRAYSIZE(dressups.scopes) == 1; "Kategorie: %(reference1)"
 			else; "Charakter %(reference0) %(reference1):"
 			--
 			if _items > 22; "\n\n\![*]\q[Zurück,OnDressupMenu,%(reference0)]"
@@ -1627,14 +1627,14 @@ OnDressupMenu //Menu for dressups
 			if ARRAYSIZE(_currentcategories) > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Категория:\n\n"
+			if ARRAYSIZE(dressups.scopes) == 1; "Категория:\n\n"
 			else; "Характер %(reference0) категории:\n\n" //Note: This is when the user clicks into a character submenu. So this is the same as the "Character %(_character)" translation above
 			--
 			"\![*]\q[Случайная Одежда,OnRandomDressup,%(reference0)]"
 			--
 			if ARRAYSIZE(_currentcategories) > 22
 			{
-				if ARRAYSIZE(dressupcharacters) == 1; "\n\![*]\q[Назад в Меню,OnMenuRun]"
+				if ARRAYSIZE(dressups.scopes) == 1; "\n\![*]\q[Назад в Меню,OnMenuRun]"
 				else; "\n\![*]\q[Назад,OnDressupMenu]"
 			}
 		}
@@ -1643,7 +1643,7 @@ OnDressupMenu //Menu for dressups
 			if _items > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Категория: %(reference1)"
+			if ARRAYSIZE(dressups.scopes) == 1; "Категория: %(reference1)"
 			else; "Характер %(reference0) %(reference1):"
 			--
 			if _items > 22; "\n\n\![*]\q[Назад,OnDressupMenu,%(reference0)]"
@@ -1665,14 +1665,14 @@ OnDressupMenu //Menu for dressups
 			if ARRAYSIZE(_currentcategories) > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Categories:\n\n"
+			if ARRAYSIZE(dressups.scopes) == 1; "Categories:\n\n"
 			else; "Categories du personnage %(reference0):\n\n" //Note: This is when the user clicks into a character submenu. So this is the same as the "Character %(_character)" translation above
 			--
 			"\![*]\q[Vêtements Aléatoires,OnRandomDressup,%(reference0)]"
 			--
 			if ARRAYSIZE(_currentcategories) > 22
 			{
-				if ARRAYSIZE(dressupcharacters) == 1; "\n\![*]\q[Retour au Menu,OnMenuRun]"
+				if ARRAYSIZE(dressups.scopes) == 1; "\n\![*]\q[Retour au Menu,OnMenuRun]"
 				else; "\n\![*]\q[Retour,OnDressupMenu]"
 			}
 		}
@@ -1681,7 +1681,7 @@ OnDressupMenu //Menu for dressups
 			if _items > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Category: %(reference1)"
+			if ARRAYSIZE(dressups.scopes) == 1; "Category: %(reference1)"
 			else; "Personnage %(reference0) %(reference1):"
 			--
 			if _items > 22; "\n\n\![*]\q[Retour,OnDressupMenu,%(reference0)]"
@@ -1703,14 +1703,14 @@ OnDressupMenu //Menu for dressups
 			if ARRAYSIZE(_currentcategories) > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Kategorie:\n\n"
+			if ARRAYSIZE(dressups.scopes) == 1; "Kategorie:\n\n"
 			else; "Kategorie dla %(reference0):\n\n" //Note: This is when the user clicks into a character submenu. So this is the same as the "Character %(_character)" translation above
 			--
 			"\![*]\q[Losowe ubrania,OnRandomDressup,%(reference0)]"
 			--
 			if ARRAYSIZE(_currentcategories) > 22
 			{
-				if ARRAYSIZE(dressupcharacters) == 1; "\n\![*]\q[Powrót do menu,OnMenuRun]"
+				if ARRAYSIZE(dressups.scopes) == 1; "\n\![*]\q[Powrót do menu,OnMenuRun]"
 				else; "\n\![*]\q[Powrót,OnDressupMenu]"
 			}
 		}
@@ -1719,7 +1719,7 @@ OnDressupMenu //Menu for dressups
 			if _items > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Kategoria: %(reference1)"
+			if ARRAYSIZE(dressups.scopes) == 1; "Kategoria: %(reference1)"
 			else; "Postać %(reference0) %(reference1):"
 			--
 			if _items > 22; "\n\n\![*]\q[Powrót,OnDressupMenu,%(reference0)]"
@@ -1741,14 +1741,14 @@ OnDressupMenu //Menu for dressups
 			if ARRAYSIZE(_currentcategories) > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Categories:\n\n"
+			if ARRAYSIZE(dressups.scopes) == 1; "Categories:\n\n"
 			else; "Character %(reference0) categories:\n\n" //Note: This is when the user clicks into a character submenu. So this is the same as the "Character %(_character)" translation above
 			--
 			"\![*]\q[Random Dressups,OnRandomDressup,%(reference0)]"
 			--
 			if ARRAYSIZE(_currentcategories) > 22
 			{
-				if ARRAYSIZE(dressupcharacters) == 1; "\n\![*]\q[Back to Menu,OnMenuRun]"
+				if ARRAYSIZE(dressups.scopes) == 1; "\n\![*]\q[Back to Menu,OnMenuRun]"
 				else; "\n\![*]\q[Back,OnDressupMenu]"
 			}
 		}
@@ -1757,7 +1757,7 @@ OnDressupMenu //Menu for dressups
 			if _items > 16; "\0\b[4]"
 			else; "\0\b[2]"
 			--
-			if ARRAYSIZE(dressupcharacters) == 1; "Category: %(reference1)"
+			if ARRAYSIZE(dressups.scopes) == 1; "Category: %(reference1)"
 			else; "Character %(reference0) %(reference1):"
 			--
 			if _items > 22; "\n\n\![*]\q[Back,OnDressupMenu,%(reference0)]"
@@ -1778,7 +1778,7 @@ OnDressupMenu //Menu for dressups
 		}
 		elseif reference1 == ""
 		{
-			if ARRAYSIZE(dressupcharacters) == 1; "\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
+			if ARRAYSIZE(dressups.scopes) == 1; "\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
 			else; "\![*]\q[Zurück,OnDressupMenu]"
 			--
 			"\n\![*]\q[Schließen,Cancel]"
@@ -1796,7 +1796,7 @@ OnDressupMenu //Menu for dressups
 		}
 		elseif reference1 == ""
 		{
-			if ARRAYSIZE(dressupcharacters) == 1; "\![*]\q[Назад в Меню,OnMenuRun]"
+			if ARRAYSIZE(dressups.scopes) == 1; "\![*]\q[Назад в Меню,OnMenuRun]"
 			else; "\![*]\q[Назад,OnDressupMenu]"
 			--
 			"\n\![*]\q[Закрыть,Cancel]"
@@ -1814,7 +1814,7 @@ OnDressupMenu //Menu for dressups
 		}
 		elseif reference1 == ""
 		{
-			if ARRAYSIZE(dressupcharacters) == 1; "\![*]\q[Retour au Menu,OnMenuRun]"
+			if ARRAYSIZE(dressups.scopes) == 1; "\![*]\q[Retour au Menu,OnMenuRun]"
 			else; "\![*]\q[Retour,OnDressupMenu]"
 			--
 			"\n\![*]\q[Fermer,Cancel]"
@@ -1832,7 +1832,7 @@ OnDressupMenu //Menu for dressups
 		}
 		elseif reference1 == ""
 		{
-			if ARRAYSIZE(dressupcharacters) == 1; "\![*]\q[Powrót do menu,OnMenuRun]"
+			if ARRAYSIZE(dressups.scopes) == 1; "\![*]\q[Powrót do menu,OnMenuRun]"
 			else; "\![*]\q[Powrót,OnDressupMenu]"
 			--
 			"\n\![*]\q[Zamknij,Cancel]"
@@ -1850,7 +1850,7 @@ OnDressupMenu //Menu for dressups
 		}
 		elseif reference1 == ""
 		{
-			if ARRAYSIZE(dressupcharacters) == 1; "\![*]\q[Back to Menu,OnMenuRun]"
+			if ARRAYSIZE(dressups.scopes) == 1; "\![*]\q[Back to Menu,OnMenuRun]"
 			else; "\![*]\q[Back,OnDressupMenu]"
 			--
 			"\n\![*]\q[Close,Cancel]"
@@ -1885,7 +1885,7 @@ OnRandomDressup : all
 	
 	//—— Unbind all active ——
 	//ID, category, name
-	foreach currentdressups; _dressup
+	foreach dressups.current; _dressup
 	{
 		"\![bind,%(_dressup[1,C_BYTE1]),%(_dressup[2,C_BYTE1]),0]"
 	}
@@ -1896,7 +1896,7 @@ OnRandomDressup : all
 	_category.opt = IARRAY
 	
 	//ID, category, name, opts
-	foreach availabledressups; _dressup
+	foreach dressups.available; _dressup
 	{
 		_dressup = SPLIT(_dressup,C_BYTE1)
 		//Skip all that do not apply to this character
@@ -1946,20 +1946,20 @@ OnRandomDressup : all
 		}
 		
 		//If this is a pick-one category, or it's multiple but no dressups were added
-		if !_multiple || !_dressup_added
+		if !_dressup_added
 		{
 			"\![bind,%(_category),%(ANY(_dressups)),1]"
 		}
 	}
-	"\b[2] \![raise,OnDressupMenu,%(reference0)]"
+	"\![raise,OnDressupMenu,%(reference0)]"
 }
 
 //Character ID, category name, part name, option, valid / invalid 0, thumbnail path
 OnNotifyDressupInfo
 {
-	availabledressups = IARRAY //This one is to display the dressup menu
-	currentdressups = IARRAY //This one is so we can display which dressups are currently in use
-	dressupcharacters = IARRAY //A list of all the characters with dressups available
+	dressups.available = IARRAY //This one is to display the dressup menu
+	dressups.current = IARRAY //This one is so we can display which dressups are currently in use
+	dressups.scopes = IARRAY //A list of all the characters with dressups available
 	
 	//Has to be reference.raw because parts of this are delimited with C_BYTE1
 	foreach reference.raw; _dressup
@@ -1967,12 +1967,12 @@ OnNotifyDressupInfo
 		_dressup = SPLIT(_dressup,C_BYTE1)
 		
 		_toadd = _dressup[0] + C_BYTE1 + _dressup[1] + C_BYTE1 + _dressup[2]
-		if _dressup[4] == 1; currentdressups ,= _toadd
+		if _dressup[4] == 1; dressups.current ,= _toadd
 		
 		if _dressup[3] != ""; _toadd += C_BYTE1 + _dressup[3]
-		availabledressups ,= _toadd
+		dressups.available ,= _toadd
 		
-		if ASEARCH(_dressup[0],dressupcharacters) == -1; dressupcharacters ,= _dressup[0]
+		if ASEARCH(_dressup[0],dressups.scopes) == -1; dressups.scopes ,= _dressup[0]
 	}
 }
 
@@ -1990,12 +1990,6 @@ ASUB
 		}
 	}
 	-1
-}
-
-
-OnTestVar
-{
-	LOGGING("Nothing to test right now :)")
 }
 
 OnReloadShellFuncs

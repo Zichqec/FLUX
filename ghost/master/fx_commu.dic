@@ -9,7 +9,7 @@ OnCommunicate
 	--
 	if ISFUNC("OnCustom_Commu") && CustomFuncs[0] == 1; OnCustom_Commu
 	--
-	_send = "%(currentdressups)"
+	_send = "%(dressups.current)"
 	_send = REPLACE(_send,",","|-|")
 
 	if "FLUXStatsSilent" !_in_ ConvoTag
