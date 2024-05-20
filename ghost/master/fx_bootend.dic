@@ -5,12 +5,12 @@ OnFirstBoot //Dialogue when you first open the ghost
 	"\1\s[-1]\0\s[50]\w6\*\t\![raise,OnFirstLangMenu,English]"
 }
 
-OnFirstLangMenu
+OnFirstLangMenu : all
 {
 	_lang = reference0
 	
 	"\0\*\t%(bb)\_q"
-	--
+	
 	if _lang == "Placeholder" //TRANSLATORS: Firstboot language select dialogue. When the user hovers over a language, this text will change to that language. If this text is very long for your language, such that it overlaps the language options, let me know and I can adjust it. It's very important that the buttons not jump around when hovered over.
 	{
 		
@@ -35,12 +35,10 @@ OnFirstLangMenu
 	{
 		"[Please choose a language for FLUX player. This can be changed at any time in the config menu.]"
 	}
-	--
+	
 	"\_l[0,60]"
-	--
+	
 	LanguageMenuDisplay("OnLanguageChosen")
-	--
-	"\e"
 }
 
 OnChoiceHover
@@ -270,8 +268,6 @@ OnGhostChanged //After switching.
 	}
 	else
 	{
-		_timesince = FUNCTIONEX("time_check.dll","how_many_days",lastclosed[0],lastclosed[1],lastclosed[2],0,0,0) * -1
-		
 		"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]"
 		--
 		if ISFUNC("OnCustom_OnGhostChanged") && CustomFuncs[0] == 1; OnCustom_OnGhostChanged
