@@ -247,51 +247,8 @@ OnSecondChange
 	if InstalledShellName != "" //If the user installed a shell that's supposed to be only FLELE compatible
 	{
 		void OnEmptyTempFolder
-		
-		"\0\s[0]%(b)\*"
-		--
-		if language == "Placeholder" //TRANSLATORS: After installing a new shell. This one happens when FLUX uses my workaround to install FLELE shells that are set up to only be installed by FLELE. It should match the normal shell installed dialogue, except for the envelope used. InstalledShellName will be the name of the shell.
-		{
-			
-		}
-		elseif language == "Deutsch"
-		{
-			"['%(InstalledShellName)' erfolgreich installiert.]\n\n"
-			--
-			"\![*]\q[Zu %(InstalledShellName) wechseln,OnChangeToShell,%(InstalledShellName)]\n\n/
-			\![*]\q[Schließen,OnCancel]"
-		}
-		elseif language == "Русский"
-		{
-			"[Удалось Установить '%(InstalledShellName)'.]\n\n"
-			--
-			"\![*]\q[Сменить в %(InstalledShellName),OnChangeToShell,%(InstalledShellName)]\n\n/
-			\![*]\q[Закрыть,OnCancel]"
-		}
-		elseif language == "Français"
-		{
-			"\0\s[0]\*['%(InstalledShellName)' installé avec succès.]\n\n"
-			--
-			"\![*]\q[Changer pour %(InstalledShellName),OnChangeToShell,%(InstalledShellName)]\n\n/
-			\![*]\q[Fermer,OnCancel]"
-		}
-		elseif language == "Polski"
-		{
-			"[Zainstalowałem '%(InstalledShellName)'.]\n\n"
-			--
-			"\![*]\q[Zmień na %(InstalledShellName),OnChangeToShell,%(InstalledShellName)]\n\n/
-			\![*]\q[Zamknij,OnCancel]"
-		}
-		else //English
-		{
-			"[Successfully installed '%(InstalledShellName)'.]\n\n"
-			--
-			"\![*]\q[Change to %(InstalledShellName),OnChangeToShell,%(InstalledShellName)]\n\n/
-			\![*]\q[Close,OnCancel]"
-		}
-		--
-		"\![raise,OnDialogueVars,InstalledNewShell]\e"
 		ERASEVAR("DraggedFile")
+		InstalledShellDialogue
 	}
 	elseif mikireflag == 0 && reference1 == 1 //Dialogue for putting them off the screen. You could make this a unique line if you wanted, and have MikireTalk be for if they continue to be offscreen
 	{
@@ -302,6 +259,53 @@ OnSecondChange
 		EndMikireTalk
 	}
 	mikireflag = reference1 //reference1 is if the ghost is offscreen or not
+}
+
+InstalledShellDialogue : all
+{
+	"\0\s[0]%(b)\*"
+	
+	if language == "Placeholder" //TRANSLATORS: After installing a new shell. This one happens when FLUX uses my workaround to install FLELE shells that are set up to only be installed by FLELE. It should match the normal shell installed dialogue, except for the envelope used. InstalledShellName will be the name of the shell.
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"['%(InstalledShellName)' erfolgreich installiert.]\n\n"
+		
+		"\![*]\q[Zu %(InstalledShellName) wechseln,OnChangeToShell,%(InstalledShellName)]\n\n"
+		"\![*]\q[Schließen,OnCancel]"
+	}
+	elseif language == "Русский"
+	{
+		"[Удалось Установить '%(InstalledShellName)'.]\n\n"
+		
+		"\![*]\q[Сменить в %(InstalledShellName),OnChangeToShell,%(InstalledShellName)]\n\n"
+		"\![*]\q[Закрыть,OnCancel]"
+	}
+	elseif language == "Français"
+	{
+		"\*['%(InstalledShellName)' installé avec succès.]\n\n"
+		
+		"\![*]\q[Changer pour %(InstalledShellName),OnChangeToShell,%(InstalledShellName)]\n\n"
+		"\![*]\q[Fermer,OnCancel]"
+	}
+	elseif language == "Polski"
+	{
+		"[Zainstalowałem '%(InstalledShellName)'.]\n\n"
+		
+		"\![*]\q[Zmień na %(InstalledShellName),OnChangeToShell,%(InstalledShellName)]\n\n"
+		"\![*]\q[Zamknij,OnCancel]"
+	}
+	else //English
+	{
+		"[Successfully installed '%(InstalledShellName)'.]\n\n"
+		
+		"\![*]\q[Change to %(InstalledShellName),OnChangeToShell,%(InstalledShellName)]\n\n"
+		"\![*]\q[Close,OnCancel]"
+	}
+	
+	"\![raise,OnDialogueVars,InstalledNewShell]\e"
 }
 
 MikireTalk //Off the screen dialogue. Ctrl Shift F12 will bring characters back onto the screen

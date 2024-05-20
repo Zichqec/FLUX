@@ -529,7 +529,7 @@ PlaylistCopied
 	}
 }
 
-SetWallpaper
+SetWallpaper : all
 {
 	_filepath = SPLITPATH(_argv[0])
 	_name = _filepath[2] +_filepath[3]
@@ -542,132 +542,131 @@ SetWallpaper
 	elseif language == "Deutsch"
 	{
 		"\0%(b)"
-		--
+		
 		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
 		else; "\s[6]"
-		--
+		
 		"[Bildschirmhintergrund wird zu '%(_name)' geändert...]\n\n\_q"
-		--
-		"\![*]\q[Zentriert,OnWallpaper,%(_file),center]\n/
-		\![*]\q[Kachel,OnWallpaper,%(_file),tile]\n/
-		\![*]\q[Dehnen,OnWallpaper,%(_file),stretch]"
-		--
+		
+		"\![*]\q[Zentriert,OnWallpaper,%(_file),center]\n"
+		"\![*]\q[Kachel,OnWallpaper,%(_file),tile]\n"
+		"\![*]\q[Dehnen,OnWallpaper,%(_file),stretch]"
+		
 		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
 		{
 			"\n\![*]\q[Strecken,OnWallpaper,%(_file),span]"
 		}
-		--
+		
 		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
-			"\n\![*]\q[Ausfüllen,OnWallpaper,%(_file),stretch-x]/
-			\n\![*]\q[Anpassen,OnWallpaper,%(_file),stretch-y]"
+			"\n\![*]\q[Ausfüllen,OnWallpaper,%(_file),stretch-x]"
+			"\n\![*]\q[Anpassen,OnWallpaper,%(_file),stretch-y]"
 		}
-		--
+		
 		"\n\n\![*]\q[Abbrechen,OnCancel]\e"
 	}
 	elseif language == "Русский"
 	{
 		"\0%(b)"
-		--
+		
 		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
 		else; "\s[6]"
-		--
+		
 		"[Установлю '%(_name)' в качеством обои...]\n\n\_q"
-		--
-		"\![*]\q[По и центру рабочего стола,OnWallpaper,%(_file),center]\n/
-		\![*]\q[На рабочий стол черепицей,OnWallpaper,%(_file),tile]\n/
-		\![*]\q[Протянутый,OnWallpaper,%(_file),stretch]"
-		--
+		
+		"\![*]\q[По и центру рабочего стола,OnWallpaper,%(_file),center]\n"
+		"\![*]\q[На рабочий стол черепицей,OnWallpaper,%(_file),tile]\n"
+		"\![*]\q[Протянутый,OnWallpaper,%(_file),stretch]"
+		
 		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
 		{
 			"\n\![*]\q[Охватывающий,OnWallpaper,%(_file),span]"
 		}
-		--
+		
 		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
-			"\n![]\q[Наполнить,OnWallpaper,%(_file),stretch-x]/
-			\n![]\q[Вписаться,OnWallpaper,%(_file),stretch-y]" 
+			"\n\![]\q[Наполнить,OnWallpaper,%(_file),stretch-x]"
+			"\n![]\q[Вписаться,OnWallpaper,%(_file),stretch-y]" 
 		}
-		--
+		
 		"\n\n\![*]\q[Отменить,OnCancel]\e"
 	}
 	elseif language == "Français"
 	{
 		"\0%(b)"
-		--
+		
 		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
 		else; "\s[6]"
-		--
-		--
+		
 		"[Paramètre '%(_name)' comme fond d'écran...]\n\n\_q"
-		--
-		"\![*]\q[Centré,OnWallpaper,%(_file),center]\n/
-		\![*]\q[Tuile,OnWallpaper,%(_file),tile]\n/
-		\![*]\q[Etiré,OnWallpaper,%(_file),stretch]"
-		--
+		
+		"\![*]\q[Centré,OnWallpaper,%(_file),center]\n"
+		"\![*]\q[Tuile,OnWallpaper,%(_file),tile]\n"
+		"\![*]\q[Etiré,OnWallpaper,%(_file),stretch]"
+		
 		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
 		{
 			"\n\![*]\q[Espacé,OnWallpaper,%(_file),span]"
 		}
-		--
+		
 		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
-			"\n\![*]\q[Remplir,OnWallpaper,%(_file),stretch-x]/
-			\n\![*]\q[Ajuster,OnWallpaper,%(_file),stretch-y]"
+			"\n\![*]\q[Remplir,OnWallpaper,%(_file),stretch-x]"
+			"\n\![*]\q[Ajuster,OnWallpaper,%(_file),stretch-y]"
 		}
-		--
+		
 		"\n\n\![*]\q[Annuler,OnCancel]\e"
 	}
 	elseif language == "Polski"
 	{
 		"\0%(b)"
-		--
+		
 		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
 		else; "\s[6]"
-		--
+		
 		"[Ustaw '%(_name)' jako tapetę...]\n\n\_q"
-		--
-		"\![*]\q[Wyśrodkowaną,OnWallpaper,%(_file),center]\n/
-		\![*]\q[Kafelki,OnWallpaper,%(_file),tile]\n/
-		\![*]\q[Rozciągnięty,OnWallpaper,%(_file),stretch]"
-		--
+		
+		"\![*]\q[Wyśrodkowaną,OnWallpaper,%(_file),center]\n"
+		"\![*]\q[Kafelki,OnWallpaper,%(_file),tile]\n"
+		"\![*]\q[Rozciągnięty,OnWallpaper,%(_file),stretch]"
+		
 		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
 		{
 			"\n\![*]\q[Rozpięty,OnWallpaper,%(_file),span]"
 		}
-		--
+		
 		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
-			"\n\![*]\q[Wypełni,OnWallpaper,%(_file),stretch-x]/
-			\n\![*]\q[Dopasuj,OnWallpaper,%(_file),stretch-y]"
+			"\n\![*]\q[Wypełni,OnWallpaper,%(_file),stretch-x]"
+			"\n\![*]\q[Dopasuj,OnWallpaper,%(_file),stretch-y]"
 		}
-		--
+		
 		"\n\n\![*]\q[Anuluj,OnCancel]\e"
 	}
 	else //English
 	{
 		"\0%(b)"
-		--
+		
 		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
 		else; "\s[6]"
-		--
+		
 		"[Setting '%(_name)' as wallpaper...]\n\n\_q"
-		--
-		"\![*]\q[Centered,OnWallpaper,%(_file),center]\n/
-		\![*]\q[Tiled,OnWallpaper,%(_file),tile]\n/
-		\![*]\q[Stretched,OnWallpaper,%(_file),stretch]"
-		--
+		
+		"\![*]\q[Centered,OnWallpaper,%(_file),center]\n"
+		"\![*]\q[Tiled,OnWallpaper,%(_file),tile]\n"
+		"\![*]\q[Stretched,OnWallpaper,%(_file),stretch]"
+		
 		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
 		{
 			"\n\![*]\q[Spanned,OnWallpaper,%(_file),span]"
 		}
-		--
+		
 		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
 		{
-			"\n\![*]\q[Fill,OnWallpaper,%(_file),stretch-x]/
-			\n\![*]\q[Fit,OnWallpaper,%(_file),stretch-y]"
+			"\n\![*]\q[Fill,OnWallpaper,%(_file),stretch-x]"
+			"\n\![*]\q[Fit,OnWallpaper,%(_file),stretch-y]"
 		}
-		--
+		
 		"\n\n\![*]\q[Cancel,OnCancel]\e"
 	}
 }
@@ -718,7 +717,7 @@ OnInstallBegin
 
 //Finished installing something ghost related. You can remove any of the ifs here if you like, and just have it go to the else.
 //reference0 is the type of installed item, reference1 is the name.
-OnInstallComplete
+OnInstallComplete : all
 {
 	"\0%(b)"
 	--
@@ -735,41 +734,41 @@ OnInstallComplete
 		{
 			"['%(reference1)' wurde erfolgreich installiert.]\n\n"
 			--
-			"\![*]\q[%(reference1) rufen,CallGhost]\n/
-			\![*]\q[Zu %(reference1) wechseln,ChangeToGhost]\n\n/
-			\![*]\q[Schließen,OnCancel]\e"
+			"\![*]\q[%(reference1) rufen,CallGhost]\n"
+			"\![*]\q[Zu %(reference1) wechseln,ChangeToGhost]\n\n"
+			"\![*]\q[Schließen,OnCancel]"
 		}
 		elseif language == "Русский"
 		{
 			"[Установил '%(reference1)'.]\n\n"
 			--
-			"\![*]\q[Вызвать %(reference1),CallGhost]\n/
-			\![*]\q[Сменить в %(reference1),ChangeToGhost]\n\n/
-			\![*]\q[Закрыть,OnCancel]\e"
+			"\![*]\q[Вызвать %(reference1),CallGhost]\n"
+			"\![*]\q[Сменить в %(reference1),ChangeToGhost]\n\n"
+			"\![*]\q[Закрыть,OnCancel]"
 		}
 		elseif language == "Français"
 		{
 			"['%(reference1)' installé avec succès.]\n\n"
 			--
-			"\![*]\q[Appeler %(reference1),CallGhost]\n/
-			\![*]\q[Changer pour %(reference1),ChangeToGhost]\n\n/
-			\![*]\q[Fermer,OnCancel]\e"
+			"\![*]\q[Appeler %(reference1),CallGhost]\n"
+			"\![*]\q[Changer pour %(reference1),ChangeToGhost]\n\n"
+			"\![*]\q[Fermer,OnCancel]"
 		}
 		elseif language == "Polski"
 		{
 			"[Zainstalowałem '%(reference1)'.]\n\n"
 			--
-			"\![*]\q[Przywołaj %(reference1),CallGhost]\n/
-			\![*]\q[Zmień na %(reference1),ChangeToGhost]\n\n/
-			\![*]\q[Zamknij,OnCancel]\e"
+			"\![*]\q[Przywołaj %(reference1),CallGhost]\n"
+			"\![*]\q[Zmień na %(reference1),ChangeToGhost]\n\n"
+			"\![*]\q[Zamknij,OnCancel]"
 		}
 		else //English
 		{
 			"[Successfully installed '%(reference1)'.]\n\n"
-			--
-			"\![*]\q[Call %(reference1),CallGhost]\n/
-			\![*]\q[Change to %(reference1),ChangeToGhost]\n\n/
-			\![*]\q[Close,OnCancel]\e"
+			
+			"\![*]\q[Call %(reference1),CallGhost]\n"
+			"\![*]\q[Change to %(reference1),ChangeToGhost]\n\n"
+			"\![*]\q[Close,OnCancel]"
 		}
 	}
 	elseif reference0 == "shell"
@@ -781,37 +780,37 @@ OnInstallComplete
 		elseif language == "Deutsch"
 		{
 			"['%(reference1)' wurde erfolgreich installiert.]\n\n"
-			--
-			"\![*]\q[Zu %(reference1) wechseln,OnChangeToShell]\n\n/
-			\![*]\q[Schließen,OnCancel]\e"
+			
+			"\![*]\q[Zu %(reference1) wechseln,OnChangeToShell]\n\n"
+			"\![*]\q[Schließen,OnCancel]"
 		}
 		elseif language == "Русский"
 		{
 			"[Установил '%(reference1)'.]\n\n"
-			--
-			"\![*]\q[Сменить в  %(reference1),OnChangeToShell]\n\n/
-			\![*]\q[Закрыть,OnCancel]\e"
+			
+			"\![*]\q[Сменить в  %(reference1),OnChangeToShell]\n\n"
+			"\![*]\q[Закрыть,OnCancel]"
 		}
 		elseif language == "Français"
 		{
 			"['%(reference1)' installé avec succès.]\n\n"
-			--
-			"\![*]\q[Changer pour %(reference1),OnChangeToShell]\n\n/
-			\![*]\q[Fermer,OnCancel]\e"
+			
+			"\![*]\q[Changer pour %(reference1),OnChangeToShell]\n\n"
+			"\![*]\q[Fermer,OnCancel]"
 		}
 		elseif language == "Polski"
 		{
 			"[Zainstalowałem '%(reference1)'.]\n\n"
-			--
-			"\![*]\q[Zmień na %(reference1),OnChangeToShell]\n\n/
-			\![*]\q[Zamknij,OnCancel]\e"
+			
+			"\![*]\q[Zmień na %(reference1),OnChangeToShell]\n\n"
+			"\![*]\q[Zamknij,OnCancel]"
 		}
 		else //English
 		{
 			"[Successfully installed '%(reference1)'.]\n\n"
-			--
-			"\![*]\q[Change to %(reference1),OnChangeToShell]\n\n/
-			\![*]\q[Close,OnCancel]\e"
+			
+			"\![*]\q[Change to %(reference1),OnChangeToShell]\n\n"
+			"\![*]\q[Close,OnCancel]"
 		}
 	}
 	else

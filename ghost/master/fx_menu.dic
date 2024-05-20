@@ -1,9 +1,9 @@
-OpenSakuraMenu
+OpenSakuraMenu : all
 {
 	if AutoUpdates[3] == 1 || AutoUpdates[4] == 1 || AutoUpdates[5] == 1  //If an update is available, the user will be notified when they try to open the menu
 	{
 		"\0%(b)"
-		--
+		
 		if language == "Placeholder" //TRANSLATORS: If the user tries to open the menu and an update is available, they will be given this dialogue once a day
 		{
 			
@@ -11,73 +11,73 @@ OpenSakuraMenu
 		elseif language == "Deutsch"
 		{
 			"[Es sind Updates verfügbar für:]\n\n\![]"
-			--
+			
 			if AutoUpdates[3] == 1; "[FLUX Player]\n\![]"
-			--
+			
 			if AutoUpdates[4] == 1; "['%(nowshell)' Shell]\n\![]"
-			--
+			
 			if AutoUpdates[5] == 1; "['%(SHIORI3FW.BalloonName)' Balloon]\n"
-			--
-			"\_q\n\![*]\q[Updates jetzt herunterladen,OnStartUpdates]\n/
-			\![*]\q[Updates später herunterladen,UpdateLater]\n\n/
-			\![*]\q[Auto-Updates ausschalten,UpdateOff]\e"
+			
+			"\_q\n\![*]\q[Updates jetzt herunterladen,OnStartUpdates]\n"
+			"\![*]\q[Updates später herunterladen,UpdateLater]\n\n"
+			"\![*]\q[Auto-Updates ausschalten,UpdateOff]"
 		}
 		elseif language == "Русский"
 		{
 			"[Есть обновление для:]\n\n\![]"
-			--
+			
 			if AutoUpdates[3] == 1; "[Плеер FLUX]\n\![]"
-			--
+			
 			if AutoUpdates[4] == 1; "[Внешний Вид '%(nowshell)']\n\![]"
-			--
+			
 			if AutoUpdates[5] == 1; "[Поле с Текстом '%(SHIORI3FW.BalloonName)']\n"
-			--
-			"\_q\n\n\![*]\q[Загрузить сейчас,OnStartUpdates]\n/
-			\![*]\q[Не сейчас,UpdateLater]\n\n/
-			\![*]\q[Выключить авто-обновлении,UpdateOff]\e"
+			
+			"\_q\n\n\![*]\q[Загрузить сейчас,OnStartUpdates]\n"
+			"\![*]\q[Не сейчас,UpdateLater]\n\n"
+			"\![*]\q[Выключить авто-обновлении,UpdateOff]"
 		}
 		elseif language == "Français"
 		{
 			"[Mises à jour disponibles pour :]\n\n\![]"
-			--
+			
 			if AutoUpdates[3] == 1; "[Lecteur FLUX]\n\![]"
-			--
+			
 			if AutoUpdates[4] == 1; "[Shell  '%(nowshell)']\n\![]"
-			--
+			
 			if AutoUpdates[5] == 1; "[Ballon '%(SHIORI3FW.BalloonName)']\n"
-			--
-			"\_q\n\![*]\q[Télécharger les mises à jour maintenant,OnStartUpdates]\n/
-			\![*]\q[Peut-être plus tard,UpdateLater]\n\n/
-			\![*]\q[Désactiver les mises à jour autos,UpdateOff]\e"
+			
+			"\_q\n\![*]\q[Télécharger les mises à jour maintenant,OnStartUpdates]\n"
+			"\![*]\q[Peut-être plus tard,UpdateLater]\n\n"
+			"\![*]\q[Désactiver les mises à jour autos,UpdateOff]"
 		}
 		elseif language == "Polski"
 		{
 			"[Aktualizacje są dostępne dla:]\n\n\![]"
-			--
+			
 			if AutoUpdates[3] == 1; "[Playera FLUX]\n\![]"
-			--
+			
 			if AutoUpdates[4] == 1; "[Skorupy '%(nowshell)']\n\![]"
-			--
+			
 			if AutoUpdates[5] == 1; "[Balona '%(SHIORI3FW.BalloonName)']\n"
-			--
-			"\_q\n\n\![*]\q[Pobierz teraz,OnStartUpdates]\n/
-			\![*]\q[Może potem,UpdateLater]\n\n/
-			\![*]\q[Wyłącz auto-aktualizacje,UpdateOff]\e"
+			
+			"\_q\n\n\![*]\q[Pobierz teraz,OnStartUpdates]\n"
+			"\![*]\q[Może potem,UpdateLater]\n\n"
+			"\![*]\q[Wyłącz auto-aktualizacje,UpdateOff]"
 		}
 		else //English
 		{
 			//"[An update is available.\w8 Do you want to download it?]" //TODO JAPANESE - Have to update this
 			"[Updates are available for:]\n\n\![]"
-			--
+			
 			if AutoUpdates[3] == 1; "[FLUX Player]\n\![]"
-			--
+			
 			if AutoUpdates[4] == 1; "['%(nowshell)' shell]\n\![]"
-			--
+			
 			if AutoUpdates[5] == 1; "['%(SHIORI3FW.BalloonName)' balloon]\n"
-			--
-			"\_q\n\![*]\q[Download updates now,OnStartUpdates]\n/
-			\![*]\q[Maybe later,UpdateLater]\n\n/
-			\![*]\q[Turn off auto updates,UpdateOff]\e"
+			
+			"\_q\n\![*]\q[Download updates now,OnStartUpdates]\n"
+			"\![*]\q[Maybe later,UpdateLater]\n\n"
+			"\![*]\q[Turn off auto updates,UpdateOff]"
 		}
 	}
 	else //Normal menu opening
@@ -758,10 +758,10 @@ OnToggleHemisphere
 	OnConfigMenu
 }
 
-OnLanguageMenu
+OnLanguageMenu : all
 {
 	"\0%(bb)\_q\![set,autoscroll,disable]"
-	--
+	
 	if language == "Placeholder" //TRANSLATORS: This uses the language menu function set up in fx_anchor.dic. Make sure you've set that up. This blurb here is the top of the language menu.
 	{
 		
@@ -786,39 +786,39 @@ OnLanguageMenu
 	{
 		"[Please choose a language for FLUX player. Note that this does not affect the language of shells.]"
 	}
-	--
+	
 	"\_l[0,60]"
-	--
+	
 	LanguageMenuDisplay("OnLanguage")
-	--
+	
 	if language == "Placeholder" //TRANSLATORS: A cancel button under the language menu, and also a button that leads to documentation for translating FLUX.
 	{
 		
 	}
 	elseif language == "Deutsch"
 	{
-		"\n\n\![*]\q[Übersetze FLUX,OnTranslateDocument]/
-		\n\![*]\q[Zurück zu Einstellungen,OnConfigMenu]\e"
+		"\n\n\![*]\q[Übersetze FLUX,OnTranslateDocument]"
+		"\n\![*]\q[Zurück zu Einstellungen,OnConfigMenu]"
 	}
 	elseif language == "Русский"
 	{
-		"\n\n\![*]\q[Переводить FLUX,OnTranslateDocument]/
-		\n\![*]\q[Назад в Конфигурация,OnConfigMenu]\e"
+		"\n\n\![*]\q[Переводить FLUX,OnTranslateDocument]"
+		"\n\![*]\q[Назад в Конфигурация,OnConfigMenu]"
 	}
 	elseif language == "Français"
 	{
-		"\n\n\![*]\q[Traduire FLUX,OnTranslateDocument]/
-		\n\![*]\q[Retour à Config,OnConfigMenu]\e"
+		"\n\n\![*]\q[Traduire FLUX,OnTranslateDocument]"
+		"\n\![*]\q[Retour à Config,OnConfigMenu]"
 	}
 	elseif language == "Polski"
 	{
-		"\n\n\![*]\q[Przetłumacz FLUX,OnTranslateDocument]/
-		\n\![*]\q[Powrót do ustawień,OnConfigMenu]\e"
+		"\n\n\![*]\q[Przetłumacz FLUX,OnTranslateDocument]"
+		"\n\![*]\q[Powrót do ustawień,OnConfigMenu]"
 	}
 	else //English
 	{
-		"\n\n\![*]\q[Translate FLUX,OnTranslateDocument]/
-		\n\![*]\q[Back to Config,OnConfigMenu]\e"
+		"\n\n\![*]\q[Translate FLUX,OnTranslateDocument]"
+		"\n\![*]\q[Back to Config,OnConfigMenu]"
 	}
 }
 
@@ -836,7 +836,7 @@ OnTranslateDocument
 	"\C\![open,file,translating_flux.txt]"
 }
 
-OnChangeTalk
+OnChangeTalk : all
 {
 	if language == "Placeholder" //TRANSLATORS: The menu for changing the talk rate. Make sure to leave the numbers in the second argument, those are what actually sends the info to the next function
 	{
@@ -844,53 +844,53 @@ OnChangeTalk
 	}
 	elseif language == "Deutsch"
 	{
-		"\0%(bb)\_q[Wie oft soll zufälliger Dialog gesagt werden? Beachte, dass nicht alle Shells zufälligen Dialog beinhalten.]\n\n/
-		\![*]\q[Alle 30 Sekunden,OnTalkRate,Thirty,30]\n/
-		\![*]\q[Jede Minute,OnTalkRate,Minute,60]\n/
-		\![*]\q[Alle 3 Minuten,OnTalkRate,ThreeMin,180]\n/
-		\![*]\q[Alle 5 Minuten,OnTalkRate,FiveMin,300]\n/
-		\![*]\q[Nie,OnTalkRate,None,0]\n\n/
-		\![*]\q[Abbrechen,OnConfigMenu]\e"
+		"\0%(bb)\_q[Wie oft soll zufälliger Dialog gesagt werden? Beachte, dass nicht alle Shells zufälligen Dialog beinhalten.]\n\n"
+		"\![*]\q[Alle 30 Sekunden,OnTalkRate,Thirty,30]\n"
+		"\![*]\q[Jede Minute,OnTalkRate,Minute,60]\n"
+		"\![*]\q[Alle 3 Minuten,OnTalkRate,ThreeMin,180]\n"
+		"\![*]\q[Alle 5 Minuten,OnTalkRate,FiveMin,300]\n"
+		"\![*]\q[Nie,OnTalkRate,None,0]\n\n"
+		"\![*]\q[Abbrechen,OnConfigMenu]"
 	}
 	elseif language == "Русский"
 	{
-		"\0%(bb)\_q[Как часто говорить? Помни, что не все виды есть разговоры.]\n\n/
-		\![*]\q[Каждый 30 секунд,OnTalkRate,Thirty,30]\n/
-		\![*]\q[Каждая минута,OnTalkRate,Minute,60]\n/
-		\![*]\q[Каждый 3 минут,OnTalkRate,ThreeMin,180]\n/
-		\![*]\q[Каждый 5 минута,OnTalkRate,FiveMin,300]\n/
-		\![*]\q[Никогда,OnTalkRate,None,0]\n\n/
-		\![*]\q[Назад,OnConfigMenu]\e"
+		"\0%(bb)\_q[Как часто говорить? Помни, что не все виды есть разговоры.]\n\n"
+		"\![*]\q[Каждый 30 секунд,OnTalkRate,Thirty,30]\n"
+		"\![*]\q[Каждая минута,OnTalkRate,Minute,60]\n"
+		"\![*]\q[Каждый 3 минут,OnTalkRate,ThreeMin,180]\n"
+		"\![*]\q[Каждый 5 минута,OnTalkRate,FiveMin,300]\n"
+		"\![*]\q[Никогда,OnTalkRate,None,0]\n\n"
+		"\![*]\q[Назад,OnConfigMenu]"
 	}
 	elseif language == "Français"
 	{
-		"\0%(bb)\_q[Tout les combien de temps veux-tu qu'un dialogue aléatoire soit dit ? Note que pas tout les shells incluent des dialogues aléatoires.]\n\n/
-		\![*]\q[Toutes les 30 secondes,OnTalkRate,Thirty,30]\n/
-		\![*]\q[Toutes les minutes,OnTalkRate,Minute,60]\n/
-		\![*]\q[Toutes les 3 minutes,OnTalkRate,ThreeMin,180]\n/
-		\![*]\q[Toutes les 5 minutes,OnTalkRate,FiveMin,300]\n/
-		\![*]\q[Pas de dialogue,OnTalkRate,None,0]\n\n/
-		\![*]\q[Annuler,OnConfigMenu]\e"
+		"\0%(bb)\_q[Tout les combien de temps veux-tu qu'un dialogue aléatoire soit dit ? Note que pas tout les shells incluent des dialogues aléatoires.]\n\n"
+		"\![*]\q[Toutes les 30 secondes,OnTalkRate,Thirty,30]\n"
+		"\![*]\q[Toutes les minutes,OnTalkRate,Minute,60]\n"
+		"\![*]\q[Toutes les 3 minutes,OnTalkRate,ThreeMin,180]\n"
+		"\![*]\q[Toutes les 5 minutes,OnTalkRate,FiveMin,300]\n"
+		"\![*]\q[Pas de dialogue,OnTalkRate,None,0]\n\n"
+		"\![*]\q[Annuler,OnConfigMenu]"
 	}
 	elseif language == "Polski"
 	{
-		"\0%(bb)\_q[Jak często powinny być wypowiadane losowe dialogi? Zauważ, że nie wszystkie skorupy zawierają losowe dialogi.]\n\n/
-		\![*]\q[co 30 sekund,OnTalkRate,Thirty,30]\n/
-		\![*]\q[co minute,OnTalkRate,Minute,60]\n/
-		\![*]\q[co 3 minuty,OnTalkRate,ThreeMin,180]\n/
-		\![*]\q[co 5 minut,OnTalkRate,FiveMin,300]\n/
-		\![*]\q[Nie mów.,OnTalkRate,None,0]\n\n/
-		\![*]\q[Anuluj,OnConfigMenu]\e"
+		"\0%(bb)\_q[Jak często powinny być wypowiadane losowe dialogi? Zauważ, że nie wszystkie skorupy zawierają losowe dialogi.]\n\n"
+		"\![*]\q[co 30 sekund,OnTalkRate,Thirty,30]\n"
+		"\![*]\q[co minute,OnTalkRate,Minute,60]\n"
+		"\![*]\q[co 3 minuty,OnTalkRate,ThreeMin,180]\n"
+		"\![*]\q[co 5 minut,OnTalkRate,FiveMin,300]\n"
+		"\![*]\q[Nie mów.,OnTalkRate,None,0]\n\n"
+		"\![*]\q[Anuluj,OnConfigMenu]"
 	}
 	else
 	{
-		"\0%(bb)\_q[How often should random dialogue be said? Note that not all shells include random dialogue.]\n\n/
-		\![*]\q[Every 30 seconds,OnTalkRate,Thirty,30]\n/
-		\![*]\q[Every minute,OnTalkRate,Minute,60]\n/
-		\![*]\q[Every 3 minutes,OnTalkRate,ThreeMin,180]\n/
-		\![*]\q[Every 5 minutes,OnTalkRate,FiveMin,300]\n/
-		\![*]\q[Don't speak,OnTalkRate,None,0]\n\n/
-		\![*]\q[Nevermind,OnConfigMenu]\e"
+		"\0%(bb)\_q[How often should random dialogue be said? Note that not all shells include random dialogue.]\n\n"
+		"\![*]\q[Every 30 seconds,OnTalkRate,Thirty,30]\n"
+		"\![*]\q[Every minute,OnTalkRate,Minute,60]\n"
+		"\![*]\q[Every 3 minutes,OnTalkRate,ThreeMin,180]\n"
+		"\![*]\q[Every 5 minutes,OnTalkRate,FiveMin,300]\n"
+		"\![*]\q[Don't speak,OnTalkRate,None,0]\n\n"
+		"\![*]\q[Nevermind,OnConfigMenu]"
 	}
 }
 
