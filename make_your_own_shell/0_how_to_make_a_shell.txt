@@ -291,7 +291,6 @@ OnCustom_SingingSurfaces //If you want more than one singing pose, you can put t
 OnCustom_ActionSurfaces //If you want more than one surface for the right click functions, you can add them here. reference0 contains what kind of message it is; there are more details in dialogue.dic.
 
 OnCustom_Commu //Custom responses to commu messages.
-OnCustom_CommuStats //If you want your shell to send extra stats to other ghosts, you can do that with this function. Please read the instructions carefully, and ask me if you have any questions!
 
 OnCustom_BirthdaySet - If the user sets their birthday, and their birthday is today, this will be called.
 OnCustom_NewYear //This is called when the year rolls over at midnight, even if the user has hour notifications off.
