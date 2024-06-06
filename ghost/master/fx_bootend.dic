@@ -536,7 +536,6 @@ BootVars
 	runtime[1] = 0
 	runtime[2] = 0
 	AutoUpdates[1] = 0
-	booting = 0
 	NowPlaying[0] = ""
 	NowPlaying[2] = ""
 	MusicSettings[4] = ""
@@ -589,7 +588,6 @@ FirstBootVars
 	AutoUpdates = (1,0,"On",0,0,0)
 	//nowmode = "Default" //Uncomment if you plan to add more modes
 	installdate = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)","%(ghostver)") //This tracks the exact day and time the ghost was installed, in case you want to mess around with that later. It also tracks what version the user installed, which may be helpful for debugging!
-	//booting = 1 //This will be set to 0 after firstboot is complete
 	nowballoon = ("Notes",26)
 	
 	NowPlaying = ("",-1,"")

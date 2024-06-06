@@ -85,7 +85,7 @@ OnNameTeach
 	}
 	elseif language == "Deutsch"
 	{
-		if _name == username && booting != 1 //If the user gives the exact same name as before. The booting check has to be there in case they put in 'user'
+		if _name == username //If the user gives the exact same name as before
 		{
 			"[Namensänderung wurde abgebrochen.]"
 		}
@@ -109,7 +109,7 @@ OnNameTeach
 	}
 	elseif language == "Русский"
 	{
-		if _name == username && booting != 1 //If the user gives the exact same name as before. The booting check has to be there in case they put in 'user'
+		if _name == username //If the user gives the exact same name as before
 		{
 			"[Отменил.]"
 		}
@@ -133,7 +133,7 @@ OnNameTeach
 	}
 	elseif language == "Français"
 	{
-		if _name == username && booting != 1 //If the user gives the exact same name as before. The booting check has to be there in case they put in 'user'
+		if _name == username //If the user gives the exact same name as before
 		{
 			"\0[Changement de nom annulé.]"
 		}
@@ -157,7 +157,7 @@ OnNameTeach
 	}
 	elseif language == "Polski"
 	{
-		if _name == username && booting != 1 //If the user gives the exact same name as before. The booting check has to be there in case they put in 'user'
+		if _name == username //If the user gives the exact same name as before
 		{
 			"[Anulowano zmianę nazwy.]"
 		}
@@ -181,7 +181,7 @@ OnNameTeach
 	}
 	else //English
 	{
-		if _name == username && booting != 1 //If the user gives the exact same name as before. The booting check has to be there in case they put in 'user'
+		if _name == username //If the user gives the exact same name as before
 		{
 			"[Cancelled the name change.]"
 		}
