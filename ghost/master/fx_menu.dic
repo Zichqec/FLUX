@@ -497,8 +497,6 @@ OnConfigMenu : all
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][SHELL-FEHLER: SHELL-SPEZIFISCHE FUNKTIONEN AUSGESCHALTET]\_a\n";
 		else; "\n"
 		
-		"Derzeitiges Lied und derzeitige Shell auf Discord anzeigen? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		
 		"\![*]\q[Bug melden,BugReport]\n\n"
 		"Deinstallieren freischalten? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
 		"\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
@@ -545,8 +543,6 @@ OnConfigMenu : all
 		
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][ОШИБКА С ВНЕШНОГО ВИДА: ПОЛЬЗОВАТЕЛЬСКИЕ ФУНКЦИЯ ВЫКЛЮЧЕН]\_a\n";
 		else; "\n"
-		
-		"Показать текущий песня и внешний вид в Дискорд? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
 		
 		"\![*]\q[Сообщить о ошибке,BugReport]\n\n"
 		"Включить Удаление? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n[70]"
@@ -595,8 +591,6 @@ OnConfigMenu : all
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][ERREUR DE SHELL: FONCTIONS PERSONALISÉES DÉSACTIVÉES]\_a\n"
 		else; "\n"
 		
-		"Display current song and shell in Discord? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		
 		"\![*]\q[Reporter un bug,BugReport]\n\n"
 		"Activer la désinstallation ? \_a[OnToggleUninstall](%(_uninstbtn))\_a\n\n"
 		"\![*]\q[Retourner au menu,OnMenuRun]"
@@ -643,8 +637,6 @@ OnConfigMenu : all
 		
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][BŁĄD SKORUPY: NIESTANDARDOWE FUNKCJE WYŁĄCZONE]\_a\n";
 		else; "\n"
-		
-		"Wyświetlaj bieżący utwór i skorupę na Discordzie?%(br)\_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
 		
 		"\![*]\q[Zgłoś błąd,BugReport]\n\n"
 		"Włącz odinstalowywanie? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
@@ -693,8 +685,6 @@ OnConfigMenu : all
 		
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][SHELL ERROR: CUSTOM FUNCTIONS DISABLED]\_a\n";
 		else; "\n"
-		
-		"Display current song and shell in Discord? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
 		
 		"\![*]\q[Report a bug,BugReport]\n\n"
 		"Enable Uninstall? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
@@ -1080,35 +1070,6 @@ OnBalloonModeToggle
 	}
 	--
 	OnConfigMenu
-}
-
-Select.DiscordPluginInfo
-{
-	"\0\b[2]\_q"
-	--
-	if language == "Placeholder" //TRANSLATORS: Information about where to get the discord plugin and how to use it
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[FLUX kann das derzeitige Lied und die derzeitige Shell in deinem Discord-Status anzeigen, wenn das \_a[https://ssp.shillest.net/plugin/discord.nar]Discord Rich Presence\_a Plugin für SSP installiert wurde.]\n\n[100][Nachdem das Plugin installiert wurde kann man FLUX rechts-klicken, zur \_a[OnBlank]Plugins\_a-Option gehen und dann auf \_a[OnBlank]Discord Rich Presence\_a klicken um in diesem Menü FLUX als den aktiven Ghost auszuwählen. Nach dem Schließen dieses Menüs sollte die Information dann in Discord auftauchen.]\x"
-	}
-	elseif language == "Русский"
-	{
-		"[FLUX может показать твой текущий песня и внешний вид в статусе Дискорд, если ты установишь модуль \_a[https://ssp.shillest.net/plugin/discord.nar]Discord Rich Presence\_a для SSP.]\n\n[100][После установки модуля, щелкни правой кнопкой мышей на FLUX, иди в настроек \_a[OnBlank]Модули\_a, и нажми \_a[OnBlank]Discord Rich Presence\_a. Выбирать FLUX как активное привидение в меню, который пуьунлун, и после закрытие меню,информация должно быть видно в Дискорд.]\x"
-	}
-	//TODO FRENCH
-	elseif language == "Polski"
-	{
-		"[FLUX może wyświetlać bieżący utwór i skorupę w statusie Discorda, jeśli zainstalujesz wtyczkę \_a[https://ssp.shillest.net/plugin/discord.nar]Discord Rich Presence\_a dla SSP.]\n\n[100][Po zainstalowaniu wtyczki, kliknij prawym przyciskiem myszy na FLUX, przejdź do opcji \_a[OnBlank]Plugins\_a i kliknij na \_a[OnBlank]Discord Rich Presence\_a. W menu, które się pojawi, wybierz FLUX jako aktywnego ducha, a po zamknięciu menu w Discordzie powinny pojawić się informacje.]\x"
-	}
-	else //English
-	{
-		"[FLUX can display your current song and shell in your Discord status if you install the \_a[https://ssp.shillest.net/plugin/discord.nar]Discord Rich Presence\_a plugin for SSP.]\n\n[100][After installing the plugin, right click FLUX, go to the \_a[OnBlank]Plugins\_a option, and click on \_a[OnBlank]Discord Rich Presence\_a. Select FLUX as your active ghost in the menu that comes up, and you should see the info appear in Discord after you close the menu.]\x"
-	}
-	--
-	"\![raise,OnConfigMenu]"
 }
 
 OnToggleUninstall
