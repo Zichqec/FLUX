@@ -499,8 +499,6 @@ OnConfigMenu : all
 		
 		"Derzeitiges Lied und derzeitige Shell auf Discord anzeigen? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
 		
-		"Kurzinfo für interaktive Bereiche anzeigen? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
-		
 		"\![*]\q[Bug melden,BugReport]\n\n"
 		"Deinstallieren freischalten? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
 		"\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
@@ -549,8 +547,6 @@ OnConfigMenu : all
 		else; "\n"
 		
 		"Показать текущий песня и внешний вид в Дискорд? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		
-		"Использовать подсказки для горячие точки? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
 		
 		"\![*]\q[Сообщить о ошибке,BugReport]\n\n"
 		"Включить Удаление? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n[70]"
@@ -601,8 +597,6 @@ OnConfigMenu : all
 		
 		"Display current song and shell in Discord? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
 		
-		"Use tooltips for hotspots? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
-		
 		"\![*]\q[Reporter un bug,BugReport]\n\n"
 		"Activer la désinstallation ? \_a[OnToggleUninstall](%(_uninstbtn))\_a\n\n"
 		"\![*]\q[Retourner au menu,OnMenuRun]"
@@ -651,8 +645,6 @@ OnConfigMenu : all
 		else; "\n"
 		
 		"Wyświetlaj bieżący utwór i skorupę na Discordzie?%(br)\_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		
-		"Używać etykiet narzędzi dla hotspotów? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
 		
 		"\![*]\q[Zgłoś błąd,BugReport]\n\n"
 		"Włącz odinstalowywanie? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
@@ -703,8 +695,6 @@ OnConfigMenu : all
 		else; "\n"
 		
 		"Display current song and shell in Discord? \_a[OnToggleDiscordPlugin]%(_discordbtn)\_a \q[(Info),DiscordPluginInfo]\n"
-		
-		"Use tooltips for hotspots? \_a[OnToggleTooltips]%(_tooltipbtn)\_a\n\n"
 		
 		"\![*]\q[Report a bug,BugReport]\n\n"
 		"Enable Uninstall? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
@@ -1088,23 +1078,6 @@ OnBalloonModeToggle
 	{
 		balloonmode = 0
 	}
-	--
-	OnConfigMenu
-}
-
-OnToggleTooltips
-{
-	if TooltipDisplay != 1
-	{
-
-		TooltipDisplay = 1
-	}
-	else
-	{
-		TooltipDisplay = 0
-	}
-	--
-	UpdateTooltips
 	--
 	OnConfigMenu
 }
