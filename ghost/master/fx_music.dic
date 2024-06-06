@@ -7,12 +7,6 @@
 /*
 IMPLEMENTING THE MUSIC PLAYER:
 
-This will require some adjustment to slot into your ghost. Specifically, there is a label below for BUILT IN SHIORI EVENTS
-The functions there may already exist in your ghost and therefore cause errors. You will need to go over them carefully and integrate them into your ghost's existing code.
-
-
-There are also optional Discord functions. These require a good bit of additional setup, I go into more detail in the DISCORD section. You can completely ignore them if you don't want them.
-
 I have left markers in the file for what bits you actually need to mess with. You should have a look at the section markers I have added, and also run searches for the following terms:
 
 //DIALOGUE:
@@ -62,7 +56,6 @@ OnMusicPlayer.Menu : all
 {
 	MusicPlayer.ResetDefaultSettings
 	
-	_h = "\f[color,default.anchor]" //Highlight
 	_g = "\f[color,disable]" //Gray
 	_d = "\f[color,default]" //Default
 	
@@ -74,46 +67,156 @@ OnMusicPlayer.Menu : all
 		_starting_value = MusicPlayer.PageIndex * MusicPlayer.SongsPerPage
 	}
 	
-	"%(MusicPlayer.Scope)\c%(MusicPlayer.LargeBalloon)\_q\*\![set,autoscroll,disable]\![no-autopause]"
+	"%(MusicPlayer.Scope)\c%(MusicPlayer.LargeBalloon)\_q\*\![set,autoscroll,disable]\![no-autopause]\f[anchorvisitedfontcolor,default.anchor]"
 	
-	//CUSTOMIZE: If you're using something other than OnSakuraMenu for your menu, or you're using this music player on a kero, you'll need to edit this button and the one at the bottom of the menu
-	"\![*]\q[Back,OnSakuraMenu]  \![*]\__q[blank]Close window\__q\n"
-	"\![*]\__q[OnMusicPlayer.Settings,Basic]Settings\__q  \![*]\__q[OnMusicPlayer.Info]Help\__q\n\n[half]"
+	//TRANSLATORS: These are the buttons at the top of the music player menu. There are also some buttons at the bottom
+	//TODO: Translation update, the settings menu changed to just settings, and the move songs menu changed to help
+	if language == "Placeholder"
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"\![*]\__q[OnMenuRun]Zurück\__q  \![*]\__q[OnBlank]Fenster schließen\__q\n"
+		"\![*]\__q[OnMusicPlayer.Settings,Basic]Einstellungen und Info\__q  \![*]\__q[OnMusicPlayer.Info]Lieder bewegen\__q\n\n[half]"
+	}
+	elseif language == "Русский"
+	{
+		"\![*]\__q[OnMenuRun]Назад\__q  \![*]\__q[OnBlank]Закрыть\__q\n"
+		"\![*]\__q[OnMusicPlayer.Settings,Basic]Настройки и Информация\__q  \![*]\__q[OnMusicPlayer.Info]Двигаться песни\__q\n\n[half]"
+	}
+	elseif language == "Français"
+	{
+		"\![*]\__q[OnMenuRun]Retour\__q  \![*]\__q[OnBlank]Fermer la fenêtre\__q\n"
+		"\![*]\__q[OnMusicPlayer.Settings,Basic]Paramètres et Infos\__q  \![*]\__q[OnMusicPlayer.Info]Déplacer des musiques\__q\n\n[half]"
+	}
+	elseif language == "Polski"
+	{
+		"\![*]\__q[OnMenuRun]Powrót\__q  \![*]\__q[OnBlank]Zamknij\__q\n"
+		"\![*]\__q[OnMusicPlayer.Settings,Basic]Ustawienia i informacje\__q  \![*]\__q[OnMusicPlayer.Info]Przenieś utwory\__q\n\n[half]"
+	}
+	else //English
+	{
+		"\![*]\__q[OnSakuraMenu]Back\__q  \![*]\__q[blank]Close window\__q\n"
+		"\![*]\__q[OnMusicPlayer.Settings,Basic]Settings\__q  \![*]\__q[OnMusicPlayer.Info]Help\__q\n\n[half]"
+	}
 	
+	//TRANSLATORS: The play/pause buttons for the main music menu
+	_playbtn = ""
+	_pausebtn = ""
+	_resumebtn = ""
+	_stopbtn = ""
+	if language == "Placeholder"
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		_playbtn = "Start"
+		_pausebtn = "Pause"
+		_resumebtn = "Fortsetzen"
+		_stopbtn = "Stop"
+	}
+	elseif language == "Русский"
+	{
+		_playbtn = "Играть"
+		_pausebtn = "Пауза"
+		_resumebtn = "Возобновлять"
+		_stopbtn = "Стоп"
+	}
+	elseif language == "Français"
+	{
+		_playbtn = "Lire"
+		_pausebtn = "Pause"
+		_resumebtn = "Reprendre"
+		_stopbtn = "Stop"
+	}
+	elseif language == "Polski"
+	{
+		_playbtn = "Graj"
+		_pausebtn = "Pauza"
+		_resumebtn = "Wznów"
+		_stopbtn = "Zatrzymaj"
+	}
+	else //English
+	{
+		_playbtn = "Play"
+		_pausebtn = "Pause"
+		_resumebtn = "Resume"
+		_stopbtn = "Stop"
+	}
 	if MusicPlayer.PlayState == 0 //This is if no song is loaded in. The text will be grayed out until a song is chosen.
 	{
 		//The playbutton reference here is for if no song is loaded
-		//CUSTOMIZE: I've used align commands here to make the buttons jump around less, but this is not suitable for all balloons. If these buttons overlap on your balloon, you can use this commented out version instead, which just uses normal spaces.
-		//"%(_g)<<<   \![*]Pause       %(_d)\![*]\q[Play,OnMusicPlayer.PlaySong,,OnMusicPlayer.Menu]    %(_g)>>>%(_d)\n\n[half]"
 		
-		"%(_g)<<<   \![*]Pause%(_d)%(MusicPlayer.newline)\f[align,right]\![*]\q[Play,OnMusicPlayer.PlaySong,,OnMusicPlayer.Menu]    %(_g)>>>%(_d)\n\n[half]\f[align,left]"
+		"%(_g)<<<   \![*]%(_pausebtn)%(_d)%(MusicPlayer.newline)\f[align,right]\![*]\__q[OnMusicPlayer.PlaySong,,OnMusicPlayer.Menu]%(_playbtn)\__q    %(_g)>>>%(_d)\n\n[half]\f[align,left]"
 	}
 	else //If a song is loaded. The pause button will change to say resume if a song is currently paused.
 	{
-		/*
-		//CUSTOMIZE: As above, if you need to use regular spaces instead of align commands for your balloon, you can use this commented version instead
 		"\q[<<<,OnMusicPlayer.PrevSong]   "
 		
-		if MusicPlayer.PlayState == 2; "\![*]\q[Resume,OnMusicPlayer.PauseSong,OnMusicPlayer.Menu,resume]"
-		else; "\![*]\q[Pause,OnMusicPlayer.PauseSong,OnMusicPlayer.Menu,pause]   "
+		if MusicPlayer.PlayState == 2; "\![*]\__q[OnMusicPlayer.PauseSong,OnMusicPlayer.Menu,resume]%(_resumebtn)\__q"
+		else; "\![*]\__q[OnMusicPlayer.PauseSong,OnMusicPlayer.Menu,pause]%(_pausebtn)\__q"
 		
-		"    \![*]\q[Stop,OnMusicPlayer.StopSong,OnMusicPlayer.Menu]    \q[>>>,OnMusicPlayer.NextSong]\n\n[half]"
-		*/
-		
-		"\q[<<<,OnMusicPlayer.PrevSong]   "
-		
-		if MusicPlayer.PlayState == 2; "\![*]\q[Resume,OnMusicPlayer.PauseSong,OnMusicPlayer.Menu,resume]"
-		else; "\![*]\q[Pause,OnMusicPlayer.PauseSong,OnMusicPlayer.Menu,pause]"
-		
-		"%(MusicPlayer.newline)\f[align,right]\![*]\q[Stop,OnMusicPlayer.StopSong,OnMusicPlayer.Menu]    \q[>>>,OnMusicPlayer.NextSong]\n\n[half]\f[align,left]"
+		"%(MusicPlayer.newline)\f[align,right]\![*]\__q[OnMusicPlayer.StopSong,OnMusicPlayer.Menu]%(_stopbtn)\__q    \q[>>>,OnMusicPlayer.NextSong]\n\n[half]\f[align,left]"
 	}
 	
-	"Now playing: "
+	if language == "Placeholder" //TRANSLATORS: The currently playing song display
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"Jetzt läuft:"
+	}
+	elseif language == "Русский"
+	{
+		"Сейчас играет:"
+	}
+	elseif language == "Français"
+	{
+		"Actuellement jouée :"
+	}
+	elseif language == "Polski"
+	{
+		"Teraz gra:"
+	}
+	else //English
+	{
+		"Now playing:"
+	}
+	" "
 	
 	if MusicPlayer.PlayState != 0
 	{
-		if MusicPlayer.CurrentSongIndex == -1; "%(_h)\__q[OnMusicPlayer.SongLocation,""%(MusicPlayer.LastRemovedSong)""](Removed from playlist)\__q%(_d)"
-		else; "%(_h)\__q[OnMusicPlayer.SongLocation,""%(MusicPlayer.CurrentSongPath)""]%(MusicPlayer.CurrentSongName)\__q%(_d)"
+		_removed = ""
+		if language == "Placeholder" //TRANSLATORS: This label is for the now playing display, if the song the user is currently listening to has been removed from the playlist
+		{
+			_removed = ""
+		}
+		elseif language == "Deutsch"
+		{
+			_removed = "(Aus Playliste entfernt)"
+		}
+		elseif language == "Русский"
+		{
+			_removed = "(Удалено из плейлиста)"
+		}
+		elseif language == "Français"
+		{
+			_removed = "(Supprimé de la playlist)"
+		}
+		elseif language == "Polski"
+		{
+			_removed = "(Usunięto z listy odtwarzania)"
+		}
+		else //English
+		{
+			_removed = "(Removed from playlist)"
+		}
+		
+		if MusicPlayer.CurrentSongIndex == -1; "\_a[OnMusicPlayer.SongLocation,""%(MusicPlayer.LastRemovedSong)""]%(_removed)\_a"
+		else; "\_a[OnMusicPlayer.SongLocation,""%(MusicPlayer.CurrentSongPath)""]%(MusicPlayer.CurrentSongName)\_a"
 	}
 	
 	if MusicPlayer.Pagination == "Paginated"
@@ -135,7 +238,37 @@ OnMusicPlayer.Menu : all
 			"\f[color,disable]%(_down)%(_down)\f[color,default]"
 		}
 		"    "
-		"\n \n[-100]\f[align,center]\__q[OnMusicPlayer.JumpToPlaylistPage]Page %(MusicPlayer.PageIndex + 1)/%(MusicPlayer.MaxPages + 1)\__q"
+		
+		_currentpage = MusicPlayer.PageIndex + 1
+		_maxpage = MusicPlayer.MaxPages + 1
+		
+		_pagedisplay = ""
+		if language == "Placeholder" //TRANSLATORS: The page display on the main music menu, to show what page you're on and how many pages there are total
+		{
+			
+		}
+		// elseif language == "Deutsch"
+		// {
+			// _pagedisplay = "Page %(_currentpage)/%(_maxpage)"
+		// }
+		// elseif language == "Русский"
+		// {
+			// _pagedisplay = "Page %(_currentpage)/%(_maxpage)"
+		// }
+		// elseif language == "Français"
+		// {
+			// _pagedisplay = "Page %(_currentpage)/%(_maxpage)"
+		// }
+		// elseif language == "Polski"
+		// {
+			// _pagedisplay = "Page %(_currentpage)/%(_maxpage)"
+		// }
+		else //English
+		{
+			_pagedisplay = "Page %(_currentpage)/%(_maxpage)"
+		}
+		
+		"\n \n[-100]\f[align,center]\__q[OnMusicPlayer.JumpToPlaylistPage]%(_pagedisplay)\__q"
 		"\_l[]\f[align,left]"
 	}
 	
@@ -169,13 +302,36 @@ OnMusicPlayer.Menu : all
 		{
 			"\f[bold,1]\f[italic,1]"
 		}
-		"%(_h)\__q[OnMusicPlayer.PlaySong,%(_i),OnMusicPlayer.Menu,frommenu]%(_song)\__q%(_d)\n"
+		"\_a[OnMusicPlayer.PlaySong,%(_i),OnMusicPlayer.Menu,frommenu]%(_song)\_a\n"
 		if _i == MusicPlayer.CurrentSongIndex; "\f[default]" //Reset the bold/italic if it was applied
 	}
 	
 	"\n"
 	
-	"\![*]\q[Back,OnSakuraMenu]  \![*]\__q[blank]Close window\__q"
+	if language == "Placeholder" //TRANSLATORS: These buttons are the same as at the top of the music menu, but it's just the first two.
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"\![*]\__q[OnSakuraMenu]Zurück\__q  \![*]\__q[OnBlank]Fenster schließen\__q"
+	}
+	elseif language == "Русский"
+	{
+		"\![*]\__q[OnSakuraMenu]Назад\__q  \![*]\__q[OnBlank]Закрыть Окно\__q"
+	}
+	elseif language == "Français"
+	{
+		"\![*]\__q[OnSakuraMenu]Retour\__q  \![*]\__q[OnBlank]Fermer la fenêtre\__q"
+	}
+	elseif language == "Polski"
+	{
+		"\![*]\__q[OnSakuraMenu]Powrót\__q  \![*]\__q[OnBlank]Zamknij\__q"
+	}
+	else //English
+	{
+		"\![*]\__q[OnSakuraMenu]Back\__q  \![*]\__q[blank]Close window\__q"
+	}
 	
 	"\![unlock,balloonrepaint]\e __MUSIC_PLAYER_MAIN_MENU__" //Do not remove this, it's here so the menu can update dynamically
 }
@@ -246,10 +402,11 @@ OnMusicPlayer.PlaySong : all
 			{
 				if MusicPlayer.SongAnnouncement == "If not in menu" || !SHIORI3FW.IsTalking && MusicPlayer.SongAnnouncement == "If not talking"
 				{
-					"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\_q"
+					"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\_q\![lock,balloonrepaint]\c"
 					
 					//DIALOGUE: Song announcement
 					"[Now playing:]\n\_?%(MusicPlayer.CurrentSongName)\_?"
+					"\![unlock,balloonrepaint]"
 				}
 			}
 		}
@@ -532,31 +689,80 @@ OnMusicPlayer.Settings : all
 	_isbasic = 0
 	if !(reference0 == "Advanced" || reference0 == "Playlists" || reference0 == "Hotkeys"); _isbasic = 1
 	
-	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c\![set,autoscroll,disable]\![no-autopause]\_q\*%(MusicPlayer.LargeBalloon)"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c\![set,autoscroll,disable]\![no-autopause]\_q\*%(MusicPlayer.LargeBalloon)\f[anchorvisitedfontcolor,default.anchor]"
+	
+	_basic = ""
+	_advanced = ""
+	_playlists = ""
+	_hotkeys = ""
+	
+	if language == "Placeholder" //TRANSLATORS: These are the tabs for the different pages of the settings menu!
+	{
+		
+	}
+	// elseif language == "Deutsch"
+	// {
+		// _basic = ""
+		// _advanced = ""
+		// _playlists = ""
+		// _hotkeys = ""
+	// }
+	// elseif language == "Русский"
+	// {
+		// _basic = ""
+		// _advanced = ""
+		// _playlists = ""
+		// _hotkeys = ""
+	// }
+	// elseif language == "Français"
+	// {
+		// _basic = ""
+		// _advanced = ""
+		// _playlists = ""
+		// _hotkeys = ""
+	// }
+	// elseif language == "Polski"
+	// {
+		// _basic = ""
+		// _advanced = ""
+		// _playlists = ""
+		// _hotkeys = ""
+	// }
+	else //English
+	{
+		_basic = "Basic"
+		_advanced = "Advanced"
+		_playlists = "Playlists"
+		_hotkeys = "Hotkeys"
+	}
+	
+	
+	_g = "\f[color,disable]"
+	_d = "\f[color,default]"
 	
 	"\![*]"
 	switch _isbasic
 	{
-		"\f[color,disable]\__q[OnMusicPlayer.Settings,Basic]Basic\__q\f[color,default]"
-		"\f[color,default.anchor]\__q[OnMusicPlayer.Settings,Basic]Basic\__q\f[color,default]"
+		"%(_g)\__q[OnMusicPlayer.Settings,Basic]Basic\__q%(_d)"
+		"\__q[OnMusicPlayer.Settings,Basic]Basic\__q"
 	}
 	"  \![*]"
 	switch reference0 == "Advanced"
 	{
-		"\f[color,disable]\__q[OnMusicPlayer.Settings,Advanced]Advanced\__q\f[color,default]"
-		"\f[color,default.anchor]\__q[OnMusicPlayer.Settings,Advanced]Advanced\__q\f[color,default]"
+		"%(_g)\__q[OnMusicPlayer.Settings,Advanced]Advanced\__q%(_d)"
+		"\__q[OnMusicPlayer.Settings,Advanced]Advanced\__q"
 	}
 	"\n\![*]"
 	switch reference0 == "Playlists"
 	{
-		"\f[color,disable]\__q[OnMusicPlayer.Settings,Playlists]Playlists\__q\f[color,default]"
-		"\f[color,default.anchor]\__q[OnMusicPlayer.Settings,Playlists]Playlists\__q\f[color,default]"
+		"%(_g)\__q[OnMusicPlayer.Settings,Playlists]Playlists\__q%(_d)"
+		"\__q[OnMusicPlayer.Settings,Playlists]Playlists\__q"
 	}
 	"  \![*]"
 	switch reference0 == "Hotkeys"
 	{
-		"\f[color,disable]\__q[OnMusicPlayer.Settings,Hotkeys]Hotkeys\__q\f[color,default]"
-		"\f[color,default.anchor]\__q[OnMusicPlayer.Settings,Hotkeys]Hotkeys\__q\f[color,default]"
+		"%(_g)\__q[OnMusicPlayer.Settings,Hotkeys]Hotkeys\__q%(_d)"
+		"\__q[OnMusicPlayer.Settings,Hotkeys]Hotkeys\__q"
 	}
 	"\n\n"
 	
@@ -565,7 +771,34 @@ OnMusicPlayer.Settings : all
 	elseif reference0 == "Hotkeys"; MusicPlayer.Settings.Hotkeys
 	else; MusicPlayer.Settings.Basic
 	
-	"\n\n\![*]\__q[OnMusicPlayer.Menu]Back to music menu\__q  \![*]\__q[OnMusicPlayer.SettingsClose]Close window\__q"
+	"\n\n"
+	
+	if language == "Placeholder" //TRANSLATORS: Back/close buttons for the settings menu
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"\![*]\__q[OnMusicPlayer.Menu]Zurück zum Musikmenü\__q  \![*]\__q[OnMusicPlayer.SettingsClose]Fenster schließen\__q"
+	}
+	elseif language == "Русский"
+	{
+		"\![*]\__q[OnMusicPlayer.Menu]Назад в меню музыкы\__q  \![*]\__q[OnMusicPlayer.SettingsClose]Закрыть Окно\__q"
+	}
+	elseif language == "Français"
+	{
+		"\![*]\__q[OnMusicPlayer.Menu]Retour au menu des musiques\__q  \![*]\__q[OnMusicPlayer.SettingsClose]Fermer la fenêtre\__q"
+	}
+	elseif language == "Polski"
+	{
+		"\![*]\__q[OnMusicPlayer.Menu]Powrót do menu muzycznego\__q  \![*]\__q[OnMusicPlayer.SettingsClose]Zamknij\__q"
+	}
+	else //English
+	{
+		"\![*]\__q[OnMusicPlayer.Menu]Back to music menu\__q  \![*]\__q[OnMusicPlayer.SettingsClose]Close window\__q"
+	}
+	
+	
 	"\![unlock,balloonrepaint]"
 	if _isbasic && MusicPlayer.Singing; "\![timerraise,1000,1,OnMusicPlayer.SettingsRecall]"
 	"\e __MUSIC_SETTINGS_MENU__,%(_isbasic)__"
@@ -595,12 +828,6 @@ MusicPlayer.Settings.Basic : all
 	_speed = MusicPlayer.Speed
 	_bal = MusicPlayer.Balance
 	
-	if _mode == 1; _mode = "Shuffle and Loop"
-	elseif _mode == 2; _mode = "Loop One Song"
-	elseif _mode == 3; _mode = "Play One Song"
-	elseif _mode == 4; _mode = "Random"
-	else; _mode = "Loop Playlist"
-	
 	//▲▼⯇⯈ - buttons for ease of copying
 	//Setting fonts so we don't get tofus or anything else weird...
 	_up = "\f[name,calibri]▲\f[name,default]"
@@ -624,110 +851,442 @@ MusicPlayer.Settings.Basic : all
 	_balance_right_btn = "\__q[OnMusicPlayer.QuickBalance,Right]%(_right)\__q"
 	if MusicPlayer.Balance >= 100; _balance_right_btn = "%(_g)%(_right)%(_d)"
 	
-	
-	"Play mode: \![*]%(_h)\__q[OnMusicPlayer.PlaybackType]%(_mode)\__q%(_d)\n\n[half]"
-	"Volume: %(_vol_up_btn)%(_vol_down_btn) %(_h)\q[%(_vol),OnMusicPlayer.SetOption,Volume]%(_d)\n"
-	"Speed: %(_speed_up_btn)%(_speed_down_btn) %(_h)\q[%(_speed),OnMusicPlayer.SetOption,Speed]%(_d)\n"
-	"Left/right balance: %(_balance_left_btn)%(_balance_right_btn) %(_h)\q[%(_bal),OnMusicPlayer.SetOption,Balance]%(_d)\n\n"
-	
-	switch MusicPlayer.PlayMode != 3
+	if language == "Placeholder" //TRANSLATORS: The basic page of the settings menu
 	{
-		"\f[color,disable]Stop after current song\f[color,default]"
-		"\__q[OnMusicPlayer.StopAfterPlayback,song]Stop after current song\__q"
+		
 	}
-	if MusicPlayer.StopAfterCurrent == "stop after playback"; " \![*]"
-	"\n"
-	switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1
+	elseif language == "Deutsch"
 	{
-		"\f[color,disable]Stop after playlist ends\f[color,default]"
-		"\__q[OnMusicPlayer.StopAfterPlayback,playlist]Stop after playlist ends\__q"
+		if _mode == 1; _mode = "Playlist shuffeln und wiederholen"
+		elseif _mode == 2; _mode = "Ein Lied auf Wiederholung spielen"
+		elseif _mode == 3; _mode = "Ein einzelnes Lied spielen"
+		elseif _mode == 4; _mode = "Random" //TODO new translation
+		else; _mode = "Playlist wiederholen"
+		
+		//Only the labels on the left here need translated
+		"Wiedergabemodus: \![*]\_a[OnMusicPlayer.PlaybackType]%(_mode)\_a\n\n[half]"
+		"Lautstärke: %(_vol_up_btn)%(_vol_down_btn) \_a[OnMusicPlayer.SetOption,Volume]%(_vol)\_a\n"
+		"Geschwindigkeit: %(_speed_up_btn)%(_speed_down_btn) \_a[OnMusicPlayer.SetOption,Speed]%(_speed)\_a\n"
+		"Balance: %(_balance_left_btn)%(_balance_right_btn) \_a[OnMusicPlayer.SetOption,Balance]%(_bal)\_a\n\n" //TODO balance here should be left/right balance now
+		
+		switch MusicPlayer.PlayMode != 3
+		{
+			"\f[color,disable]Wiedergabe nach derzeitigem Lied anhalten\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,song]Wiedergabe nach derzeitigem Lied anhalten\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playback"; " \![*]"
+		"\n"
+		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1 //TODO new translation
+		{
+			"\f[color,disable]Stop after playlist ends\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,playlist]Stop after playlist ends\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playlist"; " \![*]"
+		
+		"\n\n"
+		"Total playtime:\n" //TODO new translation
+		"%(MusicPlayer.DisplayPlaytime(MusicPlayer.Playtime))"
 	}
-	if MusicPlayer.StopAfterCurrent == "stop after playlist"; " \![*]"
+	elseif language == "Русский"
+	{
+		if _mode == 1; _mode = "Перетасуй и Играй по Кругу"
+		elseif _mode == 2; _mode = "Играй Одна Песня по Кругу"
+		elseif _mode == 3; _mode = "Играй Одна Песня"
+		elseif _mode == 4; _mode = "Random" //TODO new translation
+		else; _mode = "Играй Плейлист по Кругу"
+		
+		//Only the labels on the left here need translated
+		"Режим: \![*]\_a[OnMusicPlayer.PlaybackType]%(_mode)\_a\n\n[half]"
+		"Громкость: %(_vol_up_btn)%(_vol_down_btn) \_a[OnMusicPlayer.SetOption,Volume]%(_vol)\_a\n"
+		"Скорость: %(_speed_up_btn)%(_speed_down_btn) \_a[OnMusicPlayer.SetOption,Speed]%(_speed)\_a\n"
+		"Balans: %(_balance_left_btn)%(_balance_right_btn) \_a[OnMusicPlayer.SetOption,Balance]%(_bal)\_a\n\n" //TODO balance here should be left/right balance now - also this looks like it's the wrong lang and that's probably my fault lol
+		
+		switch MusicPlayer.PlayMode != 3
+		{
+			"\f[color,disable]Stop after current song\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,song]Stop after current song\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playback"; " \![*]"
+		"\n"
+		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1 //TODO new translation
+		{
+			"\f[color,disable]Stop after playlist ends\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,playlist]Stop after playlist ends\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playlist"; " \![*]"
+		
+		"\n\n"
+		"Total playtime:\n" //TODO new translation
+		"%(MusicPlayer.DisplayPlaytime(MusicPlayer.Playtime))"
+	}
+	elseif language == "Français"
+	{
+		if _mode == 1; _mode = "Mélangée et en Boucle"
+		elseif _mode == 2; _mode = "Boucler sur une Musique"
+		elseif _mode == 3; _mode = "Lire Une Musique"
+		elseif _mode == 4; _mode = "Random" //TODO new translation
+		else; _mode = "Playlist en Boucle"
+		
+		//Only the labels on the left here need translated
+		"Mode de lecture : \![*]\_a[OnMusicPlayer.PlaybackType]%(_mode)\_a\n\n[half]"
+		"Volume : %(_vol_up_btn)%(_vol_down_btn) \_a[OnMusicPlayer.SetOption,Volume]%(_vol)\_a\n"
+		"Vitesse : %(_speed_up_btn)%(_speed_down_btn) \_a[OnMusicPlayer.SetOption,Speed]%(_speed)\_a\n"
+		"Balance : %(_balance_left_btn)%(_balance_right_btn) \_a[OnMusicPlayer.SetOption,Balance]%(_bal)\_a\n\n" //TODO balance here should be left/right balance now
+		
+		switch MusicPlayer.PlayMode != 3
+		{
+			"\f[color,disable]Arrêter après la musique actuelle\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,song]Arrêter après la musique actuelle\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playback"; " \![*]"
+		"\n"
+		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1 //TODO new translation
+		{
+			"\f[color,disable]Stop after playlist ends\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,playlist]Stop after playlist ends\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playlist"; " \![*]"
+		
+		"\n\n"
+		"Total playtime:\n" //TODO new translation
+		"%(MusicPlayer.DisplayPlaytime(MusicPlayer.Playtime))"
+	}
+	elseif language == "Polski"
+	{
+		if _mode == 1; _mode = "Miksuj i Zapętl"
+		elseif _mode == 2; _mode = "Zapętl Jedną Piosenkę"
+		elseif _mode == 3; _mode = "Zagraj Jedną Piosenkę"
+		elseif _mode == 4; _mode = "Random" //TODO new translation
+		else; _mode = "Zapętlij Playlistę"
+		
+		//Only the labels on the left here need translated
+		"Tryb odtwarzania: \![*]\_a[OnMusicPlayer.PlaybackType]%(_mode)\_a\n\n[half]"
+		"Głośność: %(_vol_up_btn)%(_vol_down_btn) \_a[OnMusicPlayer.SetOption,Volume]%(_vol)\_a\n"
+		"Prędkość: %(_speed_up_btn)%(_speed_down_btn) \_a[OnMusicPlayer.SetOption,Speed]%(_speed)\_a\n"
+		"Balans: %(_balance_left_btn)%(_balance_right_btn) \_a[OnMusicPlayer.SetOption,Balance]%(_bal)\_a\n\n" //TODO balance here should be left/right balance now
+		
+		switch MusicPlayer.PlayMode != 3
+		{
+			"\f[color,disable]Zatrzymaj po bieżącym utworze\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,song]Zatrzymaj po bieżącym utworze\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playback"; " \![*]"
+		"\n"
+		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1 //TODO new translation
+		{
+			"\f[color,disable]Stop after playlist ends\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,playlist]Stop after playlist ends\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playlist"; " \![*]"
+		
+		"\n\n"
+		"Total playtime:\n" //TODO new translation
+		"%(MusicPlayer.DisplayPlaytime(MusicPlayer.Playtime))"
+	}
+	else //English
+	{
+		if _mode == 1; _mode = "Shuffle and Loop"
+		elseif _mode == 2; _mode = "Loop One Song"
+		elseif _mode == 3; _mode = "Play One Song"
+		elseif _mode == 4; _mode = "Random"
+		else; _mode = "Loop Playlist"
 	
-	"\n\n"
-	"Total playtime:\n"
-	"%(MusicPlayer.DisplayPlaytime(MusicPlayer.Playtime))"
+		//Only the labels on the left here need translated
+		"Play mode: \![*]\_a[OnMusicPlayer.PlaybackType]%(_mode)\_a\n\n[half]"
+		"Volume: %(_vol_up_btn)%(_vol_down_btn) \_a[OnMusicPlayer.SetOption,Volume]%(_vol)\_a\n"
+		"Speed: %(_speed_up_btn)%(_speed_down_btn) \_a[OnMusicPlayer.SetOption,Speed]%(_speed)\_a\n"
+		"Left/right balance: %(_balance_left_btn)%(_balance_right_btn) \_a[OnMusicPlayer.SetOption,Balance]%(_bal)\_a\n\n"
+		
+		switch MusicPlayer.PlayMode != 3
+		{
+			"\f[color,disable]Stop after current song\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,song]Stop after current song\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playback"; " \![*]"
+		"\n"
+		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1
+		{
+			"\f[color,disable]Stop after playlist ends\f[color,default]"
+			"\__q[OnMusicPlayer.StopAfterPlayback,playlist]Stop after playlist ends\__q"
+		}
+		if MusicPlayer.StopAfterCurrent == "stop after playlist"; " \![*]"
+		
+		"\n\n"
+		"Total playtime:\n"
+		"%(MusicPlayer.DisplayPlaytime(MusicPlayer.Playtime))"
+	}
 }
 
 MusicPlayer.Settings.Advanced : all
 {
-	"Song Bar \![*]%(_h)\__q[OnMusicPlayer.ToggleSongBar]%(MusicPlayer.SongBar)\__q%(_d)\n"
-	"Hotspot tooltips \![*]%(_h)\__q[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\__q%(_d)\n"
-	"\n"
-	"Song announcements \![*]%(_h)\__q[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\__q%(_d)\n"
-	"Prioritize \![*]%(_h)\__q[OnMusicPlayer.TogglePriority]%(MusicPlayer.Priority)\__q%(_d)\n"
-	"\n"
-	"Scroll wheel controls \![*]%(_h)\__q[OnMusicPlayer.ToggleScrollWheel]%(MusicPlayer.Scroll)\__q%(_d)\n"
-	"Previous button \![*]%(_h)\__q[OnMusicPlayer.TogglePreviousButton]%(MusicPlayer.PreviousButton)\__q%(_d)\n"
-	"\n"
-	"Playlist view \![*]%(_h)\__q[OnMusicPlayer.TogglePagination]%(MusicPlayer.Pagination)\__q%(_d)\n"
-	"\n"
-	"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 	
-	"\n"
-	"Show current song in Discord? %(_h)\__q[OnMusicPlayer.ToggleDiscordPlugin]%(MusicPlayer.DiscordDisplay)\__q%(_d)"
-	
+	// if language == "Placeholder" //TRANSLATORS: The advanced page of the settings menu
+	// {
+		
+	// }
+	// elseif language == "Deutsch"
+	// {
+		
+	// }
+	// elseif language == "Русский"
+	// {
+		
+	// }
+	// elseif language == "Français"
+	// {
+		
+	// }
+	// elseif language == "Polski"
+	// {
+		
+	// }
+	// else //English
+	{
+		"Song Bar \![*]\_a[OnMusicPlayer.ToggleSongBar]%(MusicPlayer.SongBar)\_a\n"
+		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
+		"\n"
+		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
+		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(MusicPlayer.Priority)\_a\n"
+		"\n"
+		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(MusicPlayer.Scroll)\_a\n"
+		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(MusicPlayer.PreviousButton)\_a\n"
+		"\n"
+		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(MusicPlayer.Pagination)\_a\n"
+		"\n"
+		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
+		
+		"\n"
+		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(MusicPlayer.DiscordDisplay)\_a \q[(Info),OnDiscordPluginInfo]"
+	}
 }
 
 
 MusicPlayer.Settings.Playlists : all
 {
-	"\![*]\__q[OnMusicPlayer.SavePlaylist]Save current playlist\__q\n"
-	"\![*]\__q[OnMusicPlayer.LoadPlaylist]Load playlist\__q\n"
-	"\![*]\__q[OnMusicPlayer.ClearPlaylist]Clear current playlist\__q\n"
-	"\n"
-	"Length of current playlist: %(ARRAYSIZE(MusicPlayer.CurrentPlaylist)) songs"
-	
+	if language == "Placeholder" //TRANSLATORS: The playlist page of the settings menu
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"\![*]\__q[OnMusicPlayer.SavePlaylist]Aktuelle Playlist speichern\__q\n"
+		"\![*]\__q[OnMusicPlayer.LoadPlaylist]Playlist laden\__q\n"
+		"\![*]\__q[OnMusicPlayer.ClearPlaylist]Aktuelle Playlist leeren\__q\n"
+		"\n"
+		"Length of current playlist:\n%(ARRAYSIZE(MusicPlayer.CurrentPlaylist)) songs" //TODO new translation
+	}
+	elseif language == "Русский"
+	{
+		"\![*]\__q[OnMusicPlayer.SavePlaylist]Сохранить этот плейлист\__q\n"
+		"\![*]\__q[OnMusicPlayer.LoadPlaylist]Загрузить плейлист\__q\n"
+		"\![*]\__q[OnMusicPlayer.ClearPlaylist]Отчистить этот плейлист\__q\n"
+		"\n"
+		"Length of current playlist:\n%(ARRAYSIZE(MusicPlayer.CurrentPlaylist)) songs" //TODO new translation
+	}
+	elseif language == "Français"
+	{
+		"\![*]\__q[OnMusicPlayer.SavePlaylist]Sauvegarder la playlist actuelle\__q\n"
+		"\![*]\__q[OnMusicPlayer.LoadPlaylist]Charger une playlist\__q\n"
+		"\![*]\__q[OnMusicPlayer.ClearPlaylist]Vider la playlist actuelle\__q\n"
+		"\n"
+		"Length of current playlist:\n%(ARRAYSIZE(MusicPlayer.CurrentPlaylist)) songs" //TODO new translation
+	}
+	elseif language == "Polski"
+	{
+		"\![*]\__q[OnMusicPlayer.SavePlaylist]Zapisz bieżącą playlistę\__q\n"
+		"\![*]\__q[OnMusicPlayer.LoadPlaylist]Wczytaj playlistę\__q\n"
+		"\![*]\__q[OnMusicPlayer.ClearPlaylist]Wyczyść bieżącą listę odtwarzania\__q\n"
+		"\n"
+		"Length of current playlist:\n%(ARRAYSIZE(MusicPlayer.CurrentPlaylist)) songs" //TODO new translation
+	}
+	else //English
+	{
+		"\![*]\__q[OnMusicPlayer.SavePlaylist]Save current playlist\__q\n"
+		"\![*]\__q[OnMusicPlayer.LoadPlaylist]Load playlist\__q\n"
+		"\![*]\__q[OnMusicPlayer.ClearPlaylist]Clear current playlist\__q\n"
+		"\n"
+		"Length of current playlist:\n%(ARRAYSIZE(MusicPlayer.CurrentPlaylist)) songs"
+	}
 }
 
 
 MusicPlayer.Settings.Hotkeys : all
 {	
-	_msg = "Unbound"
+	if MusicPlayer.Hotkeys[0] == ""; MusicPlayer.Hotkeys[0] = "Unbound" //Play/pause
+	if MusicPlayer.Hotkeys[1] == ""; MusicPlayer.Hotkeys[1] = "Unbound" //Next
+	if MusicPlayer.Hotkeys[2] == ""; MusicPlayer.Hotkeys[2] = "Unbound" //Previous
+	if MusicPlayer.Hotkeys[3] == ""; MusicPlayer.Hotkeys[3] = "Unbound" //Stop
+	if MusicPlayer.Hotkeys[4] == ""; MusicPlayer.Hotkeys[4] = "Unbound" //Menu
+	if MusicPlayer.Hotkeys[5] == ""; MusicPlayer.Hotkeys[5] = "Unbound" //Volume Up
+	if MusicPlayer.Hotkeys[6] == ""; MusicPlayer.Hotkeys[6] = "Unbound" //Volume Down
+	if MusicPlayer.Hotkeys[7] == ""; MusicPlayer.Hotkeys[7] = "Unbound" //Speed Up
+	if MusicPlayer.Hotkeys[8] == ""; MusicPlayer.Hotkeys[8] = "Unbound" //Speed Down
+	if MusicPlayer.Hotkeys[9] == ""; MusicPlayer.Hotkeys[9] = "Unbound" //Balance Left
+	if MusicPlayer.Hotkeys[10] == ""; MusicPlayer.Hotkeys[10] = "Unbound" //Balance Right
+	if MusicPlayer.Hotkeys[11] == ""; MusicPlayer.Hotkeys[11] = "Unbound" //Song Bar
 	
-	if MusicPlayer.Hotkeys[0] == ""; MusicPlayer.Hotkeys[0] = _msg //Play/pause
-	if MusicPlayer.Hotkeys[1] == ""; MusicPlayer.Hotkeys[1] = _msg //Next
-	if MusicPlayer.Hotkeys[2] == ""; MusicPlayer.Hotkeys[2] = _msg //Previous
-	if MusicPlayer.Hotkeys[3] == ""; MusicPlayer.Hotkeys[3] = _msg //Stop
-	if MusicPlayer.Hotkeys[4] == ""; MusicPlayer.Hotkeys[4] = _msg //Menu
-	if MusicPlayer.Hotkeys[5] == ""; MusicPlayer.Hotkeys[5] = _msg //Volume Up
-	if MusicPlayer.Hotkeys[6] == ""; MusicPlayer.Hotkeys[6] = _msg //Volume Down
-	if MusicPlayer.Hotkeys[7] == ""; MusicPlayer.Hotkeys[7] = _msg //Speed Up
-	if MusicPlayer.Hotkeys[8] == ""; MusicPlayer.Hotkeys[8] = _msg //Speed Down
-	if MusicPlayer.Hotkeys[9] == ""; MusicPlayer.Hotkeys[9] = _msg //Balance Left
-	if MusicPlayer.Hotkeys[10] == ""; MusicPlayer.Hotkeys[10] = _msg //Balance Right
-	if MusicPlayer.Hotkeys[11] == ""; MusicPlayer.Hotkeys[11] = _msg //Song Bar
+	_msg = ""
+	if language == "Placeholder" //TRANSLATORS: This function is for setting hotkeys. Set _msg to the text that should display in the menu when a key is not bound to anything
+	{
+		
+	}
+	elseif language == "Deutsch" //TODO new translation for all of these, it's "unbound" now
+	{
+		_msg = "Hier klicken"
+	}
+	elseif language == "Русский"
+	{
+		_msg = "Нажмите, чтобы ставить клавиша"
+	}
+	elseif language == "Français"
+	{
+		_msg = "Clique pour ajouter une touche"
+	}
+	elseif language == "Polski"
+	{
+		_msg = "Kliknij, aby ustawić przycisk"
+	}
+	else //English
+	{
+		_msg = "Unbound"
+	}
 	
+	_playpause = ""
+	if MusicPlayer.Hotkeys[0] == "Unbound"; _playpause = _msg
+	else; _playpause = MusicPlayer.Hotkeys[0]
 	
-	_playpause = MusicPlayer.Hotkeys[0]
-	_next = MusicPlayer.Hotkeys[1]
-	_prev = MusicPlayer.Hotkeys[2]
-	_stop = MusicPlayer.Hotkeys[3]
-	_menu = MusicPlayer.Hotkeys[4]
-	_songbar = MusicPlayer.Hotkeys[5]
-	_volup = MusicPlayer.Hotkeys[6]
-	_voldown = MusicPlayer.Hotkeys[7]
-	_speedup = MusicPlayer.Hotkeys[8]
-	_speeddown = MusicPlayer.Hotkeys[9]
-	_balanceleft = MusicPlayer.Hotkeys[10]
-	_balanceright = MusicPlayer.Hotkeys[11]
+	_next = ""
+	if MusicPlayer.Hotkeys[1] == "Unbound"; _next = _msg
+	else; _next = MusicPlayer.Hotkeys[1]
+	
+	_prev = ""
+	if MusicPlayer.Hotkeys[2] == "Unbound"; _prev = _msg
+	else; _prev = MusicPlayer.Hotkeys[2]
+	
+	_stop = ""
+	if MusicPlayer.Hotkeys[3] == "Unbound"; _stop = _msg
+	else; _stop = MusicPlayer.Hotkeys[3]
+	
+	_menu = ""
+	if MusicPlayer.Hotkeys[4] == "Unbound"; _menu = _msg
+	else; _menu = MusicPlayer.Hotkeys[4]
+	
+	_songbar = ""
+	if MusicPlayer.Hotkeys[5] == "Unbound"; _songbar = _msg
+	else; _songbar = MusicPlayer.Hotkeys[5]
+	
+	_volup = ""
+	if MusicPlayer.Hotkeys[6] == "Unbound"; _volup = _msg
+	else; _volup = MusicPlayer.Hotkeys[6]
+	
+	_voldown = ""
+	if MusicPlayer.Hotkeys[7] == "Unbound"; _voldown = _msg
+	else; _voldown = MusicPlayer.Hotkeys[7]
+	
+	_speedup = ""
+	if MusicPlayer.Hotkeys[8] == "Unbound"; _speedup = _msg
+	else; _speedup = MusicPlayer.Hotkeys[8]
+	
+	_speeddown = ""
+	if MusicPlayer.Hotkeys[9] == "Unbound"; _speeddown = _msg
+	else; _speeddown = MusicPlayer.Hotkeys[9]
+	
+	_balanceleft = ""
+	if MusicPlayer.Hotkeys[10] == "Unbound"; _balanceleft = _msg
+	else; _balanceleft = MusicPlayer.Hotkeys[10]
+	
+	_balanceright = ""
+	if MusicPlayer.Hotkeys[11] == "Unbound"; _balanceright = _msg
+	else; _balanceright = MusicPlayer.Hotkeys[11]
 
 	_h = "\f[color,default.anchor]" //Highlight color
 	_d = "\f[color,default]" //Default color
-
-	"\q[(x),OnMusicPlayer.UnsetHotkey,0] \__q[OnMusicPlayer.ChangeHotkey,0]Play/Pause: %(_h)%(_playpause)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,1] \__q[OnMusicPlayer.ChangeHotkey,1]Next Song: %(_h)%(_next)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,2] \__q[OnMusicPlayer.ChangeHotkey,2]Previous Song: %(_h)%(_prev)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,3] \__q[OnMusicPlayer.ChangeHotkey,3]Stop Song: %(_h)%(_stop)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,4] \__q[OnMusicPlayer.ChangeHotkey,4]Open Music Menu: %(_h)%(_menu)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,5] \__q[OnMusicPlayer.ChangeHotkey,5]Toggle Song Bar: %(_h)%(_songbar)%(_d)\__q\n\n"
 	
-	"\q[(x),OnMusicPlayer.UnsetHotkey,6] \__q[OnMusicPlayer.ChangeHotkey,6]Volume Up: %(_h)%(_volup)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,7] \__q[OnMusicPlayer.ChangeHotkey,7]Volume Down: %(_h)%(_voldown)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,8] \__q[OnMusicPlayer.ChangeHotkey,8]Speed Up: %(_h)%(_speedup)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,9] \__q[OnMusicPlayer.ChangeHotkey,9]Speed Down: %(_h)%(_speeddown)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,10] \__q[OnMusicPlayer.ChangeHotkey,10]Balance Left: %(_h)%(_balanceleft)%(_d)\__q\n"
-	"\q[(x),OnMusicPlayer.UnsetHotkey,11] \__q[OnMusicPlayer.ChangeHotkey,11]Balance Right: %(_h)%(_balanceright)%(_d)\__q"
+	if language == "Placeholder" //TRANSLATORS: This is the menu for picking which hotkey to set
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"\q[(x),OnMusicPlayer.UnsetHotkey,0] \__q[OnMusicPlayer.ChangeHotkey,0]Start/Pause: %(_h)%(_playpause)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,1] \__q[OnMusicPlayer.ChangeHotkey,1]Nächstes Lied: %(_h)%(_next)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,2] \__q[OnMusicPlayer.ChangeHotkey,2]Vorheriges Lied: %(_h)%(_prev)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,3] \__q[OnMusicPlayer.ChangeHotkey,3]Lied anhalten: %(_h)%(_stop)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,4] \__q[OnMusicPlayer.ChangeHotkey,4]Menü öffnen: %(_h)%(_menu)%(_d)\__q\n" //TODO this may need to be "open music menu" instead of "open menu"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,5] \__q[OnMusicPlayer.ChangeHotkey,5]Toggle Song Bar: %(_h)%(_songbar)%(_d)\__q\n\n" //TODO new translation from here down
+		
+		"\q[(x),OnMusicPlayer.UnsetHotkey,6] \__q[OnMusicPlayer.ChangeHotkey,6]Volume Up: %(_h)%(_volup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,7] \__q[OnMusicPlayer.ChangeHotkey,7]Volume Down: %(_h)%(_voldown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,8] \__q[OnMusicPlayer.ChangeHotkey,8]Speed Up: %(_h)%(_speedup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,9] \__q[OnMusicPlayer.ChangeHotkey,9]Speed Down: %(_h)%(_speeddown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,10] \__q[OnMusicPlayer.ChangeHotkey,10]Balance Left: %(_h)%(_balanceleft)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,11] \__q[OnMusicPlayer.ChangeHotkey,11]Balance Right: %(_h)%(_balanceright)%(_d)\__q"
+	}
+	elseif language == "Русский"
+	{
+		"\q[(x),OnMusicPlayer.UnsetHotkey,0] \__q[OnMusicPlayer.ChangeHotkey,0]Играй/Пауза: %(_h)%(_playpause)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,1] \__q[OnMusicPlayer.ChangeHotkey,1]Следующая песня: %(_h)%(_next)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,2] \__q[OnMusicPlayer.ChangeHotkey,2]Последняя песня: %(_h)%(_prev)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,3] \__q[OnMusicPlayer.ChangeHotkey,3]Перестать песня: %(_h)%(_stop)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,4] \__q[OnMusicPlayer.ChangeHotkey,4]Открыть меню: %(_h)%(_menu)%(_d)\__q\n" //TODO this may need to be "open music menu" instead of "open menu"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,5] \__q[OnMusicPlayer.ChangeHotkey,5]Toggle Song Bar: %(_h)%(_songbar)%(_d)\__q\n\n" //TODO new translation from here down
+		
+		"\q[(x),OnMusicPlayer.UnsetHotkey,6] \__q[OnMusicPlayer.ChangeHotkey,6]Volume Up: %(_h)%(_volup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,7] \__q[OnMusicPlayer.ChangeHotkey,7]Volume Down: %(_h)%(_voldown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,8] \__q[OnMusicPlayer.ChangeHotkey,8]Speed Up: %(_h)%(_speedup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,9] \__q[OnMusicPlayer.ChangeHotkey,9]Speed Down: %(_h)%(_speeddown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,10] \__q[OnMusicPlayer.ChangeHotkey,10]Balance Left: %(_h)%(_balanceleft)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,11] \__q[OnMusicPlayer.ChangeHotkey,11]Balance Right: %(_h)%(_balanceright)%(_d)\__q"
+	}
+	elseif language == "Français"
+	{
+		//TODO i don't have translations for these at all?
+		"\q[(x),OnMusicPlayer.UnsetHotkey,0] \__q[OnMusicPlayer.ChangeHotkey,0]Play/Pause: %(_h)%(_playpause)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,1] \__q[OnMusicPlayer.ChangeHotkey,1]Next Song: %(_h)%(_next)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,2] \__q[OnMusicPlayer.ChangeHotkey,2]Previous Song: %(_h)%(_prev)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,3] \__q[OnMusicPlayer.ChangeHotkey,3]Stop Song: %(_h)%(_stop)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,4] \__q[OnMusicPlayer.ChangeHotkey,4]Open Music Menu: %(_h)%(_menu)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,5] \__q[OnMusicPlayer.ChangeHotkey,5]Toggle Song Bar: %(_h)%(_songbar)%(_d)\__q\n\n"
+		
+		"\q[(x),OnMusicPlayer.UnsetHotkey,6] \__q[OnMusicPlayer.ChangeHotkey,6]Volume Up: %(_h)%(_volup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,7] \__q[OnMusicPlayer.ChangeHotkey,7]Volume Down: %(_h)%(_voldown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,8] \__q[OnMusicPlayer.ChangeHotkey,8]Speed Up: %(_h)%(_speedup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,9] \__q[OnMusicPlayer.ChangeHotkey,9]Speed Down: %(_h)%(_speeddown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,10] \__q[OnMusicPlayer.ChangeHotkey,10]Balance Left: %(_h)%(_balanceleft)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,11] \__q[OnMusicPlayer.ChangeHotkey,11]Balance Right: %(_h)%(_balanceright)%(_d)\__q"
+	}
+	elseif language == "Polski"
+	{
+		"\q[(x),OnMusicPlayer.UnsetHotkey,0] \__q[OnMusicPlayer.ChangeHotkey,0]Odtwarzanie/Pauza: %(_h)%(_playpause)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,1] \__q[OnMusicPlayer.ChangeHotkey,1]Następny utwór: %(_h)%(_next)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,2] \__q[OnMusicPlayer.ChangeHotkey,2]Poprzedni utwór: %(_h)%(_prev)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,3] \__q[OnMusicPlayer.ChangeHotkey,3]Zatrzymaj utwór: %(_h)%(_stop)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,4] \__q[OnMusicPlayer.ChangeHotkey,4]Otwórz menu: %(_h)%(_menu)%(_d)\__q\n" //TODO this may need to be "open music menu" instead of "open menu"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,5] \__q[OnMusicPlayer.ChangeHotkey,5]Toggle Song Bar: %(_h)%(_songbar)%(_d)\__q\n\n" //TODO new translation from here down
+		
+		"\q[(x),OnMusicPlayer.UnsetHotkey,6] \__q[OnMusicPlayer.ChangeHotkey,6]Volume Up: %(_h)%(_volup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,7] \__q[OnMusicPlayer.ChangeHotkey,7]Volume Down: %(_h)%(_voldown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,8] \__q[OnMusicPlayer.ChangeHotkey,8]Speed Up: %(_h)%(_speedup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,9] \__q[OnMusicPlayer.ChangeHotkey,9]Speed Down: %(_h)%(_speeddown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,10] \__q[OnMusicPlayer.ChangeHotkey,10]Balance Left: %(_h)%(_balanceleft)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,11] \__q[OnMusicPlayer.ChangeHotkey,11]Balance Right: %(_h)%(_balanceright)%(_d)\__q"
+	}
+	else //English
+	{
+		"\q[(x),OnMusicPlayer.UnsetHotkey,0] \__q[OnMusicPlayer.ChangeHotkey,0]Play/Pause: %(_h)%(_playpause)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,1] \__q[OnMusicPlayer.ChangeHotkey,1]Next Song: %(_h)%(_next)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,2] \__q[OnMusicPlayer.ChangeHotkey,2]Previous Song: %(_h)%(_prev)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,3] \__q[OnMusicPlayer.ChangeHotkey,3]Stop Song: %(_h)%(_stop)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,4] \__q[OnMusicPlayer.ChangeHotkey,4]Open Music Menu: %(_h)%(_menu)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,5] \__q[OnMusicPlayer.ChangeHotkey,5]Toggle Song Bar: %(_h)%(_songbar)%(_d)\__q\n\n"
+		
+		"\q[(x),OnMusicPlayer.UnsetHotkey,6] \__q[OnMusicPlayer.ChangeHotkey,6]Volume Up: %(_h)%(_volup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,7] \__q[OnMusicPlayer.ChangeHotkey,7]Volume Down: %(_h)%(_voldown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,8] \__q[OnMusicPlayer.ChangeHotkey,8]Speed Up: %(_h)%(_speedup)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,9] \__q[OnMusicPlayer.ChangeHotkey,9]Speed Down: %(_h)%(_speeddown)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,10] \__q[OnMusicPlayer.ChangeHotkey,10]Balance Left: %(_h)%(_balanceleft)%(_d)\__q\n"
+		"\q[(x),OnMusicPlayer.UnsetHotkey,11] \__q[OnMusicPlayer.ChangeHotkey,11]Balance Right: %(_h)%(_balanceright)%(_d)\__q"
+	}
 	
 	"\![unlock,balloonrepaint]"
 }
@@ -737,13 +1296,60 @@ OnMusicPlayer.PlaybackType : all
 {
 	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![no-autopause]"
 	
-	"\![*]\q[Loop Playlist,OnMusicPlayer.PlaybackTypeChange,0]\n"
-	"\![*]\q[Shuffle and Loop,OnMusicPlayer.PlaybackTypeChange,1]\n"
-	"\![*]\q[Loop One Song,OnMusicPlayer.PlaybackTypeChange,2]\n"
-	"\![*]\q[Play One Song,OnMusicPlayer.PlaybackTypeChange,3]\n"
-	"\![*]\q[Random,OnMusicPlayer.PlaybackTypeChange,4]\n"
-	"\n"
-	"\![*]\q[Back to music settings,OnMusicPlayer.Settings]"
+	if language == "Placeholder" //TRANSLATORS: These should match the _mode labels above
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,0]Playlist wiederholen\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,1]Playlist shuffeln und wiederholen\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,2]Ein Lied auf Wiederholung spielen\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,3]Ein einzelnes Lied spielen\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,4]Random\__q\n" //TODO new translation
+		
+		"\n\![*]\__q[OnMusicPlayer.Settings]Zurück zu Musik-Einstellungen\__q"
+	}
+	elseif language == "Русский"
+	{
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,0]Играй Плейлист по Кругу\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,1]Перетасуй и Играй по Кругу\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,2]Играй Одна Песня по Кругу\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,3]Играй Одна Песня\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,4]Random\__q\n" //TODO new translation
+		
+		"\n\![*]\__q[OnMusicPlayer.Settings]Назад в Настроек Музыки\__q"
+	}
+	elseif language == "Français"
+	{
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,0]Playlist en Boucle\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,1]Mélangée et en Boucle\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,2]Boucler sur une Musique\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,3]Lire Une Musique\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,4]Random\__q\n" //TODO new translation
+		
+		"\n\![*]\__q[OnMusicPlayer.Settings]Retour aux paramètres des musiques\__q"
+	}
+	elseif language == "Polski"
+	{
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,0]Zapętl Playlistę\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,1]Miksuj i Zapętl\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,2]Zapętl Jedną Piosenkę\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,3]Zagraj Jedną Piosenkę\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,4]Random\__q\n" //TODO new translation
+		
+		"\n\![*]\__q[OnMusicPlayer.Settings]Powrót do ustawień muzycznych\__q"
+	}
+	else //English
+	{
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,0]Loop Playlist\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,1]Shuffle and Loop\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,2]Loop One Song\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,3]Play One Song\__q\n"
+		"\![*]\__q[OnMusicPlayer.PlaybackTypeChange,4]Random\__q\n"
+		
+		"\n\![*]\__q[OnMusicPlayer.Settings]Back to music settings\__q"
+	}
 }
 
 //Actually making the change
@@ -768,21 +1374,98 @@ OnMusicPlayer.SetOption : all
 	elseif reference0 == "Speed"; "\![open,sliderinput,OnMusicPlayer.Speed,-1,100,1,%(MusicPlayer.MaxRate)]"
 	else; "\![open,sliderinput,OnMusicPlayer.Volume,-1,100,1,100]"
 	
-	//DIALOGUE: Dialogue for when you click the numbers for volume/speed/balance to set them directly.
-	if reference0 == "Balance"
+	if language == "Placeholder" //TRANSLATORS: Leave the reference0 parts alone, just translate the dialogues. These are for changing the options like volume, balance, and speed
 	{
-		"Type a balance value. 0 is center, -100 is all the way to the left, 100 is all the way to the right."
+		
 	}
-	elseif reference0 == "Speed"
+	elseif language == "Deutsch"
 	{
-		"Pick a speed from 0 to %(MusicPlayer.MaxRate). 100 is the default."
+		if reference0 == "Balance"
+		{
+			"[Gib einen Balance-Wert ein. 0 ist mittig, -100 ist ganz auf der linken Seite, 100 ist ganz auf der rechten Seite der Lautsprecher.]"
+		}
+		elseif reference0 == "Speed"
+		{
+			"[Wähle eine Geschwindigkeit. 100 ist normal.]" //TODO updated translation
+		}
+		else //volume
+		{
+			"[Wähle eine Lautstärke. 100 ist der Standardwert.]" //TODO updated translation
+		}
+		
+		"\n\n\![*]\__q[OnMusicPlayer.SetOptionClose,%(reference0)]Abbrechen\__q\e"
 	}
-	else //volume
+	elseif language == "Русский"
 	{
-		"Pick a volume from 0 to 100. 100 is the default."
+		if reference0 == "Balance"
+		{
+			"[Напиши номер равновесие. 0 - в центре, -100 - в самой левой стороне, 100 в самой справой стороне.]"
+		}
+		elseif reference0 == "Speed"
+		{
+			"[Выбирать скорость. 100 - обычный.]" //TODO updated translation
+		}
+		else //volume
+		{
+			"[Выбирать громкость. 100 - обычный.]" //TODO updated translation
+		}
+		
+		"\n\n\![*]\__q[OnMusicPlayer.SetOptionClose,%(reference0)]Отменить\__q\e"
 	}
-	
-	"\n\n\![*]\q[Cancel,OnMusicPlayer.SetOptionClose,%(reference0)]"
+	elseif language == "Français" //TODO FRENCH I adjusted this and I hope it's correct lol
+	{
+		if reference0 == "Balance"
+		{
+			"[Entre une valeur de balance. 0 est le centre, -100 est tout à gauche, 100 est tout à droite.]" //La balance sera mise à jour dès que la prochaine musique commencera.
+		}
+		elseif reference0 == "Speed"
+		{
+			//TODO updated translation
+			"[Choisis une vitesse. 100 est normale.]" //La vitesse sera mise à jour dès que la prochaine musique commencera.
+		}
+		else //volume
+		{
+			//TODO FRENCH is this correct? Doesn't match the above...
+			//TODO updated translation
+			"[Choisis un volume. 100 is the default.]" //Le volume sera mise à jour dès que la prochaine musique commencera.
+		}
+		
+		"\n\n\![*]\__q[OnMusicPlayer.SetOptionClose,%(reference0)]Annuler\__q\e"
+	}
+	elseif language == "Polski"
+	{
+		if reference0 == "Balance"
+		{
+			"[Wprowadzić wartość balansu. 0 oznacza środek, -100 oznacza skrajnie w lewo, 100 oznacza skrajnie w prawo.]"
+		}
+		elseif reference0 == "Speed"
+		{
+			"[Wybierz prędkość. 100 to prędkość normalna.]" //TODO updated translation
+		}
+		else //volume
+		{
+			"[Wybierz głośność. 100 jest wartością domyślną.]" //TODO updated translation
+		}
+		
+		"\n\n\![*]\__q[OnMusicPlayer.SetOptionClose,%(reference0)]Anuluj\__q\e"
+	}
+	else //English
+	{
+		if reference0 == "Balance"
+		{
+			"[Type a balance value. 0 is center, -100 is all the way to the left, 100 is all the way to the right.]"
+		}
+		elseif reference0 == "Speed"
+		{
+			"[Pick a speed from 0 to %(MusicPlayer.MaxRate). 100 is the default.]"
+		}
+		else //volume
+		{
+			"[Pick a volume from 0 to 100. 100 is the default.]"
+		}
+		
+		"\n\n\![*]\__q[OnMusicPlayer.SetOptionClose,%(reference0)]Cancel\__q\e"
+	}
 }
 
 //Setting the balance
@@ -1021,11 +1704,19 @@ OnMusicPlayer.ScootSongMenu : all
 	_g = "\f[color,disable]"
 	_d = "\f[color,default]"
 	
+	_button = ""
+	if language == "Placeholder"; _button = "" //TRANSLATORS: Back button for the menu where you can move songs in the playlist. This will be used both above and below the list
+	elseif language == "Deutsch"; _button = "Zurück"
+	elseif language == "Русский"; _button = "Назад"
+	elseif language == "Français"; _button = "Retour"
+	elseif language == "Polski"; _button = "Powrót"
+	else; _button = "Back" //English
+	
 	if reference1 != ""; "\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
 	
 	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\*\![no-autopause]"
 	
-	"\![*]\q[Back,OnMusicPlayer.Settings]\n\n"
+	"\![*]\__q[OnMusicPlayer.Settings]%(_button)\__q\n\n"
 	
 	if reference1 == "top"; "\![set,autoscroll,disable]"
 	
@@ -1091,7 +1782,8 @@ OnMusicPlayer.ScootSongMenu : all
 	
 	"%(_display)\n\n"
 	
-	"\![*]\q[Back,OnMusicPlayer.Settings]\![unlock,balloonrepaint]"
+	"\![*]\__q[OnMusicPlayer.Settings]%(_button)\__q"
+	"\![unlock,balloonrepaint]"
 }
 
 //Move song to top or bottom of playlist
@@ -1172,26 +1864,111 @@ OnMusicPlayer.ChangeHotkey : all
 	reference0 = TOINT(reference0)
 	_temp = MusicPlayer.Hotkeys[reference0]
 	
-	_option = ""
-	if reference0 == 1; _option = "next song"
-	elseif reference0 == 2; _option = "previous song"
-	elseif reference0 == 3; _option = "stop song"
-	elseif reference0 == 4; _option = "open menu"
-	elseif reference0 == 5; _option = "toggle song bar"
-	elseif reference0 == 6; _option = "volume up"
-	elseif reference0 == 7; _option = "volume down"
-	elseif reference0 == 8; _option = "speed up"
-	elseif reference0 == 9; _option = "speed down"
-	elseif reference0 == 10; _option = "balance left"
-	elseif reference0 == 11; _option = "balance right"
-	else; _option =  "play/pause"
 	
 	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\*\_q\![no-autopause]"
 	
-	//DIALOGUE: Changing a hotkey
-	"Press a key for %(_option)."
+	_option = ""
 	
-	"\n\n\![*]\q[Cancel,OnMusicPlayer.Settings,Hotkeys,%(reference0),%(_temp)]"
+	if language == "Placeholder" //TRANSLATORS: Menu for actually changing a hotkey. Make sure to copy the block of reference0 checks and translate the text in them, and then you can use _option in dialogue for which key is being changed
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		if reference0 == 1; _option = "-Nächstes Lied-"
+		elseif reference0 == 2; _option = "-Vorheriges Lied-"
+		elseif reference0 == 3; _option = "-Lied anhalten-"
+		elseif reference0 == 4; _option = "-Menü öffnen-"
+		elseif reference0 == 5; _option = "toggle song bar" //TODO new translation need from here down to the end
+		elseif reference0 == 6; _option = "volume up"
+		elseif reference0 == 7; _option = "volume down"
+		elseif reference0 == 8; _option = "speed up"
+		elseif reference0 == 9; _option = "speed down"
+		elseif reference0 == 10; _option = "balance left"
+		elseif reference0 == 11; _option = "balance right"
+		else; _option =  "-Start/Pause-"
+		
+		"[Drücke eine Taste für %(_option).]"
+		
+		"\n\n\![*]\__q[OnMusicPlayer.Settings,Hotkeys,%(reference0),%(_temp)]Abbrechen\__q"
+	}
+	elseif language == "Русский"
+	{
+		if reference0 == 1; _option = "следующая песня"
+		elseif reference0 == 2; _option = "последняя песня"
+		elseif reference0 == 3; _option = "перестать песня"
+		elseif reference0 == 4; _option = "открыть меню"
+		elseif reference0 == 5; _option = "toggle song bar" //TODO new translation need from here down to the end
+		elseif reference0 == 6; _option = "volume up"
+		elseif reference0 == 7; _option = "volume down"
+		elseif reference0 == 8; _option = "speed up"
+		elseif reference0 == 9; _option = "speed down"
+		elseif reference0 == 10; _option = "balance left"
+		elseif reference0 == 11; _option = "balance right"
+		else; _option =  "Играй/Пауза"
+		
+		"[Нажмите кнопку для %(_option).]"
+		
+		"\n\n\![*]\__q[OnMusicPlayer.Settings,Hotkeys,%(reference0),%(_temp)]Отменить\__q"
+	}
+	elseif language == "Français"
+	{
+		if reference0 == 1; _option = "musique suivante"
+		elseif reference0 == 2; _option = "musique précédente"
+		elseif reference0 == 3; _option = "stopper la musique"
+		elseif reference0 == 4; _option = "ouvrir le menu"
+		elseif reference0 == 5; _option = "toggle song bar" //TODO new translation need from here down to the end
+		elseif reference0 == 6; _option = "volume up"
+		elseif reference0 == 7; _option = "volume down"
+		elseif reference0 == 8; _option = "speed up"
+		elseif reference0 == 9; _option = "speed down"
+		elseif reference0 == 10; _option = "balance left"
+		elseif reference0 == 11; _option = "balance right"
+		else; _option =  "Play/Pause"
+		
+		"[Presse une touche pour %(_option).]"
+		
+		"\n\n\![*]\__q[OnMusicPlayer.Settings,Hotkeys,%(reference0),%(_temp)]Annuler\__q"
+	}
+	elseif language == "Polski"
+	{
+		if reference0 == 1; _option = "następny utwór"
+		elseif reference0 == 2; _option = "poprzedni utwór"
+		elseif reference0 == 3; _option = "zatrzymaj utwór"
+		elseif reference0 == 4; _option = "open menu"
+		elseif reference0 == 5; _option = "toggle song bar" //TODO new translation need from here down to the end
+		elseif reference0 == 6; _option = "volume up"
+		elseif reference0 == 7; _option = "volume down"
+		elseif reference0 == 8; _option = "speed up"
+		elseif reference0 == 9; _option = "speed down"
+		elseif reference0 == 10; _option = "balance left"
+		elseif reference0 == 11; _option = "balance right"
+		else; _option =  "Odtwarzanie/Pauza"
+		
+		"[Naciśnij przycisk, dla opcji '%(_option)'.]"
+		
+		"\n\n\![*]\__q[OnMusicPlayer.Settings,Hotkeys,%(reference0),%(_temp)]Anuluj\__q"
+	}
+	else //English
+	{
+		
+		if reference0 == 1; _option = "next song"
+		elseif reference0 == 2; _option = "previous song"
+		elseif reference0 == 3; _option = "stop song"
+		elseif reference0 == 4; _option = "open menu"
+		elseif reference0 == 5; _option = "toggle song bar"
+		elseif reference0 == 6; _option = "volume up"
+		elseif reference0 == 7; _option = "volume down"
+		elseif reference0 == 8; _option = "speed up"
+		elseif reference0 == 9; _option = "speed down"
+		elseif reference0 == 10; _option = "balance left"
+		elseif reference0 == 11; _option = "balance right"
+		else; _option =  "play/pause"
+		
+		"[Press a key for %(_option).]"
+		
+		"\n\n\![*]\__q[OnMusicPlayer.Settings,Hotkeys,%(reference0),%(_temp)]Cancel\__q"
+	}
 	
 	"\![unlock,balloonrepaint]\e changing hotkey: %(reference0)" //DO NOT TOUCH THIS. It will not work if you erase or change this.
 }
@@ -1216,10 +1993,6 @@ OnMusicPlayer.Info : all
 	"\![*]\__q[OnMusicPlayer.MusicInfo,error]Why do some songs give an error?\__q\n"
 	"\n"
 	"\![*]\__q[OnMusicPlayer.Menu]Back to music menu\__q  \![*]\__q[OnBlank]Close window\__q"
-	
-	"\n\n\n\n"
-	//Would appreciate if you leave this here, I have poured many many hours of work into this player :)
-	"\f[height,-2]\f[color,disable]Music Player code by \f[color,default.anchor]\__q[https://ukagaka.zichqec.com/]Zichqec\__q"
 }
 
 //Information that the user can ask about
@@ -1230,46 +2003,214 @@ OnMusicPlayer.MusicInfo : all
 	
 	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\_q\![no-autopause]\![set,autoscroll,disable]"
 	
-	//DIALOGUE: Answers for the help section, you can just leave these as is unless you really want to change them for some reason
-	if reference0 == "addsong" //Asking how to add songs
+	if language == "Placeholder" //TRANSLATORS: These are the questions the user can ask about how FLUX works. Only translate the dialogues, not the reference0 checks
 	{
-		"To add songs, drag and drop them onto the ghost. Folders can also be dragged and dropped, and multiple files may be dropped at a time.\n\n"
-		"You can also use the ""Open File"" option built into SSP to select a file through File Explorer. This can be done using the Ctrl + O shortcut, or by right clicking the ghost, going to the Utilities tab, and clicking ""Open File (I)"".\n\n"
-		".m3u playlists can be loaded through the settings menu, or by using the same methods described above for songs."
-	}
-	elseif reference0 == "compatiblefiles" //What file types are compatible
-	{
-		"By default, the following file types are compatible with this music player:\n"
-		"%(_h).mp3  .wav  .wma  .mid%(_d).\n\n"
-		"With \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a installed, the following file types are compatible with this music player:"
-		"\n"
 		
-		_i = 0
-		foreach MusicPlayer.CompatibleMusicFileTypes; _type
+	}
+	elseif language == "Deutsch" //TODO new translation all of these probably need updated, sorry...
+	{
+		if reference0 == "addsong" //Asking how to add songs
 		{
-			if _i >= 3; _i = 0
+			"[To add songs, drag and drop them onto FLUX player. Folders can also be dragged and dropped, and multiple files may be dropped at a time.]\n\n\![]"
+			"[You can also use the ""Open File"" option built into SSP to select a file through File Explorer. This can be done using the Ctrl + O shortcut, or by right clicking the ghost, going to the Utilities tab, and clicking ""Open File (I)"".]\n\n\![]"
+			"[.m3u playlists can be loaded through the settings menu, or by using the same methods described above for songs.]"
+		}
+		elseif reference0 == "compatiblefiles" //What file types are compatible
+		{
+			"[By default, the following file types are compatible with this music player:]\n"
+			"%(_h).mp3  .wav  .wma  .mid%(_d).\n\n\![]"
+			"[With \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a installed, the following file types are compatible with this music player:]"
+			"\n"
 			
-			//CUSTOMIZE: If you're using a particularly small balloon and the file types are not displaying properly, you may want to use this commented version instead of the code below it
-			/*
-			if _i != 0; "    "
-			else; "\n"
-			*/
-			
-			if _i == 1; "\_l[0]\_l[4em]"
-			elseif _i == 2; "\_l[0]\_l[8em]"
-			else; "\n"
-			
-			_i++
-			"%(_h)%(_type)%(_d)"
+			_i = 0
+			foreach MusicPlayer.CompatibleMusicFileTypes; _type
+			{
+				if _i >= 3; _i = 0
+				
+				//CUSTOMIZE: If you're using a particularly small balloon and the file types are not displaying properly, you may want to use this commented version instead of the code below it
+				/*
+				if _i != 0; "    "
+				else; "\n"
+				*/
+				
+				if _i == 1; "\_l[0]\_l[4em]"
+				elseif _i == 2; "\_l[0]\_l[8em]"
+				else; "\n"
+				
+				_i++
+				"%(_h)%(_type)%(_d)"
+			}
+		}
+		elseif reference0 == "error" //Asking why some songs give errors
+		{
+			"[Some songs will not play despite being the correct type. This is an SSP limitation. You can install \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a, an open source program, to fix most of these errors.]\n\n\![]"
+			"[If you don't want to do that, you can import a song into an audio editing program like \_a[https://www.audacityteam.org/]Audacity\_a and export it again, or convert it to another compatible type with something like \_a[https://www.onlineconverter.com/]Online Converter\_a.]"
 		}
 	}
-	elseif reference0 == "error" //Asking why some songs give errors
+	elseif language == "Русский"
 	{
-		"Some songs will not play despite being the correct type. This is an SSP limitation. You can install \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a, an open source program, to fix most of these errors.\n\n"
-		"If you don't want to do that, you can import a song into an audio editing program like \_a[https://www.audacityteam.org/]Audacity\_a and export it again, or convert it to another compatible type with something like \_a[https://www.onlineconverter.com/]Online Converter\_a."
+		if reference0 == "addsong" //Asking how to add songs
+		{
+			"[To add songs, drag and drop them onto FLUX player. Folders can also be dragged and dropped, and multiple files may be dropped at a time.]\n\n\![]"
+			"[You can also use the ""Open File"" option built into SSP to select a file through File Explorer. This can be done using the Ctrl + O shortcut, or by right clicking the ghost, going to the Utilities tab, and clicking ""Open File (I)"".]\n\n\![]"
+			"[.m3u playlists can be loaded through the settings menu, or by using the same methods described above for songs.]"
+		}
+		elseif reference0 == "compatiblefiles" //What file types are compatible
+		{
+			"[By default, the following file types are compatible with this music player:]\n"
+			"%(_h).mp3  .wav  .wma  .mid%(_d).\n\n\![]"
+			"[With \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a installed, the following file types are compatible with this music player:]"
+			"\n"
+			
+			_i = 0
+			foreach MusicPlayer.CompatibleMusicFileTypes; _type
+			{
+				if _i >= 3; _i = 0
+				
+				//CUSTOMIZE: If you're using a particularly small balloon and the file types are not displaying properly, you may want to use this commented version instead of the code below it
+				/*
+				if _i != 0; "    "
+				else; "\n"
+				*/
+				
+				if _i == 1; "\_l[0]\_l[4em]"
+				elseif _i == 2; "\_l[0]\_l[8em]"
+				else; "\n"
+				
+				_i++
+				"%(_h)%(_type)%(_d)"
+			}
+		}
+		elseif reference0 == "error" //Asking why some songs give errors
+		{
+			"[Some songs will not play despite being the correct type. This is an SSP limitation. You can install \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a, an open source program, to fix most of these errors.]\n\n\![]"
+			"[If you don't want to do that, you can import a song into an audio editing program like \_a[https://www.audacityteam.org/]Audacity\_a and export it again, or convert it to another compatible type with something like \_a[https://www.onlineconverter.com/]Online Converter\_a.]"
+		}
+	}
+	elseif language == "Français"
+	{
+		if reference0 == "addsong" //Asking how to add songs
+		{
+			"[To add songs, drag and drop them onto FLUX player. Folders can also be dragged and dropped, and multiple files may be dropped at a time.]\n\n\![]"
+			"[You can also use the ""Open File"" option built into SSP to select a file through File Explorer. This can be done using the Ctrl + O shortcut, or by right clicking the ghost, going to the Utilities tab, and clicking ""Open File (I)"".]\n\n\![]"
+			"[.m3u playlists can be loaded through the settings menu, or by using the same methods described above for songs.]"
+		}
+		elseif reference0 == "compatiblefiles" //What file types are compatible
+		{
+			"[By default, the following file types are compatible with this music player:]\n"
+			"%(_h).mp3  .wav  .wma  .mid%(_d).\n\n\![]"
+			"[With \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a installed, the following file types are compatible with this music player:]"
+			"\n"
+			
+			_i = 0
+			foreach MusicPlayer.CompatibleMusicFileTypes; _type
+			{
+				if _i >= 3; _i = 0
+				
+				//CUSTOMIZE: If you're using a particularly small balloon and the file types are not displaying properly, you may want to use this commented version instead of the code below it
+				/*
+				if _i != 0; "    "
+				else; "\n"
+				*/
+				
+				if _i == 1; "\_l[0]\_l[4em]"
+				elseif _i == 2; "\_l[0]\_l[8em]"
+				else; "\n"
+				
+				_i++
+				"%(_h)%(_type)%(_d)"
+			}
+		}
+		elseif reference0 == "error" //Asking why some songs give errors
+		{
+			"[Some songs will not play despite being the correct type. This is an SSP limitation. You can install \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a, an open source program, to fix most of these errors.]\n\n\![]"
+			"[If you don't want to do that, you can import a song into an audio editing program like \_a[https://www.audacityteam.org/]Audacity\_a and export it again, or convert it to another compatible type with something like \_a[https://www.onlineconverter.com/]Online Converter\_a.]"
+		}
+	}
+	elseif language == "Polski"
+	{
+		if reference0 == "addsong" //Asking how to add songs
+		{
+			"[To add songs, drag and drop them onto FLUX player. Folders can also be dragged and dropped, and multiple files may be dropped at a time.]\n\n\![]"
+			"[You can also use the ""Open File"" option built into SSP to select a file through File Explorer. This can be done using the Ctrl + O shortcut, or by right clicking the ghost, going to the Utilities tab, and clicking ""Open File (I)"".]\n\n\![]"
+			"[.m3u playlists can be loaded through the settings menu, or by using the same methods described above for songs.]"
+		}
+		elseif reference0 == "compatiblefiles" //What file types are compatible
+		{
+			"[By default, the following file types are compatible with this music player:]\n"
+			"%(_h).mp3  .wav  .wma  .mid%(_d).\n\n\![]"
+			"[With \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a installed, the following file types are compatible with this music player:]"
+			"\n"
+			
+			_i = 0
+			foreach MusicPlayer.CompatibleMusicFileTypes; _type
+			{
+				if _i >= 3; _i = 0
+				
+				//CUSTOMIZE: If you're using a particularly small balloon and the file types are not displaying properly, you may want to use this commented version instead of the code below it
+				/*
+				if _i != 0; "    "
+				else; "\n"
+				*/
+				
+				if _i == 1; "\_l[0]\_l[4em]"
+				elseif _i == 2; "\_l[0]\_l[8em]"
+				else; "\n"
+				
+				_i++
+				"%(_h)%(_type)%(_d)"
+			}
+		}
+		elseif reference0 == "error" //Asking why some songs give errors
+		{
+			"[Some songs will not play despite being the correct type. This is an SSP limitation. You can install \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a, an open source program, to fix most of these errors.]\n\n\![]"
+			"[If you don't want to do that, you can import a song into an audio editing program like \_a[https://www.audacityteam.org/]Audacity\_a and export it again, or convert it to another compatible type with something like \_a[https://www.onlineconverter.com/]Online Converter\_a.]"
+		}
+	}
+	else //English
+	{
+		if reference0 == "addsong" //Asking how to add songs
+		{
+			"[To add songs, drag and drop them onto FLUX player. Folders can also be dragged and dropped, and multiple files may be dropped at a time.]\n\n\![]"
+			"[You can also use the ""Open File"" option built into SSP to select a file through File Explorer. This can be done using the Ctrl + O shortcut, or by right clicking the ghost, going to the Utilities tab, and clicking ""Open File (I)"".]\n\n\![]"
+			"[.m3u playlists can be loaded through the settings menu, or by using the same methods described above for songs.]"
+		}
+		elseif reference0 == "compatiblefiles" //What file types are compatible
+		{
+			"[By default, the following file types are compatible with this music player:]\n"
+			"%(_h).mp3  .wav  .wma  .mid%(_d).\n\n\![]"
+			"[With \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a installed, the following file types are compatible with this music player:]"
+			"\n"
+			
+			_i = 0
+			foreach MusicPlayer.CompatibleMusicFileTypes; _type
+			{
+				if _i >= 3; _i = 0
+				
+				//CUSTOMIZE: If you're using a particularly small balloon and the file types are not displaying properly, you may want to use this commented version instead of the code below it
+				/*
+				if _i != 0; "    "
+				else; "\n"
+				*/
+				
+				if _i == 1; "\_l[0]\_l[4em]"
+				elseif _i == 2; "\_l[0]\_l[8em]"
+				else; "\n"
+				
+				_i++
+				"%(_h)%(_type)%(_d)"
+			}
+		}
+		elseif reference0 == "error" //Asking why some songs give errors
+		{
+			"[Some songs will not play despite being the correct type. This is an SSP limitation. You can install \_a[https://github.com/Nevcairiel/LAVFilters/releases]LAV Filters\_a, an open source program, to fix most of these errors.]\n\n\![]"
+			"[If you don't want to do that, you can import a song into an audio editing program like \_a[https://www.audacityteam.org/]Audacity\_a and export it again, or convert it to another compatible type with something like \_a[https://www.onlineconverter.com/]Online Converter\_a.]"
+		}
 	}
 	
-	"\n\n\![*]\q[Back,OnMusicPlayer.Info]  \![*]\q[Close window,OnBlank]"
+	
+	
+	"\n\n\![*]\__q[OnMusicPlayer.Info]Back\__q  \![*]\__q[OnBlank]Close window\__q"
 	"\![unlock,balloonrepaint]"
 }
 
@@ -1278,10 +2219,32 @@ OnMusicPlayer.SavePlaylist : all
 	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![set,autoscroll,disable]\![no-autopause]"
 	"\![open,dialog,save,--id=OnMusicPlayer.PlaylistSaved,--ext=m3u,--filter=Playlist file|*.m3u,--dir=""%(MusicPlayer.PlaylistPath)""]"
 	
-	//DIALOGUE: Saving a playlist
-	"Choose a file name and location for the playlist."
-	"\n\n"
-	"\![*]\__q[OnPlaylist.Back,Saved]Back\__q"
+	if language == "Placeholder" //TRANSLATORS: When the user is saving a playlist //TODO new translation
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		
+	}
+	elseif language == "Русский"
+	{
+		
+	}
+	elseif language == "Français"
+	{
+		
+	}
+	elseif language == "Polski"
+	{
+		
+	}
+	else //English
+	{
+		"[Choose a file name and location for the playlist.]\![*]"
+		"\n\n"
+		"\![*]\__q[OnPlaylist.Back,Saved]Back\__q"
+	}
 	
 	"\![unlock,balloonrepaint]"
 }
@@ -1305,14 +2268,81 @@ OnMusicPlayer.PlaylistSaved : all
 	
 	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\_q\![no-autopause]"
 	
-	//DIALOGUE: a playlist saving correctly, or failing to save
-	if _o == 1 //If it saves successfully
+	if language == "Placeholder" //TRANSLATORS: Once the playlist has been saved, or saving has failed. Use _name as the playlist name
 	{
-		"Playlist saved successfully as ""\_?%(_name).m3u\_?""."
+		
 	}
-	else //If saving fails
+	elseif language == "Deutsch"
 	{
-		"Failed to save playlist."
+		if _o == 1 //If it saves successfully
+		{
+			"[Playlist wurde erfolgreich als ""\_?%(_name).m3u\_?"" gespeichert.]"
+		}
+		else //If saving fails
+		{
+			if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Error]"
+			else; "\s[6]"
+			
+			"[Speichervorgang fehlgeschlagen.]"
+		}
+	}
+	elseif language == "Русский"
+	{
+		
+		if _o == 1 //If it saves successfully
+		{
+			"[Плейлист сохранен как ""\_?%(_name).m3u\_?"".]"
+		}
+		else //If saving fails
+		{
+			if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Error]"
+			else; "\s[6]"
+			
+			"[Не удалось сохранить.]"
+		}
+	}
+	elseif language == "Français"
+	{
+		if _o == 1 //If it saves successfully
+		{
+			"[Playlist sauvegardée avec succès en tant que ""\_?%(_name).m3u\_?"".]"
+		}
+		else //If saving fails
+		{
+			if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Error]"
+			else; "\s[6]"
+			
+			"[Echec de la sauvegarde de la playlist.]"
+		}
+	}
+	elseif language == "Polski"
+	{
+		
+		if _o == 1 //If it saves successfully
+		{
+			"[Lista odtwarzania zapisana pomyślnie jako ""\_?%(_name).m3u\_?"".]"
+		}
+		else //If saving fails
+		{
+			if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Error]"
+			else; "\s[6]"
+			
+			"[Nie udało się zapisać listy odtwarzania.]"
+		}
+	}
+	else //English
+	{
+		if _o == 1 //If it saves successfully
+		{
+			"[Playlist saved successfully as ""\_?%(_name).m3u\_?"".]"
+		}
+		else //If saving fails
+		{
+			if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Error]"
+			else; "\s[6]"
+			
+			"[Failed to save playlist.]"
+		}
 	}
 	
 	"\![unlock,balloonrepaint]\x[noclear]\![raise,OnMusicPlayer.Settings]"
@@ -1325,14 +2355,62 @@ OnPlaylist.Back
 
 OnMusicPlayer.LoadPlaylist : all
 {
-	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![set,autoscroll,disable]\![no-autopause]"
-	"\![open,dialog,open,--id=OnMusicPlayer.PlaylistLoaded,--filter=Playlist file|*.m3u,--dir=""%(MusicPlayer.PlaylistPath)""]"
+	_playlist_file = ""
+	if language == "Placeholder" //TRANSLATORS: A translation for the little tab that'll appear in the explorer window where you load playlists from
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		
+	}
+	elseif language == "Русский"
+	{
+		
+	}
+	elseif language == "Français"
+	{
+		
+	}
+	elseif language == "Polski"
+	{
+		
+	}
+	else //English
+	{
+		_playlist_file = "Playlist file"
+	}
 	
-	//DIALOGUE: Loading a playlist
-	"Select a playlist to load.\n\n"
-	"The current playlist will be lost unless it is already saved."
-	"\n\n"
-	"\![*]\__q[OnPlaylist.Back,Loaded]Back\__q"
+	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![set,autoscroll,disable]\![no-autopause]"
+	"\![open,dialog,open,--id=OnMusicPlayer.PlaylistLoaded,--filter=%(_playlist_file)|*.m3u,--dir=""%(MusicPlayer.PlaylistPath)""]"
+	
+	if language == "Placeholder" //TRANSLATORS: These are the tabs for the different pages of the settings menu! //TODO new translation
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		
+	}
+	elseif language == "Русский"
+	{
+		
+	}
+	elseif language == "Français"
+	{
+		
+	}
+	elseif language == "Polski"
+	{
+		
+	}
+	else //English
+	{
+		"Select a playlist to load.\n\n"
+		"The current playlist will be lost unless it is already saved."
+		"\n\n"
+		"\![*]\__q[OnPlaylist.Back,Loaded]Back\__q"
+	}
 	
 	"\![unlock,balloonrepaint]"
 }
@@ -1371,16 +2449,53 @@ OnMusicPlayer.ClearPlaylist : all
 {
 	_num = ARRAYSIZE(MusicPlayer.CurrentPlaylist)
 	
-	_are = "are"; _s = "s"
-	if _num == 1; {_are = "is"; _s = ""}
-	
 	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![no-autopause]"
 	
 	//DIALOGUE: Asking for confirmation before clearing the current playlist. %(_are) and %(_s) can be used for plurals.
-	"There %(_are) %(_num) song%(_s) in the current playlist. Are you sure you want to clear it? It cannot be brought back unless you have saved it."
 	
-	"\n\n"
-	"\![*]\q[Clear it,OnMusicPlayer.PlaylistCleared]  \![*]\q[Don't,OnMusicPlayer.Settings]"
+	
+	if language == "Placeholder" //TRANSLATORS: Confirmation dialogue for clearing the current playlist. _num is the number of songs in the playlist
+	{
+		
+	}
+	elseif language == "Deutsch" //TODO new translation I added plural checks to these... otherwise it is the same
+	{
+		"[Es sind %(_num) Lieder in der aktuellen Playlist. Bist du sicher, dass du sie leeren möchtest? Sie kann nicht wiederhergestellt werden wenn sie nicht gespeichert wurde.]"
+		
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.PlaylistCleared]Leeren\__q  \![*]\__q[OnMusicPlayer.Settings]Abbrechen\__q"
+	}
+	elseif language == "Русский"
+	{
+		"[В этом плейлисте %(_num) песни. Ты уверен, что хочешь отчистить? Если не был сохраненно, ты не можешь его вернуть.]"
+		
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.PlaylistCleared]Отчистить\__q  \![*]\__q[OnMusicPlayer.Settings]Не отчистить\__q"
+	}
+	elseif language == "Français"
+	{
+		"[Il y a %(_num) musiques dans la playlist actuelle. Es-tu sûr de vouloir la vider ? Tu ne pourras pas la récuperer à moins que tu ne l'ais sauvegardée.]"
+		
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.PlaylistCleared]La vider\__q  \![*]\__q[OnMusicPlayer.Settings]Ne pas le faire\__q"
+	}
+	elseif language == "Polski"
+	{
+		"[W tej playliście jest %(_num) utworów. Czy na pewno chcesz ją wyczyścić? Nie można jej przywrócić, jeśli nie została zapisana..]"
+		
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.PlaylistCleared]Wyczyść\__q  \![*]\__q[OnMusicPlayer.Settings]Nie czyść\__q"
+	}
+	else //English
+	{
+		_are = "are"; _s = "s"
+		if _num == 1; {_are = "is"; _s = ""}
+	
+		"[There %(_are) %(_num) song%(_s) in the current playlist. Are you sure you want to clear it? It cannot be brought back unless you have saved it.]"
+		
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.PlaylistCleared]Clear it\__q  \![*]\__q[OnMusicPlayer.Settings]Don't\__q"
+	}
 }
 
 //Actually clearing the current playlist
@@ -1395,8 +2510,30 @@ OnMusicPlayer.PlaylistCleared : all
 	
 	"%(MusicPlayer.NonSingingSurfaces)%(MusicPlayer.LargeBalloon)\_q\![no-autopause]"
 	
-	//DIALOGUE: After clearing the playlist
-	"The playlist has been cleared."
+	if language == "Placeholder" //TRANSLATORS: This is if the user clears the playlist
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"[Die Playlist wurde geleert.]"
+	}
+	elseif language == "Русский"
+	{
+		"[Плейлист отчистил.]"
+	}
+	elseif language == "Français"
+	{
+		"[La playlist a été vidée.]"
+	}
+	elseif language == "Polski"
+	{
+		"[Playlista została wyczyszczona..]"
+	}
+	else
+	{
+		"[The playlist has been cleared.]"
+	}
 	
 	"\x\![raise,OnMusicPlayer.Menu]"
 }
@@ -1404,15 +2541,17 @@ OnMusicPlayer.PlaylistCleared : all
 //Sending information about the current song to other open ghosts. Also sends information to Discord, if you set that up.
 OnMusicPlayer.NotifySongInfo : all
 {
-	_song = " "
-	if MusicPlayer.Singing
+	if MusicPlayer.DiscordDisplayFlag == 1
 	{
-		_song = "♫ ""%(MusicPlayer.CurrentSongName)"" ♫"
+		_song = " "
+		if MusicPlayer.Singing
+		{
+			_song = "♫ %(MusicPlayer.CurrentSongName) ♫"
+		}
+		
+		if MusicPlayer.DiscordDisplay == "On"; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,""%(_song)""]"
+		else; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState, ]"
 	}
-	
-	if MusicPlayer.DiscordDisplay == "On"; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,""%(_song)""]"
-	else; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState, ]"
-	
 	
 	"\![notifyother,__SYSTEM_ALL_GHOST__,OnMusicPlayer.SongInfo,""%(selfname)"",""%(MusicPlayer.CurrentSongPath)"",%(MusicPlayer.CurrentSongIndex),%(MusicPlayer.PlayState),%(MusicPlayer.Volume),%(MusicPlayer.Speed),%(MusicPlayer.Balance),%(MusicPlayer.PlayMode),%(MusicPlayer.StopAfterCurrent),%(ARRAYSIZE(MusicPlayer.CurrentPlaylist))]"
 	
@@ -1604,8 +2743,35 @@ MusicPlayer.HotkeyChange : all
 	
 	if ASEARCH(_key,_reserved_keys) != -1 //If it's reserved
 	{
-		//DIALOGUE: If the user tries to put in a hotkey that is reserved
-		"That hotkey is reserved, please choose another.\x"
+		"\0\b[0]"
+		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Error]"
+		else; "\s[6]"
+		
+		if language == "Placeholder" //TRANSLATORS: If the user tries to put in a hotkey that is reserved
+		{
+			
+		}
+		elseif language == "Deutsch"
+		{
+			"[Dieser Hotkey ist reserviert, bitte wähle einen anderen.]"
+		}
+		elseif language == "Русский"
+		{
+			"[Та клавища уже использовает. Пожалуйста, выбирать другую.]"
+		}
+		elseif language == "Français"
+		{
+			"[Cette touche est reservée, stp choisis-en une autre.]"
+		}
+		elseif language == "Polski"
+		{
+			"[Ten skrót jest zarezerwowany, proszę wybierz inny.]"
+		}
+		else //English
+		{
+			"[That hotkey is reserved, please choose another.]"
+		}
+		"\x"
 	}
 	elseif _key == MusicPlayer.Hotkeys[_changing] //Same option as was already entered
 	{
@@ -1614,8 +2780,35 @@ MusicPlayer.HotkeyChange : all
 	}
 	elseif ASEARCH(_key,MusicPlayer.Hotkeys) != -1 //If this hotkey is already selected for something else
 	{
-		//DIALOGUE: If the user tries to enter a hotkey that is already being used
-		"That hotkey is already in use, please clear it before assigning it to another option.\x"
+		"\0\b[0]"
+		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Error]"
+		else; "\s[6]"
+		
+		if language == "Placeholder" //TRANSLATORS: If the user tries to enter a hotkey that is already being used
+		{
+			
+		}
+		elseif language == "Deutsch"
+		{
+			"[Dieser Hotkey ist bereits in Verwendung, bitte lösche ihn bevor du ihm eine andere Option zuordnest.]"
+		}
+		elseif language == "Русский"
+		{
+			"[Та клавища уже использовает. Пожалуйста, отчистить ее, чтобы изменить.]"
+		}
+		elseif language == "Français"
+		{
+			"[Cette touche est déjà utilisée, stp enlève-là avant de l'assigner à une autre option.]"
+		}
+		elseif language == "Polski"
+		{
+			"[Ten skrót jest już używany, wyczyść go, zanim przypiszesz go do innej opcji.]"
+		}
+		else //English
+		{
+			"[That hotkey is already in use, please clear it before assigning it to another option.]"
+		}
+		"\x"
 	}
 	else //If it's a valid key
 	{
@@ -1664,12 +2857,7 @@ OnFileDrop2 : all
 {
 	_filearray = SPLIT(reference.raw[0],C_BYTE1)
 	
-	_imgtypes = (".jpg",".jpeg",".bmp",".png")
-	if ASEARCH(_fileext,_imgtypes) != -1 //TODO I might remove this later
-	{
-		SetWallpaper(_filearray)
-	}
-	elseif ARRAYSIZE(_filearray) == 1 //If it's a single file
+	if ARRAYSIZE(_filearray) == 1 //If it's a single file
 	{
 		_filepath = SPLITPATH(_filearray)
 		_filename = _filepath[2]
@@ -1686,21 +2874,79 @@ OnFileDrop2 : all
 			
 			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\_q\![no-autopause]\![set,autoscroll,disable]"
 			
-			//DIALOGUE: Added a file to the playlist
-			"Added ""\_?%(_filename)\_?"" to the playlist."
-			
-			"\n\n"
-			"\![*]\q[Play it now,OnMusicPlayer.PlaySong,,""%(_from)"",justadded]\n\![*]\q[Open music player,OnMusicPlayer.Menu]\n\n\![*]\q[Close,OnBlank]"
+			if language == "Placeholder" //TRANSLATORS: When the user drags a single compatible music file onto FLUX
+			{
+				
+			}
+			elseif language == "Deutsch"
+			{
+				"[""\_?%(Capitalize(_filename))\_?"" wurde zur Playlist hinzugefügt.]"
+				
+				"\n\n"
+				"\![*]\__q[OnMusicPlayer.PlaySong,,""%(_from)"",justadded]Jetzt abspielen\__q\n\![*]\__q[OnMusicPlayer.Menu]Musik-Player öffnen\__q\n\n\![*]\__q[OnBlank]Schließen\__q"
+			}
+			elseif language == "Русский"
+			{
+				"[Добавил ""\_?%(_filename)\_?"" в плейлисте.]"
+				
+				"\n\n"
+				"\![*]\__q[OnMusicPlayer.PlaySong,,""%(_from)"",justadded]Играй сейчас\__q\n\![*]\__q[OnMusicPlayer.Menu]Открыть плеер\__q\n\n\![*]\__q[OnBlank]Закрыть\__q"
+			}
+			elseif language == "Français"
+			{
+				"[""\_?%(_filename)\_?"" ajouté à la playlist.]"
+				
+				"\n\n"
+				"\![*]\__q[OnMusicPlayer.PlaySong,,""%(_from)"",justadded]La lire maintenant\__q\n\![*]\__q[OnMusicPlayer.Menu]Ouvrir le lecteur de musique\__q\n\n\![*]\__q[OnBlank]Fermer\__q"
+			}
+			elseif language == "Polski"
+			{
+				
+				"[Dodano ""\_?%(_filename)\_?"" do playlisty.]"
+				
+				"\n\n"
+				"\![*]\__q[OnMusicPlayer.PlaySong,,""%(_from)"",justadded]Zagraj teraz\__q\n\![*]\__q[OnMusicPlayer.Menu]Otwórz player\__q\n\n\![*]\__q[OnBlank]Zamknij\__q"
+
+			}
+			else //English
+			{
+				"[Added ""\_?%(_filename)\_?"" to the playlist.]"
+				
+				"\![*]\__q[OnMusicPlayer.PlaySong,,""%(_from)"",justadded]Play it now\__q\n\![*]\__q[OnMusicPlayer.Menu]Open music player\__q\n\n\![*]\__q[OnBlank]Close\__q"
+			}
 		}
 		elseif _fileext == ".m3u" //If it's a playlist
 		{
 			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
 			
 			//DIALOGUE: Confirming loading a playlist after drag and drop
-			"Load the playlist ""\_?%(_filename)\_?""?\n\nThe current playlist will be lost unless it is already saved."
+			if language == "Placeholder" //TRANSLATORS: If the user drags and drops a .m3u playlist onto FLUX, it will ask if they want to load it, overwriting their current playlist
+			{
+				
+			}
+			elseif language == "Deutsch"
+			{
+				
+			}
+			elseif language == "Русский"
+			{
+				
+			}
+			elseif language == "Français" 
+			{
+				
+			}
+			elseif language == "Polski"
+			{
+				
+			}
+			else //English
+			{
+				"[Load the playlist ""\_?%(_filename)\_?""?\n\nThe current playlist will be lost unless it is already saved.]"
 			
-			"\n\n"
-			"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Yes, load the playlist\__q  \![*]\__q[OnBlank]No, do not load the playlist\__q"
+				"\n\n"
+				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Yes, load the playlist\__q  \![*]\__q[OnBlank]No, do not load the playlist\__q"
+			}
 		}
 		elseif _fileext == "" //If it's a single folder
 		{
@@ -1718,20 +2964,80 @@ OnFileDrop2 : all
 			{
 				"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\_q\![no-autopause]\![set,autoscroll,disable]\_q"
 				
-				//DIALOGUE: The user dropped a folder on the ghost, but nothing inside was a compatible music file
-				"None of the files in ""\_?%(_folder)\_?"" are compatible music files."
+				if language == "Placeholder" //TRANSLATORS: If the user drags a folder on FLUX, and none of the files inside are compatible music files. Use _folder for the folder name
+				{
+					
+				}
+				elseif language == "Deutsch"
+				{
+					"[Keine der Dateien in ""\_?%(_folder)\_?"" sind kompatible Musikdateien.]\e"
+				}
+				elseif language == "Русский"
+				{
+					"[Ни одна из всех файлов в папке ""\_?%(_folder)\_?"" compatible файлов музыки.]\e"
+				}
+				elseif language == "Français"
+				{
+					"[Aucun fichier dans ""\_?%(_folder)\_?"" n'est un fichier de musique compatible.]\e"
+				}
+				elseif language == "Polski"
+				{
+					"[Żaden z plików w ""\_?%(_folder)\_?"" jest kompatybilnym plikiem muzycznym.]\e"
+				}
+				else //English
+				{
+					"[None of the files in ""\_?%(_folder)\_?"" are compatible music files.]\e"
+				}
 			}
 			else //If there are compatible songs
 			{
 				_num = ARRAYSIZE(_musicfiles)
-				_s = ""; if _num != 1; _s = "s"
 				
 				"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
 				
-				//DIALOGUE: The user dropped a folder on the ghost, and some files inside were compatible music files. %(_s) can be used to add an s if the number of compatible files is plural, %(_num) can be used to list the number of files, and %(_folder) is the name of the folder that was dropped.
-				"Added %(_num) song%(_s) from ""\_?%(_folder)\_?""."
+				"\0\b[0]"
+				if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
+				else; "\s[6]"
 				
-				"\n\n\_q\![*]\q[Open music player,OnMusicPlayer.Menu]\n\![*]\q[Close,blank]"
+				if language == "Placeholder" //TRANSLATORS: If the user drags a folder on FLUX, and at least some of the files inside are compatible music files. Use _num for the number of songs that were added, and _folder for the folder name
+				{
+					
+				}
+				elseif language == "Deutsch"
+				{
+					_er = ""; if _num != 1; _er = "er"
+					_n = ""; if _num != 1; _n = "n"
+					"[Es wurde%(_n) %(_num) Lied%(_er) aus ""\_?%(_folder)\_?"" hinzugefügt.]"
+					
+					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Musik-Player öffnen\__q\n\![*]\__q[blank]Schließen\__q"
+				}
+				elseif language == "Русский"
+				{
+					_песня = "песня"; if _num != 1; _песня = "песен"
+					"[Добавил %(_num) %(_песня) из ""\_?%(_folder)\_?"".]"
+					
+					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Открыть плеер\__q\n\![*]\__q[blank]Закрыть\__q"
+				}
+				elseif language == "Français"
+				{
+					"[%(_num) musiques ajoutées de ""\_?%(_folder)\_?"".]"
+					
+					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Ouvrir le lecteur de musique\__q\n\![*]\__q[blank]Fermer\__q"
+				}
+				elseif language == "Polski"
+				{
+					"[Dodano %(_num) piosenek z ""\_?%(_folder)\_?"".]"
+					
+					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Otwórz player\__q\n\![*]\__q[blank]Zamknij\__q"
+				}
+				else //English
+				{
+					_s = ""; if _num != 1; _s = "s"
+					
+					"[Added %(_num) song%(_s) from ""\_?%(_folder)\_?"".]"
+					
+					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Open music player\__q\n\![*]\__q[blank]Close\__q"
+				}
 			}
 		}
 		else //Incompatible
@@ -1739,7 +3045,34 @@ OnFileDrop2 : all
 			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
 			
 			//DIALOGUE: Any file that is not music or a playlist
-			"This isn't a recognized file type."
+			"\0\b[0]"
+			if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Refuse]"
+			else; "\s[6]"
+			
+			if language == "Placeholder" //TRANSLATORS: If the user drags a file with no known extension onto FLUX
+			{
+				
+			}
+			elseif language == "Deutsch"
+			{
+				"[Diese Datei ist nicht mit FLUX-Player kompatibel.]\e"
+			}
+			elseif language == "Русский"
+			{
+				"[Этот файл не compatible с плеер FLUX.]\e"
+			}
+			elseif language == "Français"
+			{
+				"[Ce fichier n'est pas compatible avec le lecteur FLUX.]\e"
+			}
+			elseif language == "Polski"
+			{
+				"[Ten plik jest nie kompatybilny z FLUX player.]\e"
+			}
+			else //English
+			{
+				"[This file is not compatible with FLUX player.]\e"
+			}
 		}
 	}
 	else //More than 1 file
@@ -1750,26 +3083,86 @@ OnFileDrop2 : all
 		{
 			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
 			
-			//DIALOGUE: Multiple files were dropped on the ghost, but none of them are compatible music files.
-			"None of these files are compatible with the music player."
+			if language == "Placeholder" //TRANSLATORS: If the user dragged and dropped multiple files on FLUX, but none of them were compatible music files
+			{
+				
+			}
+			elseif language == "Deutsch"
+			{
+				"[Keine dieser Dateien ist mit FLUX-Player kompatibel.]\e"
+			}
+			elseif language == "Русский"
+			{
+				"[Ни одна их этих файлов не совместимый с плеер FLUX.]\e"
+			}
+			elseif language == "Français"
+			{
+				"[Aucun de ces fichiers n'est compatible avec le lecteur FLUX.]\e"
+			}
+			elseif language == "Polski"
+			{
+				"[Żaden z tych plików jest kompatybilny z FLUX player.]\e"
+			}
+			else //English
+			{
+				"[None of these files are compatible with FLUX player.]\e"
+			}
 		}
 		else //If there are music files
 		{
 			_num = ARRAYSIZE(_musicfiles)
 			
-			_s = ""; if _num != 1; _s = "s"
-			
 			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
 			
-			//DIALOGUE: Multiple files were dragged on the ghost, and some of them were music files. %(_s) can be used to add an s if the number of compatible files is plural, and %(_num) can be used to list the number of files.
-			"%(_num) compatible song%(_s) added to the playlist."
+			"\0\b[0]"
 			
-			"\n\n\![*]\q[Open music player,OnMusicPlayer.Menu]\n\![*]\q[Close,blank]"
+			if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
+			else; "\s[6]"
+			
+			if language == "Placeholder" //TRANSLATORS: If the user dragged and dropped multiple files on FLUX, and at least some of them are compatible. Use _num as the count of songs that were added
+			{
+				
+			}
+			elseif language == "Deutsch"
+			{
+				_er = ""; if _num != 1; _er = "er"
+				_n = ""; if _num != 1; _n = "n"
+				_s = ""; if _num == 1; _s = "s"
+				"[Es wurde%(_n) %(_num) kompatible%(_s) Lied%(_er) zur Playlist hinzugefügt.]"
+				
+				"\n\n\![*]\__q[OnMusicPlayer.Menu]Musik-Player öffnen\__q\n\![*]\__q[blank]Schließen\__q"
+			}
+			elseif language == "Русский"
+			{
+				"[%(_num) песен добавлен в плейлисте.]"
+				
+				"\n\n\![*]\__q[OnMusicPlayer.Menu]Открыть плеер\__q\n\![*]\__q[blank]Закрыть\__q"
+			}
+			elseif language == "Français"
+			{
+				"[%(_num) musiques compatibles ajoutées à la playlist.]"
+				
+				"\n\n\![*]\__q[OnMusicPlayer.Menu]Ouvrir le lecteur de musique\__q\n\![*]\__q[blank]Fermer\__q"
+			}
+			elseif language == "Polski"
+			{
+				"[%(_num) piosenek dodane do playlisty.]"
+				
+				"\n\n\![*]\__q[OnMusicPlayer.Menu]Otwórz player\__q\n\![*]\__q[blank]Zamknij\__q"
+			}
+			else //English
+			{
+				_s = ""; if _num != 1; _s = "s"
+				
+				"[%(_num) compatible song%(_s) added to the playlist.]"
+				
+				"\n\n\![*]\__q[OnMusicPlayer.Menu]Open music player\__q\n\![*]\__q[blank]Close\__q"
+			}
 		}
 	}
 }
 
-//CUSTOMIZE: Hotspots. If you already have OnMouseDoubleClick in your ghost, you'll need to make it direct here if an unknown hotspot is clicked. If you do not have OnMouseDoubleClick, just renae this one to OnMouseDoubleClick. If you rename this one, you may want to put in a check to open your main menu if the mouse is not over a hotspot.
+//CUSTOMIZE: Hotspots. If you already have OnMouseDoubleClick in your ghost, you'll need to make it direct here if an unknown hotspot is clicked. If you do not have OnMouseDoubleClick, just rename this one to OnMouseDoubleClick. If you rename this one, you may want to put in a check to open your main menu if the mouse is not over a hotspot.
 MusicPlayer.OnMouseDoubleClick : all
 {
 	_inmenu = MusicPlayer.CheckWhichMenu
@@ -1880,6 +3273,15 @@ MusicPlayer.OnMouseDoubleClick : all
 	{
 		OnMusicPlayer.QuickBalance("Right")
 	}
+	elseif reference4 == "minimize"
+	{
+		"\![set,windowstate,minimize]"
+	}
+	elseif reference4 == "end_sect"
+	{
+		"\![raise,OnClose]"
+	}
+	elseif ISFUNC("OnCustom_MouseDoubleClickSakura") && CustomFuncs[0] == 1; OnCustom_MouseDoubleClickSakura
 }
 
 //When a song ends on its own
@@ -1966,18 +3368,44 @@ OnSoundError : all
 	if MusicPlayer.IsMinimized && !_playnext; MusicPlayer.MakeValueNotify("%(OnMusicPlayer.NotifySongInfo)")
 	else; "%(OnMusicPlayer.NotifySongInfo)"
 	
-	"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\_q"
+	"%(MusicPlayer.Scope)\![unlock,balloonrepaint]\c%(MusicPlayer.SmallBalloon)\![no-autopause]\_q"
 	
-	//DIALOGUE: If there is an error, it will tell the user and try to play the next song. reference3 is the error message, reference2 is the file name. Below is dialogue for attempting to play the next song
-	"Cannot play file ""\f[color,default.anchor]\_?%(reference2)\_?\f[color,default]""\n\n""%(reference3)"""
+	if language == "Placeholder" //TRANSLATORS: If a song gives an error, this is the message that will display. I don't know what all the possible error messages can be, and it says it's determined by the sound playback engine, so I'm not going to ask for those to be translated. reference2 here is the file that gave the error, and reference3 is the error message
+	{
+		
+	}
+	elseif language == "Deutsch"
+	{
+		"[Die Datei ""\f[color,default.anchor]\_?%(reference2)\_?\f[color,default]"" konnte nicht abgespielt werden.]\n\n""%(reference3)""]"
+		
+		//If it's able to play another song
+		if _playnext; "\n\n\![][Nächstes Lied wird gestartet...]"
+	}
+	elseif language == "Русский"
+	{
+		"[Не могу играть файл ""\f[color,default.anchor]\_?%(reference2)\_?\f[color,default]""]\n\n""%(reference3)"""
+		
+		//If it's able to play another song
+		if _playnext; "\n\n\![][Начинает следущую песню...]"
+	}
+	//TODO FRENCH
+	elseif language == "Polski"
+	{
+		"[Nie można odtworzyć pliku ""\f[color,default.anchor]\_?%(reference2)\_?\f[color,default]""]\n\n""%(reference3)"""
+		
+		//If it's able to play another song
+		if _playnext; "\n\n\![][Rozpoczynanie następnego utworu...]"
+	}
+	else //English
+	{
+		"[Cannot play file ""\f[color,default.anchor]\_?%(reference2)\_?\f[color,default]""]\n\n""%(reference3)"""
+		
+		//If it's able to play another song
+		if _playnext; "\n\n\![][Starting next song...]"
+	}
 	
 	//If it's able to play another song
-	if _playnext
-	{
-		"\n\nStarting next song...\_w[5000]"
-		
-		"\_w[1000]\![raise,OnSoundStop]"
-	}
+	if _playnext; "\_w[5000]\![raise,OnSoundStop]"
 }
 
 //When the balloon is changed. This gets the number of lines in the current balloon, so that in certain menus it doesn't jump around so much.
@@ -2017,30 +3445,57 @@ On_tooltip
 	
 	if MusicPlayer.Tooltips == "On"
 	{
+		_tooltips = ""
+		if language == "Placeholder" //TRANSLATORS: A list of the labels needed for hotspot tool tips
+		{
+			
+		}
+		elseif language == "Deutsch" //TODO new translation in these tooltips
+		{
+			_tooltips = "Start / Nächstes Lied,Start,Pause,Fortsetzen,Stop,Nächstes Lied,Vorheriges Lied,Menü,Musik-Bedienung,Playlist leeren,Nach derzeitigem Lied stoppen,Stop after playlist ends,Toggle song bar,Volume up,Volume down,Speed up,Speed down,Balance left,Balance right,Minimieren,FLUX schließen"
+		}
+		elseif language == "Русский"
+		{
+			//TODO Russian need the last couple tooltips
+			_tooltips = "Play / Next,Играть,Пауза,Продолжить,Остановить,Следующий,Предыдущий,Меню,Управления Stop after playlist ends,Toggle song bar,Volume up,Volume down,Speed up,Speed down,Balance left,Balance right,Музыка,Отчистить Плейлист"
+		}
+		//TODO French
+		elseif language == "Polski"
+		{
+			_tooltips = "Play / Next,Odtwórz,Wstrzymaj,Wznów,Zatrzymaj,Następny,Poprzedni,Menu,Sterowanie muzyką,Wyczyść listę odtwarzania,Zatrzymaj po zakończeniu utworu,Stop after playlist ends,Toggle song bar,Volume up,Volume down,Speed up,Speed down,Balance left,Balance right,Minimalizuj,Zamknij FLUX"
+		}
+		else //English
+		{
+			_tooltips = "Play / Next,Play,Pause,Resume,Stop,Next,Previous,Menu,Music Controls,Clear Playlist,Stop after current song,Stop after playlist ends,Toggle song bar,Volume up,Volume down,Speed up,Speed down,Balance left,Balance right,Minimize,Close FLUX"
+		}
+		
 		if reference4 == "play_button"
 		{
-			if MusicPlayer.Singing; "Play / Next"
-			else; "Play"
+			if MusicPlayer.Singing; _tooltips[0]
+			else; _tooltips[1]
 		}
 		elseif reference4 == "pause_resume_button"
 		{
-			if MusicPlayer.PlayState == 1; "Pause"
-			else; "Resume"
+			if MusicPlayer.PlayState == 1; _tooltips[2]
+			else; _tooltips[3]
 		}
-		elseif reference4 == "stop_button"; "Stop"
-		elseif reference4 == "next_button"; "Next song"
-		elseif reference4 == "previous_button"; "Previous song"
-		elseif reference4 == "music_menu_button"; "Music menu"
-		elseif reference4 == "clear_button"; "Clear playlist"
-		elseif reference4 == "stop_after_current_button"; "Stop after current song"
-		elseif reference4 == "stop_after_playlist_button"; "Stop when playlist ends"
-		elseif reference4 == "song_bar_button"; "Toggle song bar"
-		elseif reference4 == "volume_up_button"; "Volume up"
-		elseif reference4 == "volume_down_button"; "Volume down"
-		elseif reference4 == "speed_up_button"; "Speed up"
-		elseif reference4 == "speed_down_button"; "Speed down"
-		elseif reference4 == "balance_left_button"; "Balance left"
-		elseif reference4 == "balance_right_button"; "Balance right"
+		elseif reference4 == "stop_button1" || reference4 == "stop_button2"; _tooltips[4]
+		elseif reference4 == "next_button"; _tooltips[5]
+		elseif reference4 == "previous_button"; _tooltips[6]
+		elseif reference4 == "menu"; _tooltips[7]
+		elseif reference4 == "k_window"; _tooltips[8]
+		elseif reference4 == "clear_button"; _tooltips[9]
+		elseif reference4 == "stop_after_current_button"; _tooltips[10]
+		elseif reference4 == "stop_after_playlist_button"; _tooltips[11]
+		elseif reference4 == "song_bar_button"; _tooltips[12]
+		elseif reference4 == "volume_up_button"; _tooltips[13]
+		elseif reference4 == "volume_down_button"; _tooltips[14]
+		elseif reference4 == "speed_up_button"; _tooltips[15]
+		elseif reference4 == "speed_down_button"; _tooltips[16]
+		elseif reference4 == "balance_left_button"; _tooltips[17]
+		elseif reference4 == "balance_right_button"; _tooltips[18]
+		elseif reference4 == "minimize"; _tooltips[19]
+		elseif reference4 == "end_sect"; _tooltips[20]
 	}
 }
 
@@ -2104,6 +3559,11 @@ MusicPlayer.IsMinimized
 MusicPlayer.Singing
 {
 	MusicPlayer.PlayState == 1
+}
+
+Singing
+{
+	MusicPlayer.Singing
 }
 
 //Helps with alignment commands
@@ -2376,7 +3836,9 @@ MusicPlayer.ConvertOldVariables
 	
 	if !ISVAR("MusicPlayer.Tooltips")
 	{
-		MusicPlayer.Tooltips = DiscordDisplay[1]
+		_onoff = "Off"
+		if TooltipDisplay == 1; _onoff = "On"
+		MusicPlayer.Tooltips = _onoff
 	}
 	void ERASEVAR("DiscordDisplay")
 	
@@ -2546,13 +4008,13 @@ OnDiscordPluginCustomEnd
 OnMusicPlayer.DiscordPluginBoot : all
 {
 	_song = " "
-	if MusicPlayer.Singing; _song = "♫ ""%(MusicPlayer.CurrentSongName)"" ♫"
+	if MusicPlayer.Singing; _song = "♫ %(MusicPlayer.CurrentSongName) ♫"
 	
 	"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomALL,903843216200179753,,,thumbnail,https://ukagaka.zichqec.com/ghost/flux,]"
 	
 	if MusicPlayer.DiscordDisplay == "On"
 	{
-		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,Shell: %(nowshell)""]"
+		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,""Shell: %(nowshell)""]" //TODO do i want this translated?
 		
 		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,""%(_song)""]"
 	}
@@ -2571,7 +4033,7 @@ OnMusicPlayer.ToggleDiscordPlugin : all
 	if MusicPlayer.DiscordDisplay != "On"
 	{
 		_song = " "
-		if MusicPlayer.Singing; _song = "♫ ""%(MusicPlayer.CurrentSongName)"" ♫"
+		if MusicPlayer.Singing; _song = "♫ %(MusicPlayer.CurrentSongName) ♫"
 
 		MusicPlayer.DiscordDisplay = "On"
 		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,""Shell: %(nowshell)""]"
@@ -2587,6 +4049,8 @@ OnMusicPlayer.ToggleDiscordPlugin : all
 	}
 	
 	OnMusicPlayer.Settings
+}
+
 OnDiscordPluginInfo : all
 {
 	_h = "\f[color,default.anchor]" //highlight
