@@ -2,22 +2,15 @@ OnAiTalk
 {
 	if talkoption == 0 || (talkoption == 1 && Singing) || (talkoption == 2 && !Singing) || reference0 == "Hotkey" || reference0 == "Menu"
 	{
-		if mikireflag == 0
+		if CHAIN.IDName == ""
 		{
-			if CHAIN.IDName == ""
-			{
-				lastTalk = RandomTalk
-			}
-			else
-			{
-				lastTalk = ChainTalk
-			}
+			lastTalk = RandomTalk
 		}
 		else
-		{ 
-			lastTalk = MikireTalk
+		{
+			lastTalk = ChainTalk
 		}
-		--
+		
 		lastTalk
 	}
 }
@@ -52,8 +45,6 @@ OnMinuteChange
 	}
 	elseif minute == 0 && HourNotifs[0] == 1 //Top of the hour notifications
 	{
-		
-		
 		"\0\b[0]"
 		--
 		if language == "Placeholder" //TRANSLATORS: Top of the hour notifications, as well as a new years message
@@ -178,11 +169,6 @@ OnMinuteChange
 	}
 	else //Won't do offscreen dialogue or update checks if the top of the hour notif happens instead
 	{
-		if mikireflag == 1 //If the ghost is off the screen, it will run the off screen dialogue every minute
-		{
-			MikireTalk
-		}
-		--
 		if AutoUpdates[0] == 1 && AutoUpdates[1] == 0 //Once a day the ghost will check for updates if the user has auto updates on
 		{
 			AutoUpdates[1] = 1
@@ -237,15 +223,6 @@ OnSecondChange
 		ERASEVAR("DraggedFile")
 		InstalledShellDialogue
 	}
-	elseif mikireflag == 0 && reference1 == 1 //Dialogue for putting them off the screen. You could make this a unique line if you wanted, and have MikireTalk be for if they continue to be offscreen
-	{
-		MikireTalk
-	}
-	elseif mikireflag == 1 && reference1 == 0 //Dialogue for coming back on the screen
-	{
-		EndMikireTalk
-	}
-	mikireflag = reference1 //reference1 is if the ghost is offscreen or not
 }
 
 InstalledShellDialogue : all
@@ -293,66 +270,6 @@ InstalledShellDialogue : all
 	}
 	
 	"\![raise,OnDialogueVars,InstalledNewShell]\e"
-}
-
-MikireTalk //Off the screen dialogue. Ctrl Shift F12 will bring characters back onto the screen
-{
-	"\0\b[0]"
-	--
-	if language == "Placeholder" //TRANSLATORS: If FLUX is off screen. Ctrl-Shift-F12 is the key combination to bring it back
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[FLUX-Player ist außerhalb des Bildschirms.\w8\w8 Du kannst ihn zurückholen indem du Ctrl-Shift-F12 drückst.]\e"
-	}	
-	elseif language == "Русский"
-	{
-		"[Плеер FLUX не на экране.\w8\w8 Ты можешь его вернуть с Ctrl-Shift-F12.]\e"
-	}
-	elseif language == "Français"
-	{
-		"[Le lecteur FLUX est hors de l'écran.\w8\w8 Tu peux le ramener avec Ctrl-Shift-F12.]\e"
-	}
-	elseif language == "Polski"
-	{
-		"[FLUX player jest poza ekranem.\w8\w8 Możesz go przywrócić klikająć Ctrl-Shift-F12.]\e"
-	}
-	else //English
-	{
-		"[FLUX player is off screen.\w8\w8 You can bring it back with Ctrl-Shift-F12.]\e"
-	}
-}
-
-EndMikireTalk //Being brought back on the screen.
-{
-	"\0\b[0]"
-	--
-	if language == "Placeholder" //TRANSLATORS: Bringing FLUX back on screen
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[FLUX-Player ist wieder auf dem Bildschirm.]\e"
-	}	
-	elseif language == "Русский"
-	{
-		"[Плеер FLUX вернулась к экране.]\e"
-	}
-	elseif language == "Français"
-	{
-		"[Le lecteur FLUX est de retour sur l'écran.]\e"
-	}
-	elseif language == "Polski"
-	{
-		"[FLUX player jest spowrotem na ekranie.]\e"
-	}
-	else //English
-	{
-		"[FLUX player is back on screen.]\e"
-	}
 }
 
 OnOverlap
