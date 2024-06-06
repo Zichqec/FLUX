@@ -653,24 +653,9 @@ RemoveFlag //Removes all instances of a flag in the array.
 	}
 }
 
-Singing //Returns 1 if singing, 0 if not
-{
-	if NowPlaying[0] == "" || NowPlaying[2] != ""
-	{
-		0
-	}
-	else
-	{
-		1
-	}
-}
-
 CurrentSong
 {
-	_currentsong = SPLITPATH(NowPlaying[0])[2]
-	_currentsong = REPLACE(_currentsong,"%(C_BYTE1)",",")
-	_currentsong = REPLACE(_currentsong,"]","\]")
-	_currentsong
+	MusicPlayer.CurrentSongName
 }
 
 n
