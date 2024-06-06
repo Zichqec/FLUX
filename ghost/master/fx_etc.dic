@@ -1761,6 +1761,7 @@ OnUpdateFailure //If the update fails
 	if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Error]"
 	else; "\s[6]"
 	--
+	//TODO translation needed for MD5 miss
 	if language == "Placeholder" //TRANSLATORS: If the update fails for some reason. For the md5 miss one, _currentfile is the name of the file that had the error
 	{
 		
@@ -1773,7 +1774,7 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{	
-			"[Die MD5 Werte stimmen nicht mit jenen in '%(_currentfile)' überein.\w8\w8 Du solltest \_a[https://ukagaka.zichqec.com/]Zichqec\_a kontaktieren und sie darüber in Kenntnis setzen.]\e"
+			""
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
@@ -1792,7 +1793,7 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
-			"[Хеш-значении MD5 не согласится друг друга.\w8\w8 Сообщить автором \_a[https://ukagaka.zichqec.com/]Zichqec\_a и расскажи нее, что файл '%(_currentfile)' даёт ошибок MD5.]\e"
+			""
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
@@ -1811,7 +1812,7 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
-			"[La valeur MD5 ne correspond pas pour '%(_currentfile)'.\w8\w8 Tu devrais contacter \_a[https://ukagaka.zichqec.com/]Zichqec\_a et lui faire savoir.]\e"
+			""
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
@@ -1830,7 +1831,7 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
-			"[Wartości MD5 nie zgadzają się na '%(_currentfile)'.\w8\w8 Powinieneś skontaktować się z \_a[https://ukagaka.zichqec.com/]Zichqec\_a i dać im znać.]\e"
+			""
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
@@ -1845,19 +1846,19 @@ OnUpdateFailure //If the update fails
 	{
 		if reference0 == "timeout" //If it timed out
 		{
-			"[The connection has timed out.]\e"
+			"[The connection has timed out.]"
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
-			"[The MD5 values don't match on '%(_currentfile)'.\w8\w8 You should contact \_a[https://ukagaka.zichqec.com/]Zichqec\_a and let her know.]\e"
+			"[The MD5 values don't match on '%(_currentfile)'.\w8\w8 You should contact \_a[https://ukagaka.zichqec.com/]Zichqec\_a to fix this issue.]"
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
-			"[Update cancelled.]\e"
+			"[Update canceled.]"
 		}
 		else //Any other errors
 		{
-			"[Couldn't update: '%(reference0)'.]\e"
+			"[Couldn't update: '%(reference0)'.]"
 		}
 	}
 }
