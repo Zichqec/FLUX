@@ -266,24 +266,6 @@ Capitalize
 }
 
 //-----Menu stuff-----
-season //Current season
-{
-	if hemisphere == 1 //Southern hemisphere
-	{
-		if month > 2 && month < 6; "Autumn"
-		elseif month > 5 && month < 9; "Winter"
-		elseif month > 8 && month < 12; "Spring"
-		else; "Summer"
-	}
-	else //Northern hemisphere
-	{
-		if month > 2 && month < 6; "Spring"
-		elseif month > 5 && month < 9; "Summer"
-		elseif month > 8 && month < 12; "Autumn"
-		else; "Winter"
-	}
-}
-
 nowhour //hour12 displays the hour like a 12 hour clock, except for 12 which is displayed as 0
 {
 	if clockmode == 1 //24 hour
@@ -332,69 +314,6 @@ ranoorsmth //Translator note from Zdzisiu: This is an envelope for Polish time t
 	elseif hour >= 20 && hour < 4
 	{
 		"w nocy"
-	}
-}
-
-nowhemisphere
-{
-	if language == "Placeholder" //TRANSLATORS: labels for hemispheres, for the config menu
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		if hemisphere == 1 //Southern Hemisphere
-		{
-			"Südlich"
-		}
-		else //Northern hemisphere
-		{
-			"Nördlich"
-		}
-	}
-	elseif language == "Русский"
-	{
-		if hemisphere == 1 //Southern Hemisphere
-		{
-			"Южном"
-		}
-		else //Northern hemisphere
-		{
-			"Северном" //так как песня северная лень, помни? каждый раз...
-		}
-	}
-	elseif language == "Français"
-	{
-		if hemisphere == 1 //Southern Hemisphere
-		{
-			"Sud"
-		}
-		else //Northern hemisphere
-		{
-			"Nord"
-		}
-	}
-	elseif language == "Polski"
-	{
-		if hemisphere == 1 //Southern Hemisphere
-		{
-			"Południowa"
-		}
-		else //Northern hemisphere
-		{
-			"Północna"
-		}
-	}
-	else //English
-	{
-		if hemisphere == 1 //Southern Hemisphere
-		{
-			"Southern"
-		}
-		else //Northern hemisphere
-		{
-			"Northern"
-		}
 	}
 }
 

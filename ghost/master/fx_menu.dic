@@ -455,7 +455,6 @@ OnConfigMenu : all
 	{
 		//This is here in case the variables get erased. The buttons will be set to default so the user has something to click. This has happened to my users before and resetting them is a painful process. Do not remove these.
 		
-		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "alle 5 Minuten"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
 		
@@ -465,7 +464,6 @@ OnConfigMenu : all
 		if birthday[0] == "???"; "Dein Geburtstag: \_a[OnChangeBirthday]???\_a\n"
 		else; "Dein Geburtstag: \_a[OnChangeBirthday]%(MonthName(birthday[4],language)) %(GetDaySuffix(birthday[5],language))\_a\n"
 		
-		"Deine Hemisphere: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
 		"Sprache: \_a[OnLanguageMenu]%(language)\_a\n"
 		
 		if SHIORI3FW.BalloonName == "Notes"
@@ -500,7 +498,6 @@ OnConfigMenu : all
 	}
 	elseif language == "Русский"
 	{
-		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
 		
@@ -511,7 +508,6 @@ OnConfigMenu : all
 		if birthday[0] == "???"; "Твой день рождения: \_a[OnChangeBirthday]???\_a\n"
 		else; "Твой день рождения: \_a[OnChangeBirthday]%(MonthName(birthday[4],language)) %(GetDaySuffix(birthday[5],language))\_a\n"
 		
-		"Твое полушарие: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
 		"Язык: \_a[OnLanguageMenu]%(language)\_a\n"
 		
 		if SHIORI3FW.BalloonName == "Notes"
@@ -546,7 +542,6 @@ OnConfigMenu : all
 	}
 	elseif language == "Français"
 	{
-		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
 		
@@ -557,7 +552,6 @@ OnConfigMenu : all
 		if birthday[0] == "???"; "Ton anniversaire : \_a[OnChangeBirthday]???\_a\n"
 		else; "Ton anniversaire : \_a[OnChangeBirthday]%(birthday[5]) %(MonthName(birthday[4],language))\_a\n"
 		
-		"Ton hémisphère: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
 		"Langage: \_a[OnLanguageMenu]%(language)\_a\n"
 		
 		if SHIORI3FW.BalloonName == "Notes"
@@ -593,7 +587,6 @@ OnConfigMenu : all
 	elseif language == "Polski"
 	{
 		//This is here in case the variables get erased. The buttons will be set to default so the user has something to click. This has happened to my users before and resetting them is a painful process. Do not remove these.
-		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
 		
@@ -603,7 +596,6 @@ OnConfigMenu : all
 		if birthday[0] == "???"; "Twoje urodziny: \_a[OnChangeBirthday]???\_a\n"
 		else; "Twoje urodziny: \_a[OnChangeBirthday]%(GetDaySuffix(birthday[5],language)) %(MonthName(birthday[4],language))\_a\n"
 		
-		"Twoja półkula: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
 		"Język: \_a[OnLanguageMenu]%(language)\_a\n"
 		
 		if SHIORI3FW.BalloonName == "Notes"
@@ -639,7 +631,6 @@ OnConfigMenu : all
 	else //English
 	{
 		//This is here in case the variables get erased. The buttons will be set to default so the user has something to click. This has happened to my users before and resetting them is a painful process. Do not remove these.
-		if hemisphere == ""; {hemisphere = 0}
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
 		
@@ -649,7 +640,6 @@ OnConfigMenu : all
 		if birthday[0] == "???"; "Your birthday: \_a[OnChangeBirthday]???\_a\n"
 		else; "Your birthday: \_a[OnChangeBirthday]%(MonthName(birthday[4],language)) %(GetDaySuffix(birthday[5],language))\_a\n"
 		
-		"Your hemisphere: \_a[OnToggleHemisphere]%(nowhemisphere)\_a\n"
 		"Language: \_a[OnLanguageMenu]%(language)\_a\n"
 		
 		if SHIORI3FW.BalloonName == "Notes"
@@ -684,14 +674,6 @@ OnConfigMenu : all
 		"\![*]\q[Back to the menu,OnMenuRun]"
 	}
 	"\![unlock,balloonrepaint]"
-}
-
-OnToggleHemisphere
-{
-	if hemisphere != 0; hemisphere = 0 //Switching to northern
-	else; hemisphere = 1 //Switching to southern
-	
-	OnConfigMenu
 }
 
 OnLanguageMenu : all

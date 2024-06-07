@@ -31,7 +31,6 @@ OnFirstBoot //Dialogue when you first open the ghost
 	shellauthor = ("Zichqec","Zichqec","https://ukagaka.zichqec.com/")
 	DraggedFile = ""
 	balloonmode = 0 //Dark mode
-	hemisphere = 0
 	CustomFuncs = (1,"On")
 	
 	MusicPlayer.SetDefaultSettings
