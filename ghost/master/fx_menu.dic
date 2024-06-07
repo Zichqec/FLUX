@@ -159,9 +159,7 @@ Select.UpdateOff //If the user no longer wants to be notified about updates
 
 OnMenuRun : all //Main menu
 {
-	_currentsong = SPLITPATH(NowPlaying[0])[2]
-	_currentsong = REPLACE(_currentsong,"%(C_BYTE1)",",")
-	_currentsong = REPLACE(_currentsong,"]","\]")
+	_currentsong = MusicPlayer.CurrentSongName
 	
 	"\0\b[2]\_q\![set,autoscroll,disable]\f[anchorvisitedfontcolor,default.anchor]\![close,inputbox,OnSetName]"
 	
