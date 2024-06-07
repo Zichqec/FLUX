@@ -1,157 +1,3 @@
-//----Drag and Drop----
-SetWallpaper : all
-{
-	_filepath = SPLITPATH(_argv[0])
-	_name = _filepath[2] +_filepath[3]
-	_file = REPLACE(_argv[0],"]","\]")
-	
-	if language == "Placeholder" //TRANSLATORS: If the user drags an image file onto FLUX. _filename is the file name, and _fileext is the extension
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"\0\b[0]"
-		
-		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-		else; "\s[6]"
-		
-		"[Bildschirmhintergrund wird zu '%(_name)' geändert...]\n\n\_q"
-		
-		"\![*]\q[Zentriert,OnWallpaper,%(_file),center]\n"
-		"\![*]\q[Kachel,OnWallpaper,%(_file),tile]\n"
-		"\![*]\q[Dehnen,OnWallpaper,%(_file),stretch]"
-		
-		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
-		{
-			"\n\![*]\q[Strecken,OnWallpaper,%(_file),span]"
-		}
-		
-		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
-		{
-			"\n\![*]\q[Ausfüllen,OnWallpaper,%(_file),stretch-x]"
-			"\n\![*]\q[Anpassen,OnWallpaper,%(_file),stretch-y]"
-		}
-		
-		"\n\n\![*]\q[Abbrechen,OnCancel]\e"
-	}
-	elseif language == "Русский"
-	{
-		"\0\b[0]"
-		
-		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-		else; "\s[6]"
-		
-		"[Установлю '%(_name)' в качеством обои...]\n\n\_q"
-		
-		"\![*]\q[По и центру рабочего стола,OnWallpaper,%(_file),center]\n"
-		"\![*]\q[На рабочий стол черепицей,OnWallpaper,%(_file),tile]\n"
-		"\![*]\q[Протянутый,OnWallpaper,%(_file),stretch]"
-		
-		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
-		{
-			"\n\![*]\q[Охватывающий,OnWallpaper,%(_file),span]"
-		}
-		
-		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
-		{
-			"\n\![]\q[Наполнить,OnWallpaper,%(_file),stretch-x]"
-			"\n![]\q[Вписаться,OnWallpaper,%(_file),stretch-y]" 
-		}
-		
-		"\n\n\![*]\q[Отменить,OnCancel]\e"
-	}
-	elseif language == "Français"
-	{
-		"\0\b[0]"
-		
-		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-		else; "\s[6]"
-		
-		"[Paramètre '%(_name)' comme fond d'écran...]\n\n\_q"
-		
-		"\![*]\q[Centré,OnWallpaper,%(_file),center]\n"
-		"\![*]\q[Tuile,OnWallpaper,%(_file),tile]\n"
-		"\![*]\q[Etiré,OnWallpaper,%(_file),stretch]"
-		
-		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
-		{
-			"\n\![*]\q[Espacé,OnWallpaper,%(_file),span]"
-		}
-		
-		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
-		{
-			"\n\![*]\q[Remplir,OnWallpaper,%(_file),stretch-x]"
-			"\n\![*]\q[Ajuster,OnWallpaper,%(_file),stretch-y]"
-		}
-		
-		"\n\n\![*]\q[Annuler,OnCancel]\e"
-	}
-	elseif language == "Polski"
-	{
-		"\0\b[0]"
-		
-		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-		else; "\s[6]"
-		
-		"[Ustaw '%(_name)' jako tapetę...]\n\n\_q"
-		
-		"\![*]\q[Wyśrodkowaną,OnWallpaper,%(_file),center]\n"
-		"\![*]\q[Kafelki,OnWallpaper,%(_file),tile]\n"
-		"\![*]\q[Rozciągnięty,OnWallpaper,%(_file),stretch]"
-		
-		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
-		{
-			"\n\![*]\q[Rozpięty,OnWallpaper,%(_file),span]"
-		}
-		
-		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
-		{
-			"\n\![*]\q[Wypełni,OnWallpaper,%(_file),stretch-x]"
-			"\n\![*]\q[Dopasuj,OnWallpaper,%(_file),stretch-y]"
-		}
-		
-		"\n\n\![*]\q[Anuluj,OnCancel]\e"
-	}
-	else //English
-	{
-		"\0\b[0]"
-		
-		if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-		else; "\s[6]"
-		
-		"[Setting '%(_name)' as wallpaper...]\n\n\_q"
-		
-		"\![*]\q[Centered,OnWallpaper,%(_file),center]\n"
-		"\![*]\q[Tiled,OnWallpaper,%(_file),tile]\n"
-		"\![*]\q[Stretched,OnWallpaper,%(_file),stretch]"
-		
-		if "Windows 10" _in_ NotifyOS //NotifyOS is set just below. The Span option is only available if you're on Win 10, so this means it won't display unless you're on Win 10
-		{
-			"\n\![*]\q[Spanned,OnWallpaper,%(_file),span]"
-		}
-		
-		if "Windows 7" _in_ NotifyOS || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on
-		{
-			"\n\![*]\q[Fill,OnWallpaper,%(_file),stretch-x]"
-			"\n\![*]\q[Fit,OnWallpaper,%(_file),stretch-y]"
-		}
-		
-		"\n\n\![*]\q[Cancel,OnCancel]\e"
-	}
-}
-
-OnWallpaper
-{
-	"\0\![set,wallpaper,%(REPLACE(reference0,']','\]')),%(reference1)]\e"
-}
-
-//You can get other information about the OS here, it's in the other references. Reference0 includes the OS system, version, and display name
-OnNotifyOSInfo
-{
-	NotifyOS = reference0
-}
-
 OnInstallBegin
 {
 	"\0\b[0]"
@@ -843,8 +689,6 @@ OnShellInstallFailure //Installing a shell that is set as FLELE only fails
 	{
 		"[Could not install this shell.\w8\w8 The error returned is '%(_error)'.\w8\w8 Please contact \_a[https://ukagaka.zichqec.com/]Zichqec\_a for assistance.]"
 	}
-	--
-	"\e"
 }
 
 OnUpdatedataCreating //Creating an updates2.dau
@@ -1058,75 +902,7 @@ OnVanishSelected
 		"[Uninstalling FLUX...]\n\n\w8\w8\w8\s[0][Have a nice day.]"
 	}
 	--
-	"\_w[3000]\e"
-}
-
-//Changing your mind
-OnVanishCancel 
-{
-	"\0\b[0]"
-	--
-	if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-	else; "\s[6]"
-	--
-	if language == "Placeholder" //TRANSLATORS: The user has decided not to uninstall
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[Deinstallation wurde abgebrochen.]\e"
-	}
-	elseif language == "Русский"
-	{
-		"[Удаленно отметил_а.]\e" //???
-	}
-	elseif language == "Français"
-	{
-		"[Désinstallation annulée.]\e"
-	}
-	elseif language == "Polski"
-	{
-		"[Anulowano dezinstalację.]\e"
-	}
-	else //English
-	{
-		"[Cancelled uninstall.]\e"
-	}
-}
-
-//Canceling uninstallation by double clicking the balloon
-OnVanishButtonHold
-{
-	"\0\b[0]"
-	--
-	if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-	else; "\s[6]"
-	--
-	if language == "Placeholder" //TRANSLATORS: The user cancelled the uninstall before it could complete
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[Deinstallation wurde abgebrochen.]\e"
-	}
-	elseif language == "Русский"
-	{
-		"[Удаленно отметил_а.]\e" //???
-	}
-	elseif language == "Français"
-	{
-		"\0\b[0]\s[6][Désinstallation annulée.]\e"
-	}
-	elseif language == "Polski"
-	{
-		"[Anulowano dezinstalację.]\e"
-	}
-	else //English
-	{
-		"[Cancelled uninstall.]\e"
-	}
+	"\_w[3000]"
 }
 
 //When another ghost has been uninstalled and it switches to this ghost - Also happens if this ghost is open when another is uninstalled
@@ -1196,7 +972,7 @@ OnBIFFBegin
 OnBIFFComplete
 {
 	headers = ""
-	if reference7 != "" && reference0 < 100 //AHAHAHA I FINALLY FIGURED OUT HOW TO GET AN ARRAY OF THE HEADERS WITH AUTO TYPE CONVERT ON. They're normally in reference7, but since auto type convert changes the C_BYTE1 characters to commas, any headers with commas screw things up badly. But you can get the nonconverted values! Still need a loop to add menu markers and stuff to the display, but that can happen in the other function...
+	if reference7 != "" && reference0 < 100
 	{
 		headers = SPLIT(reference.raw[7],C_BYTE1)
 	}
@@ -1654,7 +1430,6 @@ OnUpdateReady
 	else; "\w8\w8\s[6]\e"
 }
 
-//When the update finishes. Don't forget to initialize any new variables you've created, more on that in Bootend.
 //reference0 is 'none' if there were no new files to update with, reference1 is a list of new file names, separated by commas
 OnUpdateComplete
 {
@@ -2049,71 +1824,6 @@ OnUpdateOtherComplete
 	
 }
 
-OnUpdateOther.OnDownloadBegin
-{
-	"\0\b[0]\_q"
-	--
-	//if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-	//else; "\s[6]" //This makes the poses go crazy, rip... I'm adding an exception for the master shell cause it's kinda funny, but I don't think everyone else wants that
-	if nowshell == "FLUX"; "\![embed,OnCustom_ActionSurfaces,Action]"
-	--
-	if language == "Placeholder" //TRANSLATORS: While files are downloading
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[%(Capitalize(reference0)) wird heruntergeladen...]\n\n"
-	}
-	elseif language == "Русский"
-	{
-		"[Загрузу %(reference0)...]\n\n"
-	}
-	elseif language == "Français"
-	{
-		"[Téléchargement de %(reference0)...]\n\n"
-	}
-	elseif language == "Polski"
-	{
-		"[Pobieram %(reference0)...]\n\n"
-	}
-	else //English
-	{
-		"[Downloading %(reference0)...]\n\n"
-	}
-	--
-	_Update_Progress = TOINT(reference1) + 1
-	_Update_Total = TOINT(reference2) + 1
-	Update_Remaining = _Update_Total - _Update_Progress
-	
-
-	//defining starting points
-	_PointA = 1
-	_PointB = 1
-
-	//defining text buffers beforehand, otherwise they don't display right
-	_filled = ""
-	_empty = ""
-
-	//loop calculates how many check boxes to display based on the variables above
-
-	while _PointA <= _Update_Progress
-	{
-		_filled += "♪"
-		_PointA++
-	}
-	//see above except for blank boxes
-	while _PointB <= Update_Remaining
-	{
-		_empty += "♪"
-		_PointB++
-	}
-	--
-	"\f[name,arial]\f[height,+4]%(_filled)\f[color,120,120,120]%(_empty)\f[default]"
-	--
-	"\n\n%(_Update_Progress)/%(_Update_Total)\e"
-}
-
 OnUpdateOtherFailure
 {
 	_target = reference3
@@ -2235,144 +1945,6 @@ OnUpdateOtherFailure
 	}
 }
 
-//reference0 is the name of the site, reference1 is the url
-OnHeadlinesenseBegin
-{
-	"\0\b[0]"
-	--
-	if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-	else; "\s[6]"
-	--
-	if language == "Placeholder" //TRANSLATORS: Opening an RSS feed
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[%(Capitalize(reference0)) wird geöffnet...]\e"
-	}
-	elseif language == "Русский"
-	{
-		"[Открывает %(reference0)...]\e"
-	}
-	elseif language == "Français"
-	{
-		"[Ouverture de %(reference0)...]\e"
-	}
-	elseif language == "Polski"
-	{
-		"[Otwieram %(reference0)...]\e"
-	}
-	else //English
-	{
-		"[Opening %(reference0)...]\e"
-	}
-}
-
-//Taken from Zarla's GT template. Slightly modified because the top part was redundant as far as I could tell..?
-//reference0 is the site name, reference1 is the url, reference3 is the headlines
-OnHeadlinesense.OnFind
-{
-	_display = REPLACE(reference3,"\_a[","\![*]\_a[")
- 	//Headlines
-	"\0\b[2]"
-	--
-	if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-	else; "\s[6]"
-	--
-	"%(reference0):\n\n%(_display)\n"
- 	--
-	//Pages
-	if language == "Placeholder" //TRANSLATORS: Buttons for the RSS feed window
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		if reference2 == "First" || reference2 == "Next"
-		{
-			//Bottom buttons
-			"\![*]\q[Weiter,] - "
-		}
-		--
-		"\![*]\q[Schließen,OnCancel]\e"
-	}
-	elseif language == "Русский"
-	{
-		if reference2 == "First" || reference2 == "Next"
-		{
-			//Bottom buttons
-			"\![*]\q[Следующий,] - "
-		}
-		--
-		"\![*]\q[Закрыть,OnCancel]\e"
-	}
-	elseif language == "Français"
-	{
-		if reference2 == "First" || reference2 == "Next"
-		{
-			//Bottom buttons
-			"\![*]\q[Suivant,] - "
-		}
-		--
-		"\![*]\q[Fermer,OnCancel]\e"
-	}
-	elseif language == "Polski"
-	{
-		if reference2 == "First" || reference2 == "Next"
-		{
-			//Bottom buttons
-			"\![*]\q[Następny,] - "
-		}
-		--
-		"\![*]\q[Zamknij,OnCancel]\e"
-	}
-	else //English
-	{
-		if reference2 == "First" || reference2 == "Next"
-		{
-			//Bottom buttons
-			"\![*]\q[Next,] - "
-		}
-		--
-		"\![*]\q[Close,OnCancel]\e"
-	}
-}
-
-//Looks like this happens if you view a headline and nothing has changed. I can only get RSS to work, so... I'll leave it here just in case.
-OnHeadlinesenseComplete 
-{
-	"\0\b[0]"
-	--
-	if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-	else; "\s[6]"
-	--
-	if language == "Placeholder" //TRANSLATORS: Supposedly this happens if there's no update to a headline when you check it
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[Keine Updates.]\e"
-	}
-	elseif language == "Русский"
-	{
-		"[Ничего нового.]\e"
-	}
-	elseif language == "Français"
-	{
-		"[Pas de mise à jour.]\e"
-	}
-	elseif language == "Polski"
-	{
-		"[Brak aktualizacji.]\e"
-	}
-	else //English
-	{
-		"[No update.]\e"
-	}
-}
-
 //reference0 is the reason it failed
 OnHeadlinesenseFailure
 {
@@ -2407,47 +1979,6 @@ OnHeadlinesenseFailure
 	}
 }
 
-//----Misc----
-
-//reference0 is the name of the server it's connecting to
-OnSNTPBegin
-{
-	"\0\b[0]"
-	--
-	if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
-	else; "\s[6]"
-	--
-	if language == "Placeholder" //TRANSLATORS: Starting an SNTP check
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[Zeit wird abgefragt...]"
-	}
-	elseif language == "Русский"
-	{
-		"[Проверяет часы...]"
-	}
-	elseif language == "Français"
-	{
-		"[Vérification de l'heure...]"
-	}
-	elseif language == "Polski"
-	{
-		"[Sprawdzam czas...]"
-	}
-	else //English
-	{
-		"[Checking the time...]"
-	}
-	--
-	"\w8\w8\e"
-}
-
-//Grabbed this from the GT template, don't see a reason to redo this
-//**** 미카 (http://homepage2.nifty.com/ko-ki/)의 사전을 참고했습니다．감사＞こ 나무 성
-//Above comment from the person who originally coded these functions
 //reference0 is the name of the server it's connecting to, reference1 is the server's time, reference2 is the computer's time, reference3 is the difference (in seconds)
 OnSNTPCompare
 {
@@ -2462,10 +1993,6 @@ OnSNTPCompare
 	}
 	elseif language == "Deutsch"
 	{
-		"[Abgefragte Zeit: %(reference1[1])/%(reference1[2])/%(reference1[0]) %(reference1[3]):%(reference1[4]):%(reference1[5])]\n\_w[1]"
-		--
-		"[Deine Zeit: %(reference2[1])/%(reference2[2])/%(reference2[0]) %(reference2[3]):%(reference2[4]):%(reference2[5])]\n\n\_w[1]"
-		--
 		if reference3 == 0 //if your clock is already accurate.
 		{
 			"[Deine Uhr geht richtig.]\e"
@@ -2479,10 +2006,6 @@ OnSNTPCompare
 	}
 	elseif language == "Русский"
 	{
-		"[Время получил: %(reference1[1])/%(reference1[2])/%(reference1[0]) %(reference1[3]):%(reference1[4]):%(reference1[5])]\n\_w[1]"
-		--
-		"[Твоя время: %(reference2[1])/%(reference2[2])/%(reference2[0]) %(reference2[3]):%(reference2[4]):%(reference2[5])]\n\n\_w[1]"
-		--
 		if reference3 == 0 //if your clock is already accurate.
 		{
 			"[Твой часы в порядке.]\e"
@@ -2496,10 +2019,6 @@ OnSNTPCompare
 	}
 	elseif language == "Français"
 	{
-		"[Heure récupérée : %(reference1[1])/%(reference1[2])/%(reference1[0]) %(reference1[3]):%(reference1[4]):%(reference1[5])]\n\_w[1]"
-		--
-		"[Ton Heure : %(reference2[1])/%(reference2[2])/%(reference2[0]) %(reference2[3]):%(reference2[4]):%(reference2[5])]\n\n\_w[1]"
-		--
 		if reference3 == 0 //if your clock is already accurate.
 		{
 			"[Ton horloge est à l'heure.]\e"
@@ -2513,10 +2032,6 @@ OnSNTPCompare
 	}
 	elseif language == "Polski"
 	{
-		"[Zwrócony czas: %(reference1[1])/%(reference1[2])/%(reference1[0]) %(reference1[3]):%(reference1[4]):%(reference1[5])]\n\_w[1]"
-		--
-		"[Twój czas: %(reference2[1])/%(reference2[2])/%(reference2[0]) %(reference2[3]):%(reference2[4]):%(reference2[5])]\n\n\_w[1]"
-		--
 		if reference3 == 0 //if your clock is already accurate.
 		{
 			"[Twój zegar jest prawidłowy.]\e"
@@ -2530,10 +2045,6 @@ OnSNTPCompare
 	}
 	else //English
 	{
-		"[Retrieved Time: %(reference1[1])/%(reference1[2])/%(reference1[0]) %(reference1[3]):%(reference1[4]):%(reference1[5])]\n\_w[1]"
-		--
-		"[Your Time: %(reference2[1])/%(reference2[2])/%(reference2[0]) %(reference2[3]):%(reference2[4]):%(reference2[5])]\n\n\_w[1]"
-		--
 		if reference3 == 0 //if your clock is already accurate.
 		{
 			"[Your clock is accurate.]\e"
@@ -2614,83 +2125,6 @@ OnSNTPFailure
 	else
 	{
 		"[Couldn't get the time.]\e"
-	}
-}
-
-OnDisplayChange
-{
-	displaybpp = reference0
- 	displaywidth = reference1
-	displayheight = reference2
-}
-
-//Usually at 20% battery or less
-//reference0 should be the exact percentage left
-OnBatteryLow
-{
-	"\0\b[0]"
-	--
-	if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Refuse]"
-	else; "\s[6]"
-	--
-	if language == "Placeholder" //TRANSLATORS: If the battery is getting low
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[Dein Akkustand ist niedrig.]\e"
-	}
-	elseif language == "Русский"
-	{
-		"[Зарядка низкая.]\e"
-	}
-	elseif language == "Français"
-	{
-		"[Ta batterie est faible.]\e"
-	}
-	elseif language == "Polski"
-	{
-		"[Bateria jest na wyczerpaniu..]\e"
-	}
-	else
-	{
-		"[Your battery is getting low.]\e"
-	}
-}
-
-//Usually at 5% battery or less
-//reference0 should be the exact percentage left
-OnBatteryCritical
-{
-	"\0\b[0]"
-	--
-	if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Error]"
-	else; "\s[6]"
-	--
-	if language == "Placeholder" //TRANSLATORS: If the battery is getting critically low
-	{
-		
-	}
-	elseif language == "Deutsch"
-	{
-		"[Dein Akku ist fast leer.]\e"
-	}
-	elseif language == "Русский"
-	{
-		"[Зарядка так низкая, она в опасности.]\e"
-	}
-	elseif language == "Français"
-	{
-		"[Ta batterie a atteint un seuil critique.]\e"
-	}
-	elseif language == "Polski"
-	{
-		"[Bateria jest krytycznie rozładowana..]\e"
-	}
-	else
-	{
-		"[Your battery is critically low.]\e"
 	}
 }
 
