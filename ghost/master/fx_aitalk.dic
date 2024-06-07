@@ -15,8 +15,6 @@ OnAiTalk
 	}
 }
 
-
-//nonoverlap means that all possible dialogue candidates will be chosen at least once before any dialogues are repeated. Note that anything within brackets counts as a single dialogue candidate! This causes the probability issues mentioned in the YAYA tips file, and also, if you separate your RandomTalk into different modes or something, you'll have to make them separate functions if you still want to use nonoverlap!
 RandomTalk
 {
 	if ISFUNC("OnCustom_RandomTalk") && CustomFuncs[0] == 1
@@ -39,9 +37,9 @@ OnMinuteChange
 		AutoUpdates[5] = 0
 	}
 	
-	if HourNotifs[0] == 0 && minute == 0 && hour == 0 && day == 1 && month == 1 //Even if you've got hour notifs off, if there's custom dialogue for the new year it'll display
+	if (minute == 0 && hour == 0 && day == 1 && month == 1) && (ISFUNC("OnCustom_NewYear") && CustomFuncs[0] == 1) //Even if you've got hour notifs off, if there's custom dialogue for the new year it'll display
 	{
-		if ISFUNC("OnCustom_NewYear") && CustomFuncs[0] == 1; OnCustom_NewYear 
+		OnCustom_NewYear 
 	}
 	elseif minute == 0 && HourNotifs[0] == 1 //Top of the hour notifications
 	{
@@ -53,118 +51,33 @@ OnMinuteChange
 		}
 		elseif language == "Deutsch"
 		{
-			if hour == 0
-			{
-				if day == 1 && month == 1
-				{
-					if ISFUNC("OnCustom_NewYear") && CustomFuncs[0] == 1; OnCustom_NewYear
-					else; "[Frohes neues Jahr!]\e"
-				}
-				else
-				{
-					"[Es ist Mitternacht.]\e"
-				}
-			}
-			elseif hour == 12
-			{
-				"[Es ist Mittag.]\e"
-			}
-			else
-			{
-				"[Es ist %(hour12) Uhr.]\e"
-			}
+			if hour == 0; "[Es ist Mitternacht.]"
+			elseif hour == 12; "[Es ist Mittag.]"
+			else; "[Es ist %(hour12) Uhr.]"
 		}
 		elseif language == "Русский"
 		{
-			if hour == 0
-			{
-				if day == 1 && month == 1
-				{
-					if ISFUNC("OnCustom_NewYear") && CustomFuncs[0] == 1; OnCustom_NewYear
-					else; "[С новым годом!]\e"
-				}
-				else
-				{
-					"[Это полночь.]\e"
-				}
-			}
-			elseif hour == 12
-			{
-				"[Это полдень.]\e" //я не знаю если это ж слов или нет
-			}
-			else
-			{
-				"[Это %(hour12) часов.]\e" //? часы?
-			}
+			if hour == 0; "[Это полночь.]"
+			elseif hour == 12; "[Это полдень.]" //я не знаю если это ж слов или нет
+			else; "[Это %(hour12) часов.]" //? часы?
 		}
 		elseif language == "Français"
 		{
-			if hour == 0
-			{
-				if day == 1 && month == 1
-				{
-					if ISFUNC("OnCustom_NewYear") && CustomFuncs[0] == 1; OnCustom_NewYear
-					else; "[Bonne année !]\e"
-				}
-				else
-				{
-					"[Il est minuit.]\e"
-				}
-			}
-			elseif hour == 12
-			{
-				"[Il est midi.]\e"
-			}
-			else
-			{
-				"[Il est %(hour12) heure.]\e"
-			}
+			if hour == 0; "[Il est minuit.]"
+			elseif hour == 12; "[Il est midi.]"
+			else; "[Il est %(hour12) heure.]"
 		}
 		elseif language == "Polski"
 		{
-			if hour == 0
-			{
-				if day == 1 && month == 1
-				{
-					if ISFUNC("OnCustom_NewYear") && CustomFuncs[0] == 1; OnCustom_NewYear
-					else; "[Szczęśliwego nowego roku!]\e"
-				}
-				else
-				{
-					"[Jest północ.]\e"
-				}
-			}
-			elseif hour == 12
-			{
-				"[Jest połódnie.]\e"
-			}
-			else
-			{
-				"[jest %(hour12) %(ranoorsmth).]\e"
-			}
+			if hour == 0; "[Jest północ.]"
+			elseif hour == 12; "[Jest połódnie.]"
+			else; "[jest %(hour12) %(ranoorsmth).]"
 		}
 		else //English
 		{
-			if hour == 0
-			{
-				if day == 1 && month == 1
-				{
-					if ISFUNC("OnCustom_NewYear") && CustomFuncs[0] == 1; OnCustom_NewYear
-					else; "[Happy new year!]\e"
-				}
-				else
-				{
-					"[It's midnight.]\e"
-				}
-			}
-			elseif hour == 12
-			{
-				"[It's noon.]\e"
-			}
-			else
-			{
-				"[It's %(hour12) o'clock.]\e"
-			}
+			if hour == 0; "[It's midnight.]"
+			elseif hour == 12; "[It's noon.]"
+			else; "[It's %(hour12) o'clock.]"
 		}
 	}
 	else //Won't do offscreen dialogue or update checks if the top of the hour notif happens instead
