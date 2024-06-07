@@ -163,7 +163,7 @@ OnMenuRun : all //Main menu
 	_currentsong = REPLACE(_currentsong,"%(C_BYTE1)",",")
 	_currentsong = REPLACE(_currentsong,"]","\]")
 	
-	"\0\b[2]\_q\![set,autoscroll,disable]\f[anchorvisitedfontcolor,default.anchor]"
+	"\0\b[2]\_q\![set,autoscroll,disable]\f[anchorvisitedfontcolor,default.anchor]\![close,inputbox,OnSetName]"
 	
 	if language == "Placeholder" //TRANSLATORS: This is the main menu, use _currentsong for the currently playing song
 	{
@@ -434,7 +434,6 @@ OnConfigMenu : all
 	if TooltipDisplay == ""; {TooltipDisplay = 1}
 	
 	if gender == ""; gender = "undef"
-	if username == ""; username = DefaultUsername
 	
 	_cstfncbtn = ""; if CustomFuncs[0] == 1; _cstfncbtn = onoff[0]; else; _cstfncbtn = onoff[1]
 	_atoupdbtn = ""; if AutoUpdates[0] == 1; _atoupdbtn = onoff[0]; else; _atoupdbtn = onoff[1]
@@ -444,7 +443,6 @@ OnConfigMenu : all
 	
 	"\C\![lock,balloonrepaint]\c\0"
 	"\![set,autoscroll,disable]\_q\b[4]\f[anchorvisitedfontcolor,default.anchor]"
-	"\![close,inputbox,OnNameTeach]\![close,inputbox,OnUserBornMonth]\![close,inputbox,OnUserBornDay]"
 	
 	if language == "Placeholder" //TRANSLATORS: The config menu. I imagine the pronoun system is going to get tricky between languages, talk to me about this and we can work something out. It's important to be able to pick them, though, because shells aren't necessarily going to be translated and might use these envelopes. If your language doesn't have pronouns, you could put something like 'masculine', 'feminine', or 'neutral' in their place.
 	{
@@ -457,7 +455,7 @@ OnConfigMenu : all
 		if talkrate == ""; {talkrate = "alle 5 Minuten"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
 		
-		"Dein Name: \_a[OnChangeName]%(username)\_a\n"
+		"Dein Name: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Deine Pronomen: \_a[OnChangePronoun]%(ersie)/%(ihmihr)/%(ihnsie)/%(seinihr)\_a\n"
 		
 		"Sprache: \_a[OnLanguageMenu]%(language)\_a\n"
@@ -498,7 +496,7 @@ OnConfigMenu : all
 		if talkoption == ""; {talkoption = 0}
 		
 		
-		"Твоя имя: \_a[OnChangeName]%(username)\_a\n"
+		"Твоя имя: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Твои Местоимение: \_a[OnChangePronoun]%(онона)/%(егоее)\_a\n"
 		
 		"Язык: \_a[OnLanguageMenu]%(language)\_a\n"
@@ -539,7 +537,7 @@ OnConfigMenu : all
 		if talkoption == ""; {talkoption = 0}
 		
 		
-		"Ton nom : \_a[OnChangeName]%(username)\_a\n"
+		"Ton nom : \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Tes pronoms : \_a[OnChangePronoun]%(Capitalize(ilelle))/%(Capitalize(luielle))/%(Capitalize(celuicelle))\_a\n"
 		
 		"Langage: \_a[OnLanguageMenu]%(language)\_a\n"
@@ -580,7 +578,7 @@ OnConfigMenu : all
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
 		
-		"Twoje imię: \_a[OnChangeName]%(username)\_a\n"
+		"Twoje imię: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Twoje zaimki: \_a[OnChangePronoun]%(Capitalize(onona))/%(Capitalize(jejjemu))/%(Capitalize(jejjego))\_a\n"
 		
 		"Język: \_a[OnLanguageMenu]%(language)\_a\n"
@@ -621,7 +619,7 @@ OnConfigMenu : all
 		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
 		if talkoption == ""; {talkoption = 0}
 		
-		"Your name: \_a[OnChangeName]%(username)\_a\n"
+		"Your name: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Your pronouns: \_a[OnChangePronoun]%(Capitalize(heshe))/%(Capitalize(himher))/%(Capitalize(hisher))\_a\n"
 		
 		"Language: \_a[OnLanguageMenu]%(language)\_a\n"
@@ -662,7 +660,7 @@ OnConfigMenu : all
 
 OnLanguageMenu : all
 {
-	"\0\b[2]\_q\![set,autoscroll,disable]"
+	"\0\b[2]\_q\![set,autoscroll,disable]\![close,inputbox,OnSetName]"
 	
 	if language == "Placeholder" //TRANSLATORS: This uses the language menu function set up in fx_anchor.dic. Make sure you've set that up. This blurb here is the top of the language menu.
 	{
@@ -1150,7 +1148,7 @@ nowtalkopt
 
 Select.BugReport
 {
-	"\0\b[0]"
+	"\0\b[0]\![close,inputbox,OnSetName]"
 	--
 	//TODO translation needed
 	if language == "Placeholder" //TRANSLATORS: The bug report option. If you want to allow people to contact you about errors in your translation, go ahead and mention that here and give a url/means of contacting you. You can replace the mention/link to me for the english dialogues with your own.
@@ -1191,7 +1189,7 @@ Select.BugReport
 
 Select.UpdateCheck //Starts an update check
 {
-	"\![updatebymyself]\e"
+	"\![close,inputbox,OnSetName]\![updatebymyself]\e"
 }
 
 onoff

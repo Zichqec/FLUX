@@ -348,3 +348,9 @@ Pool
 {
     if TOINT(_argv[1]); EVAL("%(_argv[0])")
 }
+
+username
+{
+	if nickname != ""; nickname
+	else; SHIORI3FW.UserNameFull
+}

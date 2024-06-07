@@ -67,7 +67,7 @@ OnMusicPlayer.Menu : all
 		_starting_value = MusicPlayer.PageIndex * MusicPlayer.SongsPerPage
 	}
 	
-	"%(MusicPlayer.Scope)\c%(MusicPlayer.LargeBalloon)\_q\*\![set,autoscroll,disable]\![no-autopause]\f[anchorvisitedfontcolor,default.anchor]"
+	"%(MusicPlayer.Scope)\c%(MusicPlayer.LargeBalloon)\_q\*\![set,autoscroll,disable]\![no-autopause]\f[anchorvisitedfontcolor,default.anchor]\![close,inputbox,OnSetName]"
 	
 	//TRANSLATORS: These are the buttons at the top of the music player menu. There are also some buttons at the bottom
 	//TODO: Translation update, the settings menu changed to just settings, and the move songs menu changed to help

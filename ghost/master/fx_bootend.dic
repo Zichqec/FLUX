@@ -7,7 +7,6 @@ OnFirstBoot //Dialogue when you first open the ghost
 	totalhours = 0		//Total number of hours the ghost has been run
 	nowshell = "FLUX"
 	nowscale = 100
-	username = "User"
 	gender = "undef"
 	talkrate = "every 5 minutes"
 	aitalkinterval = 300
@@ -84,7 +83,6 @@ OnLanguageChosen
 	language = reference0
 	AutoUpdates[2] = onoff[0]
 	CustomFuncs[1] = onoff[0]
-	username = DefaultUsername
 	
 	"\0\s[0]\b[2]"
 	--
@@ -563,6 +561,12 @@ BootVars
 	MusicSettings[4] = ""
 	MusicSettings[5] = 0
 	InstalledShellName = ""
+	
+	if ISVAR("username")
+	{
+		nickname = username
+		ERASEVAR("username")
+	}
 }
 
 UpdateVars
