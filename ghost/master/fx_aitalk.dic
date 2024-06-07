@@ -180,7 +180,12 @@ InstalledShellDialogue : all
 		"\![*]\q[Close,OnCancel]"
 	}
 	
-	"\![raise,OnDialogueVars,InstalledNewShell]\e"
+	"\![raise,OnInstalledNewShell]\e"
+}
+
+OnInstalledNewShell
+{
+	InstalledShellName = ""
 }
 
 OnOverlap

@@ -88,19 +88,6 @@ br
 	else; " "
 }
 
-//Setting variables in random dialogue
-//In the YAYA tips, I go into detail about setting single variables in random dialogue. This function will allow you to set more than one, or anything else you might want to do. Call it with \![raise,OnDialogueVars,yourValue], replacing yourValue with whatever you want reference0 to be.
-OnDialogueVars
-{
-	case reference0
-	{
-		when "InstalledNewShell"
-		{
-			InstalledShellName = ""
-		}
-	}
-}
-
 //Added with help from steve02081504. Send an argument to this function to send it with ValueNotify. This can be used even while the ghost is minimized to run tags like the sound command.
 SHIORI3FW.MakeValueNotify : void
 {
