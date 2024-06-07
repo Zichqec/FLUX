@@ -146,14 +146,14 @@ OnClose
 	NowPlaying[0] = ""
 	NowPlaying[2] = ""
 	MusicSettings[4] = ""
-	lastclosed = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)") //This tracks the last time the ghost was closed.
+	lastclosed = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)")
 	
 	"\![sound,stop]%(OnNotifySongInfo)"
 	--
 	if ISFUNC("OnCustom_OnClose") && CustomFuncs[0] == 1; REPLACE(OnCustom_OnClose,"\e","")
 	else; FluxClose
 	--
-	"\w8\w8\-\e"
+	"\w8\w8\-"
 }
 
 FluxClose
@@ -224,7 +224,7 @@ OnGhostChanging //Changing to another ghost. This is the internal name of your g
 		NowPlaying[0] = ""
 		NowPlaying[2] = ""
 		MusicSettings[4] = ""
-		lastclosed = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)") //This tracks the last time the ghost was closed.
+		lastclosed = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)")
 		
 		"\![sound,stop]%(OnNotifySongInfo)"
 		--
@@ -288,15 +288,15 @@ OnGhostChanged //After switching.
 	}
 }
 
-OnShellChanging //Starting to change the shell
+OnShellChanging : all //Starting to change the shell
 {
 	MusicSettings[5] = 1
 	MusicSettings[6] = SHIORI3FW.LastSurface[0]
 	shellchange = IARRAY
 	"\1\s[-1]\0\![get,property,OnGetCoords,currentghost.scope(0).rect]" //This gets the current ghost coordinates so that they don't jump around the screen when they change shells
-	--
+	
 	"\b[0]"
-	--
+	
 	if reference0 == nowshell
 	{
 		if language == "Placeholder" //TRANSLATORS: Dialogue for switching to the same shell again, effectively reloading it
@@ -327,10 +327,9 @@ OnShellChanging //Starting to change the shell
 	else
 	{
 		if ISFUNC("OnCustom_OnShellChanging") && CustomFuncs[0] == 1; OnCustom_OnShellChanging
-		else; "\e"
 	}
-	--
-	"\w8\w8\e"
+	
+	"\w8\w8"
 }
 
 OnShellChanged //After the shell has changed
@@ -410,13 +409,11 @@ OnGetCoords2 //This gets the x and y coordinates when changing shells
 			}
 			--
 			RestartSinging
-			--
-			"\e"
 		}
 	}
 	else
 	{
-		"\![raise,OnChangedShell,%(shellchange[7])]\e"
+		"\![raise,OnChangedShell,%(shellchange[7])]"
 	}
 	nowshell = shellchange[7]
 }
@@ -519,13 +516,9 @@ OnGetCustomShellDialogue
 	"\![reload,shiori]"
 }
 
-//Unminimizing
 OnWindowStateRestore
 {
-	if Singing; SingingSurfaces //If a song is playing
-	else; NonSingingSurfaces //If no song is playing
-	--
-	"\e"
+	OnSurfaceRestore
 }
 
 //These are all the variables you want to set during a normal boot. So every time the ghost opens, we reset the timekeeping, whether the ghost has checked for updates, and if they've said anything yet.
@@ -542,8 +535,7 @@ BootVars
 	MusicSettings[5] = 0
 	InstalledShellName = ""
 }
-//These are new variables to initialize after an update. By checking if the variable doesn't exist before initializing it, we prevent variables already in use from being overwritten. This is VERY IMPORTANT, or you risk resetting the user's progress on your new variables every time they update.
-//ISVAR is a built in YAYA function that checks if a variable exists(is initialized) or not. It returns 0 if the variable doesn't exist, and 1 if it does.
+
 UpdateVars
 {
 	//if ISVAR("examplevariable") == 0; examplevariable = 0
@@ -586,8 +578,7 @@ FirstBootVars
 	//---
 	deleteshitai = (0,"Off")
 	AutoUpdates = (1,0,"On",0,0,0)
-	//nowmode = "Default" //Uncomment if you plan to add more modes
-	installdate = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)","%(ghostver)") //This tracks the exact day and time the ghost was installed, in case you want to mess around with that later. It also tracks what version the user installed, which may be helpful for debugging!
+	installdate = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)","%(ghostver)")
 	nowballoon = ("Notes",26)
 	
 	NowPlaying = ("",-1,"")
