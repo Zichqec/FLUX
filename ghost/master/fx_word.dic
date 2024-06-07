@@ -291,12 +291,6 @@ runmin //Same as above but with the runtime minutes
 	else; "%(runtime[1])"
 }
 
-ap //AM or PM - ampm is 0 during am, and 1 during pm
-{
- 	if ampm == 0; "AM"
- 	else; "PM"
-}
-
 ranoorsmth //Translator note from Zdzisiu: This is an envelope for Polish time to replace am/pm
 {
 	if hour < 12 && hour >= 4
