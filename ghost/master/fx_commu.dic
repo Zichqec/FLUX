@@ -1,8 +1,6 @@
 OnCommunicate
 {
-	"\0\b[0]"
-	--
-	"[%(n)\w8%(n)\w8%(n)\w4~]"
+	"\0\b[0][%(n)\w8%(n)\w8%(n)\w4~]"
 }
 
 OnNotifySongInfo
