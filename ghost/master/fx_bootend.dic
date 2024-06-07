@@ -128,7 +128,7 @@ OnBoot //Normal booting
 	BootVars //This sets variables you want to be set on a normal boot, like resetting the runtime. Again, make sure you set these up at the bottom.
 	_timesince = FUNCTIONEX("time_check.dll","how_many_days",lastclosed[0],lastclosed[1],lastclosed[2],0,0,0) * -1
 	
-	"%(OnNotifySongInfo)%(OnDiscordPluginBoot)%(UpdateTooltips)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]"
+	"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]"
 	--
 	if ISFUNC("OnCustom_trayicon"); OnCustom_trayicon
 	else; "\![set,tasktrayicon,flux.ico]"
@@ -268,9 +268,7 @@ OnGhostChanging //Changing to another ghost. This is the internal name of your g
 OnGhostChanged //After switching.
 {
 	BootVars
-	--
-	UpdateTooltips
-	--
+	
 	if ISFUNC("OnCustom_trayicon"); OnCustom_trayicon
 	else; "\![set,tasktrayicon,flux.ico]"
 	--
@@ -385,8 +383,6 @@ OnGetCoords2 //This gets the x and y coordinates when changing shells
 	shellchange[6] = TOINT(shellchange[1]) - TOINT(shellchange[5]) //Should be the feet height of the before shell, and then the height of the after shell added to it...
 	--
 	"\0\![move,--X=%(shellchange[0]),--Y=%(TOINT(shellchange[6])),--base=primaryscreen]"
-	--
-	UpdateTooltips
 	--
 	OnGetCustomShellDialogue
 	lastTalk = ""

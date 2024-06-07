@@ -912,7 +912,7 @@ OnVanished
 	if ISFUNC("OnCustom_OnVanished") && CustomFuncs[0] == 1
 	{
 		BootVars
-		"%(OnNotifySongInfo)%(OnDiscordPluginBoot)%(UpdateTooltips)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]"
+		"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]"
 		--
 		if ISFUNC("OnCustom_trayicon"); OnCustom_trayicon
 		else; "\![set,tasktrayicon,flux.ico]"
