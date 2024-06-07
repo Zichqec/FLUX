@@ -23,6 +23,17 @@ OnChangePronoun : all
 	{
 		
 	}
+	elseif language == "Español"  //%(élella)/%(susu)/%(estáestá)
+	{
+		"[¿Cómo quieres qué te mencionen?]"
+		--
+		"\n\n\_q"
+		"\![*]\q[Él/Él/Su/,OnPronouns,masc]\n"
+		"\![*]\q[Ella/Ella/Su,OnPronouns,fem]\n"
+		"\![*]\q[Elle/Elle/su,OnPronouns,undef]"
+		
+		"\n\n\![*]\q[Cancelar,OnConfigMenu]\e"
+	}
 	elseif language == "Deutsch"  //%(ersie)/%(ihmihr)/%(ihnsie)/%(seinihr)
 	{
 		"[Welche Pronomen möchtest du verwenden?]"

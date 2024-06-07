@@ -54,6 +54,29 @@ hesshes
 	else; "they're" //Neutral
 }
 
+//TODO TRANSLATIO are the other two necessary? they seem like they're just the same thing repeated and could be snipped
+//Spanish
+élella
+{
+	if gender == "masc"; "él"
+	elseif gender == "fem"; "ella"
+	else; "elle" //this is a neopronoun as there isn't neutral ones in Spanish -Celeste
+}
+
+susu
+{
+	if gender == "masc"; "su"
+	elseif gender == "fem"; "su"
+	else; "su" //Neutral
+}
+
+estáestá
+{
+	if gender == "masc"; "está"
+	elseif gender == "fem"; "está"
+	else; "está" //Neutral
+}
+
 //German
 ersie
 {

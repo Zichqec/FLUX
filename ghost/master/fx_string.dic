@@ -7,6 +7,7 @@ On_homeurl
 On_recommendrootbutton.caption //Change this to your username, or change the whole caption to whatever you want. This is the top list of websites
 {
 	if language == "Placeholder"; {} //TRANSLATORS: The label for the top set of websites
+	elseif language == "Español"; {"Sobre los Desarrolladores"}
 	elseif language == "Deutsch"; {"Mehr von den Entwicklern"}
 	elseif language == "Русский"; {"Больше от Авторы"}
 	elseif language == "Français"; {"Plus des devs"}
@@ -19,6 +20,10 @@ On_sakura.recommendsites //Websites under the top dropdown menu, make em whateve
 	if language == "Placeholder" //TRANSLATORS: This directs to the links for the devs. Make sure to copy this format carefully, you'll need to make an array function for your language below
 	{
 		FormatLinks(recommendsites_sakura_placeholder)
+	}
+	elseif language == "Español"
+	{
+		FormatLinks(recommendsites_sakura_español)
 	}
 	elseif language == "Deutsch"
 	{
@@ -45,6 +50,13 @@ On_sakura.recommendsites //Websites under the top dropdown menu, make em whateve
 recommendsites_sakura_placeholder : array //TRANSLATORS: This is where the actual links go, observe the ones below for how to set this up. Make sure there's always a space before and after the | ! Also, be sure to add your name and link here for your translation! And all of my thanks for bringing FLUX to a wider audience <3 Also note, shellauthor[0] will be the name of the dev for the current shell, and shellauthor[2] is their craftmanurl
 {
 	
+}
+
+recommendsites_sakura_español : array
+{
+	"Reproductor FLUX creado por Zichqec                 | https://ukagaka.zichqec.com/"
+	"Traducción al español por Celeste    				 | https://rosecelesteart.tumblr.com/"
+	"Shell %(nowshell) creado por %(shellauthor[0]) 	 | %(shellauthor[2])"
 }
 
 recommendsites_sakura_deutsch : array
@@ -85,6 +97,7 @@ recommendsites_sakura_english : array
 On_portalrootbutton.caption //Caption for the second list of websites
 {
 	if language == "Placeholder"; {} //TRANSLATORS: The label for the second set of links in the right click menu
+	elseif language == "Español";  {"Sitios de Referencia"}
 	elseif language == "Deutsch"; {"Bezugs-Webseiten"}
 	elseif language == "Русский";  {"Справочные Сайти"}
 	elseif language == "Français"; {"Sites Références"}
@@ -98,6 +111,10 @@ On_sakura.portalsites
 	if language == "Placeholder" //TRANSLATORS: This directs to the resource links, same deal as above
 	{
 		FormatLinks(portalsites_sakura_placeholder)
+	}
+	elseif language == "Español"
+	{
+		FormatLinks(portalsites_sakura_español)
 	}
 	elseif language == "Deutsch"
 	{
@@ -126,11 +143,19 @@ portalsites_sakura_placeholder : array //TRANSLATORS: The actual list of links
 	
 }
 
+portalsites_sakura_español : array 
+{
+	"Ukagaka Dream Team Discord              	   | https://ukagakadreamteam.tumblr.com/discord"
+	"SSP (J)                                  	   | http://ssp.shillest.net/"
+	"Ukadoc                                        | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"YAYA Wiki (J)                                 | http://emily.shillest.net/ayaya/index.php?"
+}
+
 portalsites_sakura_deutsch : array 
 {
 	"Ukagaka Dream Team Discord            | https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)                               | http://ssp.shillest.net/"
-	"Ukadoc (J)                            | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"Ukadoc                                | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
 	"YAYA Wiki (J)                         | http://emily.shillest.net/ayaya/index.php"
 }
 
@@ -138,7 +163,7 @@ portalsites_sakura_русский : array
 {
 	"Дискорд Ukagaka Dream Team              | https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)                                 | http://ssp.shillest.net/"
-	"Укадок (J)                              | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"Укадок                                  | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
 	"Вики YAYA (J)                           | http://emily.shillest.net/ayaya/index.php"
 }
 
@@ -146,7 +171,7 @@ portalsites_sakura_french : array
 {
 	"Discord de l'Ukagaka Dream Team             | https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)                                     | http://ssp.shillest.net/"
-	"Ukadoc (J)                                  | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"Ukadoc                                      | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
 	"Wiki du YAYA (J)                            | http://emily.shillest.net/ayaya/index.php"
 }
 
@@ -154,7 +179,7 @@ portalsites_sakura_polski : array
 {
 	"Ukagaka Dream Team Discord                | https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)                                   | http://ssp.shillest.net/"
-	"Ukadoc (J)                                | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"Ukadoc                                    | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
 	"YAYA Wiki (J)                             | http://emily.shillest.net/ayaya/index.php"
 }
 

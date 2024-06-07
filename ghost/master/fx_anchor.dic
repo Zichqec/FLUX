@@ -44,7 +44,7 @@ OnAnchorSelect
 LanguageMenuDisplay
 {
 	//TRANSLATORS: Add the name of your language to this list! However you type it here is how you should also type your if checks. Once you add your language here, it should automatically appear in the first boot language menu and config menu. Double check to make sure the spacing is ok! If it doesn't work for some reason, let me know.
-	_languages = "English,Polski,Français,Русский,Deutsch"
+	_languages = "English,Polski,Français,Русский,Deutsch,Español"
 	
 	_function = _argv[0]
 	

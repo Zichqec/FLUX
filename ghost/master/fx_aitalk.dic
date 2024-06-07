@@ -47,6 +47,12 @@ OnMinuteChange
 		{
 			
 		}
+		elseif language == "Español"
+		{
+			if hour == 0; "[Es medianoche.]"
+			elseif hour == 12; "[Es mediodía.]"
+			else; "[Son las %(hour12) en punto.]"
+		}
 		elseif language == "Deutsch"
 		{
 			if hour == 0; "[Es ist Mitternacht.]"
@@ -143,6 +149,13 @@ InstalledShellDialogue : all
 	if language == "Placeholder" //TRANSLATORS: After installing a new shell. This one happens when FLUX uses my workaround to install FLELE shells that are set up to only be installed by FLELE. It should match the normal shell installed dialogue, except for the envelope used. InstalledShellName will be the name of the shell.
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"['%(InstalledShellName)' instalado con éxito.]\n\n"
+		
+		"\![*]\q[Cambiar a %(InstalledShellName),OnChangeToShell,%(InstalledShellName)]\n\n"
+		"\![*]\q[Cerrar,OnCancel]"
 	}
 	elseif language == "Deutsch"
 	{

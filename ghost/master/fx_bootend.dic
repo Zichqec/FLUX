@@ -44,6 +44,10 @@ OnFirstLangMenu : all
 	{
 		
 	}
+	elseif _lang == "Español"
+	{
+		"[Por favor elije un idioma para el reproductor FLUX. Puede ser cambiado en cualquier momento en el menú Configuración.]"
+	}
 	elseif _lang == "Polski"
 	{
 		"[Wybierz język dla odtwarzacza FLUX. Możesz go w każdej chwili zmienić w ustawieniach.]"
@@ -89,6 +93,10 @@ OnLanguageChosen
 	if language == "Placeholder" //TRANSLATORS: This is the introduction dialogue, once a language has been chosen.
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"[Instalación de reproductor FLUX completada.]\n\n\w8\w8[Para añadir canciones,\w4 arrástra y suéltalas sobre FLUX.\w8\w8 También puedes arrastrar y soltar una lista de reproducción .m3u.]\n\n\w8\w8[Si quieres cambiar la apariencia de FLUX,\w4 dirígete a los menús Shell y Dressup.]\n\n\w8\w8[Para otros ajustes,\w4 incluyendo el cambio de idioma,\w4 ve al menú Configuración.]"
 	}
 	elseif language == "Deutsch"
 	{	
@@ -141,9 +149,13 @@ FluxBoot
 {	
 	"\0\s[0]\b[0]"
 	--
-	if language == "Placeholder" //TRANSLATORS: This is for booting the ghost, both regular booting and changing to FLUX from another ghost
+	if language == "Placeholder" //TRANSLATORS: This is for booting the ghost
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"[Iniciando reproductor FLUX...]\n\n\w8\w8[Listo para reproducir música.]\e"
 	}
 	elseif language == "Deutsch"
 	{
@@ -187,9 +199,13 @@ FluxClose
 {
 	"\0\b[0]%(NonSingingSurfaces)"
 	--
-	if language == "Placeholder" //TRANSLATORS: This is the generic closing dialogue, both for closing and switching to another ghost
+	if language == "Placeholder" //TRANSLATORS: This is the generic closing dialogue
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"[Cerrando reproductor FLUX.]\n\n\w8\w8[¡Qué pases un buen día!]"
 	}
 	elseif language == "Deutsch"
 	{
@@ -222,6 +238,10 @@ OnGhostChanging //Changing to another ghost. This is the internal name of your g
 		if language == "Placeholder" //TRANSLATORS: Reloading the ghost
 		{
 			
+		}
+		elseif language == "Español"
+		{
+			"[Cargando de nuevo...]"
 		}
 		elseif language == "Deutsch"
 		{
@@ -280,6 +300,10 @@ OnGhostChanged //After switching.
 		{
 			
 		}
+		elseif language == "Español"
+		{
+			"[Carga completada.]\e"
+		}
 		elseif language == "Deutsch"
 		{
 			"[Neu-Laden abgeschlossen.]\e"
@@ -324,9 +348,13 @@ OnShellChanging : all //Starting to change the shell
 	
 	if reference0 == nowshell
 	{
-		if language == "Placeholder" //TRANSLATORS: Dialogue for switching to the same shell again, effectively reloading it
+		if language == "Placeholder" //TRANSLATORS: Reloading the shell (by changing to the one that's already in use)
 		{
 			
+		}
+		elseif language == "Español"
+		{
+			"[Cargando Shell de nuevo.]"
 		}
 		elseif language == "Deutsch"
 		{
@@ -410,6 +438,10 @@ OnGetCoords2 //This gets the x and y coordinates when changing shells
 			{
 				
 			}
+			elseif language == "Español"
+			{
+				"[Carga '%(_shell)' completada.]"
+			}
 			elseif language == "Deutsch"
 			{
 				"['%(_shell)' wurde neu geladen.]"
@@ -463,6 +495,10 @@ OnChangedShell //I have this here because it takes a moment for it to read the d
 		if language == "Placeholder" //TRANSLATORS: This dialogue is for changing to a shell with no custom dialogue. reference0 is the name of the shell
 		{
 			
+		}
+		elseif language == "Español"
+		{
+			"[Cambiando a '%(reference0)'.]"
 		}
 		elseif language == "Deutsch"
 		{

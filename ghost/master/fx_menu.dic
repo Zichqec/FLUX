@@ -8,6 +8,20 @@ OnSakuraMenu : all
 		{
 			
 		}
+		elseif language == "Español"
+		{
+			"[Hay actualizaciones disponibles para:]\n\n\![]"
+			
+			if AutoUpdates[3] == 1; "[Reproductor FLUX]\n\![]"
+			
+			if AutoUpdates[4] == 1; "[Shell '%(nowshell)']\n\![]"
+			
+			if AutoUpdates[5] == 1; "[Balloon '%(SHIORI3FW.BalloonName)']\n"
+			
+			"\_q\n\n\![*]\q[Pobierz teraz,OnStartUpdates]\n" //TODO TRANSLATION this appears to be the polish text?
+			"\![*]\q[Może potem,UpdateLater]\n\n"
+			"\![*]\q[Wyłącz auto-aktualizacje,UpdateOff]"
+		}
 		elseif language == "Deutsch"
 		{
 			"[Es sind Updates verfügbar für:]\n\n\![]"
@@ -99,6 +113,10 @@ Select.UpdateLater //If the user decides to update later
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[Se te lo recordará una vez al día.]\e"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Du wirst einmal am Tag daran erinnert werden.]\e"
@@ -135,6 +153,10 @@ Select.UpdateOff //If the user no longer wants to be notified about updates
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[Comprobación de actualizaciones desactivada.\w4 Puedes volver a activarlas en el menú Configuración.]\e"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Auto-Update-Überprüfungen wurden ausgeschaltet,\w4 du kannst sie in den Einstellungen wieder einschalten.]\e"
@@ -166,6 +188,56 @@ OnMenuRun : all //Main menu
 	if language == "Placeholder" //TRANSLATORS: This is the main menu, use _currentsong for the currently playing song
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if NowPlaying[0] == ""//If no song is playing
+		{
+			"[El reproductor no está activo.]"
+		}
+		elseif NowPlaying[2] != "" //If a song is paused
+		{
+			"[En pausa: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
+		}
+		else //If a song is playing
+		{
+			"[En reproducción: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
+		}
+		
+		"\n\n\![*]\q[Ajustes de Música,OnMusicPlayer.Menu]\n"
+		
+		if lastTalk != ""
+		{
+			"\n\![*]\q[Repetir último diálogo,OnLastTalk]"
+		}
+		
+		if ISFUNC("OnCustom_RandomTalk") && CustomFuncs[0] == 1; "\n\![*]\q[Di algo,OnAiTalk,Menu]\n"
+		
+		"\n\![*]\q[Cambiar Shells,OnShellMenu]\n"
+		
+		if ARRAYSIZE(dressups.available) > 0; "\![*]\q[Dressups,OnDressupMenu]\n"
+		
+		if ISFUNC("OnCustom_Menu") && CustomFuncs[0] == 1; "\n%(OnCustom_Menu)\n"
+		
+		"\n\![*]\q[Configuración,OnConfigMenu]"
+		
+		if debug > 0 //%(debug = 1) in script input to show the debug options
+		{
+			if CustomFuncs[0] == 1; "\n\n\![*]\q[Recarga Funciones de Shell,OnReloadShellFuncs]"
+			else; "\n\n[100][Las funciones y diálogos de Shell personalizados están desactivados]"
+			
+			if ISFUNC("OnCustom_TestFunc") && CustomFuncs[0] == 1; "  \![*]\q[Función de Prueba Personalizada,OnCustom_TestFunc]"
+		}
+		
+		"\n\n\![*]\q[Cerrar,OnCancel]"
+		
+		"\n\n\n[half]\f[height,-2]"
+		
+		"Tiempo de Ejecución: %(runtime[0]):%(runmin)"
+		
+		"\nFLUX v%(ghostver)"
+		
+		if ISFUNC("shellver") && CustomFuncs[0] == 1; "     %(nowshell) v%(shellver)"
 	}
 	elseif language == "Deutsch"
 	{
@@ -439,12 +511,55 @@ OnConfigMenu : all
 	_tooltipbtn = ""; if TooltipDisplay == 1; _tooltipbtn = onoff[0]; else; _tooltipbtn = onoff[1]
 	
 	
-	"\C\![lock,balloonrepaint]\c\0"
+	"\C\![lock,balloonrepaint]\c\0\*"
 	"\![set,autoscroll,disable]\_q\b[4]\f[anchorvisitedfontcolor,default.anchor]"
+	
+	//TODO TRANSLATION the "reset" button for username needs a translation
 	
 	if language == "Placeholder" //TRANSLATORS: The config menu. I imagine the pronoun system is going to get tricky between languages, talk to me about this and we can work something out. It's important to be able to pick them, though, because shells aren't necessarily going to be translated and might use these envelopes. If your language doesn't have pronouns, you could put something like 'masculine', 'feminine', or 'neutral' in their place.
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		//This is here in case the variables get erased. The buttons will be set to default so the user has something to click. This has happened to my users before and resetting them is a painful process. Do not remove these.
+		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
+		if talkoption == ""; {talkoption = 0}
+		
+		"Tu nombre: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
+		"Tus pronombres: \_a[OnChangePronoun]%(Capitalize(élella))/%(Capitalize(élella))/%(Capitalize(susu))\_a\n"
+		
+		"Idioma: \_a[OnLanguageMenu]%(language)\_a\n"
+		
+		if SHIORI3FW.BalloonName == "Notes"
+		{
+			switch balloonmode
+			{
+				"\_a[OnBalloonModeToggle,Dark]Modo Oscuro\_a"
+				"\f[color,disable]\__q[OnBalloonModeToggle,Dark]Modo Oscuro\__q\f[color,default]"
+			}
+			"  "
+			switch balloonmode
+			{
+				"\f[color,disable]\__q[OnBalloonModeToggle,Light]Modo Claro\__q\f[color,default]"
+				"\_a[OnBalloonModeToggle,Light]Modo Claro\_a"
+			}
+			"\n"
+		}
+		
+		"\nFrecuencia de diálogos: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
+		"Hablar \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"Notificaciones cada hora: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
+		"Comprobación automática de actualizaciones \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
+		"\![*]\q[Comprueba actualizaciones de FLUX,UpdateCheck]\n"
+		"\![*]\q[Comprueba actualizaciones de Shells,UpdateShell]\n"
+		"Funciones/Diálogos de Shell personalizados \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		
+		if IsEmergencyMode; "\_a[OnExplainShellError,config][ERROR DE SHELL: FUNCIONES DE PERSONALIZACIÓN DESACTIVADAS]\_a\n"
+		else; "\n"
+		
+		"\![*]\q[Informar de un bug,BugReport]\n\n"
+		"\![*]\q[Volver al menú,OnMenuRun]"
 	}
 	elseif language == "Deutsch"
 	{
@@ -664,6 +779,10 @@ OnLanguageMenu : all
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[Por favor elige un idioma para el reproductor FLUX. Tome en cuenta que esto no afectará los idiomas de los Shells.]"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Bitte wähle eine Sprache für FLUX-Player. Beachte, dass dies keinen Einfluss auf die Sprache der Shell hat.]"
@@ -692,6 +811,11 @@ OnLanguageMenu : all
 	if language == "Placeholder" //TRANSLATORS: A cancel button under the language menu, and also a button that leads to documentation for translating FLUX.
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"\n\n\![*]\q[Traduce FLUX,OnTranslateDocument]"
+		"\n\![*]\q[Vuelve a Configuración,OnConfigMenu]"
 	}
 	elseif language == "Deutsch"
 	{
@@ -737,6 +861,16 @@ OnChangeTalk : all
 	if language == "Placeholder" //TRANSLATORS: The menu for changing the talk rate. Make sure to leave the numbers in the second argument, those are what actually sends the info to the next function
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"\0%(bb)\_q[¿Con qué frecuencia debe haber diálogo aleatorio? Tome en cuenta que no todas las Shells lo incluyen.]\n\n"
+		"\![*]\q[Cada 30 segundos,OnTalkRate,Thirty,30]\n"
+		"\![*]\q[Cada minuto,OnTalkRate,Minute,60]\n"
+		"\![*]\q[Cada 3 minutos,OnTalkRate,ThreeMin,180]\n"
+		"\![*]\q[Cada 5 minutos,OnTalkRate,FiveMin,300]\n"
+		"\![*]\q[No hables,OnTalkRate,None,0]\n\n"
+		"\![*]\q[Déjalo,OnConfigMenu]"
 	}
 	elseif language == "Deutsch"
 	{
@@ -823,6 +957,29 @@ nowtalkrate
 	if language == "Placeholder" //TRANSLATORS: Envelope for the talk rate, affects the display in the menu
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if talkrate == "every 30 seconds"
+		{
+			"cada 30 segundos"
+		}
+		elseif talkrate == "every minute"
+		{
+			"cada minuto"
+		}
+		elseif talkrate == "every 3 minutes"
+		{
+			"cada 3 minutos"
+		}
+		elseif talkrate == "every 5 minutes"
+		{
+			"cada 5 minutos"
+		}
+		else //Never
+		{
+			"nunca"
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -986,13 +1143,17 @@ OnExplainShellError
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[Error al cargar código de Shell personalizado.\w4 El Shell ha sido cargado pero no tendrá diálogo ni funciones personalizados.]\n\n\w8\w8[Por favor contacte con el autor del Shell,\w4 \_a[%(shellauthor[2])]%(shellauthor[0])\_a,\w4 para informar de este error.]"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Beim Laden des Shell-Spezifischen Codes ist ein Fehler aufgetreten;\w4 die Shell wurde geladen aber wird keine Shell-Spezifischen Funktionen oder Dialoge haben.]\n\n\w8\w8[Bitte kontaktiere den Shell Autor,\w4 _a[%(shellauthor[2])]%(shellauthor[0])_a,\w4 um diesen Fehler zu melden.]"
 	}
 	elseif language == "Русский"
 	{
-		"[Получилось ошибка, когда загружает пользовательский код внешного вида;\w4 загрузил вид, но пользовательские функцие не работает.]\n\n\w8\w8[Пожалуйста, сообщите автор этого внешного вида,\w4 _a[%(shellauthor[2])]%(shellauthor[0])_a,\w4 чтобы он_а  знает об этом.]"
+		"[Получилось ошибка, когда загружает пользовательский код внешного вида;\w4 загрузил вид, но пользовательские функцие не работает.]\n\n\w8\w8[Пожалуйста, сообщите автор этого внешного вида,\w4 \_a[%(shellauthor[2])]%(shellauthor[0])\_a,\w4 чтобы он_а  знает об этом.]"
 	}
 	elseif language == "Français"
 	{
@@ -1064,6 +1225,21 @@ nowtalkopt
 	if language == "Placeholder" //TRANSLATORS: Set the dialogue you want to show for the talk options in the config menu here. There's an option for talking only while FLUX is playing music, one for talking only when FLUX is NOT playing music, and one for talking at any time
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if talkoption == 1 //Talk only while playing music
+		{
+			"solo cuando hay música en reproducción"
+		}
+		elseif talkoption == 2 //Talk only while not playing music
+		{
+			"solo cuando no haya música"
+		}
+		else //Talk any time
+		{
+			"en cualquier momento"
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -1142,7 +1318,7 @@ nowtalkopt
 	}
 }
 
-Select.BugReport
+Select.BugReport : all
 {
 	"\0\b[0]\![close,inputbox,OnSetName]"
 	--
@@ -1151,28 +1327,34 @@ Select.BugReport
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		""
+		
+		"\n\n\![*]\q[Volver a Configuración,OnConfigMenu]\n\![*]\q[Cerrar,OnCancel]\e"
+	}
 	elseif language == "Deutsch"
 	{
 		""
-		--
+		
 		"\n\n\![*]\q[Zurück zu Einstellungen,OnConfigMenu]\n\![*]\q[Schließen,OnCancel]\e"
 	}
 	elseif language == "Русский"
 	{
 		""
-		--
+		
 		"\n\n\![*]\q[Назад в Конфигурация,OnConfigMenu]\n\![*]\q[Закрыть,OnCancel]\e"
 	}
 	elseif language == "Français"
 	{
 		""
-		--
+		
 		"\n\n\![*]\q[Retour à Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]\e"
 	}
 	elseif language == "Polski"
 	{
 		""
-		--
+		
 		"\n\n\![*]\q[Powrót do ustawień,OnConfigMenu]\n\![*]\q[Zamknij,OnCancel]\e"
 	}
 	else //English
@@ -1194,6 +1376,10 @@ onoff
 	if language == "Placeholder"
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"Encendido,Apagado"
 	}
 	elseif language == "Deutsch"
 	{
@@ -1246,6 +1432,19 @@ OnShellMenu : all
 	if language == "Placeholder" //TRANSLATORS: The shell menu. If you're interested in translating the documentation for how to create a FLUX shell, do let me know and I could set it up to open the language-specific documentation
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"\![*]\q[Descarga más Shells,OnShellUrl]"
+		"\n\![*]\q[Crea tu propio Shell,OnCustomShell]"
+		"\n\![*]\q[Shell aleatorio,OnRandomShell]"
+		
+		if ARRAYSIZE(ShellList) > 19; "\n\n[half]\![*]\q[Volver al menú,OnMenuRun]"
+		
+		"\n\n%(_display)" //Displays the available shells
+		
+		"\n\n[half]\![*]\q[Volver al menú,OnMenuRun]"
+		"\n\![*]\q[Cerrar,OnCancel]\e"
 	}
 	elseif language == "Deutsch"
 	{
@@ -1368,6 +1567,10 @@ OnDressupMenu //Menu for dressups
 			{
 				
 			}
+			elseif language == "Español"
+			{
+				_display += "\__q[OnDressupMenu,%(_character)]Personaje %(_character)\__q\n"
+			}
 			elseif language == "Deutsch"
 			{
 				_display += "\__q[OnDressupMenu,%(_character)]Charakter %(_character)\__q\n"
@@ -1409,6 +1612,44 @@ OnDressupMenu //Menu for dressups
 	if language == "Placeholder" //TRANSLATORS: This is the top of the dressup menu. It looks a bit complicated, but most of it is just back buttons tbh.
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if reference0 == "" //Top level
+		{
+			if ARRAYSIZE(_currentcharacters) > 16; "\0%(bbb)"
+			else; "\0%(bb)"
+			--
+			"Personaje:"
+			--
+			if ARRAYSIZE(_currentcharacters) > 22; "\n\n\![*]\q[Volver al menú,OnMenuRun]"
+		}
+		elseif reference1 == "" //After a character is chosen
+		{
+			if ARRAYSIZE(_currentcategories) > 16; "\0%(bbb)"
+			else; "\0%(bb)"
+			--
+			if ARRAYSIZE(dressupcharacters) == 1; "Categorías:\n\n"
+			else; "Categorías de Personaje %(reference0) :\n\n" //Note: This is when the user clicks into a character submenu. So this is the same as the "Character %(_character)" translation above
+			--
+			"\![*]\q[Dressups aleatorios,OnRandomDressup,%(reference0)]"
+			--
+			if ARRAYSIZE(_currentcategories) > 22
+			{
+				if ARRAYSIZE(dressupcharacters) == 1; "\n\![*]\q[Volver al menú,OnMenuRun]"
+				else; "\n\![*]\q[Volver,OnDressupMenu]"
+			}
+		}
+		else //After a category is chosen
+		{
+			if _items > 16; "\0%(bbb)"
+			else; "\0%(bb)"
+			--
+			if ARRAYSIZE(dressupcharacters) == 1; "Categoría: %(reference1)"
+			else; "Personaje %(reference0) %(reference1):"
+			--
+			if _items > 22; "\n\n\![*]\q[Volver,OnDressupMenu,%(reference0)]"
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -1606,6 +1847,24 @@ OnDressupMenu //Menu for dressups
 	if language == "Placeholder" //TRANSLATORS: This is the bottom of the dressup menu, much simpler thankfully
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if reference0 == ""
+		{
+			"\![*]\q[Volver al menú,OnMenuRun]\n\![*]\q[Cerrar,Cancel]"
+		}
+		elseif reference1 == ""
+		{
+			if ARRAYSIZE(dressupcharacters) == 1; "\![*]\q[Volver al menú,OnMenuRun]"
+			else; "\![*]\q[Volver,OnDressupMenu]"
+			--
+			"\n\![*]\q[Cerrar,Cancel]"
+		}
+		else
+		{
+			"\![*]\q[Volver,OnDressupMenu,%(reference0)]\n\![*]\q[Cerrar,Cancel]"
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -1830,6 +2089,10 @@ OnReloadShellFuncs
 			if language == "Placeholder" //TRANSLATORS: If the dev reloads their shell from the main menu and there's an error, this message will appear
 			{
 				
+			}
+			elseif language == "Español"
+			{
+				"[Error al volver a cargar funciones personalizadas.\w8\w8 Compruebe el registro de errores para más información.]"
 			}
 			elseif language == "Deutsch"
 			{

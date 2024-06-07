@@ -46,10 +46,18 @@ OnInstallComplete : all
 		{
 			
 		}
+		elseif language == "Español"
+		{
+			"['%(reference1)' instalado con éxito.]\n\n"
+			
+			"\![*]\q[Llamar %(reference1),CallGhost]\n"
+			"\![*]\q[Cambiar a %(reference1),ChangeToGhost]\n\n"
+			"\![*]\q[Cerrar,OnCancel]"
+		}
 		elseif language == "Deutsch"
 		{
 			"['%(reference1)' wurde erfolgreich installiert.]\n\n"
-			--
+			
 			"\![*]\q[%(reference1) rufen,CallGhost]\n"
 			"\![*]\q[Zu %(reference1) wechseln,ChangeToGhost]\n\n"
 			"\![*]\q[Schließen,OnCancel]"
@@ -57,7 +65,7 @@ OnInstallComplete : all
 		elseif language == "Русский"
 		{
 			"[Установил '%(reference1)'.]\n\n"
-			--
+			
 			"\![*]\q[Вызвать %(reference1),CallGhost]\n"
 			"\![*]\q[Сменить в %(reference1),ChangeToGhost]\n\n"
 			"\![*]\q[Закрыть,OnCancel]"
@@ -65,7 +73,7 @@ OnInstallComplete : all
 		elseif language == "Français"
 		{
 			"['%(reference1)' installé avec succès.]\n\n"
-			--
+			
 			"\![*]\q[Appeler %(reference1),CallGhost]\n"
 			"\![*]\q[Changer pour %(reference1),ChangeToGhost]\n\n"
 			"\![*]\q[Fermer,OnCancel]"
@@ -73,7 +81,7 @@ OnInstallComplete : all
 		elseif language == "Polski"
 		{
 			"[Zainstalowałem '%(reference1)'.]\n\n"
-			--
+			
 			"\![*]\q[Przywołaj %(reference1),CallGhost]\n"
 			"\![*]\q[Zmień na %(reference1),ChangeToGhost]\n\n"
 			"\![*]\q[Zamknij,OnCancel]"
@@ -92,6 +100,13 @@ OnInstallComplete : all
 		if language == "Placeholder" //TRANSLATORS: When a shell has finished installing. reference1 is the name of the installed shell
 		{
 			
+		}
+		elseif language == "Español"
+		{
+			"['%(reference1)' instalado con éxito.]\n\n"
+			
+			"\![*]\q[Cambiar a %(reference1),OnChangeToShell]\n\n"
+			"\![*]\q[Cerrar,OnCancel]"
 		}
 		elseif language == "Deutsch"
 		{
@@ -134,6 +149,10 @@ OnInstallComplete : all
 		if language == "Placeholder" //TRANSLATORS: Generic install finished dialogue. reference1 is the name of the installed thing
 		{
 			
+		}
+		elseif language == "Español"
+		{
+			"['%(reference1)' instalado con éxito.]\e"
 		}
 		elseif language == "Deutsch"
 		{
@@ -195,6 +214,10 @@ OnInstallFailure //If the install fails
 		{
 			
 		}
+		elseif language == "Español"
+		{
+			"[Instalación cancelada.]\e"
+		}
 		elseif language == "Deutsch"
 		{
 			"[Installationsvorgang wurde abgebrochen.]\e"
@@ -221,6 +244,10 @@ OnInstallFailure //If the install fails
 		if language == "Placeholder" //TRANSLATORS: If the installation failed. reference0 is the reason why it failed
 		{
 			
+		}
+		elseif language == "Español"
+		{
+			"[No se ha podido realizar la instalación.\w8\w8 '%(reference0)'.]\e"
 		}
 		elseif language == "Deutsch"
 		{
@@ -268,6 +295,17 @@ OnInstallReroute //When you try to install a file meant for another ghost, and t
 	if language == "Placeholder" //TRANSLATORS: This is if the user tries to install a file for another ghost while the other ghost is running. Rather than copy over the function from below, since I think that'd feel weird in practice, I'm going to have it direct the user to close FLELE in order to install FLELE shells. reference1 is the type of item you tried to install, reference0 is the sakura name of the ghost it's compatible with
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if reference0 == "flele" && reference1 == "shell"
+		{
+			"[Este Shell solo está disponible para instalar en FLELE.\w8\w8 Puede ser instalado en FLUX,\w4 pero debes cerrar FLELE primero.\w8\w8 Como alternativa,\w4 puedes modificar el archivo install.txt del Shell para eliminar la restricción.]\e"
+		}
+		else
+		{
+			"[%(reference1) solo es compatible con %(reference0).]\e"
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -463,6 +501,10 @@ OnInstallRefuse
 				{
 					
 				}
+				elseif language == "Español"
+				{
+					"[El Shell no ha podido ser instalado.\w8 Por favor extraiga el archivo,\w4 diríjase al archivo install.txt\w4 y elimine la línea 'accept,flele'.\w8 Comprima el archivo como .zip\w4 e inténtelo de nuevo.]\e"
+				}
 				elseif language == "Deutsch"
 				{
 					"[Die Shell konnte nicht installiert werden.\w8 Bitte extrahiere das Archiv,\w4 gehe zu install.txt\w4 und entferne die Zeile 'accept,flele'.\w8 Dann komprimiere den Ordner wieder\w4 und versuche es nochmal.]\e"
@@ -496,6 +538,10 @@ OnInstallRefuse
 		if language == "Placeholder" //TRANSLATORS: If the user tries to install something that's only compatible with another ghost. reference1 is the type of thing they tried to install, reference0 is the sakura name of the other ghost
 		{
 			
+		}
+		elseif language == "Español"
+		{
+			"[%(reference1) no ha podido ser instalado.\w4 Solo es compatible con %(reference0).]\e"
 		}
 		elseif language == "Deutsch"
 		{
@@ -669,6 +715,10 @@ OnShellInstallFailure //Installing a shell that is set as FLELE only fails
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[No se ha podido instalar este Shell.\w8\w8 El error es '%(_error)'.\w8\w8 Por favor pongase en contacto con \_a[https://zichqec.github.io/s-the-skeleton/]Zichqec\_a para más asistencia.]"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Diese Shell konnte nicht installiert werden.\w8\w8 Der aufgetretene Fehler ist '%(_error)'.\w8\w8 Bitte kontaktiere \_a[https://ukagaka.zichqec.com/]Zichqec\_a für Hilfe.]"
@@ -702,6 +752,10 @@ OnUpdatedataCreating //Creating an updates2.dau
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[Creando archivo de actualización...]\e"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Update-Datei wird erstellt...]\e"
@@ -734,6 +788,10 @@ OnUpdatedataCreated //Finished creating
 	if language == "Placeholder" //TRANSLATORS: Finished creating an updates2.dau file
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"[Creación de archivo updates2.dau completada.]\e"
 	}
 	elseif language == "Deutsch"
 	{
@@ -769,6 +827,10 @@ OnNarCreating //Creating a .nar
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[Creando archivo .nar...]\e"
+	}
 	elseif language == "Deutsch"
 	{
 		"[.nar wird erstellt...]\e"
@@ -802,6 +864,10 @@ OnNarCreated //Finished creating
 	if language == "Placeholder" //TRANSLATORS: Finished creating a .nar. The anchor will open the folder where the .nar was saved
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"[Creación de \_a[OnNarLocation,%(reference1)]%(reference0)\_a completada.]\e"
 	}
 	elseif language == "Deutsch"
 	{
@@ -847,6 +913,10 @@ OnVanishSelecting
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[¿Seguro qué quieres desinstalar el reproductor FLUX y todos sus Shells instalados?]\e"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Bist du sicher, dass du FLUX-Player und alle Shells, die du installiert hast, deinstallieren möchtest?]\e"
@@ -880,6 +950,10 @@ OnVanishSelected
 	if language == "Placeholder" //TRANSLATORS: The user has decided to uninstall. Added some extra wait time here in case they change their minds or clicked by accident
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"[Desinstalando FLUX...]\n\n\w8\w8\s[0][Que pases un buen día.]"
 	}
 	elseif language == "Deutsch"
 	{
@@ -946,6 +1020,10 @@ OnBIFFBegin
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[Buscando correos nuevos...]\e"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Posteingang wird auf neue E-Mails überprüft...]\e"
@@ -985,6 +1063,28 @@ OnBIFFComplete
 	if language == "Placeholder" //TRANSLATORS: Result of checking emails, reference0 is the number of emails. It will only offer to show headers if headers are on and there are less than 100 of them
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		_s = ""; if reference0 != 1; _s = "s" //Plural check, adds an s if the number of emails is not 1
+		
+		if reference0 == 0 //No new emails
+		{
+			"[No hay correo nuevo.]\e"
+		}
+		else //There are new emails
+		{
+			"[Hay %(reference0) correo%(_s) nuevo%(_s).]"
+			--
+			if headers != "" //If there are headers
+			{
+				"\n\n\w8\w8[¿Quieres ver el encabezado?]"
+				--
+				"\n\n\![*]\q[Sí,OnSeeHeaders]  \![*]\q[No,OnCancel]"
+			}
+			--
+			"\e"
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -1135,6 +1235,10 @@ OnSeeHeaders
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"\n\n\![*]\q[Cerrar,OnCancel]\e"
+	}
 	elseif language == "Deutsch"
 	{
 		"\n\n\![*]\q[Schließen,OnCancel]\e"
@@ -1171,6 +1275,31 @@ OnBIFFFailure
 	if language == "Placeholder" //TRANSLATORS: If the email checking fails
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if reference0 == "timeout" //If the connection times out
+		{
+			"[El tiempo de conexión se ha agotado.]\e"
+		}
+		elseif reference0 == "kick" //if the ghost can't get into the account. Gmail requires an app specific password to get in
+		{
+			"[No se ha podido acceder a la cuenta.]\e"
+		}
+		elseif reference0 == "defect" //If info in the POP menu is wrong
+		{
+			"[Los ajustes POP no son correctos.]"
+			--
+			"\![Abrir,configurationdialog,biff]\e"
+		}
+		elseif reference0 == "artificial" //As far as I can tell, artificial is if the user double clicks on the balloon to stop it
+		{
+			"[Comprobación de correo cancelada.]\e"
+		}
+		else //Some other kind of error.
+		{
+			"[No se ha podido comprobar el correo: '%(reference0)'.]\e"
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -1359,6 +1488,10 @@ OnUpdateBegin
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[Comenzando actualización...]\w8\e"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Updatevorgang wird gestartet...]\w8\e"
@@ -1394,6 +1527,12 @@ OnUpdateReady
 	if language == "Placeholder" //TRANSLATORS: If update files were found. reference0 is the number of files
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		_s = ""; if reference0 != 1; _s = "s"; //plural checks, adds an s and changes is to are if there's more than 1 file
+
+		"[Hay %(reference0) archivo%(_s) nuevo%(_s).]"
 	}
 	elseif language == "Deutsch"
 	{
@@ -1445,12 +1584,24 @@ OnUpdateComplete
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		if reference0 == "none"
+		{
+			"[FLUX ya está actualizado.\w8\w8 Para buscar actualizaciones de apariencias,\w4 pulse la opción actualizar apariencia en el menú configuración.]\e"
+		}
+		else
+		{
+			"[Actualización de FLUX completada.\w8\w8 ¿Abrir historial de cambios?]"
+			--
+			"\n\n\![*]\q[Sí,OnChangeLog]\n\![*]\q[No,OnCancel]\e"
+		}
+	}
 	elseif language == "Deutsch"
 	{
 		if reference0 == "none"
 		{
 			"[FLUX ist auf dem neuesten Stand.\w8\w8 Um nach Shell-Updates zu suchen\w4 klicke die 'Update Shell' Option in den Einstellungen.]\e"
-			
 		}
 		else
 		{
@@ -1540,6 +1691,25 @@ OnUpdateFailure //If the update fails
 	if language == "Placeholder" //TRANSLATORS: If the update fails for some reason. For the md5 miss one, _currentfile is the name of the file that had the error
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if reference0 == "timeout" //If it timed out
+		{
+			"[El tiempo de conexión se ha agotado.]\e"
+		}
+		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
+		{
+			"[Los valores MD5 no concuerdan con '%(_currentfile)'.\w8\w8 Debes contactar con \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a y dejárselo saber.]\e"
+		}
+		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
+		{
+			"[Actualización cancelada.]\e"
+		}
+		else //Any other errors
+		{
+			"[No se ha podido actualizar: '%(reference0)'.]\e"
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -1651,6 +1821,10 @@ OnUpdateOtherBegin
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[Comenzando actualización de %(reference3)...]"
+	}
 	elseif language == "Deutsch"
 	{
 		"[%(Capitalize(reference3))-Update wird gestartet...]"
@@ -1696,6 +1870,12 @@ OnUpdateOtherReady
 	if language == "Placeholder" //TRANSLATORS: If update files were found for a shell/balloon. reference0 is the number of files
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		_s = ""; if reference0 != 1; _s = "s" //plural checks, adds an s and changes 'is' to 'are' if there's more than 1 file
+
+		"[Hay %(reference0) archivo%(_s) nuevo%(_s).]"
 	}
 	elseif language == "Deutsch"
 	{
@@ -1758,6 +1938,17 @@ OnUpdateOtherComplete
 		else //If an update completed successfully
 		{
 			
+		}
+	}
+	elseif language == "Español"
+	{
+		if reference0 == "none"
+		{
+			"['%(_name)' ya está actualizado.]\e"
+		}
+		else
+		{
+			"[%(Capitalize(_target)) ha sido actualizado.]\e"
 		}
 	}
 	elseif language == "Deutsch"
@@ -1838,6 +2029,25 @@ OnUpdateOtherFailure
 	if language == "Placeholder" //TRANSLATORS: If the shell/balloon update fails for some reason. For the md5 miss one, _currentfile is the name of the file that had the error, _author is the name of the shell/balloon author, and _authorurl is their url which you can put into the anchor. reference3 will be either shell or ghost, depending on what type of update this is. You can use _target like Polski does to set up labels for shell/balloon specifically for your language
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if reference0 == "timeout"
+		{
+			"[El tiempo de conexión se ha agotado.]\e"
+		}
+		elseif reference0 == "md5 miss"
+		{
+			"[Los valores MD5 no corresponden con '%(_currentfile)'.\w8\w8 Debes contactar con \_a[%(_authorurl)]%(_author)\_a.]\e"
+		}
+		elseif reference0 == "artificial"
+		{
+			"[Actualización de %(Capitalize(reference3)) cancelada.]\e"
+		}
+		else //Any other errors
+		{
+			"[No se ha podido actualizar %(reference3): '%(reference0)'.]\e"
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -1957,6 +2167,10 @@ OnHeadlinesenseFailure
 	{
 		
 	}
+	elseif language == "Español" 
+	{
+		"[No se han podido actualizar las noticias: '%(reference0)'.]"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Feed konnte nicht geupdatet werden: '%(reference0)'.]"
@@ -1990,6 +2204,19 @@ OnSNTPCompare
 	if language == "Placeholder" //TRANSLATORS: Comparing the time
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		if reference3 == 0
+		{
+			"[Tu reloj está en hora.]\e"
+		}
+		else
+		{
+			"[Tu reloj no está en hora.]\n\n"
+			--
+			"\_q\![*]\q[Arreglar,OnSNTPExecute]  \![*]\q[No hacer nada,OnCancel]\e" 
+		}
 	}
 	elseif language == "Deutsch"
 	{
@@ -2072,6 +2299,10 @@ OnSNTPExecute
 	{
 		
 	}
+	elseif language == "Español"
+	{
+		"[El reloj ha sido ajustado.]\e"
+	}
 	elseif language == "Deutsch"
 	{
 		"[Deine Uhr wurde richtiggestellt.]\e"
@@ -2105,6 +2336,10 @@ OnSNTPFailure
 	if language == "Placeholder" //TRANSLATORS: If the SNTP check fails
 	{
 		
+	}
+	elseif language == "Español"
+	{
+		"[No se ha podido obtener la hora.]\e"
 	}
 	elseif language == "Deutsch"
 	{
