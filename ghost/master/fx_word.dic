@@ -255,36 +255,15 @@ IsEmergencyMode
 	else; 0
 }
 
-//If you write all your envelopes as lowercase, you can send them through this function whenever you need the first letter capitalized! It'd look something like this: "%(Capitalize(exampleenvelope))"
 Capitalize
 {
-	_word = _argv[0] //Sets _word to the word the user sent
-	_buffer = SUBSTR(_word,0,1) //Storing the first character in _buffer
-	_word = ERASE(_word,0,1) //Erasing the first character from _word
-	_word = INSERT(_word,0,TOUPPER(_buffer)) //Making the character in _buffer uppercase and inserting it back into _word
-	_word //Returns the capitalized word
+	_first = SUBSTR(_argv[0],0,1)
+	_rest = ERASE(_argv[0],0,1) //Erase the first character and store everything else in _rest
+	
+	TOUPPER(_first) + _rest
 }
 
 //-----Menu stuff-----
-nowhour //hour12 displays the hour like a 12 hour clock, except for 12 which is displayed as 0
-{
-	if clockmode == 1 //24 hour
-	{
-		"%(hour)"
-	}
-	else //12 hour
-	{
-		if hour12 == 0; "12"
-		else; "%(hour12)"
-	}
-}
-
-nowmin //Adding a 0 to the minute if it's under 10
-{
-	if minute < 10; "0%(minute)"
-	else; "%(minute)"
-}
-
 runmin //Same as above but with the runtime minutes
 {
 	if runtime[1] < 10; "0%(runtime[1])"
