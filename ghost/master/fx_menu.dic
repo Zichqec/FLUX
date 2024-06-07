@@ -433,7 +433,6 @@ OnConfigMenu : all
 	if HourNotifs[1] == ""; {HourNotifs[0] = 0; HourNotifs[1] = onoff[1]}
 	if TooltipDisplay == ""; {TooltipDisplay = 1}
 	
-	if birthday[0] == "" || birthday[2] == ""; {birthday = IARRAY; birthday[0] = "???"}
 	if gender == ""; gender = "undef"
 	if username == ""; username = DefaultUsername
 	
@@ -460,9 +459,6 @@ OnConfigMenu : all
 		
 		"Dein Name: \_a[OnChangeName]%(username)\_a\n"
 		"Deine Pronomen: \_a[OnChangePronoun]%(ersie)/%(ihmihr)/%(ihnsie)/%(seinihr)\_a\n"
-		
-		if birthday[0] == "???"; "Dein Geburtstag: \_a[OnChangeBirthday]???\_a\n"
-		else; "Dein Geburtstag: \_a[OnChangeBirthday]%(MonthName(birthday[4],language)) %(GetDaySuffix(birthday[5],language))\_a\n"
 		
 		"Sprache: \_a[OnLanguageMenu]%(language)\_a\n"
 		
@@ -505,9 +501,6 @@ OnConfigMenu : all
 		"Твоя имя: \_a[OnChangeName]%(username)\_a\n"
 		"Твои Местоимение: \_a[OnChangePronoun]%(онона)/%(егоее)\_a\n"
 		
-		if birthday[0] == "???"; "Твой день рождения: \_a[OnChangeBirthday]???\_a\n"
-		else; "Твой день рождения: \_a[OnChangeBirthday]%(MonthName(birthday[4],language)) %(GetDaySuffix(birthday[5],language))\_a\n"
-		
 		"Язык: \_a[OnLanguageMenu]%(language)\_a\n"
 		
 		if SHIORI3FW.BalloonName == "Notes"
@@ -548,9 +541,6 @@ OnConfigMenu : all
 		
 		"Ton nom : \_a[OnChangeName]%(username)\_a\n"
 		"Tes pronoms : \_a[OnChangePronoun]%(Capitalize(ilelle))/%(Capitalize(luielle))/%(Capitalize(celuicelle))\_a\n"
-		
-		if birthday[0] == "???"; "Ton anniversaire : \_a[OnChangeBirthday]???\_a\n"
-		else; "Ton anniversaire : \_a[OnChangeBirthday]%(birthday[5]) %(MonthName(birthday[4],language))\_a\n"
 		
 		"Langage: \_a[OnLanguageMenu]%(language)\_a\n"
 		
@@ -593,9 +583,6 @@ OnConfigMenu : all
 		"Twoje imię: \_a[OnChangeName]%(username)\_a\n"
 		"Twoje zaimki: \_a[OnChangePronoun]%(Capitalize(onona))/%(Capitalize(jejjemu))/%(Capitalize(jejjego))\_a\n"
 		
-		if birthday[0] == "???"; "Twoje urodziny: \_a[OnChangeBirthday]???\_a\n"
-		else; "Twoje urodziny: \_a[OnChangeBirthday]%(GetDaySuffix(birthday[5],language)) %(MonthName(birthday[4],language))\_a\n"
-		
 		"Język: \_a[OnLanguageMenu]%(language)\_a\n"
 		
 		if SHIORI3FW.BalloonName == "Notes"
@@ -636,9 +623,6 @@ OnConfigMenu : all
 		
 		"Your name: \_a[OnChangeName]%(username)\_a\n"
 		"Your pronouns: \_a[OnChangePronoun]%(Capitalize(heshe))/%(Capitalize(himher))/%(Capitalize(hisher))\_a\n"
-		
-		if birthday[0] == "???"; "Your birthday: \_a[OnChangeBirthday]???\_a\n"
-		else; "Your birthday: \_a[OnChangeBirthday]%(MonthName(birthday[4],language)) %(GetDaySuffix(birthday[5],language))\_a\n"
 		
 		"Language: \_a[OnLanguageMenu]%(language)\_a\n"
 		
