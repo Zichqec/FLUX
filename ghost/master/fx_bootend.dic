@@ -1,6 +1,41 @@
 OnFirstBoot //Dialogue when you first open the ghost
 {
-	FirstBootVars //Initialize all your variables at the very bottom!
+	lastTalk = ""
+	runtime[0] = 0		//Hours, replaces passhour
+	runtime[1] = 0		//Minutes, replaces passmin
+	runtime[2] = 0		//Seconds, replaces passsec
+	totalhours = 0		//Total number of hours the ghost has been run
+	nowshell = "FLUX"
+	nowscale = 100
+	username = "User"
+	gender = "undef"
+	birthday = IARRAY
+	birthday[0] = "???"	//The user's birthday, written out with words
+	birthday[1] = "???"	//The user's birthday, written in DD/MM format
+	talkrate = "every 5 minutes"
+	aitalkinterval = 300
+	//---Petting related variables---
+	stroke[0] = 0		//The stroke value, which resets after each pet
+	stroke[1] = 0		//The stroke value, but it doesn't reset after each pet
+	stroke[2] = 0		//The current streak of successful pets
+	totalpets = 0		//The total times the ghost has been pet
+	//---
+	deleteshitai = (0,"Off")
+	AutoUpdates = (1,0,"On",0,0,0)
+	installdate = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)","%(ghostver)")
+	nowballoon = ("Notes",26)
+	
+	NowPlaying = ("",-1,"")
+	MusicSettings = (100,100,0,0,"",0)
+	talkoption = 0
+	InstalledShellName = ""
+	shellauthor = ("Zichqec","Zichqec","https://ukagaka.zichqec.com/")
+	DraggedFile = ""
+	balloonmode = 0 //Dark mode
+	hemisphere = 0
+	CustomFuncs = (1,"On")
+	
+	MusicPlayer.SetDefaultSettings
 	
 	"\1\s[-1]\0\s[50]\w6\*\t\![raise,OnFirstLangMenu,English]"
 }
@@ -551,45 +586,4 @@ UpdateVars
 			CurrentPlaylist[_i] = REPLACE(CurrentPlaylist[_i],"||",",")
 		}
 	}
-}
-
-//These are all the variables that need to be initialized when the user first installs the ghost.
-FirstBootVars
-{
-	lastTalk = ""
-	runtime[0] = 0		//Hours, replaces passhour
-	runtime[1] = 0		//Minutes, replaces passmin
-	runtime[2] = 0		//Seconds, replaces passsec
-	totalhours = 0		//Total number of hours the ghost has been run
-	nowshell = "FLUX"
-	nowscale = 100
-	username = "User"
-	gender = "undef"
-	birthday = IARRAY
-	birthday[0] = "???"	//The user's birthday, written out with words
-	birthday[1] = "???"	//The user's birthday, written in DD/MM format
-	talkrate = "every 5 minutes"
-	aitalkinterval = 300
-	//---Petting related variables---
-	stroke[0] = 0		//The stroke value, which resets after each pet
-	stroke[1] = 0		//The stroke value, but it doesn't reset after each pet
-	stroke[2] = 0		//The current streak of successful pets
-	totalpets = 0		//The total times the ghost has been pet
-	//---
-	deleteshitai = (0,"Off")
-	AutoUpdates = (1,0,"On",0,0,0)
-	installdate = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)","%(ghostver)")
-	nowballoon = ("Notes",26)
-	
-	NowPlaying = ("",-1,"")
-	MusicSettings = (100,100,0,0,"",0)
-	talkoption = 0
-	InstalledShellName = ""
-	shellauthor = ("Zichqec","Zichqec","https://ukagaka.zichqec.com/")
-	DraggedFile = ""
-	balloonmode = 0 //Dark mode
-	hemisphere = 0
-	CustomFuncs = (1,"On")
-	
-	MusicPlayer.SetDefaultSettings
 }
