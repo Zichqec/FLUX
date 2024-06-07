@@ -20,7 +20,6 @@ OnFirstBoot //Dialogue when you first open the ghost
 	stroke[2] = 0		//The current streak of successful pets
 	totalpets = 0		//The total times the ghost has been pet
 	//---
-	deleteshitai = (0,"Off")
 	AutoUpdates = (1,0,"On",0,0,0)
 	installdate = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)","%(ghostver)")
 	nowballoon = ("Notes",26)
@@ -87,7 +86,6 @@ OnChoiceHover
 OnLanguageChosen
 {
 	language = reference0
-	deleteshitai[1] = onoff[1]
 	AutoUpdates[2] = onoff[0]
 	CustomFuncs[1] = onoff[0]
 	username = DefaultUsername

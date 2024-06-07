@@ -428,7 +428,6 @@ OnLastTalk
 
 OnConfigMenu : all
 {
-	if deleteshitai[1] == ""; {deleteshitai[0] = 0; deleteshitai[1] = onoff[1]}
 	if AutoUpdates[2] == ""; {AutoUpdates[0] = 1; AutoUpdates[2] = onoff[0]}
 	if CustomFuncs[1] == ""; {CustomFuncs[0] = 1; CustomFuncs[1] = onoff[0]}
 	if HourNotifs[1] == ""; {HourNotifs[0] = 0; HourNotifs[1] = onoff[1]}
@@ -438,7 +437,6 @@ OnConfigMenu : all
 	if gender == ""; gender = "undef"
 	if username == ""; username = DefaultUsername
 	
-	_uninstbtn = ""; if deleteshitai[0] == 1; _uninstbtn = onoff[0]; else; _uninstbtn = onoff[1]
 	_cstfncbtn = ""; if CustomFuncs[0] == 1; _cstfncbtn = onoff[0]; else; _cstfncbtn = onoff[1]
 	_atoupdbtn = ""; if AutoUpdates[0] == 1; _atoupdbtn = onoff[0]; else; _atoupdbtn = onoff[1]
 	_hnotifbtn = ""; if HourNotifs[0] == 1; _hnotifbtn = onoff[0]; else; _hnotifbtn = onoff[1]
@@ -498,7 +496,6 @@ OnConfigMenu : all
 		else; "\n"
 		
 		"\![*]\q[Bug melden,BugReport]\n\n"
-		"Deinstallieren freischalten? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
 		"\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
 	}
 	elseif language == "Русский"
@@ -545,7 +542,6 @@ OnConfigMenu : all
 		else; "\n"
 		
 		"\![*]\q[Сообщить о ошибке,BugReport]\n\n"
-		"Включить Удаление? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n[70]"
 		"\![*]\q[Назад в Меню,OnMenuRun]"
 	}
 	elseif language == "Français"
@@ -592,7 +588,6 @@ OnConfigMenu : all
 		else; "\n"
 		
 		"\![*]\q[Reporter un bug,BugReport]\n\n"
-		"Activer la désinstallation ? \_a[OnToggleUninstall](%(_uninstbtn))\_a\n\n"
 		"\![*]\q[Retourner au menu,OnMenuRun]"
 	}
 	elseif language == "Polski"
@@ -639,7 +634,6 @@ OnConfigMenu : all
 		else; "\n"
 		
 		"\![*]\q[Zgłoś błąd,BugReport]\n\n"
-		"Włącz odinstalowywanie? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
 		"\![*]\q[Powrót do menu,OnMenuRun]"
 	}
 	else //English
@@ -687,7 +681,6 @@ OnConfigMenu : all
 		else; "\n"
 		
 		"\![*]\q[Report a bug,BugReport]\n\n"
-		"Enable Uninstall? \_a[OnToggleUninstall]%(_uninstbtn)\_a\n\n"
 		"\![*]\q[Back to the menu,OnMenuRun]"
 	}
 	"\![unlock,balloonrepaint]"
@@ -1067,22 +1060,6 @@ OnBalloonModeToggle
 	else
 	{
 		balloonmode = 0
-	}
-	--
-	OnConfigMenu
-}
-
-OnToggleUninstall
-{
-	if deleteshitai[0] != 1
-	{
-		deleteshitai[0] = 1
-		deleteshitai[1] = onoff[0]
-	}
-	else
-	{
-		deleteshitai[0] = 0
-		deleteshitai[1] = onoff[1]
 	}
 	--
 	OnConfigMenu
