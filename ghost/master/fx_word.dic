@@ -398,17 +398,6 @@ nowhemisphere
 	}
 }
 
-wd //Abbreviated week day
-{
-	if weekday == 0; "Sun"
-	elseif weekday == 1; "Mon"
-	elseif weekday == 2; "Tue"
-	elseif weekday == 3; "Wed"
-	elseif weekday == 4; "Thu"
-	elseif weekday == 5; "Fri"
-	else; "Sat"
-}
-
 MonthName
 {
 	_lang = ""
@@ -449,7 +438,7 @@ MonthName
 	{
 		_lang = language
 	}
-	--
+	
 	if _lang == "Placeholder" //TRANSLATORS: Copy the set of local variables, and fill in the month names for each one.
 	{
 		
