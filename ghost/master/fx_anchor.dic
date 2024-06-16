@@ -13,9 +13,9 @@ OnTranslate
 	{
 		//These numbers are bad, don't do it like this... it's too late for me to change though
 		//Would have been better if light mode started at 10, but i didn't know what i was doing at the time
-		_talk = REPLACE(_talk,"\b[0]","\b[6]")
-		_talk = REPLACE(_talk,"\b[2]","\b[8]")
-		_talk = REPLACE(_talk,"\b[4]","\b[10]")
+		_talk = REPLACE(_talk,"\b[0]","\b[6,--fallback=0]")
+		_talk = REPLACE(_talk,"\b[2]","\b[8,--fallback=2]")
+		_talk = REPLACE(_talk,"\b[4]","\b[10,--fallback=2]")
 		_talk = REPLACE(_talk,"__INPUT_BOX_COLOR__","--balloon=10")
 	}
 	else
