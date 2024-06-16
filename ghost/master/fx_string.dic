@@ -6,13 +6,13 @@ On_homeurl
 
 On_recommendrootbutton.caption //Change this to your username, or change the whole caption to whatever you want. This is the top list of websites
 {
-	if language == "Placeholder"; {} //TRANSLATORS: The label for the top set of websites
-	elseif language == "Español"; {"Sobre los Desarrolladores"}
-	elseif language == "Deutsch"; {"Mehr von den Entwicklern"}
-	elseif language == "Русский"; {"Больше от Авторы"}
-	elseif language == "Français"; {"Plus des devs"}
-	elseif language == "Polski"; {"Więcej od deweloperów"}
-	else; {"More from the devs"}
+	if language == "Placeholder"; "" //TRANSLATORS: The label for the top set of websites
+	elseif language == "Español"; "Sobre los Desarrolladores"
+	elseif language == "Deutsch"; "Mehr von den Entwicklern"
+	elseif language == "Русский"; "Больше от Авторы"
+	elseif language == "Français"; "Plus des devs"
+	elseif language == "Polski"; "Więcej od deweloperów"
+	else; "More from the devs"
 }
 
 On_sakura.recommendsites //Websites under the top dropdown menu, make em whatever you want
@@ -54,58 +54,57 @@ recommendsites_sakura_placeholder : array //TRANSLATORS: This is where the actua
 
 recommendsites_sakura_español : array
 {
-	"Reproductor FLUX creado por Zichqec                 | https://ukagaka.zichqec.com/"
-	"Traducción al español por Celeste    				 | https://rosecelesteart.tumblr.com/"
-	"Shell %(nowshell) creado por %(shellauthor[0]) 	 | %(shellauthor[2])"
+	"Reproductor FLUX creado por Zichqec";				"https://ukagaka.zichqec.com/"
+	"Traducción al español por Celeste";				"https://rosecelesteart.tumblr.com/"
+	"Shell %(nowshell) creado por %(shellauthor[0])";	"%(shellauthor[2])"
 }
 
 recommendsites_sakura_deutsch : array
 {
-	"FLUX-Player von Zichqec                  | https://ukagaka.zichqec.com/"
-	"%(language)e Übersetzung von Koguri3108  | https://koguri3108.tumblr.com"
-	"%(nowshell) Shell von %(shellauthor[0])  | %(shellauthor[2])"
+	"FLUX-Player von Zichqec";					"https://ukagaka.zichqec.com/"
+	"%(language)e Übersetzung von Koguri3108";	"https://koguri3108.tumblr.com"
+	"%(nowshell) Shell von %(shellauthor[0])";	"%(shellauthor[2])"
 }
 
 recommendsites_sakura_русский : array
 {
-	"Плеер FLUX от Zichqec                        | https://ukagaka.zichqec.com/"
-	"Русский перевод от Смоукы                    | https://smokycinnamon.github.io/indifferentsorrel/index.html"
-	"Внешний Вид %(nowshell) от %(shellauthor[0]) | %(shellauthor[2])"
+	"Плеер FLUX от Zichqec";						"https://ukagaka.zichqec.com/"
+	"Русский перевод от Смоукы";					"https://smokycinnamon.github.io/indifferentsorrel/index.html"
+	"Внешний Вид %(nowshell) от %(shellauthor[0])";	"%(shellauthor[2])"
 }
 
 recommendsites_sakura_french : array
 {
-	"Lecteur FLUX par Zichqec                | https://ukagaka.zichqec.com/"
-	"Traduction française par Levidre        | https://azura-levidre.tumblr.com/"
-	"Shell %(nowshell) par %(shellauthor[0]) | %(shellauthor[2])"
+	"Lecteur FLUX par Zichqec";					"https://ukagaka.zichqec.com/"
+	"Traduction française par Levidre";			"https://azura-levidre.tumblr.com/"
+	"Shell %(nowshell) par %(shellauthor[0])";	"%(shellauthor[2])"
 }
 
 recommendsites_sakura_polski : array
 {
-	"Odtwarzacz FLUX od Zichqec               | https://ukagaka.zichqec.com/"
-	"Polskie tłumaczenie od Zdzicha           | https://zdzisiu.github.io/Ukagaka/"
-	"skorupa %(nowshell) od %(shellauthor[0]) | %(shellauthor[2])"
+	"Odtwarzacz FLUX od Zichqec";				"https://ukagaka.zichqec.com/"
+	"Polskie tłumaczenie od Zdzicha";			"https://zdzisiu.github.io/Ukagaka/"
+	"skorupa %(nowshell) od %(shellauthor[0])";	"%(shellauthor[2])"
 }
 
 recommendsites_sakura_english : array
 {
-	"FLUX player by Zichqec                 | https://ukagaka.zichqec.com/"
-	"%(language) translation by Zichqec     | https://ukagaka.zichqec.com/"
-	"%(nowshell) shell by %(shellauthor[0]) | %(shellauthor[2])"
+	"FLUX player by Zichqec";					"https://ukagaka.zichqec.com/"
+	"%(language) translation by Zichqec";		"https://ukagaka.zichqec.com/"
+	"%(nowshell) shell by %(shellauthor[0])";	"%(shellauthor[2])"
 }
  
 On_portalrootbutton.caption //Caption for the second list of websites
 {
-	if language == "Placeholder"; {} //TRANSLATORS: The label for the second set of links in the right click menu
-	elseif language == "Español";  {"Sitios de Referencia"}
-	elseif language == "Deutsch"; {"Bezugs-Webseiten"}
-	elseif language == "Русский";  {"Справочные Сайти"}
-	elseif language == "Français"; {"Sites Références"}
-	elseif language == "Polski";  {"Strony źródłowe"}
-	else; {"Reference Sites"} //English
+	if language == "Placeholder"; "" //TRANSLATORS: The label for the second set of links in the right click menu
+	elseif language == "Español";  "Sitios de Referencia"
+	elseif language == "Deutsch"; "Bezugs-Webseiten"
+	elseif language == "Русский";  "Справочные Сайти"
+	elseif language == "Français"; "Sites Références"
+	elseif language == "Polski";  "Strony źródłowe"
+	else; "Reference Sites" //English
 }
 
-//You can make these anything you like. I've set them to link to my template, Zarla's template, and anything else helpful for making ghosts.
 On_sakura.portalsites 
 {
 	if language == "Placeholder" //TRANSLATORS: This directs to the resource links, same deal as above
@@ -145,63 +144,63 @@ portalsites_sakura_placeholder : array //TRANSLATORS: The actual list of links
 
 portalsites_sakura_español : array 
 {
-	"Ukagaka Dream Team Discord              	   | https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)                                  	   | http://ssp.shillest.net/"
-	"Ukadoc                                        | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"YAYA Wiki (J)                                 | http://emily.shillest.net/ayaya/index.php?"
+	"Ukagaka Dream Team Discord";	"https://ukagakadreamteam.tumblr.com/discord"
+	"SSP (J)";						"https://ssp.shillest.net/"
+	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"YAYA Wiki (J)";				"https://emily.shillest.net/ayaya/index.php?"
 }
 
 portalsites_sakura_deutsch : array 
 {
-	"Ukagaka Dream Team Discord            | https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)                               | http://ssp.shillest.net/"
-	"Ukadoc                                | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"YAYA Wiki (J)                         | http://emily.shillest.net/ayaya/index.php"
+	"Ukagaka Dream Team Discord";	"https://ukagakadreamteam.tumblr.com/discord"
+	"SSP (J)";						"https://ssp.shillest.net/"
+	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"YAYA Wiki (J)";				"https://emily.shillest.net/ayaya/index.php"
 }
 
 portalsites_sakura_русский : array
 {
-	"Дискорд Ukagaka Dream Team              | https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)                                 | http://ssp.shillest.net/"
-	"Укадок                                  | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"Вики YAYA (J)                           | http://emily.shillest.net/ayaya/index.php"
+	"Дискорд Ukagaka Dream Team";	"https://ukagakadreamteam.tumblr.com/discord"
+	"SSP (J)";						"https://ssp.shillest.net/"
+	"Укадок";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"Вики YAYA (J)";				"https://emily.shillest.net/ayaya/index.php"
 }
 
 portalsites_sakura_french : array 
 {
-	"Discord de l'Ukagaka Dream Team             | https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)                                     | http://ssp.shillest.net/"
-	"Ukadoc                                      | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"Wiki du YAYA (J)                            | http://emily.shillest.net/ayaya/index.php"
+	"Discord de l'Ukagaka Dream Team";	"https://ukagakadreamteam.tumblr.com/discord"
+	"SSP (J)";							"https://ssp.shillest.net/"
+	"Ukadoc";							"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"Wiki du YAYA (J)";					"https://emily.shillest.net/ayaya/index.php"
 }
 
 portalsites_sakura_polski : array 
 {
-	"Ukagaka Dream Team Discord                | https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)                                   | http://ssp.shillest.net/"
-	"Ukadoc                                    | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"YAYA Wiki (J)                             | http://emily.shillest.net/ayaya/index.php"
+	"Ukagaka Dream Team Discord";	"https://ukagakadreamteam.tumblr.com/discord"
+	"SSP (J)";						"https://ssp.shillest.net/"
+	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"YAYA Wiki (J)";				"https://emily.shillest.net/ayaya/index.php"
 }
 
 portalsites_sakura_english : array 
 {
-	"Ukagaka Dream Team Wiki             | https://ukagakadreamteam.com/wiki/home" //TODO: changed these links, added this one new
-	"Ukagaka Dream Team Discord          | https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)                             | http://ssp.shillest.net/"
-	"Ukadoc                              | https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"YAYA Wiki (J)                       | http://emily.shillest.net/ayaya/index.php"
+	"Ukagaka Dream Team Wiki";		"https://ukagakadreamteam.com/wiki/home" //TODO: changed these links, added this one new
+	"Ukagaka Dream Team Discord"; 	"https://ukagakadreamteam.tumblr.com/discord"
+	"SSP (J)"; 						"https://ssp.shillest.net/"
+	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
+	"YAYA Wiki (J)";				"https://emily.shillest.net/ayaya/index.php"
 }
 
-//This is the function that formats the links above! This is based on a function in Konno Yayame that serves a similar purpose. You can see that one here: http://emily.shillest.net/ayaya/index.php?Tips/%E3%81%8A%E6%B0%97%E3%81%AB%E5%85%A5%E3%82%8A%E3%82%92%E6%9B%B8%E3%81%8D%E3%82%84%E3%81%99%E3%81%8F%E3%81%99%E3%82%8B
-//Mine is a bit simpler, but it requires you to leave a space before and after the |. So long as you do that, it'll add the rest of the formatting for you! CUTSPACE is a built in function that gets rid of whitespace characters on the left and right of text.
 FormatLinks
 {
-	_output = ""
-	foreach _argv; _element
+	_display = ""
+	for _i = 0; _i < ARRAYSIZE(_argv); _i++
 	{
-		_name = CUTSPACE(_element[0,' | '])
-		_link = CUTSPACE(_element[1,' | '])
-		_output += _name + "%ASC(1)" + _link + "%ASC(2)"
+		_display += _argv[_i] //Add the link/title
+		
+		//Alternate between adding ASC(1) or ASC(2)
+		if _i % 2 == 1; _display += ASC(2)
+		else; _display += ASC(1)
 	}
-	_output
+	_display
 }
