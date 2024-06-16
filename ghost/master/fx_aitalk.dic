@@ -43,7 +43,7 @@ OnMinuteChange
 	{
 		"\0\b[0]"
 		--
-		if language == "Placeholder" //TRANSLATORS: Top of the hour notifications, as well as a new years message
+		if language == "Placeholder" //TRANSLATORS: Top of the hour notifications
 		{
 			
 		}
