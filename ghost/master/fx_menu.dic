@@ -221,7 +221,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Configuración,OnConfigMenu]"
 		
-		if debug > 0 //%(debug = 1) in script input to show the debug options
+		if SHIORI3FW.DebugMode
 		{
 			if CustomFuncs[0] == 1; "\n\n\![*]\q[Recarga Funciones de Shell,OnReloadShellFuncs]"
 			else; "\n\n[100][Las funciones y diálogos de Shell personalizados están desactivados]"
@@ -271,7 +271,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Einstellungen,OnConfigMenu]"
 		
-		if debug > 0 //%(debug = 1) in script input to show the debug options
+		if SHIORI3FW.DebugMode
 		{
 			if CustomFuncs[0] == 1; "\n\n\![*]\q[Shell-Funktionen neu laden,OnReloadShellFuncs]"
 			else; "\n\n[100][Shell-Spezifische Funktionen/Dialoge sind ausgeschaltet]"
@@ -321,7 +321,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Конфигурация,OnConfigMenu]"
 		
-		if debug > 0 //%(debug = 1) in script input to show the debug options
+		if SHIORI3FW.DebugMode
 		{
 			if CustomFuncs[0] == 1; "\n\n\![*]\q[Перезагрузить функции вида,OnReloadShellFuncs]"
 			else; "\n\n[100][Особенные функции/разговоры выключен]"
@@ -369,7 +369,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Config,OnConfigMenu]"
 		
-		if debug > 0 //%(debug = 1) in script input to show the debug options
+		if SHIORI3FW.DebugMode
 		{
 			if CustomFuncs[0] == 1; "\n\n\![*]\q[Recharger les Fonctions du Shell,OnReloadShellFuncs]"
 			else; "\n\n[100][Les fonctions/dialogues personnalisés du shell sont désactivés]"
@@ -419,7 +419,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Ustawienia,OnConfigMenu]"
 		
-		if debug > 0 //%(debug = 1) in script input to show the debug options
+		if SHIORI3FW.DebugMode
 		{
 			if CustomFuncs[0] == 1; "\n\n\![*]\q[Przeładuj funkcje skorupy,OnReloadShellFuncs]"
 			else; "\n\n[100][Specjalne funkcje/dialogi skorupy są wyłączone]"
@@ -469,7 +469,7 @@ OnMenuRun : all //Main menu
 		
 		"\n\![*]\q[Config,OnConfigMenu]"
 		
-		if debug > 0 //%(debug = 1) in script input to show the debug options
+		if SHIORI3FW.DebugMode
 		{
 			if CustomFuncs[0] == 1; "\n\n\![*]\q[Reload Shell Functions,OnReloadShellFuncs]"
 			else; "\n\n[100][Custom shell functions/dialogue are disabled]"
@@ -502,6 +502,8 @@ OnConfigMenu : all
 	if CustomFuncs[1] == ""; {CustomFuncs[0] = 1; CustomFuncs[1] = onoff[0]}
 	if HourNotifs[1] == ""; {HourNotifs[0] = 0; HourNotifs[1] = onoff[1]}
 	if TooltipDisplay == ""; {TooltipDisplay = 1}
+	if !(ISVAR("aitalkinterval")); aitalkinterval = 180
+	if talkoption == ""; talkoption = 0
 	
 	if gender == ""; gender = "undef"
 	
@@ -510,6 +512,10 @@ OnConfigMenu : all
 	_hnotifbtn = ""; if HourNotifs[0] == 1; _hnotifbtn = onoff[0]; else; _hnotifbtn = onoff[1]
 	_tooltipbtn = ""; if TooltipDisplay == 1; _tooltipbtn = onoff[0]; else; _tooltipbtn = onoff[1]
 	
+	_has_custom_dialogue = 0
+	if ISFUNC("OnCustom_RandomTalk"); _has_custom_dialogue = 1
+	_custom_functions_enabled = 1
+	if IsEmergencyMode || CustomFuncs[0] == 0 || !_has_custom_dialogue; _custom_functions_enabled = 0
 	
 	"\C\![lock,balloonrepaint]\c\0\*"
 	"\![set,autoscroll,disable]\_q\b[4]\f[anchorvisitedfontcolor,default.anchor]"
@@ -522,10 +528,6 @@ OnConfigMenu : all
 	}
 	elseif language == "Español"
 	{
-		//This is here in case the variables get erased. The buttons will be set to default so the user has something to click. This has happened to my users before and resetting them is a painful process. Do not remove these.
-		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
-		if talkoption == ""; {talkoption = 0}
-		
 		"Tu nombre: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Tus pronombres: \_a[OnChangePronoun]%(Capitalize(élella))/%(Capitalize(élella))/%(Capitalize(susu))\_a\n"
 		
@@ -546,28 +548,37 @@ OnConfigMenu : all
 			}
 			"\n"
 		}
-		
-		"\nFrecuencia de diálogos: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
-		"Hablar \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"\n"
+		"Funciones/Diálogos de Shell personalizados \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		if IsEmergencyMode; "\_a[OnExplainShellError,config][ERROR DE SHELL: FUNCIONES DE PERSONALIZACIÓN DESACTIVADAS]\_a"
+		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No custom dialogue available in this shell]"
+		"\n"
+		if !_custom_functions_enabled; "\f[color,disable]"
+		"Frecuencia de diálogos:\n"
+		_times = ("Off,0","30s,30","1m,60","3m,180","5m,300","10m,600")
+		foreach _times; _time
+		{
+			switch TOINT(_time[1]) == aitalkinterval
+			{
+				"\__q[OnTalkRateChange,%(_time[1])]%(_time[0])\__q"
+				"\f[underline,1]\_a[OnTalkRateChange,%(_time[1])]%(_time[0])\_a\f[underline,default]"
+			}
+			"  "
+		}
+		"\n"
+		"Hablar \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n"
+		"\f[color,default]"
+		"\n"
 		"Notificaciones cada hora: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
 		"Comprobación automática de actualizaciones \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
-		"\![*]\q[Comprueba actualizaciones de FLUX,UpdateCheck]\n"
-		"\![*]\q[Comprueba actualizaciones de Shells,UpdateShell]\n"
-		"Funciones/Diálogos de Shell personalizados \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		
-		if IsEmergencyMode; "\_a[OnExplainShellError,config][ERROR DE SHELL: FUNCIONES DE PERSONALIZACIÓN DESACTIVADAS]\_a\n"
-		else; "\n"
+		"\![*]\q[Comprueba actualizaciones de FLUX,OnConfig.UpdateCheck]\n"
+		"\![*]\q[Comprueba actualizaciones de Shells,OnConfig.UpdateShell]\n"
 		
 		"\![*]\q[Informar de un bug,BugReport]\n\n"
 		"\![*]\q[Volver al menú,OnMenuRun]"
 	}
 	elseif language == "Deutsch"
 	{
-		//This is here in case the variables get erased. The buttons will be set to default so the user has something to click. This has happened to my users before and resetting them is a painful process. Do not remove these.
-		
-		if talkrate == ""; {talkrate = "alle 5 Minuten"; aitalkinterval = 300}
-		if talkoption == ""; {talkoption = 0}
-		
 		"Dein Name: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Deine Pronomen: \_a[OnChangePronoun]%(ersie)/%(ihmihr)/%(ihnsie)/%(seinihr)\_a\n"
 		
@@ -588,27 +599,37 @@ OnConfigMenu : all
 			}
 			"\n"
 		}
-		
-		"\nRedehäufigkeit: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
-		"Rede \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"\n"
+		"Shell-Spezifische Funktionen/Dialoge \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		if IsEmergencyMode; "\_a[OnExplainShellError,config][SHELL-FEHLER: SHELL-SPEZIFISCHE FUNKTIONEN AUSGESCHALTET]\_a"
+		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No custom dialogue available in this shell]"
+		"\n"
+		if !_custom_functions_enabled; "\f[color,disable]"
+		"Redehäufigkeit:\n"
+		_times = ("Off,0","30s,30","1m,60","3m,180","5m,300","10m,600")
+		foreach _times; _time
+		{
+			switch TOINT(_time[1]) == aitalkinterval
+			{
+				"\__q[OnTalkRateChange,%(_time[1])]%(_time[0])\__q"
+				"\f[underline,1]\_a[OnTalkRateChange,%(_time[1])]%(_time[0])\_a\f[underline,default]"
+			}
+			"  "
+		}
+		"\n"
+		"Rede \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n"
+		"\f[color,default]"
+		"\n"
 		"Nachrichten zu vollen Stunden: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
 		"Auto-Update-Überprüfungen \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
-		"\![*]\q[Nach FLUX-Updates suchen,UpdateCheck]\n"
-		"\![*]\q[Nach Shell-Updates suchen,UpdateShell]\n"
-		"Shell-Spezifische Funktionen/Dialoge \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		
-		if IsEmergencyMode; "\_a[OnExplainShellError,config][SHELL-FEHLER: SHELL-SPEZIFISCHE FUNKTIONEN AUSGESCHALTET]\_a\n";
-		else; "\n"
+		"\![*]\q[Nach FLUX-Updates suchen,OnConfig.UpdateCheck]\n"
+		"\![*]\q[Nach Shell-Updates suchen,OnConfig.UpdateShell]\n"
 		
 		"\![*]\q[Bug melden,BugReport]\n\n"
 		"\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
 	}
 	elseif language == "Русский"
 	{
-		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
-		if talkoption == ""; {talkoption = 0}
-		
-		
 		"Твоя имя: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Твои Местоимение: \_a[OnChangePronoun]%(онона)/%(егоее)\_a\n"
 		
@@ -629,27 +650,37 @@ OnConfigMenu : all
 			}
 			"\n"
 		}
-		
-		"\nВремени разговоров: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
-		"Говорить \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"\n"
+		"Особенные Функции/Разговоры Вида \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		if IsEmergencyMode; "\_a[OnExplainShellError,config][ОШИБКА С ВНЕШНОГО ВИДА: ПОЛЬЗОВАТЕЛЬСКИЕ ФУНКЦИЯ ВЫКЛЮЧЕН]\_a"
+		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No custom dialogue available in this shell]"
+		"\n"
+		if !_custom_functions_enabled; "\f[color,disable]"
+		"Времени разговоров:\n"
+		_times = ("Off,0","30s,30","1m,60","3m,180","5m,300","10m,600")
+		foreach _times; _time
+		{
+			switch TOINT(_time[1]) == aitalkinterval
+			{
+				"\__q[OnTalkRateChange,%(_time[1])]%(_time[0])\__q"
+				"\f[underline,1]\_a[OnTalkRateChange,%(_time[1])]%(_time[0])\_a\f[underline,default]"
+			}
+			"  "
+		}
+		"\n"
+		"Говорить \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n"
+		"\f[color,default]"
+		"\n"
 		"Уведомление Часов: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
 		"Авто-обновлении \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
-		"\![*]\q[Проверять обновление FLUX,UpdateCheck]\n"
-		"\![*]\q[Проверять обновление Видов,UpdateShell]\n"
-		"Особенные Функции/Разговоры Вида \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		
-		if IsEmergencyMode; "\_a[OnExplainShellError,config][ОШИБКА С ВНЕШНОГО ВИДА: ПОЛЬЗОВАТЕЛЬСКИЕ ФУНКЦИЯ ВЫКЛЮЧЕН]\_a\n";
-		else; "\n"
+		"\![*]\q[Проверять обновление FLUX,OnConfig.UpdateCheck]\n"
+		"\![*]\q[Проверять обновление Видов,OnConfig.UpdateShell]\n"
 		
 		"\![*]\q[Сообщить о ошибке,BugReport]\n\n"
 		"\![*]\q[Назад в Меню,OnMenuRun]"
 	}
 	elseif language == "Français"
 	{
-		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
-		if talkoption == ""; {talkoption = 0}
-		
-		
 		"Ton nom : \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Tes pronoms : \_a[OnChangePronoun]%(Capitalize(ilelle))/%(Capitalize(luielle))/%(Capitalize(celuicelle))\_a\n"
 		
@@ -670,27 +701,37 @@ OnConfigMenu : all
 			}
 			"\n"
 		}
-		
-		"\nFréquence des dialogues : \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
-		"Parle \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"\n"
+		"Fonctions/Dialogues personnalisés du shell \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		if IsEmergencyMode; "\_a[OnExplainShellError,config][ERREUR DE SHELL: FONCTIONS PERSONALISÉES DÉSACTIVÉES]\_a"
+		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No custom dialogue available in this shell]"
+		"\n"
+		if !_custom_functions_enabled; "\f[color,disable]"
+		"Fréquence des dialogues :\n"
+		_times = ("Off,0","30s,30","1m,60","3m,180","5m,300","10m,600")
+		foreach _times; _time
+		{
+			switch TOINT(_time[1]) == aitalkinterval
+			{
+				"\__q[OnTalkRateChange,%(_time[1])]%(_time[0])\__q"
+				"\f[underline,1]\_a[OnTalkRateChange,%(_time[1])]%(_time[0])\_a\f[underline,default]"
+			}
+			"  "
+		}
+		"\n"
+		"Parle \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n"
+		"\f[color,default]"
+		"\n"
 		"Notifications chaque heure : \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
 		"Vérification auto des mises à jour \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
-		"\![*]\q[Vérifier les mises à jour de FLUX,UpdateCheck]\n"
-		"\![*]\q[Vérifier les mises à jour du shell,UpdateShell]\n"
-		"Fonctions/Dialogues personnalisés du shell \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		
-		if IsEmergencyMode; "\_a[OnExplainShellError,config][ERREUR DE SHELL: FONCTIONS PERSONALISÉES DÉSACTIVÉES]\_a\n"
-		else; "\n"
+		"\![*]\q[Vérifier les mises à jour de FLUX,OnConfig.UpdateCheck]\n"
+		"\![*]\q[Vérifier les mises à jour du shell,OnConfig.UpdateShell]\n"
 		
 		"\![*]\q[Reporter un bug,BugReport]\n\n"
 		"\![*]\q[Retourner au menu,OnMenuRun]"
 	}
 	elseif language == "Polski"
 	{
-		//This is here in case the variables get erased. The buttons will be set to default so the user has something to click. This has happened to my users before and resetting them is a painful process. Do not remove these.
-		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
-		if talkoption == ""; {talkoption = 0}
-		
 		"Twoje imię: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Twoje zaimki: \_a[OnChangePronoun]%(Capitalize(onona))/%(Capitalize(jejjemu))/%(Capitalize(jejjego))\_a\n"
 		
@@ -711,27 +752,37 @@ OnConfigMenu : all
 			}
 			"\n"
 		}
-		
-		"\nCzęstotliwość rozmowy: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
-		"Mów \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n\n"
+		"\n"
+		"Specjalne funkcje/dialogi skorupy \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		if IsEmergencyMode; "\_a[OnExplainShellError,config][BŁĄD SKORUPY: NIESTANDARDOWE FUNKCJE WYŁĄCZONE]\_a"
+		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No custom dialogue available in this shell]"
+		"\n"
+		if !_custom_functions_enabled; "\f[color,disable]"
+		"Częstotliwość rozmowy:\n"
+		_times = ("Off,0","30s,30","1m,60","3m,180","5m,300","10m,600")
+		foreach _times; _time
+		{
+			switch TOINT(_time[1]) == aitalkinterval
+			{
+				"\__q[OnTalkRateChange,%(_time[1])]%(_time[0])\__q"
+				"\f[underline,1]\_a[OnTalkRateChange,%(_time[1])]%(_time[0])\_a\f[underline,default]"
+			}
+			"  "
+		}
+		"\n"
+		"Mów \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n"
+		"\f[color,default]"
+		"\n"
 		"Powiadomienia godzinowe: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
 		"Automatyczne sprawdzanie aktualizacji \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
-		"\![*]\q[Sprawdź aktualizacje FLUX,UpdateCheck]\n"
-		"\![*]\q[Sprawdź aktualizacje skorupy,UpdateShell]\n"
-		"Specjalne funkcje/dialogi skorupy \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		
-		if IsEmergencyMode; "\_a[OnExplainShellError,config][BŁĄD SKORUPY: NIESTANDARDOWE FUNKCJE WYŁĄCZONE]\_a\n";
-		else; "\n"
+		"\![*]\q[Sprawdź aktualizacje FLUX,OnConfig.UpdateCheck]\n"
+		"\![*]\q[Sprawdź aktualizacje skorupy,OnConfig.UpdateShell]\n"
 		
 		"\![*]\q[Zgłoś błąd,BugReport]\n\n"
 		"\![*]\q[Powrót do menu,OnMenuRun]"
 	}
 	else //English
 	{
-		//This is here in case the variables get erased. The buttons will be set to default so the user has something to click. This has happened to my users before and resetting them is a painful process. Do not remove these.
-		if talkrate == ""; {talkrate = "every 5 minutes"; aitalkinterval = 300}
-		if talkoption == ""; {talkoption = 0}
-		
 		"Your name: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Your pronouns: \_a[OnChangePronoun]%(Capitalize(heshe))/%(Capitalize(himher))/%(Capitalize(hisher))\_a\n"
 		
@@ -752,18 +803,32 @@ OnConfigMenu : all
 			}
 			"\n"
 		}
-		
-		//TODO Japanese - Need to update this button from Auto FLUX updates
-		"\nTalk rate: \_a[OnChangeTalk]%(nowtalkrate)\_a\n"
+		"\n"
+		"Custom Shell Functions/Dialogue \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
+		if IsEmergencyMode; "\_a[OnExplainShellError,config][SHELL ERROR: CUSTOM FUNCTIONS DISABLED]\_a"
+		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No custom dialogue available in this shell]"
+		"\n"
+		if !_custom_functions_enabled; "\f[color,disable]"
+		"Talkrate:\n"
+		_times = ("Off,0","30s,30","1m,60","3m,180","5m,300","10m,600")
+		foreach _times; _time
+		{
+			switch TOINT(_time[1]) == aitalkinterval
+			{
+				"\__q[OnTalkRateChange,%(_time[1])]%(_time[0])\__q"
+				"\f[underline,1]\_a[OnTalkRateChange,%(_time[1])]%(_time[0])\_a\f[underline,default]"
+			}
+			"  "
+		}
+		"\n"
 		"Talk \_a[OnToggleTalkOption]%(nowtalkopt)\_a\n"
+		"\f[color,default]"
+		"\n"
 		"Hour Notifications: \_a[OnToggleHourNotifs]%(_hnotifbtn)\_a\n\n"
 		"Auto Update Checks \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
-		"\![*]\q[Check for FLUX updates,UpdateCheck]\n"
-		"\![*]\q[Check for shell updates,UpdateShell]\n"
-		"Custom Shell Functions/Dialogue \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
-		
-		if IsEmergencyMode; "\_a[OnExplainShellError,config][SHELL ERROR: CUSTOM FUNCTIONS DISABLED]\_a\n";
-		else; "\n"
+		"\![*]\q[Check for FLUX updates,OnConfig.UpdateCheck]\n"
+		"\![*]\q[Check for shell updates,OnConfig.UpdateShell]\n"
+		"\n"
 		
 		"\![*]\q[Report a bug,BugReport]\n\n"
 		"\![*]\q[Back to the menu,OnMenuRun]"
@@ -856,246 +921,10 @@ OnTranslateDocument
 	"\C\![open,file,translating_flux.txt]"
 }
 
-OnChangeTalk : all
+OnTalkRateChange
 {
-	if language == "Placeholder" //TRANSLATORS: The menu for changing the talk rate. Make sure to leave the numbers in the second argument, those are what actually sends the info to the next function
-	{
-		
-	}
-	elseif language == "Español"
-	{
-		"\0%(bb)\_q[¿Con qué frecuencia debe haber diálogo aleatorio? Tome en cuenta que no todas las Shells lo incluyen.]\n\n"
-		"\![*]\q[Cada 30 segundos,OnTalkRate,Thirty,30]\n"
-		"\![*]\q[Cada minuto,OnTalkRate,Minute,60]\n"
-		"\![*]\q[Cada 3 minutos,OnTalkRate,ThreeMin,180]\n"
-		"\![*]\q[Cada 5 minutos,OnTalkRate,FiveMin,300]\n"
-		"\![*]\q[No hables,OnTalkRate,None,0]\n\n"
-		"\![*]\q[Déjalo,OnConfigMenu]"
-	}
-	elseif language == "Deutsch"
-	{
-		"\0\b[2]\_q[Wie oft soll zufälliger Dialog gesagt werden? Beachte, dass nicht alle Shells zufälligen Dialog beinhalten.]\n\n"
-		"\![*]\q[Alle 30 Sekunden,OnTalkRate,Thirty,30]\n"
-		"\![*]\q[Jede Minute,OnTalkRate,Minute,60]\n"
-		"\![*]\q[Alle 3 Minuten,OnTalkRate,ThreeMin,180]\n"
-		"\![*]\q[Alle 5 Minuten,OnTalkRate,FiveMin,300]\n"
-		"\![*]\q[Nie,OnTalkRate,None,0]\n\n"
-		"\![*]\q[Abbrechen,OnConfigMenu]"
-	}
-	elseif language == "Русский"
-	{
-		"\0\b[2]\_q[Как часто говорить? Помни, что не все виды есть разговоры.]\n\n"
-		"\![*]\q[Каждый 30 секунд,OnTalkRate,Thirty,30]\n"
-		"\![*]\q[Каждая минута,OnTalkRate,Minute,60]\n"
-		"\![*]\q[Каждый 3 минут,OnTalkRate,ThreeMin,180]\n"
-		"\![*]\q[Каждый 5 минута,OnTalkRate,FiveMin,300]\n"
-		"\![*]\q[Никогда,OnTalkRate,None,0]\n\n"
-		"\![*]\q[Назад,OnConfigMenu]"
-	}
-	elseif language == "Français"
-	{
-		"\0\b[2]\_q[Tout les combien de temps veux-tu qu'un dialogue aléatoire soit dit ? Note que pas tout les shells incluent des dialogues aléatoires.]\n\n"
-		"\![*]\q[Toutes les 30 secondes,OnTalkRate,Thirty,30]\n"
-		"\![*]\q[Toutes les minutes,OnTalkRate,Minute,60]\n"
-		"\![*]\q[Toutes les 3 minutes,OnTalkRate,ThreeMin,180]\n"
-		"\![*]\q[Toutes les 5 minutes,OnTalkRate,FiveMin,300]\n"
-		"\![*]\q[Pas de dialogue,OnTalkRate,None,0]\n\n"
-		"\![*]\q[Annuler,OnConfigMenu]"
-	}
-	elseif language == "Polski"
-	{
-		"\0\b[2]\_q[Jak często powinny być wypowiadane losowe dialogi? Zauważ, że nie wszystkie skorupy zawierają losowe dialogi.]\n\n"
-		"\![*]\q[co 30 sekund,OnTalkRate,Thirty,30]\n"
-		"\![*]\q[co minute,OnTalkRate,Minute,60]\n"
-		"\![*]\q[co 3 minuty,OnTalkRate,ThreeMin,180]\n"
-		"\![*]\q[co 5 minut,OnTalkRate,FiveMin,300]\n"
-		"\![*]\q[Nie mów.,OnTalkRate,None,0]\n\n"
-		"\![*]\q[Anuluj,OnConfigMenu]"
-	}
-	else
-	{
-		"\0\b[2]\_q[How often should random dialogue be said? Note that not all shells include random dialogue.]\n\n"
-		"\![*]\q[Every 30 seconds,OnTalkRate,Thirty,30]\n"
-		"\![*]\q[Every minute,OnTalkRate,Minute,60]\n"
-		"\![*]\q[Every 3 minutes,OnTalkRate,ThreeMin,180]\n"
-		"\![*]\q[Every 5 minutes,OnTalkRate,FiveMin,300]\n"
-		"\![*]\q[Don't speak,OnTalkRate,None,0]\n\n"
-		"\![*]\q[Nevermind,OnConfigMenu]"
-	}
-}
-
-OnTalkRate
-{
-	aitalkinterval = TOINT(reference1) //this changes the talk rate, in seconds
-	
-	if reference0 == "Thirty" //don't touch these
-	{
-		talkrate = "every 30 seconds"
-	}
-	elseif reference0 == "Minute"
-	{
-		talkrate = "every minute"
-	}
-	elseif reference0 == "ThreeMin"
-	{
-		talkrate = "every 3 minutes"
-	}
-	elseif reference0 == "FiveMin"
-	{
-		talkrate = "every 5 minutes"
-	}
-	else
-	{
-		talkrate = "never"
-	}
-	
+	aitalkinterval = TOINT(reference0)
 	OnConfigMenu
-}
-
-nowtalkrate
-{
-	if language == "Placeholder" //TRANSLATORS: Envelope for the talk rate, affects the display in the menu
-	{
-		
-	}
-	elseif language == "Español"
-	{
-		if talkrate == "every 30 seconds"
-		{
-			"cada 30 segundos"
-		}
-		elseif talkrate == "every minute"
-		{
-			"cada minuto"
-		}
-		elseif talkrate == "every 3 minutes"
-		{
-			"cada 3 minutos"
-		}
-		elseif talkrate == "every 5 minutes"
-		{
-			"cada 5 minutos"
-		}
-		else //Never
-		{
-			"nunca"
-		}
-	}
-	elseif language == "Deutsch"
-	{
-		if talkrate == "every 30 seconds"
-		{
-			"alle 30 Sekunden"
-		}
-		elseif talkrate == "every minute"
-		{
-			"jede Minute"
-		}
-		elseif talkrate == "every 3 minutes"
-		{
-			"alle 3 Minuten"
-		}
-		elseif talkrate == "every 5 minutes"
-		{
-			"alle 5 Minuten"
-		}
-		else //Never
-		{
-			"nie"
-		}
-	}
-	elseif language == "Русский"
-	{
-		if talkrate == "every 30 seconds"
-		{
-			"каждый 30 секунд"
-		}
-		elseif talkrate == "every minute"
-		{
-			"каждая минута"
-		}
-		elseif talkrate == "every 3 minutes"
-		{
-			"каждый 3 минут"
-		}
-		elseif talkrate == "every 5 minutes"
-		{
-			"каждый 5 минута"
-		}
-		else //Never
-		{
-			"никогда"
-		}
-	}
-	elseif language == "Français"
-	{
-		if talkrate == "every 30 seconds"
-		{
-			"toutes les 30 secondes" //this displays the talk rate in the menu
-		}
-		elseif talkrate == "every minute"
-		{
-			"toutes les minutes"
-		}
-		elseif talkrate == "every 3 minutes"
-		{
-			"toutes les 3 minutes"
-		}
-		elseif talkrate == "every 5 minutes"
-		{
-			"toutes les 5 minutes"
-		}
-		else //Never
-		{
-			"jamais"
-		}
-	}
-	elseif language == "Polski"
-	{
-		if talkrate == "every 30 seconds"
-		{
-			"co 30 sekund" //this displays the talk rate in the menu
-		}
-		elseif talkrate == "every minute"
-		{
-			"co minute"
-		}
-		elseif talkrate == "every 3 minutes"
-		{
-			"co 3 minuty"
-		}
-		elseif talkrate == "every 5 minutes"
-		{
-			"co 5 minut"
-		}
-		else //Never
-		{
-			"nigdy"
-		}
-	}
-	else //English
-	{
-		if talkrate == "every 30 seconds"
-		{
-			"every 30 seconds"
-		}
-		elseif talkrate == "every minute"
-		{
-			"every minute"
-		}
-		elseif talkrate == "every 3 minutes"
-		{
-			"every 3 minutes"
-		}
-		elseif talkrate == "every 5 minutes"
-		{
-			"every 5 minutes"
-		}
-		else //Never
-		{
-			"never"
-		}
-	}
 }
 
 OnToggleUpdate
@@ -1114,8 +943,10 @@ OnToggleUpdate
 	OnConfigMenu
 }
 
-OnToggleCustomFuncs
+OnToggleCustomFuncs : all
 {
+	"\C\0\b[4]"
+	
 	if CustomFuncs[0] != 1
 	{
 		CustomFuncs[0] = 1
@@ -1128,8 +959,8 @@ OnToggleCustomFuncs
 		CustomFuncs[1] = onoff[1]
 		OnGetCustomShellDialogue
 	}
-	--
-	OnConfigMenu
+	
+	"\![raise,OnConfigMenu]"
 }
 
 OnExplainShellError
@@ -1359,15 +1190,23 @@ Select.BugReport : all
 	}
 	else //English
 	{
-		"[Bugs with FLUX player's mechanics can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]\n\n\w8\w8[Bugs in the currently running shell, '%(nowshell)',\w4 should be reported to it's dev,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8[Any typos in the English menus/generic dialogue for FLUX can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]"
-		--
+		"[Bugs with FLUX player's mechanics can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]\n\n\w8\w8"
+		"[Bugs in the currently running shell, '%(nowshell)',\w4 should be reported to it's dev,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Any typos in the English menus/system dialogue for FLUX can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]"
+		
 		"\n\n\![*]\q[Back to Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]\e"
 	}
 }
 
-Select.UpdateCheck //Starts an update check
+OnConfig.UpdateCheck //Starts an update check
 {
-	"\![close,inputbox,OnSetName]\![updatebymyself]\e"
+	"\![close,inputbox,OnSetName]\![updatebymyself]"
+}
+
+//TODO TEST LATER
+OnConfig.UpdateShell
+{
+	"\![close,inputbox,OnSetName]\![update,shell]"
 }
 
 onoff
@@ -2114,8 +1953,6 @@ OnReloadShellFuncs
 			{
 				"[Error while reloading custom functions.\w8\w8 Check the error log for details.]"
 			}
-			--
-			"\e"
 		}
 	}
 	else
