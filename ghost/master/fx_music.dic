@@ -62,7 +62,7 @@ OnMusicPlayer.Menu : all
 	if _argv[0] != "manual" && MusicPlayer.BalloonIsOpen; "\C\![lock,balloonrepaint]\c"
 	
 	_starting_value = 0
-	if MusicPlayer.Pagination == "Paginated"
+	if MusicPlayer.Pagination == 1
 	{
 		_starting_value = MusicPlayer.PageIndex * MusicPlayer.SongsPerPage
 	}
@@ -239,7 +239,7 @@ OnMusicPlayer.Menu : all
 		else; "\_a[OnMusicPlayer.SongLocation,""%(MusicPlayer.CurrentSongPath)""]%(MusicPlayer.CurrentSongName)\_a"
 	}
 	
-	if MusicPlayer.Pagination == "Paginated"
+	if MusicPlayer.Pagination == 1
 	{
 		//Font tags to ensure no tofus or other weirdness
 		_up = "\f[name,calibri]▲\f[name,default]"
@@ -311,7 +311,7 @@ OnMusicPlayer.Menu : all
 			_currentsong[0] = _song //Song name
 			_currentsong[1] = MusicPlayer.CurrentPlaylist[_i] //Song path
 		}
-		if MusicPlayer.Pagination == "Paginated" 
+		if MusicPlayer.Pagination == 1
 		{
 			if _i < _starting_value; continue
 			if _i > _starting_value + (MusicPlayer.SongsPerPage - 1)
@@ -571,7 +571,7 @@ OnMusicPlayer.PrevSong : all
 	{
 		_diff = GETSECCOUNT - MusicPlayer.SongStartTime
 		
-		if MusicPlayer.PreviousButton == "Restarts song" && _diff > 3
+		if MusicPlayer.PreviousButton == 0 && _diff > 3
 		{
 			_next = MusicPlayer.CurrentSongIndex
 		}
@@ -1102,12 +1102,12 @@ MusicPlayer.Settings.Advanced : all
 		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
 		"\n"
 		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
-		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(MusicPlayer.Priority)\_a\n"
+		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
-		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(MusicPlayer.Scroll)\_a\n"
-		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(MusicPlayer.PreviousButton)\_a\n"
+		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
+		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(label.previousbutton)\_a\n"
 		"\n"
-		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(MusicPlayer.Pagination)\_a\n"
+		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(label.playlistview)\_a\n"
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
@@ -1120,12 +1120,12 @@ MusicPlayer.Settings.Advanced : all
 		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
 		"\n"
 		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
-		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(MusicPlayer.Priority)\_a\n"
+		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
-		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(MusicPlayer.Scroll)\_a\n"
-		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(MusicPlayer.PreviousButton)\_a\n"
+		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
+		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(label.previousbutton)\_a\n"
 		"\n"
-		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(MusicPlayer.Pagination)\_a\n"
+		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(label.playlistview)\_a\n"
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
@@ -1138,12 +1138,12 @@ MusicPlayer.Settings.Advanced : all
 		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
 		"\n"
 		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
-		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(MusicPlayer.Priority)\_a\n"
+		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
-		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(MusicPlayer.Scroll)\_a\n"
-		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(MusicPlayer.PreviousButton)\_a\n"
+		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
+		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(label.previousbutton)\_a\n"
 		"\n"
-		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(MusicPlayer.Pagination)\_a\n"
+		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(label.playlistview)\_a\n"
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
@@ -1156,12 +1156,12 @@ MusicPlayer.Settings.Advanced : all
 		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
 		"\n"
 		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
-		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(MusicPlayer.Priority)\_a\n"
+		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
-		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(MusicPlayer.Scroll)\_a\n"
-		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(MusicPlayer.PreviousButton)\_a\n"
+		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
+		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(label.previousbutton)\_a\n"
 		"\n"
-		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(MusicPlayer.Pagination)\_a\n"
+		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(label.playlistview)\_a\n"
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
@@ -1174,12 +1174,12 @@ MusicPlayer.Settings.Advanced : all
 		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
 		"\n"
 		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
-		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(MusicPlayer.Priority)\_a\n"
+		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
-		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(MusicPlayer.Scroll)\_a\n"
-		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(MusicPlayer.PreviousButton)\_a\n"
+		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
+		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(label.previousbutton)\_a\n"
 		"\n"
-		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(MusicPlayer.Pagination)\_a\n"
+		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(label.playlistview)\_a\n"
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
@@ -1192,17 +1192,181 @@ MusicPlayer.Settings.Advanced : all
 		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
 		"\n"
 		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
-		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(MusicPlayer.Priority)\_a\n"
+		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
-		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(MusicPlayer.Scroll)\_a\n"
-		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(MusicPlayer.PreviousButton)\_a\n"
+		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
+		"Previous button \![*]\_a[OnMusicPlayer.TogglePreviousButton]%(label.previousbutton)\_a\n"
 		"\n"
-		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(MusicPlayer.Pagination)\_a\n"
+		"Playlist view \![*]\_a[OnMusicPlayer.TogglePagination]%(label.playlistview)\_a\n"
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
 		"\n"
 		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(MusicPlayer.DiscordDisplay)\_a \q[(Info),OnDiscordPluginInfo]"
+	}
+}
+
+label.prioritize
+{
+	if language == "Placeholder" //TRANSLATORS: This button is for the "prioritize" option. In English it's written like "Prioritize [dialogue]", where [dialogue] is a clickable choice
+	{
+		
+	}
+	elseif language == "Español"
+	{
+		if MusicPlayer.Priority == 1; "Seamless music"
+		else; "Dialogue"
+	}
+	elseif language == "Deutsch"
+	{
+		if MusicPlayer.Priority == 1; "Seamless music"
+		else; "Dialogue"
+	}
+	elseif language == "Русский"
+	{
+		if MusicPlayer.Priority == 1; "Seamless music"
+		else; "Dialogue"
+	}
+	elseif language == "Français"
+	{
+		if MusicPlayer.Priority == 1; "Seamless music"
+		else; "Dialogue"
+	}
+	elseif language == "Polski"
+	{
+		if MusicPlayer.Priority == 1; "Seamless music"
+		else; "Dialogue"
+	}
+	else //English
+	{
+		if MusicPlayer.Priority == 1; "Seamless music"
+		else; "Dialogue"
+	}
+}
+
+label.scrollwheelcontrols
+{
+	if MusicPlayer.Scroll == -1
+	{
+		onoff[1]
+		return
+	}
+	
+	if language == "Placeholder" //TRANSLATORS: This button is for the "Scroll wheel controls" option. In English it's written like "Scroll wheel controls [volume]", where [volume] is a clickable choice
+	{
+		
+	}
+	elseif language == "Español"
+	{
+		if MusicPlayer.Scroll == 0; "Volume"
+		elseif MusicPlayer.Scroll == 1; "Speed"
+		elseif MusicPlayer.Scroll == 2; "Balance"
+	}
+	elseif language == "Deutsch"
+	{
+		if MusicPlayer.Scroll == 0; "Volume"
+		elseif MusicPlayer.Scroll == 1; "Speed"
+		elseif MusicPlayer.Scroll == 2; "Balance"
+	}
+	elseif language == "Русский"
+	{
+		if MusicPlayer.Scroll == 0; "Volume"
+		elseif MusicPlayer.Scroll == 1; "Speed"
+		elseif MusicPlayer.Scroll == 2; "Balance"
+	}
+	elseif language == "Français"
+	{
+		if MusicPlayer.Scroll == 0; "Volume"
+		elseif MusicPlayer.Scroll == 1; "Speed"
+		elseif MusicPlayer.Scroll == 2; "Balance"
+	}
+	elseif language == "Polski"
+	{
+		if MusicPlayer.Scroll == 0; "Volume"
+		elseif MusicPlayer.Scroll == 1; "Speed"
+		elseif MusicPlayer.Scroll == 2; "Balance"
+	}
+	else //English
+	{
+		if MusicPlayer.Scroll == 0; "Volume"
+		elseif MusicPlayer.Scroll == 1; "Speed"
+		elseif MusicPlayer.Scroll == 2; "Balance"
+	}
+}
+
+label.previousbutton
+{
+	if language == "Placeholder" //TRANSLATORS: This button is for the "Previous button" option. In English it's written like "Previous button [restarts song]", where [restarts song] is a clickable choice
+	{
+		
+	}
+	elseif language == "Español"
+	{
+		if MusicPlayer.PreviousButton == 1; "Goes to previous song"
+		else; "Restarts song"
+	}
+	elseif language == "Deutsch"
+	{
+		if MusicPlayer.PreviousButton == 1; "Goes to previous song"
+		else; "Restarts song"
+	}
+	elseif language == "Русский"
+	{
+		if MusicPlayer.PreviousButton == 1; "Goes to previous song"
+		else; "Restarts song"
+	}
+	elseif language == "Français"
+	{
+		if MusicPlayer.PreviousButton == 1; "Goes to previous song"
+		else; "Restarts song"
+	}
+	elseif language == "Polski"
+	{
+		if MusicPlayer.PreviousButton == 1; "Goes to previous song"
+		else; "Restarts song"
+	}
+	else //English
+	{
+		if MusicPlayer.PreviousButton == 1; "Goes to previous song"
+		else; "Restarts song"
+	}
+}
+
+label.playlistview
+{
+	if language == "Placeholder" //TRANSLATORS: This button is for the "playlist view" option. In English it's written like "Playlist view [Paginated]", where [Paginated] is a clickable choice. "Paginated" is kind of a weird word I think, you can also use something like "split into pages" if that works better
+	{
+		
+	}
+	elseif language == "Español"
+	{
+		if MusicPlayer.Pagination == 0; "One long list (slower)"
+		else; "Paginated"
+	}
+	elseif language == "Deutsch"
+	{
+		if MusicPlayer.Pagination == 0; "One long list (slower)"
+		else; "Paginated"
+	}
+	elseif language == "Русский"
+	{
+		if MusicPlayer.Pagination == 0; "One long list (slower)"
+		else; "Paginated"
+	}
+	elseif language == "Français"
+	{
+		if MusicPlayer.Pagination == 0; "One long list (slower)"
+		else; "Paginated"
+	}
+	elseif language == "Polski"
+	{
+		if MusicPlayer.Pagination == 0; "One long list (slower)"
+		else; "Paginated"
+	}
+	else //English
+	{
+		if MusicPlayer.Pagination == 0; "One long list (slower)"
+		else; "Paginated"
 	}
 }
 
@@ -1618,18 +1782,18 @@ OnMusicPlayer.SetOption : all
 	{
 		if reference0 == "Balance"
 		{
-			"[Entre une valeur de balance. 0 est le centre, -100 est tout à gauche, 100 est tout à droite.]" //La balance sera mise à jour dès que la prochaine musique commencera.
+			"[Entre une valeur de balance. 0 est le centre, -100 est tout à gauche, 100 est tout à droite.]"
 		}
 		elseif reference0 == "Speed"
 		{
 			//TODO updated translation
-			"[Choisis une vitesse. 100 est normale.]" //La vitesse sera mise à jour dès que la prochaine musique commencera.
+			"[Choisis une vitesse. 100 est normale.]"
 		}
 		else //volume
 		{
 			//TODO FRENCH is this correct? Doesn't match the above...
 			//TODO updated translation
-			"[Choisis un volume. 100 is the default.]" //Le volume sera mise à jour dès que la prochaine musique commencera.
+			"[Choisis un volume. 100 is the default.]"
 		}
 		
 		"\n\n\![*]\__q[OnMusicPlayer.SetOptionClose,%(reference0)]Annuler\__q\e"
@@ -1841,34 +2005,34 @@ OnMusicPlayer.ToggleSongAnnouncement : all
 
 OnMusicPlayer.TogglePriority : all
 {
-	if MusicPlayer.Priority != "Seamless music"; MusicPlayer.Priority = "Seamless music"
-	else; MusicPlayer.Priority = "Dialogue"
+	if MusicPlayer.Priority != 1; MusicPlayer.Priority = 1
+	else; MusicPlayer.Priority = 0
 	
 	OnMusicPlayer.Settings
 }
 
 OnMusicPlayer.ToggleScrollWheel : all
 {
-	if MusicPlayer.Scroll == "Volume"; MusicPlayer.Scroll = "Speed"
-	elseif MusicPlayer.Scroll == "Speed"; MusicPlayer.Scroll = "Balance"
-	elseif MusicPlayer.Scroll == "Balance"; MusicPlayer.Scroll = "Off"
-	else; MusicPlayer.Scroll = "Volume"
+	if MusicPlayer.Scroll == 0; MusicPlayer.Scroll = 1
+	elseif MusicPlayer.Scroll == 1; MusicPlayer.Scroll = 2
+	elseif MusicPlayer.Scroll == 2; MusicPlayer.Scroll = -1
+	else; MusicPlayer.Scroll = 0
 	
 	OnMusicPlayer.Settings
 }
 
 OnMusicPlayer.TogglePreviousButton : all
 {
-	if MusicPlayer.PreviousButton != "Goes to previous song"; MusicPlayer.PreviousButton = "Goes to previous song"
-	else; MusicPlayer.PreviousButton = "Restarts song"
+	if MusicPlayer.PreviousButton != 1; MusicPlayer.PreviousButton = 1
+	else; MusicPlayer.PreviousButton = 0
 	
 	OnMusicPlayer.Settings
 }
 
 OnMusicPlayer.TogglePagination : all
 {
-	if MusicPlayer.Pagination != "One long list (slower)"; MusicPlayer.Pagination = "One long list (slower)"
-	else; MusicPlayer.Pagination = "Paginated"
+	if MusicPlayer.Pagination != 0; MusicPlayer.Pagination = 0
+	else; MusicPlayer.Pagination = 1
 	
 	OnMusicPlayer.Settings
 }
@@ -2565,12 +2729,6 @@ OnMusicPlayer.MusicInfo : all
 			{
 				if _i >= 3; _i = 0
 				
-				//CUSTOMIZE: If you're using a particularly small balloon and the file types are not displaying properly, you may want to use this commented version instead of the code below it
-				/*
-				if _i != 0; "    "
-				else; "\n"
-				*/
-				
 				if _i == 1; "\_l[0]\_l[4em]"
 				elseif _i == 2; "\_l[0]\_l[8em]"
 				else; "\n"
@@ -2623,7 +2781,7 @@ OnMusicPlayer.SavePlaylist : all
 	}
 	else //English
 	{
-		"[Choose a file name and location for the playlist.]\![*]"
+		"[Choose a file name and location for the playlist.]"
 		"\n\n"
 		"\![*]\__q[OnPlaylist.Back,Saved]Back\__q"
 	}
@@ -2785,7 +2943,7 @@ OnMusicPlayer.LoadPlaylist : all
 	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![set,autoscroll,disable]\![no-autopause]"
 	"\![open,dialog,open,--id=OnMusicPlayer.PlaylistLoaded,--filter=%(_playlist_file)|*.m3u,--dir=""%(MusicPlayer.PlaylistPath)""]"
 	
-	if language == "Placeholder" //TRANSLATORS: These are the tabs for the different pages of the settings menu! //TODO new translation
+	if language == "Placeholder" //TRANSLATORS: This is for the dialogue that appears while loading a playlist //TODO new translation
 	{
 		
 	}
@@ -2811,8 +2969,8 @@ OnMusicPlayer.LoadPlaylist : all
 	}
 	else //English
 	{
-		"Select a playlist to load.\n\n"
-		"The current playlist will be lost unless it is already saved."
+		"[Select a playlist to load.]\n\n\![]"
+		"[The current playlist will be lost unless it is already saved.]"
 		"\n\n"
 		"\![*]\__q[OnPlaylist.Back,Loaded]Back\__q"
 	}
@@ -3257,15 +3415,15 @@ OnMouseWheel
 		_direction = "Up"
 		if SUBSTR(_amt,0,1) == "-"; _direction = "Down"
 		
-		if MusicPlayer.Scroll == "Volume"
+		if MusicPlayer.Scroll == 0
 		{
 			OnMusicPlayer.QuickVolume(_direction,1)
 		}
-		elseif MusicPlayer.Scroll == "Speed"
+		elseif MusicPlayer.Scroll == 1
 		{
 			OnMusicPlayer.QuickSpeed(_direction,1)
 		}
-		elseif MusicPlayer.Scroll == "Balance"
+		elseif MusicPlayer.Scroll == 2
 		{
 			if _direction == "Up"; _direction = "Right"
 			else; _direction = "Left"
@@ -3724,7 +3882,7 @@ MusicPlayer.OnMouseDoubleClick : all
 		}
 		if _inmenu == "OnMusicPlayer.Settings"; "\C\![raise,OnMusicPlayer.Settings]"
 	}
-	elseif reference4 == "music_menu_button"
+	elseif reference4 == "k_window"
 	{
 		OnMusicPlayer.Menu("manual")
 	}
@@ -3776,7 +3934,7 @@ OnSoundStop : all
 {
 	_inmenu = MusicPlayer.CheckWhichMenu
 	MusicPlayer.PlayState = 0 //Clear paused song if there somehow was one
-	if MusicPlayer.BalloonIsOpen && MusicPlayer.Priority != "Seamless music" || _inmenu != ""; "\C\_l[0,0]"
+	if MusicPlayer.BalloonIsOpen && MusicPlayer.Priority != 1 || _inmenu != ""; "\C\_l[0,0]"
 	
 	if MusicPlayer.PlayMode == 3 || reference1 == "close" //If it's set to play one song and then stop, or the user clicked the X on the playback window
 	{
@@ -3937,7 +4095,7 @@ OnUserInputCancel
 //When the user closes a system dialog for saving/loading playlists. Not strictly necessary, same as the above but for playlist saving/loading with file explorer.
 OnSystemDialogCancel
 {
-	if reference1 == "OnMusicPlayer.PlaylistSaved" || reference1 == "OnMusicPlayer.PlaylistLoaded"; "\![raise,OnMusicPlayer.Settings]"
+	if reference1 == "OnMusicPlayer.PlaylistSaved" || reference1 == "OnMusicPlayer.PlaylistLoaded"; "\C\![raise,OnMusicPlayer.Settings]"
 }
 
 //reference4 is the name of the collision identifier as written in surfaces.txt
@@ -3957,7 +4115,7 @@ On_tooltip
 		}
 		elseif language == "Español"
 		{
-			"Reproducir / Siguiente,Reproducir,Pausar,Continuar,Parar,Siguiente,Anterior,Menú,Controles de Música,Limpiar Lista de Reproducción,Parar después de esta canción,Stop after playlist ends,Toggle song bar,Volume up,Volume down,Speed up,Speed down,Balance left,Balance right,Minimizar,Cerrar FLUX"
+			_tooltips = "Reproducir / Siguiente,Reproducir,Pausar,Continuar,Parar,Siguiente,Anterior,Menú,Controles de Música,Limpiar Lista de Reproducción,Parar después de esta canción,Stop after playlist ends,Toggle song bar,Volume up,Volume down,Speed up,Speed down,Balance left,Balance right,Minimizar,Cerrar FLUX"
 		}
 		elseif language == "Deutsch" //TODO new translation in these tooltips
 		{
@@ -4197,10 +4355,10 @@ MusicPlayer.SetDefaultSettings
 	
 	MusicPlayer.Tooltips = "On"
 	MusicPlayer.AnnounceSongs = "Off"
-	MusicPlayer.Priority = "Dialogue"
-	MusicPlayer.Scroll = "Volume"
-	MusicPlayer.PreviousButton = "Restarts song" //Behavior of the previous button
-	MusicPlayer.Pagination = "Paginated" //Playlist display option
+	MusicPlayer.Priority = 0
+	MusicPlayer.Scroll = 0
+	MusicPlayer.PreviousButton = 0 //Behavior of the previous button
+	MusicPlayer.Pagination = 1 //Playlist display option
 	
 	MusicPlayer.PageIndex = 0
 	MusicPlayer.PlaylistPath = MusicPlayer.DefaultPlaylistPath //Default playlist folder, change if desired
@@ -4234,10 +4392,10 @@ MusicPlayer.ResetDefaultSettings
 	
 	if !ISVAR("MusicPlayer.Tooltips"); MusicPlayer.Tooltips = "On"
 	if !ISVAR("MusicPlayer.SongAnnouncement"); MusicPlayer.SongAnnouncement = "Off"
-	if !ISVAR("MusicPlayer.Priority"); MusicPlayer.Priority = "Dialogue" //Whether it interrupts dialogue or not when going to the next song
-	if !ISVAR("MusicPlayer.Scroll"); MusicPlayer.Scroll = "Volume"
-	if !ISVAR("MusicPlayer.PreviousButton"); MusicPlayer.PreviousButton = "Restarts song" //Behavior of the previous button
-	if !ISVAR("MusicPlayer.Pagination"); MusicPlayer.Pagination = "Paginated" //Playlist display option
+	if !ISVAR("MusicPlayer.Priority"); MusicPlayer.Priority = 0 //Whether it interrupts dialogue or not when going to the next song
+	if !ISVAR("MusicPlayer.Scroll"); MusicPlayer.Scroll = 0
+	if !ISVAR("MusicPlayer.PreviousButton"); MusicPlayer.PreviousButton = 0 //Behavior of the previous button
+	if !ISVAR("MusicPlayer.Pagination"); MusicPlayer.Pagination = 1 //Playlist display option
 	
 	if !ISVAR("MusicPlayer.PageIndex"); MusicPlayer.PageIndex = 0
 	if !ISVAR("MusicPlayer.PlaylistPath"); MusicPlayer.PlaylistPath = MusicPlayer.DefaultPlaylistPath //Default playlist folder
