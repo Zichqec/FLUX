@@ -339,7 +339,7 @@ OnGhostChanged //After switching.
 
 OnShellChanging : all //Starting to change the shell
 {
-	MusicSettings[5] = 1
+	CurrentlyChangingShells = 1
 	MusicSettings[6] = SHIORI3FW.LastSurface[0]
 	shellchange = IARRAY
 	"\1\s[-1]\0\![get,property,OnGetCoords,currentghost.scope(0).rect]" //This gets the current ghost coordinates so that they don't jump around the screen when they change shells
@@ -531,7 +531,7 @@ OnChangedShell //I have this here because it takes a moment for it to read the d
 
 RestartSinging
 {
-	if MusicSettings[5] == 2
+	if CurrentlyChangingShells == 2
 	{
 		"\![raise,OnSoundStop]"
 	}
@@ -539,8 +539,8 @@ RestartSinging
 	--
 	SHIORI3FW.LastSurface[0] = MusicSettings[6]
 	MusicSettings[6] = IARRAY
-	if Singing || MusicSettings[5] == 2; "%(SingingSurfaces)" //Note to self: this was %(SingingSurfaces) before, but the variable to tell what surface they were last in seems like it doesn't carry across shells? Perhaps warrants further testing, but I think this will fix the issue where they don't go back to the singing pose after changing shells while singing...
-	MusicSettings[5] = 0
+	if Singing || CurrentlyChangingShells == 2; "%(SingingSurfaces)" //Note to self: this was %(SingingSurfaces) before, but the variable to tell what surface they were last in seems like it doesn't carry across shells? Perhaps warrants further testing, but I think this will fix the issue where they don't go back to the singing pose after changing shells while singing...
+	CurrentlyChangingShells = 0
 }
 
 OnShellAuthor
@@ -577,6 +577,9 @@ OnGetCustomShellDialogue
 
 OnWindowStateRestore
 {
+	if ISFUNC("OnCustom_trayicon"); OnCustom_trayicon
+	else; "\![set,tasktrayicon,flux.ico]"
+	--
 	OnSurfaceRestore
 }
 
@@ -591,7 +594,7 @@ BootVars
 	NowPlaying[0] = ""
 	NowPlaying[2] = ""
 	MusicSettings[4] = ""
-	MusicSettings[5] = 0
+	CurrentlyChangingShells = 0
 	InstalledShellName = ""
 	
 	if ISVAR("username")
