@@ -1091,14 +1091,8 @@ OnBIFFComplete
 		_s = ""; if reference0 != 1; _s = "s" //Plural check, adds an s if the number of emails is not 1
 		_e = ""; if reference0 != 1; _e = "e"
 		_pl = ""
-		if reference0 == 1
-		{
-			_pl = "den"
-		}
-		else
-		{
-			_pl = "die" 
-		}
+		if reference0 == 1; _pl = "den"
+		else; _pl = "die" 
 		
 		if reference0 == 0 //No new emails
 		{
@@ -1165,9 +1159,7 @@ OnBIFFComplete
 	elseif language == "Polski"
 	{
 		_s = ""; if reference0 != 1; _s = "i" //Plural check, adds an s if the number of emails is not 1
-		--
 		_c = ""; if reference0 != 1; _c = "ch"
-		--
 		_ki = ""; if reference0 != 1; _ki = "ek"
 		else; _ki = "ki"
 		
