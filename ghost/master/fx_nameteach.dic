@@ -30,7 +30,7 @@ OnChangePronoun : all
 		"\n\n\_q"
 		"\![*]\q[Él/Él/Su/,OnPronouns,masc]\n"
 		"\![*]\q[Ella/Ella/Su,OnPronouns,fem]\n"
-		"\![*]\q[Elle/Elle/su,OnPronouns,undef]"
+		"\![*]\q[Elle/Elle/Su,OnPronouns,undef]"
 		
 		"\n\n\![*]\q[Cancelar,OnConfigMenu]\e"
 	}

@@ -80,7 +80,6 @@ OnSakuraMenu : all
 		}
 		else //English
 		{
-			//"[An update is available.\w8 Do you want to download it?]" //TODO JAPANESE - Have to update this
 			"[Updates are available for:]\n\n\![]"
 			
 			if AutoUpdates[3] == 1; "[FLUX Player]\n\![]"
@@ -518,7 +517,7 @@ OnConfigMenu : all
 	if IsEmergencyMode || CustomFuncs[0] == 0 || !_has_custom_dialogue; _custom_functions_enabled = 0
 	
 	"\C\![lock,balloonrepaint]\c\0\*"
-	"\![set,autoscroll,disable]\_q\b[4]\f[anchorvisitedfontcolor,default.anchor]"
+	"\![set,autoscroll,disable]\_q\b[2]\f[anchorvisitedfontcolor,default.anchor]"
 	
 	//TODO TRANSLATION the "reset" button for username needs a translation
 	
@@ -528,8 +527,8 @@ OnConfigMenu : all
 	}
 	elseif language == "Español"
 	{
-		"Tu nombre: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
-		"Tus pronombres: \_a[OnChangePronoun]%(Capitalize(élella))/%(Capitalize(élella))/%(Capitalize(susu))\_a\n"
+		"Tu nombre: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Restablecer)\__q\f[color,default]\n"
+		"Tus pronombres: \_a[OnChangePronoun]%(Capitalize(élella))\_a\n" //TODO TRANSLATION i snipped the other two here since they don't exist now...
 		
 		"Idioma: \_a[OnLanguageMenu]%(language)\_a\n"
 		
@@ -551,11 +550,11 @@ OnConfigMenu : all
 		"\n"
 		"Funciones/Diálogos de Shell personalizados \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][ERROR DE SHELL: FUNCIONES DE PERSONALIZACIÓN DESACTIVADAS]\_a"
-		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No custom dialogue available in this shell]"
+		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No hay diálogo personalizado para este shell]"
 		"\n"
 		if !_custom_functions_enabled; "\f[color,disable]"
 		"Frecuencia de diálogos:\n"
-		_times = ("Off,0","30s,30","1m,60","3m,180","5m,300","10m,600")
+		_times = ("Apagado,0","30s,30","1min,60","3min,180","5min,300","10min,600")
 		foreach _times; _time
 		{
 			switch TOINT(_time[1]) == aitalkinterval
@@ -624,13 +623,13 @@ OnConfigMenu : all
 		"Auto-Update-Überprüfungen \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
 		"\![*]\q[Nach FLUX-Updates suchen,OnConfig.UpdateCheck]\n"
 		"\![*]\q[Nach Shell-Updates suchen,OnConfig.UpdateShell]\n"
-		
+		"\n"
 		"\![*]\q[Bug melden,BugReport]\n\n"
 		"\![*]\q[Zurück zum Hauptmenü,OnMenuRun]"
 	}
 	elseif language == "Русский"
 	{
-		"Твоя имя: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
+		"Твоя имя: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Перезагрузить)\__q\f[color,default]\n"
 		"Твои Местоимение: \_a[OnChangePronoun]%(онона)/%(егоее)\_a\n"
 		
 		"Язык: \_a[OnLanguageMenu]%(language)\_a\n"
@@ -653,11 +652,11 @@ OnConfigMenu : all
 		"\n"
 		"Особенные Функции/Разговоры Вида \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][ОШИБКА С ВНЕШНОГО ВИДА: ПОЛЬЗОВАТЕЛЬСКИЕ ФУНКЦИЯ ВЫКЛЮЧЕН]\_a"
-		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No custom dialogue available in this shell]"
+		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][В этом виду нет ничего изготовленный диалог.]"
 		"\n"
 		if !_custom_functions_enabled; "\f[color,disable]"
 		"Времени разговоров:\n"
-		_times = ("Off,0","30s,30","1m,60","3m,180","5m,300","10m,600")
+		_times = ("Выкл,0","30с,30","1м,60","3м,180","5м,300","10м,600")
 		foreach _times; _time
 		{
 			switch TOINT(_time[1]) == aitalkinterval
@@ -675,7 +674,7 @@ OnConfigMenu : all
 		"Авто-обновлении \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
 		"\![*]\q[Проверять обновление FLUX,OnConfig.UpdateCheck]\n"
 		"\![*]\q[Проверять обновление Видов,OnConfig.UpdateShell]\n"
-		
+		"\n"
 		"\![*]\q[Сообщить о ошибке,BugReport]\n\n"
 		"\![*]\q[Назад в Меню,OnMenuRun]"
 	}
@@ -726,7 +725,7 @@ OnConfigMenu : all
 		"Vérification auto des mises à jour \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
 		"\![*]\q[Vérifier les mises à jour de FLUX,OnConfig.UpdateCheck]\n"
 		"\![*]\q[Vérifier les mises à jour du shell,OnConfig.UpdateShell]\n"
-		
+		"\n"
 		"\![*]\q[Reporter un bug,BugReport]\n\n"
 		"\![*]\q[Retourner au menu,OnMenuRun]"
 	}
@@ -777,7 +776,7 @@ OnConfigMenu : all
 		"Automatyczne sprawdzanie aktualizacji \_a[OnToggleUpdate]%(_atoupdbtn)\_a\n"
 		"\![*]\q[Sprawdź aktualizacje FLUX,OnConfig.UpdateCheck]\n"
 		"\![*]\q[Sprawdź aktualizacje skorupy,OnConfig.UpdateShell]\n"
-		
+		"\n"
 		"\![*]\q[Zgłoś błąd,BugReport]\n\n"
 		"\![*]\q[Powrót do menu,OnMenuRun]"
 	}
@@ -829,7 +828,6 @@ OnConfigMenu : all
 		"\![*]\q[Check for FLUX updates,OnConfig.UpdateCheck]\n"
 		"\![*]\q[Check for shell updates,OnConfig.UpdateShell]\n"
 		"\n"
-		
 		"\![*]\q[Report a bug,BugReport]\n\n"
 		"\![*]\q[Back to the menu,OnMenuRun]"
 	}
@@ -945,7 +943,7 @@ OnToggleUpdate
 
 OnToggleCustomFuncs : all
 {
-	"\C\0\b[4]"
+	"\C\0\b[2]"
 	
 	if CustomFuncs[0] != 1
 	{
@@ -1160,41 +1158,51 @@ Select.BugReport : all
 	}
 	elseif language == "Español"
 	{
-		""
+		"[Bugs sobre las mecánicas del reproductor FLUX pueden ser informados a \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]\n\n\w8\w8"
+		"[Los bugs sobre el shell actual, '%(nowshell)',\w4 deben ser informados a su desarrollador,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Cualquier problema en los menús/sistema de diálogos en español para FLUX puede ser comunicado a \_a[https://rosecelestereblog.tumblr.com/]Celeste\_a.]"
 		
-		"\n\n\![*]\q[Volver a Configuración,OnConfigMenu]\n\![*]\q[Cerrar,OnCancel]\e"
+		"\n\n\![*]\q[Volver a Configuración,OnConfigMenu]\n\![*]\q[Cerrar,OnCancel]"
 	}
 	elseif language == "Deutsch"
 	{
-		""
+		"[Bugs in FLUX-Player's Mechaniken können \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 via jeder ihrer Social-Medias gemeldet werden.]\n\n\w8\w8"
+		"[Bugs in der Shell, die du gerade benutzt, '%(nowshell)',\w4 sollten ihrem Entwickler,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a gemeldet werden.]\n\n\w8\w8"
+		"[Typos und jegliche andere Fehler in der deutschen Übersetzung von FLUX können \_a[https://koguri3108.tumblr.com]Koguri3108\_a gemeldet werden.]"
 		
-		"\n\n\![*]\q[Zurück zu Einstellungen,OnConfigMenu]\n\![*]\q[Schließen,OnCancel]\e"
+		"\n\n\![*]\q[Zurück zu Einstellungen,OnConfigMenu]\n\![*]\q[Schließen,OnCancel]"
 	}
 	elseif language == "Русский"
 	{
-		""
+		"[Сообщить \_a[https://ukagaka.zichqec.com/]Zichqec\_a об ошибки с функции плеер FLUX.]\n\n\w8\w8"
+		"[Сообщить ошибки текущий вид, '%(nowshell)',\w4 до его автор,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Сообщить \_a[https://smokycinnamon.tumblr.com/]Smoky\_a о всякие ошибки с русским переводом.]"
 		
-		"\n\n\![*]\q[Назад в Конфигурация,OnConfigMenu]\n\![*]\q[Закрыть,OnCancel]\e"
+		"\n\n\![*]\q[Назад в Конфигурация,OnConfigMenu]\n\![*]\q[Закрыть,OnCancel]"
 	}
 	elseif language == "Français"
 	{
-		""
+		"[Les bugs de méchaniques du lecteur FLUX peuvent être rapporté à \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 via n'importe quel réseau social.]\n\n\w8\w8"
+		"[Les bugs du shell actuellement utilisé, '%(nowshell)',\w4 doivent être rapporté à son developpeur,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Toute faute de frappe dans les menus français/dialogues génériques pour FLUX peuvent être rapportés à \_a[https://levidre.github.io/]Levidre\_a.]"
 		
-		"\n\n\![*]\q[Retour à Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]\e"
+		"\n\n\![*]\q[Retour à Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]"
 	}
 	elseif language == "Polski"
 	{
-		""
+		"[Błędy w mechanice odtwarzacza FLUX można zgłaszać do \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 za pośrednictwem jednego z jej mediów społecznościowych.]\n\n\w8\w8"
+		"[Błędy w skorupie, którą aktualnie używasz, '%(nowshell)',\w4 powinny być zgłaszane do jej twórcy,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Wszelkie literówki w polskim tłumaczeniue dla FLUXa mogą być zgłaszane do \_a[https://zdzisiu.github.io/Ukagaka/]Zdzicha\_a przez Discorda.]"
 		
-		"\n\n\![*]\q[Powrót do ustawień,OnConfigMenu]\n\![*]\q[Zamknij,OnCancel]\e"
+		"\n\n\![*]\q[Powrót do ustawień,OnConfigMenu]\n\![*]\q[Zamknij,OnCancel]"
 	}
 	else //English
 	{
 		"[Bugs with FLUX player's mechanics can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]\n\n\w8\w8"
-		"[Bugs in the currently running shell, '%(nowshell)',\w4 should be reported to it's dev,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
-		"[Any typos in the English menus/system dialogue for FLUX can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]"
+		"[Bugs in the currently running shell, '%(nowshell)',\w4 should be reported to its dev,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Any issues in the English menus/system dialogue for FLUX can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]"
 		
-		"\n\n\![*]\q[Back to Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]\e"
+		"\n\n\![*]\q[Back to Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]"
 	}
 }
 

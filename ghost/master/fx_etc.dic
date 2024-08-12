@@ -1688,26 +1688,26 @@ OnUpdateFailure //If the update fails
 	{
 		if reference0 == "timeout" //If it timed out
 		{
-			"[El tiempo de conexión se ha agotado.]\e"
+			"[El tiempo de conexión se ha agotado.]"
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
-			"[Los valores MD5 no concuerdan con '%(_currentfile)'.\w8\w8 Debes contactar con \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a y dejárselo saber.]\e"
+			"[Los valores MD5 no concuerdan con '%(_currentfile)'.\w8\w8 Debes contactar con \_a[https://ukagaka.zichqec.com/]Zichqec\_a para arreglar el problema.]"
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
-			"[Actualización cancelada.]\e"
+			"[Actualización cancelada.]"
 		}
 		else //Any other errors
 		{
-			"[No se ha podido actualizar: '%(reference0)'.]\e"
+			"[No se ha podido actualizar: '%(reference0)'.]"
 		}
 	}
 	elseif language == "Deutsch"
 	{
 		if reference0 == "timeout" //If it timed out
 		{
-			"[Es gab eine Zeitüberschreitung beim Verbindungsversuch.]\e"
+			"[Es gab eine Zeitüberschreitung beim Verbindungsversuch.]"
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{	
@@ -1715,18 +1715,18 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
-			"[Update wurde abgebrochen.]\e"
+			"[Update wurde abgebrochen.]"
 		}
 		else //Any other errors
 		{
-			"[Update konnte nicht durchgeführt werden: '%(reference0)'.]\e"
+			"[Update konnte nicht durchgeführt werden: '%(reference0)'.]"
 		}
 	}
 	elseif language == "Русский"
 	{
 		if reference0 == "timeout" //If it timed out
 		{
-			"[Связь истекшим временем ожидания.]\e"
+			"[Связь истекшим временем ожидания.]"
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
@@ -1734,18 +1734,18 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
-			"[Отметил_а обновление.]\e" //обновления?
+			"[Отметил_а обновление.]" //обновления?
 		}
 		else //Any other errors
 		{
-			"[Ошибок был: '%(reference0)'.]\e"
+			"[Ошибок был: '%(reference0)'.]"
 		}	
 	}
 	elseif language == "Français"
 	{
 		if reference0 == "timeout" //If it timed out
 		{
-			"[La connexion a expirée.]\e"
+			"[La connexion a expirée.]"
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
@@ -1753,18 +1753,18 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
-			"[Mise à jour annulée.]\e"
+			"[Mise à jour annulée.]"
 		}
 		else //Any other errors
 		{
-			"[Impossible de mettre à jour : '%(reference0)'.]\e"
+			"[Impossible de mettre à jour : '%(reference0)'.]"
 		}
 	}
 	elseif language == "Polski"
 	{
 		if reference0 == "timeout" //If it timed out
 		{
-			"[Połączenie zostało przerwane..]\e"
+			"[Połączenie zostało przerwane..]"
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{
@@ -1772,11 +1772,11 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{
-			"[Aktualizacja anulowana.]\e"
+			"[Aktualizacja anulowana.]"
 		}
 		else //Any other errors
 		{
-			"[Nie można było zaktualiować: '%(reference0)'.]\e"
+			"[Nie można było zaktualiować: '%(reference0)'.]"
 		}	
 	}
 	else //English
