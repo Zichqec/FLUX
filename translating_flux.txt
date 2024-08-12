@@ -1,40 +1,107 @@
-//If you're reading this file, I assume you're interested in translating the FLUX ghost. Thank you in advance, I would be super happy to see FLUX in more languages!
+If you're reading this file, I assume you're interested in translating FLUX. Thank you in advance, I would be super happy to see FLUX in more languages!
 
-//First of all, what you're translating here will be JUST the menu text and default text for the right click functions, and such. If you wanted to translate the custom dialogue for a shell, be sure to ask the shell's author about that!
+First of all, what you're translating here will be JUST the menu text and default text for the right click functions, and such. If you wanted to translate the custom dialogue for a shell, be sure to ask the shell's author about that.
 
-//Secondly, you don't need to know how to code to do this, but you do need to familiarize yourself with sakurascript. Zarla has a great guide for translating ghosts, which you can find here: http://ashido.com/ukagaka/translation.html
-//You can find the rest of the guide here, including a section on sakurascript: http://ashido.com/ukagaka/
-//FLUX uses complicated scripts in some spots, if you have any questions feel free to reach out to me and I'll do my best to help you understand!
 
-//Third, not a huge point, but if your language requires you to pick a masculine or feminine form for FLUX and you're not certain which to pick, pick masculine. The character the ghost name comes from is male, so I think that makes the most sense.
 
-//You'll probably want to start by setting FLUX's language variable to the language you're going to be adding. To do this, you'll want to open script input with Ctrl-S (this requires you to have SSP's developer mode on, which you can find in the preferences), and put in this: %(language = 'your language')
-//In place of 'your language', put in your language's name as you want the label to appear in the menu. So for example, instead of writing language = 'Japanese', you'd want to put language = '日本語'
-//Nothing will change yet (unless you didn't have FLUX in english), but you'll see why this is important in a moment.
+You don't need to know how to code in order to translate, but knowing a little bit of how code is structured, as well as how SakuraScript works, will help.
 
-//FLUX has its language checks set up like this:
+I've left tags like the following throughout the ghost, in all the places that need translation:
+//TRANSLATORS:
 
-//if language == "日本語"
-//{
-	//Stuff in Japanese
-//}
-//elseif language == "Français"
-//{
-	//Stuff in French
-//}
-//else //English
-//{
-	//Stuff in English
-//}
+This will be followed by a description of what you're translating, and sometimes special instructions.
 
-//What this means is that, any dialogues you haven't translated yet will show up in English! As you go through the code and add in your translations, you'll see those buttons/dialogues change to your translations. It always defaults to English if it doesn't find a check for your language, in case anything should ever get messed up or a check is missing.
+This will be followed by an if/elseif/else check, which changes what the ghost will output based on the user's selected language. It will look like this:
 
-//Alright, so where do you need to translate? Thankfully, not everywhere! I've put notes everywhere that a translation is needed, with an explanation of what that dialogue is for. Search FLUX's files for this: //TRANSLATORS:
-//You'll see an if/else stack like the one shown above. Add in an elseif for your language, copy the code from the english block, and translate any dialogue/labels to your language! Make sure you're translating JUST the labels unless the notes tell you otherwise!
+if language == "Placeholder" //TRANSLATORS: This is an example!
+{
+	
+}
+elseif language == "Español"
+{
+	//Spanish content
+}
+elseif language == "Polski"
+{
+	//Polish content
+}
+else //English
+{
+	//English content - this is run by default if there is no translation for the current language
+}
 
-//You should also add a translation to FLUX's readme, which you can find at the top level of FLUX's folder. I believe I have it set up so that all languages will display correctly in it, but double check it and tell me if the text is messed up. This may depend on your locale.
-//You may also consider translating the _how_to_make_a_shell.txt file in the make_your_own_shell folder, if you want to be extra. That file is instructions on how to make custom shells. This isn't necessary, but if you're interested you can do that too!
+As you can see, each "elseif" statement corresponds to one language. You'll want to add in a new elseif statement for your own language, then copy and paste the content from the English version and translate from there. So let's say you're translating into German (there is already a German translation but just for the sake of example), it'd look like this:
 
-//That's all there is to it, really! Once you've completed your translation, get in touch with me and send me the files, and I'll add them to FLUX in an update! I'll also add a credit for your translation on my website, and in FLUX's readme.
+if language == "Placeholder" //TRANSLATORS: This is an example!
+{
+	
+}
+elseif language == "Deutsch"
+{
+	//Your new translated content here!
+}
+elseif language == "Español"
+{
+	//Spanish content
+}
+elseif language == "Polski"
+{
+	//Polish content
+}
+else //English
+{
+	//English content - this is run by default if there is no translation for the current language
+}
 
-//Thank you so much if you do this! Every translation is important, and means we can reach out and share ukagaka with an even wider audience!
+Note: these checks are always written with the name of the language as it is displayed in that language. So instead of "German", it's written as "Deutsch".
+
+
+
+So, what about the content itself? What does that look like, and what all do you need to translate?
+
+First of all, I think it will be very helpful for you if you take a look inside the actual code, and look at the existing translations to see where they differ from English. You can use them as a guide to help you know which parts actually need to be changed! Just run a search for those "//TRANSLATOR:" comments, and then look how each language is set up.
+
+But as a crash course for beginners:
+
+First of all, you need to go to the folder flux/ghost/master/. This should be located within the files for your installation of SSP, usually it will be like ssp/ghost/flux/ghost/master/
+
+Within this folder, you're looking for files that end in ".dic" - these are what you're going to be translating in. You can open these in a text editor such as NotePad++! That's the editor I recommend, since it's free and you can use it to have syntax highlighting for the code.
+
+Now that you're in the files, you're going to see code like what I mentioned above. Some of it gets pretty complicated, but all the parts you need to worry about follow the principle I outlined above, where you can copy and paste the existing format.
+
+
+
+Almost all dialogue is contained within "strings", which are enclosed in double quotes. Nearly everything you translate here will be within a double quoted string, like so:
+"Hello, world!"
+
+Within strings, there is something called "SakuraScript". This is a system of tags that tell SSP to perform certain actions during the dialogue. For example, the tag \0 makes the main character the one that is in focus and will talk. \1 makes the side character the one that is in focus, so anything that comes after that tag will be said by the side character.
+
+
+
+Other tags you see may be written like \s[0], \![set,autoscroll,disable], etc.
+
+**Most of these tags do not need to be translated.** For the most part, you'll be translating around them. However, there are some tags that *do* require translation, such as menu choices (\__q) and anchors (\_a). These are usually written like so:
+\__q[OnSomeChoice]Some choice\__q
+\_a[OnSomeAnchor]Some anchor\_a
+
+In these cases, **do not** translate what is inside those square brackets! That's a part of the code, and you should leave it alone. Instead, you can translate the labels that come just after the brackets. So "Some choice" and "Some anchor" *do* need translated.
+
+You will also occasionally see a different format of menu choice (\q) that I am still in the process of phasing out. These ones are written like so:
+\q[Some choice,OnSomeChoice]
+
+In this case, the *first section* of the tag needs to be translated. So, the part before the comma, that says "Some choice". That's the label. The part(s) after the comma are code and should be ignored.
+
+
+Occasionally, I use what are called local variables to create labels that appear in multiple places. You may see them like this:
+_somebutton = "Some text"
+
+And then later in dialogue, you'll see it called like this:
+"Some label: %(_somebutton)"
+
+Not all local variables require translation. Ones that do need to be translated should be indicated, or you'll see that other translations have translated them.
+
+
+
+Keep an eye out for things written inside %(). This is a call to another function or variable, so the translation for it (if there is one) will be written elsewhere. But not to worry, if it's not within the if/elseif/else that you're currently working on, it will have a translator note for you somewhere else, so you don't need to go searching on your own.
+
+I know this isn't the most thorough translation guide. Please ask me if you have any questions, and I can help you out with anything you're having trouble with! I hope to one day write a general ghost translation guide, but it's probably a long ways off.
