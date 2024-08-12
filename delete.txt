@@ -1,1 +1,2 @@
 ghost/master/fx_shelldialogue.dic
+make_your_own_shell/Coordin.zip
