@@ -607,11 +607,11 @@ BootVars
 UpdateVars
 {
 	//if ISVAR("examplevariable") == 0; examplevariable = 0
-	if GETTYPE(playtime[0]) == 3; playtime[0] == STRLEN(playtime[0])
-	if GETTYPE(playtime[1]) == 3; playtime[1] == STRLEN(playtime[1])
-	if GETTYPE(playtime[2]) == 3; playtime[2] == STRLEN(playtime[2])
+	if GETTYPE(playtime[0]) == 3; playtime[0] = STRLEN(playtime[0])
+	if GETTYPE(playtime[1]) == 3; playtime[1] = STRLEN(playtime[1])
+	if GETTYPE(playtime[2]) == 3; playtime[2] = STRLEN(playtime[2])
 	
-	if !Flag("SYSTEM UPDATE||| CONVERT || IN PLAYLISTS TO COMMAS |||SYSTEM UPDATE")
+	if !Flag("FLUX MASTER SYSTEM UPDATE||| CONVERT || IN PLAYLISTS TO COMMAS |||FLUX MASTER SYSTEM UPDATE")
 	{
 		MiscFlags ,= "FLUX MASTER SYSTEM UPDATE||| CONVERT || IN PLAYLISTS TO COMMAS |||FLUX MASTER SYSTEM UPDATE"
 		for _i = 0; _i < ARRAYSIZE(CurrentPlaylist); _i++
