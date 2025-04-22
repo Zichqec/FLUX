@@ -1,25 +1,38 @@
-﻿Languages: English - Polski - Français - Русский - Deutsch
+﻿Languages: English - Polski - Français - Русский - Deutsch - Español
 
 
-English:
-Thank you for installing FLUX player! This ghost is a spiritual successor to the ghost FLELE, which you can find here: http://navy.nm.land.to/ukgk/flele/beginner.html
-FLUX can play music for you, and save playlists. You can install different shells to change the look of FLUX, and some shells may come with custom dialogue/functions! I keep a list of shells for FLUX on my website: https://ukagaka.zichqec.com/ghost/flux
-FLUX is also backwards compatible with FLELE shells! As long as FLELE is closed, you should be able to drag and drop them onto FLUX to install them. Here's a collection of FLELE shells, but there are certainly more out there: https://www.deviantart.com/zichqec/favourites/87935078/flele-shells
-Every shell will have it's own hotspots that you can use for music controls. These should be detailed in their readme, which you can bring up at any time by pressing F1 and changing the tab to 'Shell information...'
+	——— English ———
+FLUX is a spiritual successor to the ghost FLELE: http://navy.nm.land.to/ukgk/flele/
 
-If you find any bugs, or FLELE shells that aren't compatible, please get in touch with me! I can be reached on any of my socials, linked at the bottom of my website here: https://ukagaka.zichqec.com/
-If you find an error in the English text for FLUX, you can reach me at that same link. And if you're interested in translating FLUX to your language, please check out translating_flux.txt in FLUX's folder!
+It features a robust music player, and can save and load playlists in the same format as FLELE (and some other music players). You can also install different shells to change the look of FLUX, some of which may include custom dialogue.
 
-If you want to make your own shell for FLUX, check out the documentation in the make_your_own_shell folder within FLUX's files! _how_to_make_a_shell.txt has a guide on basic shell creation, as well as documentation on FLUX's special setup for custom functions/dialogue.
+FLUX is backwards compatible with FLELE, and should be able to install FLELE shells as long as FLELE is closed. If you find a FLELE shell that is not compatible, please contact me.
+
+I list all known FLUX shells on my website:
+https://ukagaka.zichqec.com/ghost/flux
+
+You can find many FLELE shells scattered across the web. You might try these links as a starting point:
+https://ukagakadreamteam.com/wiki/ghost/flele
+https://www.deviantart.com/zichqec/favourites/87935078/flele-shells
+
+Many shells have hotspots you can double click to control the player. Please see the readme file of each individual shell for instructions. To view the readme of the current shell, click on FLUX, press F1, and change the tab to "Shell information..."
+
+If you find any bugs or other issues, please contact me via my links at the bottom of my website: https://ukagaka.zichqec.com/
+
+If you want to make your own shell for FLUX, there is documentation in the make_your_own_shell folder within FLUX's files.
+
+If you're interested in translating FLUX to a new language, there is information in translating_flux.txt in FLUX's files. Get in contact with me and I can help you with this process!
 
 Many thanks to the folks who have translated FLUX!
 
--------------------------------------------------------------
+English translation: Zichqec https://ukagaka.zichqec.com/
+
+————————————————————————————————————————
 
 
 Polski:
 Dziękuję za instalacje Odtwarzacza FLUX! Ten duch jest następcą dla ducha FLELE, którego możesz znaleźć tu:
-http://navy.nm.land.to/ukgk/flele/beginner.html
+http://navy.nm.land.to/ukgk/flele/
 FLUX może odtwarzać dla Ciebie muzykę i zapisywać playlisty. Możesz zainstalować różne skorupy, aby zmienić wygląd FLUXa, a niektóre skorupy mogą zawierać niestandardowe dialogi/funkcje! Utrzymuję listę skorup dla FLUXa na mojej stronie internetowej: https://ukagaka.zichqec.com/ghost/flux
 FLUX jest również wstecznie kompatybilny z skorupami FLELE! Tak długo jak FLELE jest zamknięte, powinieneś być w stanie przeciągnąć i upuścić je na FLUXa, aby je zainstalować. Oto kolekcja skorup FLELE, ale z pewnością jest ich więcej: https://www.deviantart.com/zichqec/favourites/87935078/flele-shells
 Każda skorupa będzie miała swoje własne hotspoty, których możesz użyć do sterowania muzyką. Powinny być one wyszczególnione w ich readme, które możesz wywołać w dowolnym momencie naciskając F1 i zmieniając zakładkę na 'Informacje o skorupie...'
@@ -38,7 +51,7 @@ Polskie tłumaczenie: Zdzisiu https://zdzisiu.github.io/Ukagaka/index.html
 
 Français:
 
-Merci d'avoir installé le lecteur FLUX ! Ce ghost est un successeur spirituel du ghost FLELE, que tu peux trouver ici : http://navy.nm.land.to/ukgk/flele/beginner.html
+Merci d'avoir installé le lecteur FLUX ! Ce ghost est un successeur spirituel du ghost FLELE, que tu peux trouver ici : http://navy.nm.land.to/ukgk/flele/
 FLUX peut jouer de la musique pour toi, et sauvegarder des playlists. Tu peux installer differents shells pour changer l'apparence de FLUX, et quelques shells peuvent apporter un lot de dialogues/fonctions personnalisés ! Je possède une liste de shells pour FLUX sur mon site web : https://ukagaka.zichqec.com/ghost/flux
 FLUX est aussi retro-compatible avec les shells de FLELE ! Tant que FLELE est fermé, tu devrais pouvoir les glisser et déposer sur FLUX pour les installer. Voila une collection de shells de FLELE, mais il y en a sans doute plus existant : https://www.deviantart.com/zichqec/favourites/87935078/flele-shells
 Tout les shells vont avoir leur propre zones utilisables pour controler la musique. Celles-ci devraient être détaillées dans leur readme, que tu peux consulter à n'importe quel moment en appuyant sur F1 et en changeant le tableau pour 'Shell information...'
@@ -56,7 +69,7 @@ Traduction Française : Levidre https://levidre.github.io/
 
 
 Русский:
-Спасибо за установление Плеер FLUX! Этот приведение духовный наследник к FLELE, который можешь найти здесь: http://navy.nm.land.to/ukgk/flele/beginner.html
+Спасибо за установление Плеер FLUX! Этот приведение духовный наследник к FLELE, который можешь найти здесь: http://navy.nm.land.to/ukgk/flele/
 FLUX имеет играть для тебя музыку, и сохранить плейлисты. Тебе можешь скачать другие внешние видов, чтобы изменить вид FLUX, и некоторые из этих есть своему личному разговоры/функцами! У меня список Видов на моей сайте: https://ukagaka.zichqec.com/ghost/flux
 Он тоже есть обратной совместимость с видов для FLELE! Только если FLELE закрыто, он должен разрешить тебе перетаскивать их на его чтобы загрузить. Вот одна коллекция видов, но конечно, много еще в интернете есть: https://www.deviantart.com/zichqec/favourites/87935078/flele-shells
 У каждого вида свои горячие-точках, который можешь использовать для контроля плеера. Ты можешь эти найти в README, и чтобы открыть его, нажми кнопку F1 и изменить вкладка в "Информация обо Внешном Виде..."
@@ -76,7 +89,7 @@ FLUX имеет играть для тебя музыку, и сохранить
 
 
 Deutsch:
-Danke, dass du Flux-Player heruntergeladen hast! Dieser Ghost ist ein geistiger Nachfolger von FLELE, welchen du hier finden kannst: http://navy.nm.land.to/ukgk/flele/beginner.html
+Danke, dass du Flux-Player heruntergeladen hast! Dieser Ghost ist ein geistiger Nachfolger von FLELE, welchen du hier finden kannst: http://navy.nm.land.to/ukgk/flele/
 FLUX kann deine Musik spielen und Playlists speichern. Du kannst verschiedene Shells für FLUX installieren um sein Aussehen zu verändern und manche Shells entalten sogar Shell-Spezifische Funktionen/Dialoge! Auf meiner Webseite ist eine Liste mit Shells für FLUX zu finden: https://ukagaka.zichqec.com/ghost/flux
 FLUX ist außerdem mit FLELE Shells rückwärtskompatibel! Solange du FLELE geschlossen hast sollte es dir möglich sein sie auf FLUX zu ziehen um sie zu installieren. Hier ist eine Sammlung von FLELE Shells, aber es gibt anderswo bestimmt noch mehr: https://www.deviantart.com/zichqec/favourites/87935078/flele-shells
 Jede Shell hat ihre eigenen Bereiche die du zur Musik-Bedienung nutzen kannst. Diese sollten in deren readme zu finden sein, welche du jederzeit öffnen kannst indem du F1 drückst und den Tab zu 'Shell information...' wechselst.
