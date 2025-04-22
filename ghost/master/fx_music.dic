@@ -1,5 +1,5 @@
 //Written by Zichqec https://ukagaka.zichqec.com/
-//Version 2.0.0
+//Version 2.0.3
 
 //Want to implement this music player in your own ghost? You can get the files here! https://github.com/Zichqec/music_player
 //Also includes a file bundle you can use to automatically integrate the player into an unmodified copy of Simplicity Template, for if you're starting a new ghost
@@ -67,7 +67,7 @@ OnMusicPlayer.Menu : all
 		_starting_value = MusicPlayer.PageIndex * MusicPlayer.SongsPerPage
 	}
 	
-	"%(MusicPlayer.Scope)\c%(MusicPlayer.LargeBalloon)\_q\*\![set,autoscroll,disable]\![no-autopause]\f[anchorvisitedfontcolor,default.anchor]\![close,inputbox,OnSetName]"
+	"%(MusicPlayer.Scope)\c%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![set,autoscroll,disable]\![no-autopause]\f[anchorvisitedfontcolor,default.anchor]\![close,inputbox,OnSetName]"
 	
 	//TRANSLATORS: These are the buttons at the top of the music player menu. There are also some buttons at the bottom
 	//TODO TRANSLATION: Translation update, the settings menu changed to just settings, and the move songs menu changed to help
@@ -431,7 +431,7 @@ OnMusicPlayer.PlaySong : all
 			{
 				if MusicPlayer.SongAnnouncement == 2 || !SHIORI3FW.IsTalking && MusicPlayer.SongAnnouncement == 1
 				{
-					"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\_q\![lock,balloonrepaint]\c"
+					"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![quicksection,1]\![lock,balloonrepaint]\c"
 					
 					//DIALOGUE: Song announcement
 					"[Now playing:]\n\_?%(MusicPlayer.CurrentSongName)\_?"
@@ -658,7 +658,7 @@ OnMusicPlayer.PlaylistPage
 
 OnMusicPlayer.JumpToPlaylistPage : all
 {
-	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![set,autoscroll,disable]\![no-autopause]"
+	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
 	"\![open,inputbox,OnMusicPlayer.JumpIndex,-1]"
 	
 	//DIALOGUE: Typing in a page number to jump to manually in the playlist
@@ -683,7 +683,7 @@ OnMusicPlayer.JumpIndex : all
 	else
 	{
 		//DIALOGUE: Putting in an invalid number, or something that isn't a number
-		"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![set,autoscroll,disable]\![no-autopause]"
+		"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
 		"Invalid input.\x\![raise,OnMusicPlayer.JumpToPlaylistPage]"
 	}
 }
@@ -718,7 +718,7 @@ OnMusicPlayer.Settings : all
 	_isbasic = 0
 	if !(reference0 == "Advanced" || reference0 == "Playlists" || reference0 == "Hotkeys"); _isbasic = 1
 	
-	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c\![set,autoscroll,disable]\![no-autopause]\_q\*%(MusicPlayer.LargeBalloon)\f[anchorvisitedfontcolor,default.anchor]"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c\![set,autoscroll,disable]\![no-autopause]\![quicksection,1]\*%(MusicPlayer.LargeBalloon)\f[anchorvisitedfontcolor,default.anchor]"
 	
 	_basic = ""
 	_advanced = ""
@@ -1680,7 +1680,7 @@ MusicPlayer.Settings.Hotkeys : all
 //Changing the playback type
 OnMusicPlayer.PlaybackType : all
 {
-	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![no-autopause]"
+	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
 	
 	if language == "Placeholder" //TRANSLATORS: These should match the _mode labels above
 	{
@@ -1765,7 +1765,7 @@ OnMusicPlayer.PlaybackTypeChange
 //Bringing up input boxes
 OnMusicPlayer.SetOption : all
 {
-	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\*\![no-autopause]"
+	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![no-autopause]"
 	
 	if reference0 == "Balance"; "\![open,inputbox,OnMusicPlayer.Balance,-1]"
 	elseif reference0 == "Speed"; "\![open,sliderinput,OnMusicPlayer.Speed,-1,100,1,%(MusicPlayer.MaxRate)]"
@@ -2090,7 +2090,7 @@ OnMusicPlayer.ScootSongMenuWarn : all
 {
 	if ARRAYSIZE(MusicPlayer.CurrentPlaylist) > 100
 	{
-		"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\*\![set,autoscroll,disable]\![no-autopause]"
+		"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![set,autoscroll,disable]\![no-autopause]"
 		
 		//TODO TRANSLATION new translations needed here
 		if language == "Placeholder" //TRANSLATORS: A warning if the user tries to open the song moving menu with a lot of songs loaded in
@@ -2196,7 +2196,7 @@ OnMusicPlayer.ScootSongMenu : all
 	
 	if reference1 != ""; "\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
 	
-	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\*\![no-autopause]"
+	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![no-autopause]"
 	
 	"\![*]\__q[OnMusicPlayer.Settings]%(_button)\__q\n\n"
 	
@@ -2347,7 +2347,7 @@ OnMusicPlayer.ChangeHotkey : all
 	_temp = MusicPlayer.Hotkeys[reference0]
 	
 	
-	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\*\_q\![no-autopause]"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\*\![quicksection,1]\![no-autopause]"
 	
 	_option = ""
 	
@@ -2487,7 +2487,7 @@ OnMusicPlayer.UnsetHotkey
 
 OnMusicPlayer.Info : all
 {
-	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\_q\![no-autopause]"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
 	
 	//TODO TRANSLATION the one about file types needs translated
 	if language == "Placeholder" //TRANSLATORS: The various things users can ask about in the info menu
@@ -2550,7 +2550,7 @@ OnMusicPlayer.MusicInfo : all
 	_h = "\f[color,default.anchor]" //highlight
 	_d = "\f[color,default]" //default
 	
-	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\_q\![no-autopause]\![set,autoscroll,disable]"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]\![set,autoscroll,disable]"
 	
 	//TODO TRANSLATION I revamped these dialogues, they need translated again...
 	if language == "Placeholder" //TRANSLATORS: These are the questions the user can ask about how FLUX works. Only translate the dialogues, not the reference0 checks
@@ -2788,7 +2788,7 @@ OnMusicPlayer.MusicInfo : all
 
 OnMusicPlayer.SavePlaylist : all
 {
-	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![set,autoscroll,disable]\![no-autopause]"
+	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
 	"\![open,dialog,save,--id=OnMusicPlayer.PlaylistSaved,--ext=m3u,--filter=Playlist file|*.m3u,--dir=""%(MusicPlayer.PlaylistPath)""]"
 	
 	if language == "Placeholder" //TRANSLATORS: When the user is saving a playlist //TODO new translation
@@ -2852,7 +2852,7 @@ OnMusicPlayer.PlaylistSaved : all
 	MusicPlayer.PlaylistPath = _split[0] + _split[1]
 	
 	
-	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\_q\![no-autopause]"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
 	
 	if language == "Placeholder" //TRANSLATORS: Once the playlist has been saved, or saving has failed. Use _name as the playlist name
 	{
@@ -2986,7 +2986,7 @@ OnMusicPlayer.LoadPlaylist : all
 		_playlist_file = "Playlist file"
 	}
 	
-	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![set,autoscroll,disable]\![no-autopause]"
+	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
 	"\![open,dialog,open,--id=OnMusicPlayer.PlaylistLoaded,--filter=%(_playlist_file)|*.m3u,--dir=""%(MusicPlayer.PlaylistPath)""]"
 	
 	if language == "Placeholder" //TRANSLATORS: This is for the dialogue that appears while loading a playlist //TODO new translation
@@ -3073,7 +3073,7 @@ OnMusicPlayer.ClearPlaylist : all
 {
 	_num = ARRAYSIZE(MusicPlayer.CurrentPlaylist)
 	
-	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\_q\![no-autopause]"
+	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
 	
 	//DIALOGUE: Asking for confirmation before clearing the current playlist. %(_are) and %(_s) can be used for plurals.
 	
@@ -3139,7 +3139,7 @@ OnMusicPlayer.PlaylistCleared : all
 	
 	"\![sound,stop]\![no-autopause]%(OnMusicPlayer.NotifySongInfo)"
 	
-	"%(MusicPlayer.NonSingingSurfaces)%(MusicPlayer.LargeBalloon)\_q\![no-autopause]"
+	"%(MusicPlayer.NonSingingSurfaces)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
 	
 	if language == "Placeholder" //TRANSLATORS: This is if the user clears the playlist
 	{
@@ -3370,7 +3370,7 @@ MusicPlayer.OnKeyPress : all
 MusicPlayer.HotkeyChange : all
 {
 	_key = TOUPPER(reference0)
-	"\![no-autopause]%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\_q"
+	"\![no-autopause]%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![quicksection,1]"
 	_changing = TOINT(SPLIT(MusicPlayer.LastTalk,"changing hotkey: ")[1])
 	
 	//CUSTOMIZE: Customizable list of reserved hotkeys. Add in any hotkeys you've already used in your ghost to this array.
@@ -3515,7 +3515,7 @@ OnFileDrop2 : all
 			MusicPlayer.ShuffledIndex = 0
 			_from = MusicPlayer.CheckWhichMenu
 			
-			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\_q\![no-autopause]\![set,autoscroll,disable]"
+			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![quicksection,1]\![no-autopause]\![set,autoscroll,disable]"
 			
 			if language == "Placeholder" //TRANSLATORS: When the user drags a single compatible music file onto FLUX
 			{
@@ -3586,7 +3586,7 @@ OnFileDrop2 : all
 		}
 		elseif _fileext == ".m3u" //If it's a playlist
 		{
-			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
+			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\![quicksection,1]"
 			
 			//DIALOGUE: Confirming loading a playlist after drag and drop
 			//TODO TRANSLATION need a new translation here
@@ -3651,7 +3651,7 @@ OnFileDrop2 : all
 			
 			if ARRAYSIZE(_musicfiles) == 0 //If there were no compatible songs inside
 			{
-				"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\_q\![no-autopause]\![set,autoscroll,disable]\_q"
+				"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\![quicksection,1]"
 				
 				if language == "Placeholder" //TRANSLATORS: If the user drags a folder on FLUX, and none of the files inside are compatible music files. Use _folder for the folder name
 				{
@@ -3686,7 +3686,7 @@ OnFileDrop2 : all
 			{
 				_num = ARRAYSIZE(_musicfiles)
 				
-				"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
+				"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\![quicksection,1]"
 				
 				"\0\b[0]"
 				if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Action]"
@@ -3702,7 +3702,7 @@ OnFileDrop2 : all
 					
 					"[Se ha%(_n) añadido %(_num) pista%(_s) desde ""\_?%(_folder)\_?"".]"
 					
-					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Abrir Reproductor de Música\__q\n\![*]\__q[blank]Cerrar\__q\e"
+					"\n\n\![*]\__q[OnMusicPlayer.Menu]Abrir Reproductor de Música\__q\n\![*]\__q[blank]Cerrar\__q\e"
 				}
 				elseif language == "Deutsch"
 				{
@@ -3711,7 +3711,7 @@ OnFileDrop2 : all
 					
 					"[Es wurde%(_n) %(_num) Lied%(_er) aus ""\_?%(_folder)\_?"" hinzugefügt.]"
 					
-					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Musik-Player öffnen\__q\n\![*]\__q[blank]Schließen\__q"
+					"\n\n\![*]\__q[OnMusicPlayer.Menu]Musik-Player öffnen\__q\n\![*]\__q[blank]Schließen\__q"
 				}
 				elseif language == "Русский"
 				{
@@ -3719,19 +3719,19 @@ OnFileDrop2 : all
 					
 					"[Добавил %(_num) %(_песня) из ""\_?%(_folder)\_?"".]"
 					
-					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Открыть плеер\__q\n\![*]\__q[blank]Закрыть\__q"
+					"\n\n\![*]\__q[OnMusicPlayer.Menu]Открыть плеер\__q\n\![*]\__q[blank]Закрыть\__q"
 				}
 				elseif language == "Français"
 				{
 					"[%(_num) musiques ajoutées de ""\_?%(_folder)\_?"".]"
 					
-					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Ouvrir le lecteur de musique\__q\n\![*]\__q[blank]Fermer\__q"
+					"\n\n\![*]\__q[OnMusicPlayer.Menu]Ouvrir le lecteur de musique\__q\n\![*]\__q[blank]Fermer\__q"
 				}
 				elseif language == "Polski"
 				{
 					"[Dodano %(_num) piosenek z ""\_?%(_folder)\_?"".]"
 					
-					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Otwórz player\__q\n\![*]\__q[blank]Zamknij\__q"
+					"\n\n\![*]\__q[OnMusicPlayer.Menu]Otwórz player\__q\n\![*]\__q[blank]Zamknij\__q"
 				}
 				else //English
 				{
@@ -3739,13 +3739,13 @@ OnFileDrop2 : all
 					
 					"[Added %(_num) song%(_s) from ""\_?%(_folder)\_?"".]"
 					
-					"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Open music player\__q\n\![*]\__q[blank]Close\__q"
+					"\n\n\![*]\__q[OnMusicPlayer.Menu]Open music player\__q\n\![*]\__q[blank]Close\__q"
 				}
 			}
 		}
 		else //Incompatible
 		{
-			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
+			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\![quicksection,1]"
 			
 			//DIALOGUE: Any file that is not music or a playlist
 			"\0\b[0]"
@@ -3788,7 +3788,7 @@ OnFileDrop2 : all
 
 		if ARRAYSIZE(_musicfiles) == 0 //If there are no music files
 		{
-			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
+			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\![quicksection,1]"
 			
 			if language == "Placeholder" //TRANSLATORS: If the user dragged and dropped multiple files on FLUX, but none of them were compatible music files
 			{
@@ -3823,7 +3823,7 @@ OnFileDrop2 : all
 		{
 			_num = ARRAYSIZE(_musicfiles)
 			
-			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\_q"
+			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\![quicksection,1]"
 			
 			"\0\b[0]"
 			
@@ -3841,7 +3841,7 @@ OnFileDrop2 : all
 				
 				"[Se ha%(_n) añadido %(_num) pista%(_s) compatibles a la lista de reproducción.]"
 				
-				"\n\n\_q\![*]\__q[OnMusicPlayer.Menu]Abrir Reproductor de Música\__q\n\![*]\__q[blank]Cerrar\__q"
+				"\n\n\![*]\__q[OnMusicPlayer.Menu]Abrir Reproductor de Música\__q\n\![*]\__q[blank]Cerrar\__q"
 			}
 			elseif language == "Deutsch"
 			{
@@ -4096,7 +4096,7 @@ OnSoundError : all
 	if MusicPlayer.IsMinimized && !_playnext; MusicPlayer.MakeValueNotify("%(OnMusicPlayer.NotifySongInfo)")
 	else; "%(OnMusicPlayer.NotifySongInfo)"
 	
-	"%(MusicPlayer.Scope)\![unlock,balloonrepaint]\c%(MusicPlayer.SmallBalloon)\![no-autopause]\_q"
+	"%(MusicPlayer.Scope)\![unlock,balloonrepaint]\c%(MusicPlayer.SmallBalloon)\![no-autopause]\![quicksection,1]"
 	
 	if language == "Placeholder" //TRANSLATORS: If a song gives an error, this is the message that will display. I don't know what all the possible error messages can be, and it says it's determined by the sound playback engine, so I'm not going to ask for those to be translated. reference2 here is the file that gave the error, and reference3 is the error message
 	{
@@ -4910,7 +4910,7 @@ OnDiscordPluginInfo : all
 	_h = "\f[color,default.anchor]" //highlight
 	_d = "\f[color,default]" //default
 	
-	"\0\b[2]\_q\*"
+	"\0\b[2]\![quicksection,1]\*"
 	
 	if language == "Placeholder" //TRANSLATORS: Information about where to get the discord plugin and how to use it
 	{
