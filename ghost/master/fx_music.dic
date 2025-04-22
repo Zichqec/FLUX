@@ -1233,8 +1233,8 @@ label.songannouncement
 	}
 	elseif language == "Русский"
 	{
-		if MusicPlayer.SongAnnouncement == 1; "If not talking"
-		elseif MusicPlayer.SongAnnouncement == 2; "If not in menu"
+		if MusicPlayer.SongAnnouncement == 1; "если не говорить"
+		elseif MusicPlayer.SongAnnouncement == 2; "если не в меню"
 	}
 	elseif language == "Français"
 	{
@@ -2669,7 +2669,7 @@ OnMusicPlayer.MusicInfo : all
 		{
 			"[Чтобы добавить песни, перетаскивай их на плеер FLUX. Тоже можешь перетаскивать папки, и больше чем один файл в раз.]\n\n\![]"
 			"[Можешь и использовать настроек ""Открыть файл"" в SSP чтобы выбирать файл через Проводник. Можно быть сделано с использование ярлык Ctrl + O, или нажмение правой кнопкай мыши на укагаку, ход во вкладки Утилиты, а потом нажми ""Открыть файл (I)"".]\n\n\![]"
-			"[Плэйлисты .m3u могуть быть загружены через меню настойки, или тот же самый метод, как и песни.]"
+			"[Плэйлисты .m3u и .m3u8 могуть быть загружены через меню настройки, или тот же самый метод, как и песни.]"
 		}
 		elseif reference0 == "compatiblefiles" //What file types are compatible
 		{
@@ -3101,7 +3101,7 @@ OnMusicPlayer.PlaylistLoaded : all
 		}
 		elseif language == "Русский"
 		{
-			
+			"[Совместимые песни в этом плейлисти не найдено. Загружение отменил.]"
 		}
 		elseif language == "Français"
 		{
@@ -3150,7 +3150,9 @@ OnMusicPlayer.PlaylistLoaded : all
 			}
 			elseif language == "Русский"
 			{
-				
+				_и = "и"; if _skipped == 1; _и = "я"
+				_ые = "ие"; if _skipped == 1; _ые = "ая"
+				"[Плэйлист загружен, но %(_skipped) несовместим%(_ые) песн%(_и) пропустил.]"
 			}
 			elseif language == "Français"
 			{
