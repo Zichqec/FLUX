@@ -841,7 +841,10 @@ OnMusicPlayer.Settings : all
 	
 	
 	"\![unlock,balloonrepaint]"
-	if _isbasic && MusicPlayer.Singing; "\![timerraise,1000,1,OnMusicPlayer.SettingsRecall]"
+	if SHIORI3FW.BalloonName == "Notes" || SHIORI3FW.BalloonName == "Notes (Light)"
+	{
+		if _isbasic && MusicPlayer.Singing; "\![timerraise,1000,1,OnMusicPlayer.SettingsRecall]"
+	}
 	"\e __MUSIC_SETTINGS_MENU__,%(_isbasic)__"
 }
 
@@ -855,7 +858,7 @@ OnMusicPlayer.SettingsRecall
 
 OnMusicPlayer.SettingsClose
 {
-	"\b[-1]"
+	"\b[-1]\![timerraise,0,1,OnMusicPlayer.SettingsRecall]"
 }
 
 MusicPlayer.Settings.Basic : all
