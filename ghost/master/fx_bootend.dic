@@ -418,7 +418,7 @@ OnGetCoords2 //This gets the x and y coordinates when changing shells
 	"\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]" //Moves the ghost to where they were on the previous shell, and gathers the craftman info for the shell
 	//ERASEVAR("shellchange")
 	--
-	if MusicPlayer.DiscordDisplay == "On"; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,Shell: ""%(shellchange[7])""]"
+	if MusicPlayer.DiscordDisplay == 1; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,Shell: ""%(shellchange[7])""]"
 	--
 	if shellchange[7] == nowshell //If the user switches to the shell they're already using
 	{

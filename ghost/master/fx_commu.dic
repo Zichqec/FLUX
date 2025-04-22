@@ -11,7 +11,7 @@ OnNotifySongInfo
 		_song = "♫ ""%(MusicPlayer.CurrentSongName)"" ♫"
 	}
 	
-	if MusicPlayer.DiscordDisplay == "On"; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,%(_song)]"
+	if MusicPlayer.DiscordDisplay == 1; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,%(_song)]"
 	else; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState, ]"
 	--
 	"\![notifyother,__SYSTEM_ALL_GHOST__,OnMusicPlayer.SongInfo,FLUX,""%(MusicPlayer.CurrentSongPath)"",%(MusicPlayer.CurrentSongIndex),%(MusicPlayer.PlayState),%(MusicPlayer.Volume),%(MusicPlayer.Speed),%(MusicPlayer.Balance),%(MusicPlayer.PlayMode),%(MusicPlayer.StopAfterCurrent),%(ARRAYSIZE(MusicPlayer.CurrentPlaylist))]"

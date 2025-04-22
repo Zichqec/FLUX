@@ -410,7 +410,7 @@ OnMusicPlayer.PlaySong : all
 		_send += "\![sound,stop]\![no-autopause]"
 		
 		_window = "False"
-		if MusicPlayer.SongBar == "On"; _window = "True"
+		if MusicPlayer.SongBar == 1; _window = "True"
 		
 		MusicPlayer.SongStartTime = GETSECCOUNT
 		MusicPlayer.PlayState = 1
@@ -429,7 +429,7 @@ OnMusicPlayer.PlaySong : all
 			if reference1 != ""; "\![raise,%(reference1)]" //If music menu is already open, reopen it so that it highlights the correct song properly
 			elseif !MusicPlayer.MenuIsOpen
 			{
-				if MusicPlayer.SongAnnouncement == "If not in menu" || !SHIORI3FW.IsTalking && MusicPlayer.SongAnnouncement == "If not talking"
+				if MusicPlayer.SongAnnouncement == 2 || !SHIORI3FW.IsTalking && MusicPlayer.SongAnnouncement == 1
 				{
 					"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\_q\![lock,balloonrepaint]\c"
 					
@@ -472,7 +472,7 @@ OnMusicPlayer.PauseSong : all
 	//reference0 is which menu this is coming from
 	//reference1 is if we're pausing or resuming
 	_window = "False"
-	if MusicPlayer.SongBar == "On"; _window = "True"
+	if MusicPlayer.SongBar == 1; _window = "True"
 	
 	if MusicPlayer.MenuIsOpen; "\C" //If the balloon is open, keep it open
 	"\![no-autopause]"
@@ -780,26 +780,26 @@ OnMusicPlayer.Settings : all
 	"\![*]"
 	switch _isbasic
 	{
-		"%(_g)\__q[OnMusicPlayer.Settings,Basic]Basic\__q%(_d)"
-		"\__q[OnMusicPlayer.Settings,Basic]Basic\__q"
+		"%(_g)\__q[OnMusicPlayer.Settings,Basic]%(_basic)\__q%(_d)"
+		"\__q[OnMusicPlayer.Settings,Basic]%(_basic)\__q"
 	}
 	"  \![*]"
 	switch reference0 == "Advanced"
 	{
-		"%(_g)\__q[OnMusicPlayer.Settings,Advanced]Advanced\__q%(_d)"
-		"\__q[OnMusicPlayer.Settings,Advanced]Advanced\__q"
+		"%(_g)\__q[OnMusicPlayer.Settings,Advanced]%(_advanced)\__q%(_d)"
+		"\__q[OnMusicPlayer.Settings,Advanced]%(_advanced)\__q"
 	}
 	"\n\![*]"
 	switch reference0 == "Playlists"
 	{
-		"%(_g)\__q[OnMusicPlayer.Settings,Playlists]Playlists\__q%(_d)"
-		"\__q[OnMusicPlayer.Settings,Playlists]Playlists\__q"
+		"%(_g)\__q[OnMusicPlayer.Settings,Playlists]%(_playlists)\__q%(_d)"
+		"\__q[OnMusicPlayer.Settings,Playlists]%(_playlists)\__q"
 	}
 	"  \![*]"
 	switch reference0 == "Hotkeys"
 	{
-		"%(_g)\__q[OnMusicPlayer.Settings,Hotkeys]Hotkeys\__q%(_d)"
-		"\__q[OnMusicPlayer.Settings,Hotkeys]Hotkeys\__q"
+		"%(_g)\__q[OnMusicPlayer.Settings,Hotkeys]%(_hotkeys)\__q%(_d)"
+		"\__q[OnMusicPlayer.Settings,Hotkeys]%(_hotkeys)\__q"
 	}
 	"\n\n"
 	
@@ -904,10 +904,10 @@ MusicPlayer.Settings.Basic : all
 		elseif _mode == 4; _mode = "Random" //TODO new translation
 		else; _mode = "Repetir Lista de reproducción"
 		
-		"Tipo de reproducción:\n \![*]\q[%(_mode),OnPlaybackType]\n\n[half]"
-		"Volumen: \![*]\q[%(_vol),OnMusicSet,Volume]\n"
-		"Velocidad: \![*]\q[%(_speed),OnMusicSet,Speed]\n"
-		"Balance izda./dcha.: \![*]\q[%(_bal),OnMusicSet,Balance]\n\n"
+		"Tipo de reproducción: \![*]\_a[OnMusicPlayer.PlaybackType]%(_mode)\_a\n\n[half]"
+		"Volumen: %(_vol_up_btn)%(_vol_down_btn) \_a[OnMusicPlayer.SetOption,Volume]%(_vol)\_a\n"
+		"Velocidad: %(_speed_up_btn)%(_speed_down_btn) \_a[OnMusicPlayer.SetOption,Speed]%(_speed)\_a\n"
+		"Balance izda./dcha.: %(_balance_left_btn)%(_balance_right_btn) \_a[OnMusicPlayer.SetOption,Balance]%(_bal)\_a\n\n"
 		
 		switch MusicPlayer.PlayMode != 3
 		{
@@ -1098,10 +1098,10 @@ MusicPlayer.Settings.Advanced : all
 	}
 	elseif language == "Español"
 	{
-		"Barra de reproducción \![*]\_a[OnMusicPlayer.ToggleSongBar]%(MusicPlayer.SongBar)\_a\n"
-		"Descripción sobre puntos de interés \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
+		"Barra de reproducción \![*]\_a[OnMusicPlayer.ToggleSongBar]%(offon[MusicPlayer.SongBar])\_a\n"
+		"Descripción sobre puntos de interés \![*]\_a[OnMusicPlayer.ToggleTooltips]%(offon[MusicPlayer.Tooltips])\_a\n"
 		"\n"
-		"Anunciamiento de las pistas \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
+		"Anunciamiento de las pistas \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(label.songannouncement)\_a\n"
 		"Priorizar \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
 		"Rueda de desplazamiento controla \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
@@ -1112,14 +1112,14 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Mover pistas en lista de reproducción\__q"
 		
 		"\n"
-		"¿Mostrar pista y shell actual en Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(MusicPlayer.DiscordDisplay)\_a \q[(Info.),OnDiscordPluginInfo]"
+		"¿Mostrar pista y shell actual en Discord? %(br)\_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info.)\__q"
 	}
 	elseif language == "Deutsch"
 	{
-		"Song Bar \![*]\_a[OnMusicPlayer.ToggleSongBar]%(MusicPlayer.SongBar)\_a\n"
-		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
+		"Song Bar \![*]\_a[OnMusicPlayer.ToggleSongBar]%(offon[MusicPlayer.SongBar])\_a\n"
+		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(offon[MusicPlayer.Tooltips])\_a\n"
 		"\n"
-		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
+		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(label.songannouncement)\_a\n"
 		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
 		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
@@ -1130,14 +1130,14 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
 		"\n"
-		"Derzeitiges Lied und derzeitige Shell auf Discord anzeigen? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(MusicPlayer.DiscordDisplay)\_a \q[(Info),OnDiscordPluginInfo]"
+		"Derzeitiges Lied und derzeitige Shell auf Discord anzeigen? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 	elseif language == "Русский"
 	{
-		"Строка песни \![*]\_a[OnMusicPlayer.ToggleSongBar]%(MusicPlayer.SongBar)\_a\n"
-		"Тултипы горячие места \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
+		"Строка песни \![*]\_a[OnMusicPlayer.ToggleSongBar]%(offon[MusicPlayer.SongBar])\_a\n"
+		"Тултипы горячие места \![*]\_a[OnMusicPlayer.ToggleTooltips]%(offon[MusicPlayer.Tooltips])\_a\n"
 		"\n"
-		"Объявления песни \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
+		"Объявления песни \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(label.songannouncement)\_a\n"
 		"Дай приоритет \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
 		"Контролы колесо покруткы \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
@@ -1148,14 +1148,14 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Переместить песни в плэйлисте\__q"
 		
 		"\n"
-		"Показать текушие песни и вид в Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(MusicPlayer.DiscordDisplay)\_a \q[(Инфо),OnDiscordPluginInfo]"
+		"Показать текушие песни и вид в Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a%(br)\__q[OnDiscordPluginInfo](Инфо)\__q"
 	}
 	elseif language == "Français"
 	{
-		"Song Bar \![*]\_a[OnMusicPlayer.ToggleSongBar]%(MusicPlayer.SongBar)\_a\n"
-		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
+		"Song Bar \![*]\_a[OnMusicPlayer.ToggleSongBar]%(offon[MusicPlayer.SongBar])\_a\n"
+		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(offon[MusicPlayer.Tooltips])\_a\n"
 		"\n"
-		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
+		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(label.songannouncement)\_a\n"
 		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
 		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
@@ -1166,14 +1166,14 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
 		"\n"
-		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(MusicPlayer.DiscordDisplay)\_a \q[(Info),OnDiscordPluginInfo]"
+		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 	elseif language == "Polski"
 	{
-		"Song Bar \![*]\_a[OnMusicPlayer.ToggleSongBar]%(MusicPlayer.SongBar)\_a\n"
-		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
+		"Song Bar \![*]\_a[OnMusicPlayer.ToggleSongBar]%(offon[MusicPlayer.SongBar])\_a\n"
+		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(offon[MusicPlayer.Tooltips])\_a\n"
 		"\n"
-		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
+		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(label.songannouncement)\_a\n"
 		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
 		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
@@ -1184,14 +1184,14 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
 		"\n"
-		"Wyświetlaj bieżący utwór i skorupę na Discordzie? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(MusicPlayer.DiscordDisplay)\_a \q[(Info),OnDiscordPluginInfo]"
+		"Wyświetlaj bieżący utwór i skorupę na Discordzie? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 	else //English
 	{
-		"Song Bar \![*]\_a[OnMusicPlayer.ToggleSongBar]%(MusicPlayer.SongBar)\_a\n"
-		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(MusicPlayer.Tooltips)\_a\n"
+		"Song Bar \![*]\_a[OnMusicPlayer.ToggleSongBar]%(offon[MusicPlayer.SongBar])\_a\n"
+		"Hotspot tooltips \![*]\_a[OnMusicPlayer.ToggleTooltips]%(offon[MusicPlayer.Tooltips])\_a\n"
 		"\n"
-		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(MusicPlayer.SongAnnouncement)\_a\n"
+		"Song announcements \![*]\_a[OnMusicPlayer.ToggleSongAnnouncement]%(label.songannouncement)\_a\n"
 		"Prioritize \![*]\_a[OnMusicPlayer.TogglePriority]%(label.prioritize)\_a\n"
 		"\n"
 		"Scroll wheel controls \![*]\_a[OnMusicPlayer.ToggleScrollWheel]%(label.scrollwheelcontrols)\_a\n"
@@ -1202,9 +1202,54 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
 		"\n"
-		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(MusicPlayer.DiscordDisplay)\_a \q[(Info),OnDiscordPluginInfo]"
+		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 }
+
+label.songannouncement
+{
+	if MusicPlayer.SongAnnouncement == 0
+	{
+		onoff[1]
+		return
+	}
+	
+	if language == "Placeholder" //TRANSLATORS: This button is for the "Scroll wheel controls" option. In English it's written like "Scroll wheel controls [volume]", where [volume] is a clickable choice
+	{
+		
+	}
+	elseif language == "Español"
+	{
+		if MusicPlayer.SongAnnouncement == 1; "If not talking"
+		elseif MusicPlayer.SongAnnouncement == 2; "If not in menu"
+	}
+	elseif language == "Deutsch"
+	{
+		if MusicPlayer.SongAnnouncement == 1; "If not talking"
+		elseif MusicPlayer.SongAnnouncement == 2; "If not in menu"
+	}
+	elseif language == "Русский"
+	{
+		if MusicPlayer.SongAnnouncement == 1; "If not talking"
+		elseif MusicPlayer.SongAnnouncement == 2; "If not in menu"
+	}
+	elseif language == "Français"
+	{
+		if MusicPlayer.SongAnnouncement == 1; "If not talking"
+		elseif MusicPlayer.SongAnnouncement == 2; "If not in menu"
+	}
+	elseif language == "Polski"
+	{
+		if MusicPlayer.SongAnnouncement == 1; "If not talking"
+		elseif MusicPlayer.SongAnnouncement == 2; "If not in menu"
+	}
+	else //English
+	{
+		if MusicPlayer.SongAnnouncement == 1; "If not talking"
+		elseif MusicPlayer.SongAnnouncement == 2; "If not in menu"
+	}
+}
+
 
 label.prioritize
 {
@@ -1969,11 +2014,11 @@ OnMusicPlayer.StopAfterPlayback
 
 OnMusicPlayer.ToggleSongBar : all
 {
-	if MusicPlayer.SongBar != "Off"; MusicPlayer.SongBar = "Off"
-	else; MusicPlayer.SongBar = "On"
+	if MusicPlayer.SongBar != 0; MusicPlayer.SongBar = 0
+	else; MusicPlayer.SongBar = 1
 	
 	_onoff = "False"
-	if MusicPlayer.SongBar == "On"; _onoff = "True"
+	if MusicPlayer.SongBar == 1; _onoff = "True"
 	
 	if MusicPlayer.MenuIsOpen; "\C"
 	
@@ -1988,17 +2033,17 @@ OnMusicPlayer.ToggleSongBar : all
 
 OnMusicPlayer.ToggleTooltips : all
 {
-	if MusicPlayer.Tooltips != "Off"; MusicPlayer.Tooltips = "Off"
-	else; MusicPlayer.Tooltips = "On"
+	if MusicPlayer.Tooltips != 0; MusicPlayer.Tooltips = 0
+	else; MusicPlayer.Tooltips = 1
 	
 	OnMusicPlayer.Settings
 }
 
 OnMusicPlayer.ToggleSongAnnouncement : all
 {
-	if MusicPlayer.SongAnnouncement == "Off"; MusicPlayer.SongAnnouncement = "If not talking"
-	elseif MusicPlayer.SongAnnouncement == "If not talking"; MusicPlayer.SongAnnouncement = "If not in menu"
-	else; MusicPlayer.SongAnnouncement = "Off"
+	if MusicPlayer.SongAnnouncement == 0; MusicPlayer.SongAnnouncement = 1
+	elseif MusicPlayer.SongAnnouncement == 1; MusicPlayer.SongAnnouncement = 2
+	else; MusicPlayer.SongAnnouncement = 0
 	
 	OnMusicPlayer.Settings
 }
@@ -3136,7 +3181,7 @@ OnMusicPlayer.NotifySongInfo : all
 			_song = "♫ %(MusicPlayer.CurrentSongName) ♫"
 		}
 		
-		if MusicPlayer.DiscordDisplay == "On"; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,""%(_song)""]"
+		if MusicPlayer.DiscordDisplay == 1; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,""%(_song)""]"
 		else; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState, ]"
 	}
 	
@@ -4263,7 +4308,7 @@ On_tooltip
 	//You can adjust the tooltips here if you need, or if you used different collision names you'll need to replace the defaults here.
 	//Note: if you assign tooltips on the shell side, they will take precedence. But I recommend doing it here so that users can toggle them off if they prefer!
 	
-	if MusicPlayer.Tooltips == "On"
+	if MusicPlayer.Tooltips == 1
 	{
 		_tooltips = tooltips_list
 		
@@ -4471,7 +4516,7 @@ MusicPlayer.SetDefaultSettings
 	MusicPlayer.Balance = 0
 	MusicPlayer.PlayMode = 0 //Play mode - 0 for loop playlist, 1 for shuffle playlist, 2 for loop song, 3 for play one song, 4 for random
 	MusicPlayer.StopAfterCurrent = ""
-	MusicPlayer.SongBar = "Off"
+	MusicPlayer.SongBar = 0
 	
 	MusicPlayer.CurrentPlaylist = IARRAY
 	MusicPlayer.ShuffledPlaylist = IARRAY
@@ -4481,10 +4526,10 @@ MusicPlayer.SetDefaultSettings
 	MusicPlayer.BalloonLines = MusicPlayer.DefaultBalloonLines
 	MusicPlayer.Playtime = 0 //Only needed if you implement the Playtime counter below
 	
-	MusicPlayer.DiscordDisplay = "On" //These two are only needed if you implement the Discord functions
+	MusicPlayer.DiscordDisplay = 1 //These two are only needed if you implement the Discord functions
 	MusicPlayer.DiscordDisplayFlag = 0
 	
-	MusicPlayer.Tooltips = "On"
+	MusicPlayer.Tooltips = 1
 	MusicPlayer.AnnounceSongs = "Off"
 	MusicPlayer.Priority = 0
 	MusicPlayer.Scroll = 0
@@ -4509,7 +4554,7 @@ MusicPlayer.ResetDefaultSettings
 	if !ISVAR("MusicPlayer.Balance"); MusicPlayer.Balance = 0
 	if !ISVAR("MusicPlayer.PlayMode"); MusicPlayer.PlayMode = 0 //Play mode - 0 for loop playlist, 1 for shuffle playlist, 2 for loop song, 3 for play one song, 4 for random
 	if !ISVAR("MusicPlayer.StopAfterCurrent"); MusicPlayer.StopAfterCurrent = ""
-	if !ISVAR("MusicPlayer.SongBar"); MusicPlayer.SongBar = "Off"
+	if !ISVAR("MusicPlayer.SongBar"); MusicPlayer.SongBar = 0
 	
 	if !ISVAR("MusicPlayer.CurrentPlaylist"); MusicPlayer.CurrentPlaylist = IARRAY
 	if !ISVAR("MusicPlayer.ShuffledPlaylist"); MusicPlayer.ShuffledPlaylist = IARRAY
@@ -4519,10 +4564,10 @@ MusicPlayer.ResetDefaultSettings
 	if !ISVAR("MusicPlayer.BalloonLines"); MusicPlayer.BalloonLines = MusicPlayer.DefaultBalloonLines
 	if !ISVAR("MusicPlayer.Playtime"); MusicPlayer.Playtime = 0
 	
-	if !ISVAR("MusicPlayer.DiscordDisplay"); MusicPlayer.DiscordDisplay = "On"
+	if !ISVAR("MusicPlayer.DiscordDisplay"); MusicPlayer.DiscordDisplay = 1
 	
-	if !ISVAR("MusicPlayer.Tooltips"); MusicPlayer.Tooltips = "On"
-	if !ISVAR("MusicPlayer.SongAnnouncement"); MusicPlayer.SongAnnouncement = "Off"
+	if !ISVAR("MusicPlayer.Tooltips"); MusicPlayer.Tooltips = 1
+	if !ISVAR("MusicPlayer.SongAnnouncement"); MusicPlayer.SongAnnouncement = 0
 	if !ISVAR("MusicPlayer.Priority"); MusicPlayer.Priority = 0 //Whether it interrupts dialogue or not when going to the next song
 	if !ISVAR("MusicPlayer.Scroll"); MusicPlayer.Scroll = 0
 	if !ISVAR("MusicPlayer.PreviousButton"); MusicPlayer.PreviousButton = 0 //Behavior of the previous button
@@ -4580,11 +4625,12 @@ MusicPlayer.ConvertOldVariables
 		MusicPlayer.StopAfterCurrent = MusicSettings[4] == ""
 	}
 	
-	if !ISVAR("MusicPlayer.SongBar")
-	{
-		MusicPlayer.SongBar = MusicSettings[5]
-	}
 	void ERASEVAR("MusicSettings")
+	
+	if !ISVAR("MusicPlayer.SongBar") //??? for some reason this was set to go to MusicSettings[5] before, but uh... that was for shell change related stuff... I'm confused. it might be because FLUX had an older version of the music player?
+	{
+		MusicPlayer.SongBar = 0
+	}
 	
 	if !ISVAR("MusicPlayer.CurrentPlaylist")
 	{
@@ -4628,14 +4674,14 @@ MusicPlayer.ConvertOldVariables
 	
 	if !ISVAR("MusicPlayer.DiscordDisplay")
 	{
-		if DiscordDisplay[0]; MusicPlayer.DiscordDisplay = "On"
-		else; MusicPlayer.DiscordDisplay = "Off"
+		if DiscordDisplay[0]; MusicPlayer.DiscordDisplay = 1
+		else; MusicPlayer.DiscordDisplay = 0
 	}
 	
 	if !ISVAR("MusicPlayer.Tooltips")
 	{
-		_onoff = "Off"
-		if TooltipDisplay == 1; _onoff = "On"
+		_onoff = 0
+		if TooltipDisplay == 1; _onoff = 1
 		MusicPlayer.Tooltips = _onoff
 	}
 	void ERASEVAR("DiscordDisplay")
@@ -4773,7 +4819,7 @@ MusicPlayer.CheckWhichMenu
 	if MusicPlayer.BalloonIsOpen
 	{
 		if "__MUSIC_PLAYER_MAIN_MENU__" _in_ MusicPlayer.LastTalk; _inmenu = "OnMusicPlayer.Menu"
-		elseif "__GHOST_MAIN_MENU__" _in_ MusicPlayer.LastTalk; _inmenu = "OnSakuraMenu"
+		elseif "__GHOST_MAIN_MENU__" _in_ MusicPlayer.LastTalk; _inmenu = "OnMenuRun"
 		elseif "__MUSIC_SETTINGS_MENU__" _in_ MusicPlayer.LastTalk; _inmenu = "OnMusicPlayer.Settings"
 		elseif "changing hotkey: " _in_ MusicPlayer.LastTalk; _inmenu = "OnMusicPlayer.ChangeHotkey,%(SPLIT(MusicPlayer.LastTalk,'changing hotkey: ')[1])"
 	}
@@ -4810,7 +4856,7 @@ OnMusicPlayer.DiscordPluginBoot : all
 	
 	"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomALL,903843216200179753,,,thumbnail,https://ukagaka.zichqec.com/ghost/flux,]"
 	
-	if MusicPlayer.DiscordDisplay == "On"
+	if MusicPlayer.DiscordDisplay == 1
 	{
 		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,""Shell: %(nowshell)""]" //TODO do i want this translated?
 		
@@ -4828,19 +4874,19 @@ OnMusicPlayer.DiscordPluginBoot : all
 //Toggle for the settings menu. Make sure you uncomment the option that calls this.
 OnMusicPlayer.ToggleDiscordPlugin : all
 {
-	if MusicPlayer.DiscordDisplay != "On"
+	if MusicPlayer.DiscordDisplay != 1
 	{
 		_song = " "
 		if MusicPlayer.Singing; _song = "♫ %(MusicPlayer.CurrentSongName) ♫"
 
-		MusicPlayer.DiscordDisplay = "On"
+		MusicPlayer.DiscordDisplay = 1
 		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,""Shell: %(nowshell)""]"
 		
 		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState,""%(_song)""]"
 	}
 	else
 	{
-		MusicPlayer.DiscordDisplay = "Off"
+		MusicPlayer.DiscordDisplay = 0
 		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail, ]"
 		
 		"\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomState, ]"

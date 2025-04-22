@@ -190,11 +190,11 @@ OnMenuRun : all //Main menu
 	}
 	elseif language == "Español"
 	{
-		if NowPlaying[0] == ""//If no song is playing
+		if MusicPlayer.PlayState == 0 //If no song is playing
 		{
 			"[El reproductor no está activo.]"
 		}
-		elseif NowPlaying[2] != "" //If a song is paused
+		elseif MusicPlayer.PlayState == 2 //If a song is paused
 		{
 			"[En pausa: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
@@ -240,11 +240,11 @@ OnMenuRun : all //Main menu
 	}
 	elseif language == "Deutsch"
 	{
-		if NowPlaying[0] == ""//If no song is playing
+		if MusicPlayer.PlayState == 0 //If no song is playing
 		{
 			"[Player ist inaktiv.]"
 		}
-		elseif NowPlaying[2] != "" //If a song is paused
+		elseif MusicPlayer.PlayState == 2 //If a song is paused
 		{
 			"[Pausiert: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
@@ -290,11 +290,11 @@ OnMenuRun : all //Main menu
 	}
 	elseif language == "Русский"
 	{
-		if NowPlaying[0] == ""//If no song is playing
+		if MusicPlayer.PlayState == 0 //If no song is playing
 		{
 			"[Плеер пустой.]"
 		}
-		elseif NowPlaying[2] != "" //If a song is paused
+		elseif MusicPlayer.PlayState == 2 //If a song is paused
 		{
 			"[Приостановлен: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
@@ -340,11 +340,11 @@ OnMenuRun : all //Main menu
 	}
 	elseif language == "Français"
 	{
-		if NowPlaying[0] == ""//If no song is playing
+		if MusicPlayer.PlayState == 0 //If no song is playing
 		{
 			"[Le lecteur est inoccupé.]"
 		}
-		elseif NowPlaying[2] != "" //If a song is paused
+		elseif MusicPlayer.PlayState == 2 //If a song is paused
 		{
 			"[En pause : \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
@@ -388,11 +388,11 @@ OnMenuRun : all //Main menu
 	}
 	elseif language == "Polski"
 	{
-		if NowPlaying[0] == ""//If no song is playing
+		if MusicPlayer.PlayState == 0 //If no song is playing
 		{
 			"[Odtwarzacz jest nieaktywny..]"
 		}
-		elseif NowPlaying[2] != "" //If a song is paused
+		elseif MusicPlayer.PlayState == 2 //If a song is paused
 		{
 			"[Wstrzymane: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
@@ -438,11 +438,11 @@ OnMenuRun : all //Main menu
 	}
 	else //English
 	{
-		if NowPlaying[0] == ""//If no song is playing
+		if MusicPlayer.PlayState == 0 //If no song is playing
 		{
 			"[Player is idle.]"
 		}
-		elseif NowPlaying[2] != "" //If a song is paused
+		elseif MusicPlayer.PlayState == 2 //If a song is paused
 		{
 			"[Paused: \_a[OnMusicPlayer.Menu]%(_currentsong)\_a]"
 		}
@@ -487,7 +487,7 @@ OnMenuRun : all //Main menu
 		if ISFUNC("shellver") && CustomFuncs[0] == 1; "     %(nowshell) v%(shellver)"
 	}
 	
-	"\e FLUX main menu"
+	"\e __GHOST_MAIN_MENU__"
 }
 
 OnLastTalk
@@ -1248,6 +1248,11 @@ onoff
 	{
 		"On,Off"
 	}
+}
+
+offon
+{
+	"%(onoff[1]),%(onoff[0])"
 }
 
 //----------- Shell and Dressups -----------
