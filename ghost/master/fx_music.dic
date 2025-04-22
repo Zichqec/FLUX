@@ -2783,7 +2783,7 @@ OnMusicPlayer.MusicInfo : all
 		{
 			"[To add songs, drag and drop them onto FLUX player. Folders can also be dragged and dropped, and multiple files may be dropped at a time.]\n\n\![]"
 			"[You can also use the ""Open File"" option built into SSP to select a file through File Explorer. This can be done using the Ctrl + O shortcut, or by right clicking the ghost, going to the Utilities tab, and clicking ""Open File (I)"".]\n\n\![]"
-			"[.m3u playlists can be loaded through the settings menu, or by using the same methods described above for songs.]"
+			"[.m3u and .m3u8 playlists can be loaded through the settings menu, or by using the same methods described above for songs.]"
 		}
 		elseif reference0 == "compatiblefiles" //What file types are compatible
 		{
