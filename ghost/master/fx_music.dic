@@ -901,7 +901,7 @@ MusicPlayer.Settings.Basic : all
 		if _mode == 1; _mode = "Aleatorio y Repetir"
 		elseif _mode == 2; _mode = "Repetir pista"
 		elseif _mode == 3; _mode = "Reproducir pista"
-		elseif _mode == 4; _mode = "Random" //TODO new translation
+		elseif _mode == 4; _mode = "Aleatorio"
 		else; _mode = "Repetir Lista de reproducción"
 		
 		"Tipo de reproducción: \![*]\_a[OnMusicPlayer.PlaybackType]%(_mode)\_a\n\n[half]"
@@ -2796,7 +2796,7 @@ OnMusicPlayer.SavePlaylist : all
 	{
 		"[Elige un nombre y ubicación para la lista de reproducción.]\![*]"
 		"\n\n"
-		"\![*]\__q[OnPlaylist.Back,Saved]Back\__q"
+		"\![*]\__q[OnPlaylist.Back,Saved]Volver\__q"
 	}
 	elseif language == "Deutsch"
 	{
@@ -2995,7 +2995,7 @@ OnMusicPlayer.LoadPlaylist : all
 		"[Escoge una lista de reproducción para cargar.]\n\n\![]"
 		"[La lista de reproducción actual se perderá al menos que ya haya sido guardada previamente.]"
 		"\n\n"
-		"\![*]\__q[OnPlaylist.Back,Loaded]Back\__q" //TODO are these supposed to just say back?
+		"\![*]\__q[OnPlaylist.Back,Loaded]Volver\__q"
 	}
 	elseif language == "Deutsch"
 	{

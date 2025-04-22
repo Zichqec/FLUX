@@ -18,9 +18,9 @@ OnSakuraMenu : all
 			
 			if AutoUpdates[5] == 1; "[Balloon '%(SHIORI3FW.BalloonName)']\n"
 			
-			"\_q\n\n\![*]\q[Pobierz teraz,OnStartUpdates]\n" //TODO TRANSLATION this appears to be the polish text?
-			"\![*]\q[Może potem,UpdateLater]\n\n"
-			"\![*]\q[Wyłącz auto-aktualizacje,UpdateOff]"
+			"\_q\n\![*]\q[Descargar actualizaciones ahora,OnStartUpdates]\n"
+			"\![*]\q[Más tarde,UpdateLater]\n\n"
+			"\![*]\q[Desactivar actualizaciones,UpdateOff]"
 		}
 		elseif language == "Deutsch"
 		{
