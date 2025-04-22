@@ -3113,7 +3113,7 @@ OnMusicPlayer.PlaylistLoaded : all
 		}
 		else //English
 		{
-			"No compatible songs were found in this playlist. Loading canceled."
+			"[No compatible songs were found in this playlist. Loading canceled.]"
 		}
 		"\x"
 	}
@@ -3163,7 +3163,7 @@ OnMusicPlayer.PlaylistLoaded : all
 			else //English
 			{
 				_s = "s"; if _skipped == 1; _s = ""
-				"Playlist loaded, however, %(_skipped) incompatible song%(_s) were skipped."
+				"[Playlist loaded, however, %(_skipped) incompatible song%(_s) were skipped.]"
 			}
 			"\x"
 		}
