@@ -1475,6 +1475,38 @@ MusicPlayer.Settings.Playlists : all
 	}
 }
 
+//I added this later so it's in kind of a weird place...
+label.PlaylistFile
+{
+	if language == "Placeholder" //TRANSLATORS: A translation for the little tab that'll appear in the explorer window where you load playlists from
+	{
+		
+	}
+	elseif language == "Español"
+	{
+		"Archivo de lista de reproducción"
+	}
+	elseif language == "Deutsch"
+	{
+		"Playlist file"
+	}
+	elseif language == "Русский"
+	{
+		"Файл плэйлист"
+	}
+	elseif language == "Français"
+	{
+		"Playlist file"
+	}
+	elseif language == "Polski"
+	{
+		"Playlist file"
+	}
+	else //English
+	{
+		"Playlist file"
+	}
+}
 
 MusicPlayer.Settings.Hotkeys : all
 {	
@@ -2597,7 +2629,7 @@ OnMusicPlayer.MusicInfo : all
 		{
 			"[To add songs, drag and drop them onto FLUX player. Folders can also be dragged and dropped, and multiple files may be dropped at a time.]\n\n\![]"
 			"[You can also use the ""Open File"" option built into SSP to select a file through File Explorer. This can be done using the Ctrl + O shortcut, or by right clicking the ghost, going to the Utilities tab, and clicking ""Open File (I)"".]\n\n\![]"
-			"[.m3u playlists can be loaded through the settings menu, or by using the same methods described above for songs.]"
+			"[.m3u and .m3u8 playlists can be loaded through the settings menu, or by using the same methods described above for songs.]"
 		}
 		elseif reference0 == "compatiblefiles" //What file types are compatible
 		{
@@ -2789,7 +2821,7 @@ OnMusicPlayer.MusicInfo : all
 OnMusicPlayer.SavePlaylist : all
 {
 	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
-	"\![open,dialog,save,--id=OnMusicPlayer.PlaylistSaved,--ext=m3u,--filter=Playlist file|*.m3u,--dir=""%(MusicPlayer.PlaylistPath)""]"
+	"\![open,dialog,save,--id=OnMusicPlayer.PlaylistSaved,--ext=m3u,--filter=%(label.PlaylistFile)|*.m3u,--dir=""%(MusicPlayer.PlaylistPath)""]"
 	
 	if language == "Placeholder" //TRANSLATORS: When the user is saving a playlist //TODO new translation
 	{
@@ -2955,39 +2987,8 @@ OnPlaylist.Back
 
 OnMusicPlayer.LoadPlaylist : all
 {
-	_playlist_file = ""
-	//TODO new translation
-	if language == "Placeholder" //TRANSLATORS: A translation for the little tab that'll appear in the explorer window where you load playlists from
-	{
-		
-	}
-	elseif language == "Español"
-	{
-		_playlist_file = "Archivo de lista de reproducción"
-	}
-	elseif language == "Deutsch"
-	{
-		_playlist_file = "Playlist file"
-	}
-	elseif language == "Русский"
-	{
-		_playlist_file = "Файл плэйлист"
-	}
-	elseif language == "Français"
-	{
-		_playlist_file = "Playlist file"
-	}
-	elseif language == "Polski"
-	{
-		_playlist_file = "Playlist file"
-	}
-	else //English
-	{
-		_playlist_file = "Playlist file"
-	}
-	
 	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
-	"\![open,dialog,open,--id=OnMusicPlayer.PlaylistLoaded,--filter=%(_playlist_file)|*.m3u,--dir=""%(MusicPlayer.PlaylistPath)""]"
+	"\![open,dialog,open,--id=OnMusicPlayer.PlaylistLoaded,--filter=%(label.PlaylistFile)|*.m3u|%(label.PlaylistFile) (UTF-8)|*.m3u8,--dir=""%(MusicPlayer.PlaylistPath)""]"
 	
 	if language == "Placeholder" //TRANSLATORS: This is for the dialogue that appears while loading a playlist //TODO new translation
 	{
@@ -3050,6 +3051,9 @@ OnMusicPlayer.PlaylistLoaded : all
 	_new_playlist_path = _split[0] + _split[1]
 	_new_playlist_path = REPLACE(_new_playlist_path,"\","/")
 	
+	_original_charset = GETSETTING("charset.file")
+	if TOLOWER(_split[3]) == ".m3u8"; FCHARSET("UTF-8")
+	
 	_skipped = 0
 	void FOPEN(_path,"r")
 	for _buff = FREAD(_path); _buff != -1; _buff = FREAD(_path)
@@ -3076,6 +3080,8 @@ OnMusicPlayer.PlaylistLoaded : all
 		_new_playlist ,= _to_add
 	}
 	void FCLOSE(_path)
+	
+	FCHARSET(_original_charset)
 	
 	if ARRAYSIZE(_new_playlist) == 0
 	{
@@ -3682,7 +3688,7 @@ OnFileDrop2 : all
 				"\![*]\__q[OnBlank]Close\__q"
 			}
 		}
-		elseif _fileext == ".m3u" //If it's a playlist
+		elseif _fileext == ".m3u" || _fileext == ".m3u8" //If it's a playlist
 		{
 			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\![quicksection,1]"
 			
