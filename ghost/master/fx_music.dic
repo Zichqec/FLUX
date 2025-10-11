@@ -431,10 +431,10 @@ OnMusicPlayer.PlaySong : all
 			{
 				if MusicPlayer.SongAnnouncement == 2 || !SHIORI3FW.IsTalking && MusicPlayer.SongAnnouncement == 1
 				{
-					"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![quicksection,1]\![lock,balloonrepaint]\c"
+					"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![quicksection,1]\![lock,balloonrepaint]\c\![dummy]"
 					
 					//DIALOGUE: Song announcement
-					"[Now playing:]\n\_?%(MusicPlayer.CurrentSongName)\_?"
+					"[Now playing:]\n\_?%(MusicPlayer.CurrentSongName)\_?" //TODO translations here -- i have the text already, just need to move it
 					"\![unlock,balloonrepaint]"
 				}
 			}
