@@ -148,7 +148,7 @@ OnBoot //Normal booting
 	if ISFUNC("OnCustom_trayicon"); OnCustom_trayicon
 	else; "\![set,tasktrayicon,flux.ico]"
 	--
-	if ISFUNC("OnCustom_OnBoot") && CustomFuncs[0] == 1; OnCustom_OnBoot
+	if ISFUNC("OnCustom_OnBoot") && CustomFuncs[0] == 1; "\0\b[0]" + OnCustom_OnBoot
 	else; FluxBoot
 }
 
@@ -196,7 +196,7 @@ OnClose
 	
 	"\![sound,stop]%(OnNotifySongInfo)"
 	--
-	if ISFUNC("OnCustom_OnClose") && CustomFuncs[0] == 1; REPLACE(OnCustom_OnClose,"\e","")
+	if ISFUNC("OnCustom_OnClose") && CustomFuncs[0] == 1; "\0\b[0]" + REPLACE(OnCustom_OnClose,"\e","")
 	else; FluxClose
 	--
 	"\w8\w8\-"
@@ -386,7 +386,7 @@ OnShellChanging : all //Starting to change the shell
 	}
 	else
 	{
-		if ISFUNC("OnCustom_OnShellChanging") && CustomFuncs[0] == 1; OnCustom_OnShellChanging
+		if ISFUNC("OnCustom_OnShellChanging") && CustomFuncs[0] == 1; "\0\b[0]" + OnCustom_OnShellChanging
 	}
 	
 	"\w8\w8"
