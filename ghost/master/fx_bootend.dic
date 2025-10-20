@@ -550,11 +550,12 @@ RestartSinging
 	CurrentlyChangingShells = 0
 }
 
+//TODO craftmanw might automatically fill craftman...? have this note in hydrate also
 OnShellAuthor
 {
 	shellauthor = IARRAY
 	shellauthor[0] = reference0 //craftman
-	if shellauthor[0] == ""; shellauthor[0] = reference1 //Craftman is replaced by craftmanw if craftman is empty
+	if shellauthor[0] == ""; shellauthor[0] = reference1 //Craftman is replaced by craftmanw if craftman is empty //TODO reverse this
 	shellauthor[1] = reference1 //craftmanw
 	shellauthor[2] = reference2 //craftmanurl
 }
