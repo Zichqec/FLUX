@@ -659,7 +659,7 @@ OnMusicPlayer.PlaylistPage
 OnMusicPlayer.JumpToPlaylistPage : all
 {
 	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
-	"\![open,inputbox,OnMusicPlayer.JumpIndex,-1]"
+	"\![open,inputbox,OnMusicPlayer.JumpIndex,-1,__INPUT_BOX_COLOR__]"
 	
 	//DIALOGUE: Typing in a page number to jump to manually in the playlist
 	"Write a page number to jump to, from 1 to %(MusicPlayer.MaxPages + 1)"
@@ -1799,7 +1799,7 @@ OnMusicPlayer.SetOption : all
 {
 	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![no-autopause]"
 	
-	if reference0 == "Balance"; "\![open,inputbox,OnMusicPlayer.Balance,-1]"
+	if reference0 == "Balance"; "\![open,inputbox,OnMusicPlayer.Balance,-1,__INPUT_BOX_COLOR__]"
 	elseif reference0 == "Speed"; "\![open,sliderinput,OnMusicPlayer.Speed,-1,100,1,%(MusicPlayer.MaxRate)]"
 	else; "\![open,sliderinput,OnMusicPlayer.Volume,-1,100,1,100]"
 	
