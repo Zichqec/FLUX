@@ -998,7 +998,7 @@ MusicPlayer.Settings.Basic : all
 		if _mode == 1; _mode = "Playlist shuffeln und wiederholen"
 		elseif _mode == 2; _mode = "Ein Lied auf Wiederholung spielen"
 		elseif _mode == 3; _mode = "Ein einzelnes Lied spielen"
-		elseif _mode == 4; _mode = "Random" //TODO new translation
+		elseif _mode == 4; _mode = "Zufallswiedergabe"
 		else; _mode = "Playlist wiederholen"
 		
 		//Only the labels on the left here need translated
@@ -1030,7 +1030,7 @@ MusicPlayer.Settings.Basic : all
 		if _mode == 1; _mode = "Перетасуй и Играй по Кругу"
 		elseif _mode == 2; _mode = "Играй Одна Песня по Кругу"
 		elseif _mode == 3; _mode = "Играй Одна Песня"
-		elseif _mode == 4; _mode = "Random" //TODO new translation
+		elseif _mode == 4; _mode = "Random" //TODO new translation -- TRANSLATION TODO i do not have this??
 		else; _mode = "Играй Плейлист по Кругу"
 		
 		//Only the labels on the left here need translated
@@ -3214,7 +3214,7 @@ OnMusicPlayer.PlaylistLoaded : all
 			}
 			elseif language == "Deutsch"
 			{
-				
+				//TRANSLATION TODO - no german translation here? or spanish...
 			}
 			elseif language == "Русский"
 			{
@@ -4671,6 +4671,7 @@ MusicPlayer.DisplayPlaytime : all
 	
 	_units = IARRAY
 	
+	//TRANSLATION TODO: double check that this actually got sent to everyone to translate and that I implemented it...
 	if language == "Placeholder" //TRANSLATORS: this is for the total playtime display. The time is displayed like "1yr 23d 04:56:07". Swap out the "yr" (years) and "d" (days) with whatever makes sense, if needed. If you need another formatting, please let me know because it will likely require some special code to handle it!
 	{
 		
