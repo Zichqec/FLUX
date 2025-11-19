@@ -437,7 +437,36 @@ OnMusicPlayer.PlaySong : all
 					"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![quicksection,1]\![lock,balloonrepaint]\c\![dummy]"
 					
 					//DIALOGUE: Song announcement
-					"[Now playing:]\n\_?%(MusicPlayer.CurrentSongName)\_?" //TODO translations here -- i have the text already, just need to move it
+					if language == "Placeholder" //TRANSLATORS: The currently playing song display
+					{
+						
+					}
+					elseif language == "Español"
+					{
+						"[Reproduciendo ahora:]"
+					}
+					elseif language == "Deutsch"
+					{
+						"[Jetzt läuft:]"
+					}
+					elseif language == "Русский"
+					{
+						"[Сейчас играет:]"
+					}
+					elseif language == "Français"
+					{
+						"[Actuellement jouée :]"
+					}
+					elseif language == "Polski"
+					{
+						"[Teraz gra:]"
+					}
+					else //English
+					{
+						"[Now playing:]"
+					}
+					
+					"\n\_?%(MusicPlayer.CurrentSongName)\_?"
 					"\![unlock,balloonrepaint]"
 				}
 			}
