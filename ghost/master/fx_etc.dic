@@ -1711,7 +1711,7 @@ OnUpdateFailure //If the update fails
 		}
 		elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 		{	
-			""
+			"[Die MD5-Werte in '%(_currentfile)' stimmen nicht überein.\w8\w8 Bitte kontaktiere \_a[https://ukagaka.zichqec.com/]Zichqec\_a um dieses Problem zu lösen.]"
 		}
 		elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 		{

@@ -578,7 +578,7 @@ OnConfigMenu : all
 	}
 	elseif language == "Deutsch"
 	{
-		"Dein Name: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
+		"Dein Name: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Zurücksetzen)\__q\f[color,default]\n"
 		"Deine Pronomen: \_a[OnChangePronoun]%(ersie)/%(ihmihr)/%(ihnsie)/%(seinihr)\_a\n"
 		
 		"Sprache: \_a[OnLanguageMenu]%(language)\_a\n"
@@ -601,11 +601,11 @@ OnConfigMenu : all
 		"\n"
 		"Shell-Spezifische Funktionen/Dialoge \_a[OnToggleCustomFuncs]%(_cstfncbtn)\_a\n"
 		if IsEmergencyMode; "\_a[OnExplainShellError,config][SHELL-FEHLER: SHELL-SPEZIFISCHE FUNKTIONEN AUSGESCHALTET]\_a"
-		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][No custom dialogue available in this shell]"
+		elseif  CustomFuncs[0] == 1 && !_has_custom_dialogue; "\![][Diese Shell verfügt über keine Shell-Spezifischen Dialoge]"
 		"\n"
 		if !_custom_functions_enabled; "\f[color,disable]"
 		"Redehäufigkeit:\n"
-		_times = ("Off,0","30s,30","1m,60","3m,180","5m,300","10m,600")
+		_times = ("Aus,0","30s,30","1m,60","3m,180","5m,300","10m,600")
 		foreach _times; _time
 		{
 			switch TOINT(_time[1]) == aitalkinterval
@@ -1166,9 +1166,9 @@ Select.BugReport : all
 	}
 	elseif language == "Deutsch"
 	{
-		"[Bugs in FLUX-Player's Mechaniken können \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 via jeder ihrer Social-Medias gemeldet werden.]\n\n\w8\w8"
-		"[Bugs in der Shell, die du gerade benutzt, '%(nowshell)',\w4 sollten ihrem Entwickler,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a gemeldet werden.]\n\n\w8\w8"
-		"[Typos und jegliche andere Fehler in der deutschen Übersetzung von FLUX können \_a[https://koguri3108.tumblr.com]Koguri3108\_a gemeldet werden.]"
+		"[Bugs in FLUX-Player's Funktionen können \_a[https://ukagaka.zichqec.com/]Zichqec\_a gemeldet werden.]\n\n\w8\w8"
+		"[Bugs in der aktiven Shell, '%(nowshell)',\w4 sollten ihrem Entwickler,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a, gemeldet werden.]\n\n\w8\w8"
+		"[Fehler in der deutschen Übersetzung von FLUX können \_a[https://koguri3108.tumblr.com/]Koguri3108\_a gemeldet werden.]"
 		
 		"\n\n\![*]\q[Zurück zu Einstellungen,OnConfigMenu]\n\![*]\q[Schließen,OnCancel]"
 	}
