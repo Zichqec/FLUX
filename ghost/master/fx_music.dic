@@ -3476,7 +3476,7 @@ MusicPlayer.OnKeyPress : all
 MusicPlayer.HotkeyChange : all
 {
 	_key = TOUPPER(reference0)
-	"\![no-autopause]%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![quicksection,1]"
+	"\C\![lock,balloonrepaint]\c\![no-autopause]%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]"
 	_changing = TOINT(SPLIT(MusicPlayer.LastTalk,"changing hotkey: ")[1])
 	
 	//CUSTOMIZE: Customizable list of reserved hotkeys. Add in any hotkeys you've already used in your ghost to this array.
@@ -3516,7 +3516,7 @@ MusicPlayer.HotkeyChange : all
 		{
 			"[That hotkey is reserved, please choose another.]"
 		}
-		"\x"
+		"\![unlock,balloonrepaint]\x"
 	}
 	elseif _key == MusicPlayer.Hotkeys[_changing] //Same option as was already entered
 	{
@@ -3557,7 +3557,7 @@ MusicPlayer.HotkeyChange : all
 		{
 			"[That hotkey is already in use, please clear it before assigning it to another option.]"
 		}
-		"\x"
+		"\![unlock,balloonrepaint]\x"
 	}
 	else //If it's a valid key
 	{
