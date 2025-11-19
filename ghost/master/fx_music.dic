@@ -1712,6 +1712,7 @@ MusicPlayer.Settings.Hotkeys : all
 //Changing the playback type
 OnMusicPlayer.PlaybackType : all
 {
+	"\C\![lock,balloonrepaint]\c"
 	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
 	
 	if language == "Placeholder" //TRANSLATORS: These should match the _mode labels above
@@ -1779,6 +1780,7 @@ OnMusicPlayer.PlaybackType : all
 		
 		"\n\![*]\__q[OnMusicPlayer.Settings]Back to music settings\__q"
 	}
+	"\![unlock,balloonrepaint]"
 }
 
 //Actually making the change
@@ -3179,6 +3181,7 @@ OnMusicPlayer.ClearPlaylist : all
 {
 	_num = ARRAYSIZE(MusicPlayer.CurrentPlaylist)
 	
+	"\C\![lock,balloonrepaint]\c"
 	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
 	
 	//DIALOGUE: Asking for confirmation before clearing the current playlist. %(_are) and %(_s) can be used for plurals.
@@ -3233,6 +3236,7 @@ OnMusicPlayer.ClearPlaylist : all
 		"\n\n"
 		"\![*]\__q[OnMusicPlayer.PlaylistCleared]Clear it\__q  \![*]\__q[OnMusicPlayer.Settings]Don't\__q"
 	}
+	"\![unlock,balloonrepaint]"
 }
 
 //Actually clearing the current playlist
@@ -3243,6 +3247,7 @@ OnMusicPlayer.PlaylistCleared : all
 	MusicPlayer.PlayState = 0 //Paused song
 	MusicPlayer.PageIndex = 0
 	
+	"\C\![lock,balloonrepaint]\c"
 	"\![sound,stop]\![no-autopause]%(OnMusicPlayer.NotifySongInfo)"
 	
 	"%(MusicPlayer.NonSingingSurfaces)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
@@ -3276,6 +3281,7 @@ OnMusicPlayer.PlaylistCleared : all
 		"[The playlist has been cleared.]"
 	}
 	
+	"\![unlock,balloonrepaint]"
 	"\x\![raise,OnMusicPlayer.Menu]"
 }
 
