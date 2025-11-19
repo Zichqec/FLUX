@@ -59,7 +59,7 @@ OnMusicPlayer.Menu : all
 	_g = "\f[color,disable]" //Gray
 	_d = "\f[color,default]" //Default
 	
-	if _argv[0] != "manual" && MusicPlayer.BalloonIsOpen; "\C\![lock,balloonrepaint]\c"
+	if _argv[0] != "manual" && MusicPlayer.BalloonIsOpen; "\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
 	
 	_starting_value = 0
 	if MusicPlayer.Pagination == 1
@@ -717,7 +717,8 @@ OnMusicPlayer.PlaylistPage
 
 OnMusicPlayer.JumpToPlaylistPage : all
 {
-	"\C\![lock,balloonrepaint]\c%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
+	"%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
 	"\![open,inputbox,OnMusicPlayer.JumpIndex,-1,__INPUT_BOX_COLOR__]"
 	
 	//DIALOGUE: Typing in a page number to jump to manually in the playlist
@@ -741,6 +742,9 @@ OnMusicPlayer.JumpIndex : all
 	}
 	else
 	{
+		"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
+		"%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
+		
 		//DIALOGUE: Putting in an invalid number, or something that isn't a number
 		"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
 		"Invalid input.\x\![raise,OnMusicPlayer.JumpToPlaylistPage]"
@@ -1774,8 +1778,8 @@ MusicPlayer.Settings.Hotkeys : all
 //Changing the playback type
 OnMusicPlayer.PlaybackType : all
 {
-	"\C\![lock,balloonrepaint]\c"
-	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
+	"%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
 	
 	if language == "Placeholder" //TRANSLATORS: These should match the _mode labels above
 	{
@@ -2189,7 +2193,8 @@ OnMusicPlayer.ScootSongMenuWarn : all
 {
 	if ARRAYSIZE(MusicPlayer.CurrentPlaylist) > 100
 	{
-		"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![set,autoscroll,disable]\![no-autopause]"
+		"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
+		"%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![set,autoscroll,disable]\![no-autopause]"
 		
 		//TODO TRANSLATION new translations needed here
 		if language == "Placeholder" //TRANSLATORS: A warning if the user tries to open the song moving menu with a lot of songs loaded in
@@ -2268,6 +2273,7 @@ OnMusicPlayer.ScootSongMenuWarn : all
 			"\n\n"
 			"\![*]\__q[OnMusicPlayer.Settings]No, go back to settings\__q"
 		}
+		"\![unlock,balloonrepaint]"
 	}
 	else
 	{
@@ -2293,9 +2299,9 @@ OnMusicPlayer.ScootSongMenu : all
 	elseif language == "Polski"; _button = "Powrót"
 	else; _button = "Back" //English
 	
-	if reference1 != ""; "\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
 	
-	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![no-autopause]"
+	"%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![no-autopause]"
 	
 	"\![*]\__q[OnMusicPlayer.Settings]%(_button)\__q\n\n"
 	
@@ -2446,7 +2452,8 @@ OnMusicPlayer.ChangeHotkey : all
 	_temp = MusicPlayer.Hotkeys[reference0]
 	
 	
-	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c%(MusicPlayer.LargeBalloon)\*\![quicksection,1]\![no-autopause]"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
+	"%(MusicPlayer.LargeBalloon)\*\![quicksection,1]\![no-autopause]"
 	
 	_option = ""
 	
@@ -3240,8 +3247,8 @@ OnMusicPlayer.ClearPlaylist : all
 {
 	_num = ARRAYSIZE(MusicPlayer.CurrentPlaylist)
 	
-	"\C\![lock,balloonrepaint]\c"
-	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
+	"%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
 	
 	//DIALOGUE: Asking for confirmation before clearing the current playlist. %(_are) and %(_s) can be used for plurals.
 	
@@ -3306,7 +3313,7 @@ OnMusicPlayer.PlaylistCleared : all
 	MusicPlayer.PlayState = 0 //Paused song
 	MusicPlayer.PageIndex = 0
 	
-	"\C\![lock,balloonrepaint]\c"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
 	"\![sound,stop]\![no-autopause]%(OnMusicPlayer.NotifySongInfo)"
 	
 	"%(MusicPlayer.NonSingingSurfaces)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![no-autopause]"
@@ -5119,8 +5126,8 @@ OnDiscordPluginInfo : all
 	_h = "\f[color,default.anchor]" //highlight
 	_d = "\f[color,default]" //default
 	
-	"\C\![lock,balloonrepaint]\c"
-	"\0\b[2]\![quicksection,1]\*"
+	"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
+	"%(MusicPlayer.LargeBalloon)\![quicksection,1]\*"
 	
 	if language == "Placeholder" //TRANSLATORS: Information about where to get the discord plugin and how to use it
 	{
