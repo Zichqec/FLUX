@@ -722,11 +722,61 @@ OnMusicPlayer.JumpToPlaylistPage : all
 	"\![open,inputbox,OnMusicPlayer.JumpIndex,-1,__INPUT_BOX_COLOR__]"
 	
 	//DIALOGUE: Typing in a page number to jump to manually in the playlist
-	"Write a page number to jump to, from 1 to %(MusicPlayer.MaxPages + 1)"
-	"\n\n"
-	"\![*]\__q[OnMusicPlayer.JumpToCurrent]Jump to location of current song\__q"
-	"\n\n"
-	"\![*]\__q[OnMusicPlayer.JumpBack]Back\__q"
+	_maximum = MusicPlayer.MaxPages + 1
+	//TRANSLATION TODO i didn't....... get translations for any of this :upside_down:
+	if language == "Placeholder" //TRANSLATORS: The menu for jumping to a specific page. Use %(_maximum) for the highest page number that can be entered.
+	{
+		
+	}
+	elseif language == "Español"
+	{
+		"Write a page number to jump to, from 1 to %(_maximum)"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpToCurrent]Jump to location of current song\__q"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpBack]Back\__q"
+	}
+	elseif language == "Deutsch"
+	{
+		"Write a page number to jump to, from 1 to %(_maximum)"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpToCurrent]Jump to location of current song\__q"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpBack]Back\__q"
+	}
+	elseif language == "Русский"
+	{
+		"Write a page number to jump to, from 1 to %(_maximum)"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpToCurrent]Jump to location of current song\__q"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpBack]Back\__q"
+	}
+	elseif language == "Français"
+	{
+		"Write a page number to jump to, from 1 to %(_maximum)"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpToCurrent]Jump to location of current song\__q"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpBack]Back\__q"
+	}
+	elseif language == "Polski"
+	{
+		"Write a page number to jump to, from 1 to %(_maximum)"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpToCurrent]Jump to location of current song\__q"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpBack]Back\__q"
+	}
+	else //English
+	{
+		"Write a page number to jump to, from 1 to %(_maximum)"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpToCurrent]Jump to location of current song\__q"
+		"\n\n"
+		"\![*]\__q[OnMusicPlayer.JumpBack]Back\__q"
+	}
+	
 	
 	"\![unlock,balloonrepaint]"
 }
@@ -746,8 +796,38 @@ OnMusicPlayer.JumpIndex : all
 		"%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
 		
 		//DIALOGUE: Putting in an invalid number, or something that isn't a number
-		"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
-		"Invalid input.\x\![raise,OnMusicPlayer.JumpToPlaylistPage]"
+		//TRANSLATION TODO i didn't....... get translations for any of this :upside_down:
+		if language == "Placeholder" //TRANSLATORS: If the user enters something invalid.
+		{
+			
+		}
+		elseif language == "Español"
+		{
+			"Invalid input."
+		}
+		elseif language == "Deutsch"
+		{
+			"Invalid input."
+		}
+		elseif language == "Русский"
+		{
+			"Invalid input."
+		}
+		elseif language == "Français"
+		{
+			"Invalid input."
+		}
+		elseif language == "Polski"
+		{
+			"Invalid input."
+		}
+		else //English
+		{
+			"Invalid input."
+		}
+		"\![unlock,balloonrepaint]"
+		"\x"
+		OnMusicPlayer.JumpToPlaylistPage
 	}
 }
 
