@@ -1114,7 +1114,7 @@ MusicPlayer.Settings.Advanced : all
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Mover pistas en lista de reproducción\__q"
 		
-		"\n"
+		"\n\n"
 		"¿Mostrar pista y shell actual en Discord? %(br)\_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info.)\__q"
 	}
 	elseif language == "Deutsch"
@@ -1132,7 +1132,7 @@ MusicPlayer.Settings.Advanced : all
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
-		"\n"
+		"\n\n"
 		"Derzeitiges Lied und derzeitige Shell auf Discord anzeigen? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 	elseif language == "Русский"
@@ -1150,7 +1150,7 @@ MusicPlayer.Settings.Advanced : all
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Переместить песни в плэйлисте\__q"
 		
-		"\n"
+		"\n\n"
 		"Показать текушие песни и вид в Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a%(br)\__q[OnDiscordPluginInfo](Инфо)\__q"
 	}
 	elseif language == "Français"
@@ -1168,7 +1168,7 @@ MusicPlayer.Settings.Advanced : all
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
-		"\n"
+		"\n\n"
 		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 	elseif language == "Polski"
@@ -1186,7 +1186,7 @@ MusicPlayer.Settings.Advanced : all
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
-		"\n"
+		"\n\n"
 		"Wyświetlaj bieżący utwór i skorupę na Discordzie? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 	else //English
@@ -1204,7 +1204,7 @@ MusicPlayer.Settings.Advanced : all
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
-		"\n"
+		"\n\n"
 		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 }
@@ -4996,6 +4996,7 @@ OnMusicPlayer.DiscordPluginBoot : all
 //Toggle for the settings menu. Make sure you uncomment the option that calls this.
 OnMusicPlayer.ToggleDiscordPlugin : all
 {
+	"\C"
 	if MusicPlayer.DiscordDisplay != 1
 	{
 		_song = " "
