@@ -3770,42 +3770,42 @@ OnFileDrop2 : all
 				"[¿Cargar la lista de reproducción ""\_?%(_filename)\_?""?\n\nLa lista de reproducción actual se perderá al menos que ya haya sido guardada.]"
 			
 				"\n\n"
-				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Sí, cargar lista de reproducción\__q  \![*]\__q[OnBlank]No, no cargar lista de reproducción\__q"
+				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Sí, cargar lista de reproducción\__q\n\n\![*]\__q[OnBlank]No, no cargar lista de reproducción\__q"
 			}
 			elseif language == "Deutsch"
 			{
 				"[Playliste ""\_?%(_filename)\_?"" laden?\n\nDie derzeitige Playliste wird verworfen, es sei denn sie wurde schon gespeichert.]"
 			
 				"\n\n"
-				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Ja, Playliste laden\__q  \![*]\__q[OnBlank]Nein, Playliste nicht laden\__q"
+				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Ja, Playliste laden\__q\n\n\![*]\__q[OnBlank]Nein, Playliste nicht laden\__q"
 			}
 			elseif language == "Русский"
 			{
 				"[Загрузить ""\_?%(_filename)\_?""?\n\nТекущий плэйлист, если не сохранен, будет потерянный.]"
 			
 				"\n\n"
-				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Да, загрузай плэйлист\__q  \![*]\__q[OnBlank]Не, не загрузай плэйлист\__q"
+				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Да, загрузай плэйлист\__q\n\n\![*]\__q[OnBlank]Не, не загрузай плэйлист\__q"
 			}
 			elseif language == "Français" 
 			{
 				"[Load the playlist ""\_?%(_filename)\_?""?\n\nThe current playlist will be lost unless it is already saved.]"
 			
 				"\n\n"
-				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Yes, load the playlist\__q  \![*]\__q[OnBlank]No, do not load the playlist\__q"
+				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Yes, load the playlist\__q\n\n\![*]\__q[OnBlank]No, do not load the playlist\__q"
 			}
 			elseif language == "Polski"
 			{
 				"[Load the playlist ""\_?%(_filename)\_?""?\n\nThe current playlist will be lost unless it is already saved.]"
 			
 				"\n\n"
-				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Yes, load the playlist\__q  \![*]\__q[OnBlank]No, do not load the playlist\__q"
+				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Yes, load the playlist\__q\n\n\![*]\__q[OnBlank]No, do not load the playlist\__q"
 			}
 			else //English
 			{
 				"[Load the playlist ""\_?%(_filename)\_?""?\n\nThe current playlist will be lost unless it is already saved.]"
 			
 				"\n\n"
-				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Yes, load the playlist\__q  \![*]\__q[OnBlank]No, do not load the playlist\__q"
+				"\![*]\__q[OnMusicPlayer.PlaylistLoaded,,,""%(reference.raw[0])""]Yes, load the playlist\__q\n\n\![*]\__q[OnBlank]No, do not load the playlist\__q"
 			}
 		}
 		elseif _fileext == "" //If it's a single folder
