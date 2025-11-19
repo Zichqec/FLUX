@@ -436,8 +436,7 @@ OnMusicPlayer.PlaySong : all
 				{
 					"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![quicksection,1]\![lock,balloonrepaint]\c\![dummy]"
 					
-					//DIALOGUE: Song announcement
-					if language == "Placeholder" //TRANSLATORS: The currently playing song display
+					if language == "Placeholder" //TRANSLATORS: Song announcement text
 					{
 						
 					}
@@ -721,7 +720,6 @@ OnMusicPlayer.JumpToPlaylistPage : all
 	"%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
 	"\![open,inputbox,OnMusicPlayer.JumpIndex,-1,__INPUT_BOX_COLOR__]"
 	
-	//DIALOGUE: Typing in a page number to jump to manually in the playlist
 	_maximum = MusicPlayer.MaxPages + 1
 	//TRANSLATION TODO i didn't....... get translations for any of this :upside_down:
 	if language == "Placeholder" //TRANSLATORS: The menu for jumping to a specific page. Use %(_maximum) for the highest page number that can be entered.
@@ -795,7 +793,6 @@ OnMusicPlayer.JumpIndex : all
 		"\C%(MusicPlayer.Scope)\![lock,balloonrepaint]\c"
 		"%(MusicPlayer.LargeBalloon)\![quicksection,1]\![set,autoscroll,disable]\![no-autopause]"
 		
-		//DIALOGUE: Putting in an invalid number, or something that isn't a number
 		//TRANSLATION TODO i didn't....... get translations for any of this :upside_down:
 		if language == "Placeholder" //TRANSLATORS: If the user enters something invalid.
 		{
@@ -3846,7 +3843,6 @@ OnFileDrop2 : all
 		{
 			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\![quicksection,1]"
 			
-			//DIALOGUE: Confirming loading a playlist after drag and drop
 			//TODO TRANSLATION need a new translation here
 			if language == "Placeholder" //TRANSLATORS: If the user drags and drops a .m3u playlist onto FLUX, it will ask if they want to load it, overwriting their current playlist
 			{
@@ -4005,7 +4001,6 @@ OnFileDrop2 : all
 		{
 			"%(MusicPlayer.Scope)%(MusicPlayer.SmallBalloon)\![no-autopause]\![set,autoscroll,disable]\![quicksection,1]"
 			
-			//DIALOGUE: Any file that is not music or a playlist
 			"\0\b[0]"
 			if ISFUNC("OnCustom_ActionSurfaces") && CustomFuncs[0] == 1; "\![embed,OnCustom_ActionSurfaces,Refuse]"
 			else; "\s[6]"
