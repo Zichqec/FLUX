@@ -5072,6 +5072,7 @@ OnDiscordPluginInfo : all
 	_h = "\f[color,default.anchor]" //highlight
 	_d = "\f[color,default]" //default
 	
+	"\C\![lock,balloonrepaint]\c"
 	"\0\b[2]\![quicksection,1]\*"
 	
 	if language == "Placeholder" //TRANSLATORS: Information about where to get the discord plugin and how to use it
@@ -5113,4 +5114,5 @@ OnDiscordPluginInfo : all
 		
 		"\n\n\![*]\__q[OnMusicPlayer.Settings]Back to music settings\__q"
 	}
+	"\![unlock,balloonrepaint]"
 }
