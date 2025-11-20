@@ -1184,7 +1184,7 @@ Select.BugReport : all
 	}
 	elseif language == "Français"
 	{
-		"[Les bugs de méchaniques du lecteur FLUX peuvent être rapporté à \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 via n'importe quel réseau social.]\n\n\w8\w8"
+		"[Les bugs de méchaniques du lecteur FLUX peuvent être rapporté à \_a[https://ukagaka.zichqec.com/]Zichqec\_a,\w4 via n'importe quel réseau social.]\n\n\w8\w8"
 		"[Les bugs du shell actuellement utilisé, '%(nowshell)',\w4 doivent être rapporté à son developpeur,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
 		"[Toute faute de frappe dans les menus français/dialogues génériques pour FLUX peuvent être rapportés à \_a[https://levidre.github.io/]Levidre\_a.]"
 		
@@ -1192,7 +1192,7 @@ Select.BugReport : all
 	}
 	elseif language == "Polski"
 	{
-		"[Błędy w mechanice odtwarzacza FLUX można zgłaszać do \_a[https://zichqec.github.io/s-the-skeleton/index.html]Zichqec\_a,\w4 za pośrednictwem jednego z jej mediów społecznościowych.]\n\n\w8\w8"
+		"[Błędy w mechanice odtwarzacza FLUX można zgłaszać do \_a[https://ukagaka.zichqec.com/]Zichqec\_a,\w4 za pośrednictwem jednego z jej mediów społecznościowych.]\n\n\w8\w8"
 		"[Błędy w skorupie, którą aktualnie używasz, '%(nowshell)',\w4 powinny być zgłaszane do jej twórcy,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
 		"[Wszelkie literówki w polskim tłumaczeniue dla FLUXa mogą być zgłaszane do \_a[https://zdzisiu.github.io/Ukagaka/]Zdzicha\_a przez Discorda.]"
 		
