@@ -184,6 +184,8 @@ OnMenuRun : all //Main menu
 	
 	if SHIORI3FW.Eventid != "OnMouseDoubleClick"; "\C\![lock,balloonrepaint]\c"
 	
+	"\0\b[2]\_q\![set,autoscroll,disable]\f[anchorvisitedfontcolor,default.anchor]\![close,inputbox,__SYSTEM_ALL_INPUT__]"
+	
 	if language == "Placeholder" //TRANSLATORS: This is the main menu, use _currentsong for the currently playing song
 	{
 		
