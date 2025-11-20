@@ -1658,6 +1658,7 @@ OnUpdateComplete
 	}
 }
 
+//TODO migrate changelog...
 OnChangeLog
 {
 	"\![open,file,changelog.txt]\e"

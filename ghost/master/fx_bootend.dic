@@ -144,7 +144,8 @@ OnDestroy
 OnBoot //Normal booting
 {
 	BootVars //This sets variables you want to be set on a normal boot, like resetting the runtime. Again, make sure you set these up at the bottom.
-	_timesince = FUNCTIONEX("time_check.dll","how_many_days",lastclosed[0],lastclosed[1],lastclosed[2],0,0,0) * -1
+	//Note to self: there is *one* shell using this SAORI... no need for me to call it here, but I can't remove the SAORI without breaking compatibility with that shell
+	//_timesince = FUNCTIONEX("time_check.dll","how_many_days",lastclosed[0],lastclosed[1],lastclosed[2],0,0,0) * -1
 	
 	"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]"
 	--
