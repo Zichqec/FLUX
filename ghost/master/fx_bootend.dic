@@ -130,6 +130,9 @@ OnInitialize
 		void FCLOSE(_path)
 	}
 	
+	//TODO TEMPORARY while these languages are not updated
+	if language == "Français" || language == "Polski"; language = "English"
+	
 	MusicPlayer.OnInitialize
 }
 
