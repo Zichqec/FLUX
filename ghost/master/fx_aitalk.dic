@@ -99,6 +99,13 @@ OnMinuteChange
 
 OnSecondChange
 {
+	//This is good but not perfect... it helps if the file gets deleted somehow but isn't good for updates
+	if Latch.ShellFunctionsFileMissing && SHIORI3FW.CanTalk
+	{
+		OnGetCustomShellDialogue
+		return
+	}
+	
 	if runtime[2] >= 59
 	{
 		runtime[2] = 0

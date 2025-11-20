@@ -30,14 +30,17 @@ fncdepth,500
 msglang,english
 
 
-//iolog.filter.mode,whitelist
-// iolog.filter.keyword,OnSecondChange
-// iolog.filter.keyword,OnMouse
+iolog.filter.mode,whitelist
+iolog.filter.keyword,OnSecondChange
+iolog.filter.keyword,OnGetCustomShellDialogue
+iolog.filter.keyword,OnInitialize
+
+
 //This filters out EVERYTHING that starts with OnMouse?? Which is not the behavior of the above
 
 //iolog.filter.keyword,OnNotifyDressupInfo
-ignoreiolog, ID: OnSecondChange //OnSecondChange無視
-ignoreiolog, ID: OnMouse        //OnMouse系無視
+//ignoreiolog, ID: OnSecondChange //OnSecondChange無視
+//ignoreiolog, ID: OnMouse        //OnMouse系無視
 
 //iolog.filter.mode,whitelist
 

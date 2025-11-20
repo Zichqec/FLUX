@@ -123,11 +123,11 @@ OnLanguageChosen
 
 OnInitialize
 {
+	Latch.ShellFunctionsFileMissing = 0
 	_path = "shell_functions.txt"
-	if FATTRIB(_path) == -1 //TODO this at least creates the file, but until you reload it's not going to have loaded those functions... hm. I coooooooulllllld make it so that the old URL drops this file in for you...? but, it will still likely be wrong... hmmm!! maybe a latch??
+	if FATTRIB(_path) == -1 && !Latch.ShellFunctionsFileMissing //TODO this at least creates the file, but until you reload it's not going to have loaded those functions... hm. I coooooooulllllld make it so that the old URL drops this file in for you...? but, it will still likely be wrong... hmmm!! maybe a latch??
 	{
-		void FOPEN(_path,"w")
-		void FCLOSE(_path)
+		Latch.ShellFunctionsFileMissing = 1
 	}
 	
 	//TODO TEMPORARY while these languages are not updated
