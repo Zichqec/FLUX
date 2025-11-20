@@ -1599,7 +1599,7 @@ MusicPlayer.Settings.Playlists : all
 		"\![*]\__q[OnMusicPlayer.LoadPlaylist]Charger une playlist\__q\n"
 		"\![*]\__q[OnMusicPlayer.ClearPlaylist]Vider la playlist actuelle\__q\n"
 		"\n"
-		"Length of current playlist:\n%(_count) songs" //TODO new translation
+		"Length of current playlist:\n%(_count) songs" //TODO new translation -- plural check needed
 	}
 	elseif language == "Polski"
 	{
@@ -1607,7 +1607,7 @@ MusicPlayer.Settings.Playlists : all
 		"\![*]\__q[OnMusicPlayer.LoadPlaylist]Wczytaj playlistę\__q\n"
 		"\![*]\__q[OnMusicPlayer.ClearPlaylist]Wyczyść bieżącą listę odtwarzania\__q\n"
 		"\n"
-		"Length of current playlist:\n%(_count) songs" //TODO new translation
+		"Length of current playlist:\n%(_count) songs" //TODO new translation -- plural check needed
 	}
 	else //English
 	{
@@ -4478,7 +4478,7 @@ tooltips_list : array
 		"Minimizar"
 		"Cerrar FLUX"
 	}
-	elseif language == "Deutsch" //TODO new translation in these tooltips
+	elseif language == "Deutsch"
 	{
 		"Abspielen / Nächstes Lied" //TRANSLATION TODO: check this... it used to start with "Start"
 		"Start"
