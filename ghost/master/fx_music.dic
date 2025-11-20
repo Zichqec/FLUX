@@ -1945,8 +1945,8 @@ OnMusicPlayer.SetOption : all
 	"%(MusicPlayer.Scope)%(MusicPlayer.LargeBalloon)\![quicksection,1]\*\![no-autopause]"
 	
 	if reference0 == "Balance"; "\![open,inputbox,OnMusicPlayer.Balance,-1,__INPUT_BOX_COLOR__]"
-	elseif reference0 == "Speed"; "\![open,sliderinput,OnMusicPlayer.Speed,-1,100,1,%(MusicPlayer.MaxRate)]"
-	else; "\![open,sliderinput,OnMusicPlayer.Volume,-1,100,1,100]"
+	elseif reference0 == "Speed"; "\![open,sliderinput,OnMusicPlayer.Speed,-1,100,1,%(MusicPlayer.MaxRate),__INPUT_BOX_COLOR__]"
+	else; "\![open,sliderinput,OnMusicPlayer.Volume,-1,100,1,100,__INPUT_BOX_COLOR__]"
 	
 	if language == "Placeholder" //TRANSLATORS: Leave the reference0 parts alone, just translate the dialogues. These are for changing the options like volume, balance, and speed
 	{
