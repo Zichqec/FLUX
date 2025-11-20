@@ -1107,7 +1107,7 @@ MusicPlayer.Settings.Basic : all
 		if _mode == 1; _mode = "Перетасуй и Играй по Кругу"
 		elseif _mode == 2; _mode = "Играй Одна Песня по Кругу"
 		elseif _mode == 3; _mode = "Играй Одна Песня"
-		elseif _mode == 4; _mode = "Random" //TODO new translation -- TRANSLATION TODO i do not have this??
+		elseif _mode == 4; _mode = "Случайный"
 		else; _mode = "Играй Плейлист по Кругу"
 		
 		//Only the labels on the left here need translated
