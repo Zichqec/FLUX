@@ -182,7 +182,7 @@ OnMenuRun : all //Main menu
 {
 	_currentsong = MusicPlayer.CurrentSongName
 	
-	"\0\b[2]\_q\![set,autoscroll,disable]\f[anchorvisitedfontcolor,default.anchor]\![close,inputbox,OnSetName]"
+	if SHIORI3FW.Eventid != "OnMouseDoubleClick"; "\C\![lock,balloonrepaint]\c"
 	
 	if language == "Placeholder" //TRANSLATORS: This is the main menu, use _currentsong for the currently playing song
 	{
@@ -487,7 +487,7 @@ OnMenuRun : all //Main menu
 		if ISFUNC("shellver") && CustomFuncs[0] == 1; "     %(nowshell) v%(shellver)"
 	}
 	
-	"\e __GHOST_MAIN_MENU__"
+	"\![unlock,balloonrepaint]\e __GHOST_MAIN_MENU__"
 }
 
 OnLastTalk
