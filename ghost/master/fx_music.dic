@@ -1255,7 +1255,7 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Mover pistas en lista de reproducción\__q"
 		
 		"\n\n"
-		"¿Mostrar pista y shell actual en Discord? %(br)\_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info.)\__q"
+		"¿Mostrar pista y shell actual en Discord? %(br)\![*]\_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info.)\__q"
 	}
 	elseif language == "Deutsch"
 	{
@@ -1272,8 +1272,9 @@ MusicPlayer.Settings.Advanced : all
 		"\n"
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q" //TODO TRANSLATION: I didn't get a new translation for this
 		
+		
 		"\n\n"
-		"Derzeitiges Lied und Shell auf Discord anzeigen? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
+		"Derzeitiges Lied und Shell auf Discord anzeigen? \![*]\_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 	elseif language == "Русский"
 	{
@@ -1291,7 +1292,7 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Переместить песни в плэйлисте\__q"
 		
 		"\n\n"
-		"Показать текушие песни и вид в Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a%(br)\__q[OnDiscordPluginInfo](Инфо)\__q"
+		"Показать текушие песни и вид в Discord? \![*]\_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a%(br)\__q[OnDiscordPluginInfo](Инфо)\__q"
 	}
 	elseif language == "Français"
 	{
@@ -1309,7 +1310,7 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
 		"\n\n"
-		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
+		"Show current song and shell in Discord? \![*]\_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 	elseif language == "Polski"
 	{
@@ -1327,7 +1328,7 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
 		"\n\n"
-		"Wyświetlaj bieżący utwór i skorupę na Discordzie? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
+		"Wyświetlaj bieżący utwór i skorupę na Discordzie? \![*]\_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 	else //English
 	{
@@ -1345,9 +1346,10 @@ MusicPlayer.Settings.Advanced : all
 		"\![*]\__q[OnMusicPlayer.ScootSongMenuWarn]Move songs in playlist\__q"
 		
 		"\n\n"
-		"Show current song and shell in Discord? \_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
+		"Show current song and shell in Discord? \![*]\_a[OnMusicPlayer.ToggleDiscordPlugin]%(offon[MusicPlayer.DiscordDisplay])\_a \__q[OnDiscordPluginInfo](Info)\__q"
 	}
 }
+
 
 label.songannouncement
 {
