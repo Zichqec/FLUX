@@ -1574,7 +1574,7 @@ MusicPlayer.Settings.Playlists : all
 		"\![*]\__q[OnMusicPlayer.LoadPlaylist]Cargar Lista de reproducción\__q\n"
 		"\![*]\__q[OnMusicPlayer.ClearPlaylist]Vaciar Lista de reproducción actual\__q\n"
 		"\n"
-		"Longitud de lista de reproducción actual:\n%(_count) pistas"
+		"Longitud de lista de reproducción actual:\n%(_count) pistas" //TRANSLATION TODO plural check wanted
 	}
 	elseif language == "Deutsch"
 	{
@@ -1591,7 +1591,7 @@ MusicPlayer.Settings.Playlists : all
 		"\![*]\__q[OnMusicPlayer.LoadPlaylist]Загрузить плейлист\__q\n"
 		"\![*]\__q[OnMusicPlayer.ClearPlaylist]Отчистить этот плейлист\__q\n"
 		"\n"
-		"Длинность текуший плэйлист:\n%(_count) песни"
+		"Длинность текуший плэйлист:\n%(_count) песни" //TRANSLATION TODO plural check wanted
 	}
 	elseif language == "Français"
 	{
