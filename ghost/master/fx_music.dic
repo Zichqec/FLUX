@@ -4748,8 +4748,11 @@ MusicPlayer.DisplayPlaytime : all
 	
 	_units = IARRAY
 	
-	//TRANSLATION TODO: double check that this actually got sent to everyone to translate and that I implemented it...
 	if language == "Placeholder" //TRANSLATORS: this is for the total playtime display. The time is displayed like "1yr 23d 04:56:07". Swap out the "yr" (years) and "d" (days) with whatever makes sense, if needed. If you need another formatting, please let me know because it will likely require some special code to handle it!
+	{
+		
+	}
+	elseif language == "Español"
 	{
 		
 	}
@@ -4762,6 +4765,18 @@ MusicPlayer.DisplayPlaytime : all
 		":,60",/
 		",1"/
 		)
+	}
+	elseif language == "Русский"
+	{
+		
+	}
+	elseif language == "Français"
+	{
+		
+	}
+	elseif language == "Polski"
+	{
+		
 	}
 	else //English
 	{
