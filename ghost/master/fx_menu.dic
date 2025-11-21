@@ -530,7 +530,7 @@ OnConfigMenu : all
 	elseif language == "Español"
 	{
 		"Tu nombre: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Restablecer)\__q\f[color,default]\n"
-		"Tus pronombres: \_a[OnChangePronoun]%(Capitalize(élella))\_a\n" //TODO TRANSLATION i snipped the other two here since they don't exist now...
+		"Tus pronombres: \_a[OnChangePronoun]%(Capitalize(élella))\_a\n"
 		
 		"Idioma: \_a[OnLanguageMenu]%(language)\_a\n"
 		
