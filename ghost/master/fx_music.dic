@@ -1059,7 +1059,7 @@ MusicPlayer.Settings.Basic : all
 		}
 		if MusicSettings[4] == "stop after playback"; " \![*]"
 		"\n"
-		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1 //TODO new translation
+		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1
 		{
 			"\f[color,disable]Parar después de que acabe la lista de reproducción\f[color,default]"
 			"\__q[OnMusicPlayer.StopAfterPlayback,playlist]Parar después de que acabe la lista de reproducción\__q"
@@ -1067,7 +1067,7 @@ MusicPlayer.Settings.Basic : all
 		if MusicPlayer.StopAfterCurrent == "stop after playlist"; " \![*]"
 		
 		"\n\n"
-		"Tiempo total de reproducción:\n" //TODO new translation
+		"Tiempo total de reproducción:\n"
 		"%(MusicPlayer.DisplayPlaytime(MusicPlayer.Playtime))"
 	}
 	elseif language == "Deutsch"
@@ -1123,7 +1123,7 @@ MusicPlayer.Settings.Basic : all
 		}
 		if MusicPlayer.StopAfterCurrent == "stop after playback"; " \![*]"
 		"\n"
-		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1 //TODO new translation
+		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1
 		{
 			"\f[color,disable]Стоп после конец плэйлиста\f[color,default]"
 			"\__q[OnMusicPlayer.StopAfterPlayback,playlist]Стоп после конец плэйлиста\__q"
@@ -1131,7 +1131,7 @@ MusicPlayer.Settings.Basic : all
 		if MusicPlayer.StopAfterCurrent == "stop after playlist"; " \![*]"
 		
 		"\n\n"
-		"Итог час проигрование песни:\n" //TODO new translation
+		"Итог час проигрование песни:\n"
 		"%(MusicPlayer.DisplayPlaytime(MusicPlayer.Playtime))"
 	}
 	elseif language == "Français"
