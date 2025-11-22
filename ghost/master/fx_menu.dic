@@ -1212,7 +1212,6 @@ OnConfig.UpdateCheck //Starts an update check
 	"\![close,inputbox,OnSetName]\![updatebymyself]"
 }
 
-//TODO TEST LATER
 OnConfig.UpdateShell
 {
 	"\![close,inputbox,OnSetName]\![update,shell]"
