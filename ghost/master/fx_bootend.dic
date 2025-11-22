@@ -147,7 +147,7 @@ OnBoot //Normal booting
 	//Note to self: there is *one* shell using this SAORI... no need for me to call it here, but I can't remove the SAORI without breaking compatibility with that shell
 	//_timesince = FUNCTIONEX("time_check.dll","how_many_days",lastclosed[0],lastclosed[1],lastclosed[2],0,0,0) * -1
 	
-	"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]"
+	"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanurl]"
 	--
 	if ISFUNC("OnCustom_trayicon"); OnCustom_trayicon
 	else; "\![set,tasktrayicon,flux.ico]"
@@ -338,7 +338,7 @@ OnGhostChanged //After switching.
 	}
 	else
 	{
-		"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]"
+		"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanurl]"
 		--
 		if ISFUNC("OnCustom_OnGhostChanged") && CustomFuncs[0] == 1; OnCustom_OnGhostChanged
 		else
@@ -426,7 +426,7 @@ OnGetCoords2 //This gets the x and y coordinates when changing shells
 	OnGetCustomShellDialogue
 	lastTalk = ""
 	--
-	"\![get,property,OnShellAuthor,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftmanurl]" //Moves the ghost to where they were on the previous shell, and gathers the craftman info for the shell
+	"\![get,property,OnShellAuthor,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanurl]" //Moves the ghost to where they were on the previous shell, and gathers the craftman info for the shell
 	//ERASEVAR("shellchange")
 	--
 	if MusicPlayer.DiscordDisplay == 1; "\![raiseplugin,Discord Rich Presence,OnDiscordPluginCustomDetail,Shell: ""%(shellchange[7])""]"
@@ -555,12 +555,13 @@ RestartSinging
 }
 
 //TODO craftmanw might automatically fill craftman...? have this note in hydrate also
+//I'm having weird issues with this, mostly because i can't get it to reload (even when properly reloading the shell) and it seems like there must be some sort of caching happening...?? but it doesn't make sense. Come back to this another day...
 OnShellAuthor
 {
 	shellauthor = IARRAY
-	shellauthor[0] = reference0 //craftman
-	if shellauthor[0] == ""; shellauthor[0] = reference1 //Craftman is replaced by craftmanw if craftman is empty //TODO reverse this
-	shellauthor[1] = reference1 //craftmanw
+	shellauthor[0] = reference0 //craftmanw
+	shellauthor[1] = reference1 //craftman
+	if shellauthor[0] == ""; shellauthor[0] = shellauthor[1] //craftmanw is replaced by craftman if craftmanw is empty
 	shellauthor[2] = reference2 //craftmanurl
 }
 
