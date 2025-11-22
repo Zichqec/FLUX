@@ -1,0 +1,11 @@
+.git/
+.gitattributes
+shell/*
+!shell/master/
+/ghost/master/profile
+/shell/master/profile
+ghost/master/yaya_variable.cfg
+flux_notes/
+temp/
+playlists/
+ghost/master/shell_functions.txt
