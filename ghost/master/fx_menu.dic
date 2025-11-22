@@ -1160,7 +1160,7 @@ Select.BugReport : all
 	elseif language == "Español"
 	{
 		"[Bugs sobre las mecánicas del reproductor FLUX pueden ser informados a \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]\n\n\w8\w8"
-		"[Los bugs sobre el shell actual, '%(nowshell)',\w4 deben ser informados a su desarrollador,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Los bugs sobre el shell actual, '%(nowshell)',\w4 deben ser informados a su desarrollador,\w4 \_a[%(shellauthor[2])]%(shellauthor[0])\_a.]\n\n\w8\w8"
 		"[Cualquier problema en los menús/sistema de diálogos en español para FLUX puede ser comunicado a \_a[https://rosecelestereblog.tumblr.com/]Celeste\_a.]"
 		
 		"\n\n\![*]\q[Volver a Configuración,OnConfigMenu]\n\![*]\q[Cerrar,OnCancel]"
@@ -1168,7 +1168,7 @@ Select.BugReport : all
 	elseif language == "Deutsch"
 	{
 		"[Bugs in FLUX-Player's Funktionen können \_a[https://ukagaka.zichqec.com/]Zichqec\_a gemeldet werden.]\n\n\w8\w8"
-		"[Bugs in der aktiven Shell, '%(nowshell)',\w4 sollten ihrem Entwickler,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a, gemeldet werden.]\n\n\w8\w8"
+		"[Bugs in der aktiven Shell, '%(nowshell)',\w4 sollten ihrem Entwickler,\w4 \_a[%(shellauthor[2])]%(shellauthor[0])\_a, gemeldet werden.]\n\n\w8\w8"
 		"[Fehler in der deutschen Übersetzung von FLUX können \_a[https://koguri3108.tumblr.com/]Koguri3108\_a gemeldet werden.]"
 		
 		"\n\n\![*]\q[Zurück zu Einstellungen,OnConfigMenu]\n\![*]\q[Schließen,OnCancel]"
@@ -1176,7 +1176,7 @@ Select.BugReport : all
 	elseif language == "Русский"
 	{
 		"[Сообщить \_a[https://ukagaka.zichqec.com/]Zichqec\_a об ошибки с функции плеер FLUX.]\n\n\w8\w8"
-		"[Сообщить ошибки текущий вид, '%(nowshell)',\w4 до его автор,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Сообщить ошибки текущий вид, '%(nowshell)',\w4 до его автор,\w4 \_a[%(shellauthor[2])]%(shellauthor[0])\_a.]\n\n\w8\w8"
 		"[Сообщить \_a[https://smokycinnamon.tumblr.com/]Smoky\_a о всякие ошибки с русским переводом.]"
 		
 		"\n\n\![*]\q[Назад в Конфигурация,OnConfigMenu]\n\![*]\q[Закрыть,OnCancel]"
@@ -1184,7 +1184,7 @@ Select.BugReport : all
 	elseif language == "Français"
 	{
 		"[Les bugs de méchaniques du lecteur FLUX peuvent être rapporté à \_a[https://ukagaka.zichqec.com/]Zichqec\_a,\w4 via n'importe quel réseau social.]\n\n\w8\w8"
-		"[Les bugs du shell actuellement utilisé, '%(nowshell)',\w4 doivent être rapporté à son developpeur,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Les bugs du shell actuellement utilisé, '%(nowshell)',\w4 doivent être rapporté à son developpeur,\w4 \_a[%(shellauthor[2])]%(shellauthor[0])\_a.]\n\n\w8\w8"
 		"[Toute faute de frappe dans les menus français/dialogues génériques pour FLUX peuvent être rapportés à \_a[https://levidre.github.io/]Levidre\_a.]"
 		
 		"\n\n\![*]\q[Retour à Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]"
@@ -1192,7 +1192,7 @@ Select.BugReport : all
 	elseif language == "Polski"
 	{
 		"[Błędy w mechanice odtwarzacza FLUX można zgłaszać do \_a[https://ukagaka.zichqec.com/]Zichqec\_a,\w4 za pośrednictwem jednego z jej mediów społecznościowych.]\n\n\w8\w8"
-		"[Błędy w skorupie, którą aktualnie używasz, '%(nowshell)',\w4 powinny być zgłaszane do jej twórcy,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Błędy w skorupie, którą aktualnie używasz, '%(nowshell)',\w4 powinny być zgłaszane do jej twórcy,\w4 \_a[%(shellauthor[2])]%(shellauthor[0])\_a.]\n\n\w8\w8"
 		"[Wszelkie literówki w polskim tłumaczeniue dla FLUXa mogą być zgłaszane do \_a[https://zdzisiu.github.io/Ukagaka/]Zdzicha\_a przez Discorda.]"
 		
 		"\n\n\![*]\q[Powrót do ustawień,OnConfigMenu]\n\![*]\q[Zamknij,OnCancel]"
@@ -1200,7 +1200,7 @@ Select.BugReport : all
 	else //English
 	{
 		"[Bugs with FLUX player's mechanics can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]\n\n\w8\w8"
-		"[Bugs in the currently running shell, '%(nowshell)',\w4 should be reported to its dev,\w4 \_a[%(shellauthor[1])]%(shellauthor[0])\_a.]\n\n\w8\w8"
+		"[Bugs in the currently running shell, '%(nowshell)',\w4 should be reported to its dev,\w4 \_a[%(shellauthor[2])]%(shellauthor[0])\_a.]\n\n\w8\w8"
 		"[Any issues in the English menus/system dialogue for FLUX can be reported to \_a[https://ukagaka.zichqec.com/]Zichqec\_a.]"
 		
 		"\n\n\![*]\q[Back to Config,OnConfigMenu]\n\![*]\q[Close,OnCancel]"
