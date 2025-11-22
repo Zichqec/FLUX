@@ -521,8 +521,6 @@ OnConfigMenu : all
 	"\C\![lock,balloonrepaint]\c\0\*"
 	"\![set,autoscroll,disable]\_q\b[2]\f[anchorvisitedfontcolor,default.anchor]"
 	
-	//TODO TRANSLATION the "reset" button for username needs a translation
-	
 	if language == "Placeholder" //TRANSLATORS: The config menu. I imagine the pronoun system is going to get tricky between languages, talk to me about this and we can work something out. It's important to be able to pick them, though, because shells aren't necessarily going to be translated and might use these envelopes. If your language doesn't have pronouns, you could put something like 'masculine', 'feminine', or 'neutral' in their place.
 	{
 		
@@ -682,6 +680,7 @@ OnConfigMenu : all
 	}
 	elseif language == "Français"
 	{
+		//TODO FRENCH the "Reset" button
 		"Ton nom : \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Tes pronoms : \_a[OnChangePronoun]%(Capitalize(ilelle))/%(Capitalize(luielle))/%(Capitalize(celuicelle))\_a\n"
 		
@@ -733,6 +732,7 @@ OnConfigMenu : all
 	}
 	elseif language == "Polski"
 	{
+		//TODO POLISH the "Reset" button
 		"Twoje imię: \_a[OnChangeName]%(username)\_a  \f[color,disable]\__q[OnSetName,""%(SHIORI3FW.UserNameFull)""](Reset)\__q\f[color,default]\n"
 		"Twoje zaimki: \_a[OnChangePronoun]%(Capitalize(onona))/%(Capitalize(jejjemu))/%(Capitalize(jejjego))\_a\n"
 		
@@ -1153,7 +1153,6 @@ Select.BugReport : all
 {
 	"\0\b[0]\![close,inputbox,OnSetName]"
 	--
-	//TODO translation needed
 	if language == "Placeholder" //TRANSLATORS: The bug report option. If you want to allow people to contact you about errors in your translation, go ahead and mention that here and give a url/means of contacting you. You can replace the mention/link to me for the english dialogues with your own.
 	{
 		

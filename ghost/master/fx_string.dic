@@ -171,7 +171,7 @@ portalsites_sakura_русский : array
 
 portalsites_sakura_french : array 
 {
-	"Ukagaka Dream Team Wiki";			"https://ukagakadreamteam.com/wiki/home"
+	"Ukagaka Dream Team Wiki";			"https://ukagakadreamteam.com/wiki/home" //TODO FRENCH
 	"Discord de l'Ukagaka Dream Team";	"https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)";							"https://ssp.shillest.net/"
 	"Ukadoc";							"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
@@ -180,7 +180,7 @@ portalsites_sakura_french : array
 
 portalsites_sakura_polski : array 
 {
-	"Ukagaka Dream Team Wiki";		"https://ukagakadreamteam.com/wiki/home"
+	"Ukagaka Dream Team Wiki";		"https://ukagakadreamteam.com/wiki/home" //TODO POLISH
 	"Ukagaka Dream Team Discord";	"https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)";						"https://ssp.shillest.net/"
 	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
@@ -189,7 +189,7 @@ portalsites_sakura_polski : array
 
 portalsites_sakura_english : array 
 {
-	"Ukagaka Dream Team Wiki";		"https://ukagakadreamteam.com/wiki/home" //TODO: changed these links, added this one new
+	"Ukagaka Dream Team Wiki";		"https://ukagakadreamteam.com/wiki/home"
 	"Ukagaka Dream Team Discord"; 	"https://ukagakadreamteam.tumblr.com/discord"
 	"SSP (J)"; 						"https://ssp.shillest.net/"
 	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
