@@ -3,7 +3,7 @@
 .updateignore8434c22b0a80fa988223352cd88fe7a6size=190date=2025-11-23T14:21:10
 delete.txte640ee2e8f7345cb348e3caa52c8df40size=81date=2025-11-23T14:21:10
 install.txta8d8c9ac7f552ee6a78bed34dca306dbsize=288date=2021-02-15T23:54:10
-readme.txte7f0e1a1a3edb43c1834f34bc1649f3asize=10991date=2025-11-23T14:21:10
+readme.txtd117e4a48b4de9c0c767d5a665ddf03fsize=1953date=2025-11-23T15:35:50
 thumbnail.pna4be235e0863745fe63044462937e6443size=5134date=2021-02-23T20:04:39
 thumbnail.png8254e7174163aa369851dbc074c4c3e6size=12124date=2021-02-23T20:03:35
 translating_flux.txt069832a33d3c1f46b19836b48a796f5dsize=6033date=2025-11-23T14:21:10
@@ -13,12 +13,12 @@ ghost/master/fx_aitalk.dic4aec933cdefcb63084311a94e10409dcsize=7121date=2025-
 ghost/master/fx_anchor.dice3caaef6d75b219e1f0ba75a57b476fesize=2775date=2025-11-23T14:21:10
 ghost/master/fx_bootend.dic8432d7be3089183d44fb73f6707ab761size=20304date=2025-11-23T14:21:10
 ghost/master/fx_commu.dic7955102f49cc7fad649d634570aa1a6dsize=2462date=2025-11-23T14:21:10
-ghost/master/fx_etc.dicbb5fa3bdb248f97c8545eb72b2eba267size=71485date=2025-11-23T14:22:58
+ghost/master/fx_etc.dicf88ef9794725993894f98d130ff50bdfsize=71485date=2025-11-23T15:41:21
 ghost/master/fx_menu.dic3adca5b5376ee8fc7a3fccc79eee4227size=63357date=2025-11-23T14:21:10
 ghost/master/fx_mouse.dic003f4a0e2872d24b8786a471e698c6c6size=1690date=2024-05-20T15:12:28
 ghost/master/fx_music.dic4e82db0f0711508d2f07b2aaefef6054size=195404date=2025-11-23T14:44:38
 ghost/master/fx_nameteach.dic06a4cb7b0b67ebaa99211854c4c6aa4csize=4073date=2025-11-23T14:21:10
-ghost/master/fx_string.dicf4af45baff8a54fd6a05993da32950fbsize=7671date=2025-11-23T14:21:10
+ghost/master/fx_string.dicf8b0eceb53a1585d22ee0f3b4e339701size=7676date=2025-11-23T15:30:08
 ghost/master/fx_word.dic6b506a3df1a8931657c270432ea84359size=6917date=2025-11-23T14:21:10
 ghost/master/time_check.dll07b7dabf0de6b5ea0a23178efc4d1c4fsize=105472date=2003-10-02T16:53:32
 ghost/master/yaya.dll6472872410483dfdcdd0c27e51fe0362size=880640date=2025-11-23T14:21:10
