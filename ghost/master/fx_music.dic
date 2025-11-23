@@ -5071,7 +5071,8 @@ MusicPlayer.ConvertOldVariables
 	}
 	void ERASEVAR("DiscordDisplay")
 	
-	
+	//Let's not do this more than once...
+	Flag.OldVariablesConverted = 1
 
 	MusicPlayer.ResetDefaultSettings
 }

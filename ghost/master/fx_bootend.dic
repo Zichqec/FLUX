@@ -135,6 +135,12 @@ OnInitialize
 	//TODO TEMPORARY while these languages are not updated
 	if language == "Français" || language == "Polski"; language = "English"
 	
+	//Capture this after updates, whether booted or not...
+	if Flag.OldVariablesConverted != 1
+	{
+		MusicPlayer.ConvertOldVariables
+	}
+	
 	MusicPlayer.OnInitialize
 }
 
@@ -633,5 +639,11 @@ UpdateVars
 		{
 			CurrentPlaylist[_i] = REPLACE(CurrentPlaylist[_i],"||",",")
 		}
+	}
+	
+	//Just in case OnInitialize doesn't get this for some reason?
+	if Flag.OldVariablesConverted != 1
+	{
+		MusicPlayer.ConvertOldVariables
 	}
 }
