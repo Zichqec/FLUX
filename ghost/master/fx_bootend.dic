@@ -155,7 +155,7 @@ OnBoot //Normal booting
 	//Note to self: there is *one* shell using this SAORI... no need for me to call it here, but I can't remove the SAORI without breaking compatibility with that shell
 	//_timesince = FUNCTIONEX("time_check.dll","how_many_days",lastclosed[0],lastclosed[1],lastclosed[2],0,0,0) * -1
 	
-	"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanurl]"
+	"%(OnMusicPlayer.NotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanurl]"
 	--
 	if ISFUNC("OnCustom_trayicon"); OnCustom_trayicon
 	else; "\![set,tasktrayicon,flux.ico]"
@@ -201,12 +201,11 @@ FluxBoot
 
 OnClose
 {
-	NowPlaying[0] = ""
-	NowPlaying[2] = ""
-	MusicSettings[4] = ""
+	MusicPlayer.PlayState = 0
+	MusicPlayer.StopAfterCurrent = ""
 	lastclosed = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)")
 	
-	"\![sound,stop]%(OnNotifySongInfo)"
+	"\![sound,stop]%(OnMusicPlayer.NotifySongInfo)"
 	--
 	if ISFUNC("OnCustom_OnClose") && CustomFuncs[0] == 1; "\0\b[0]" + REPLACE(OnCustom_OnClose,"\e","")
 	else; FluxClose
@@ -287,12 +286,11 @@ OnGhostChanging //Changing to another ghost. This is the internal name of your g
 	}
 	else
 	{
-		NowPlaying[0] = ""
-		NowPlaying[2] = ""
-		MusicSettings[4] = ""
+		MusicPlayer.PlayState = 0
+		MusicPlayer.StopAfterCurrent = ""
 		lastclosed = ("%(year)","%(month)","%(day)","%(hour)","%(minute)","%(second)")
 		
-		"\![sound,stop]%(OnNotifySongInfo)"
+		"\![sound,stop]%(OnMusicPlayer.NotifySongInfo)"
 		--
 		if ISFUNC("OnCustom_OnGhostChanging") && CustomFuncs[0] == 1; OnCustom_OnGhostChanging
 		else
@@ -346,7 +344,7 @@ OnGhostChanged //After switching.
 	}
 	else
 	{
-		"%(OnNotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanurl]"
+		"%(OnMusicPlayer.NotifySongInfo)%(OnDiscordPluginBoot)\![get,property,OnShellAuthor,currentghost.shelllist.current.craftmanw,currentghost.shelllist.current.craftman,currentghost.shelllist.current.craftmanurl]"
 		--
 		if ISFUNC("OnCustom_OnGhostChanged") && CustomFuncs[0] == 1; OnCustom_OnGhostChanged
 		else
@@ -612,9 +610,8 @@ BootVars
 	runtime[1] = 0
 	runtime[2] = 0
 	AutoUpdates[1] = 0
-	NowPlaying[0] = ""
-	NowPlaying[2] = ""
-	MusicSettings[4] = ""
+	MusicPlayer.PlayState = 0
+	MusicPlayer.StopAfterCurrent = ""
 	CurrentlyChangingShells = 0
 	InstalledShellName = ""
 	

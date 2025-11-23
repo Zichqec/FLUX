@@ -1066,7 +1066,7 @@ MusicPlayer.Settings.Basic : all
 			"\f[color,disable]Detener después de pista actual\f[color,default]"
 			"\__q[OnMusicPlayer.StopAfterPlayback,song]Detener después de pista actual\__q"
 		}
-		if MusicSettings[4] == "stop after playback"; " \![*]"
+		if MusicPlayer.StopAfterCurrent == "stop after playback"; " \![*]"
 		"\n"
 		switch MusicPlayer.PlayMode == 0 || MusicPlayer.PlayMode == 1
 		{
@@ -3486,6 +3486,9 @@ OnMusicPlayer.NotifySongInfo : all
 	//7 - The play mode. 0 for loop playlist, 1 for shuffle playlist, 2 for loop song, 3 for play one song, 4 for random
 	//8 - "stop after playback" means it will stop after the current song, "stop after playlist" means it will stop when the playlist completes
 	//9 - Number of songs in the current playlist
+	
+	//DEPRECATED VERSION
+	OnNotifySongInfo
 }
 
 
