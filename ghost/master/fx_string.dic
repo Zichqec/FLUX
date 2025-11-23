@@ -147,54 +147,54 @@ portalsites_sakura_español : array
 {
 	"Ukagaka Dream Team Wiki";		"https://ukagakadreamteam.com/wiki/home"
 	"Ukagaka Dream Team Discord";	"https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)";						"https://ssp.shillest.net/"
+	"SSP";						"https://ssp.shillest.net/"
 	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"YAYA Wiki (J)";				"https://emily.shillest.net/ayaya/index.php?"
+	"AYAYA";				"https://ukagakadreamteam.github.io/ayaya/index"
 }
 
 portalsites_sakura_deutsch : array 
 {
 	"Ukagaka Dream Team Wiki";		"https://ukagakadreamteam.com/wiki/home"
 	"Ukagaka Dream Team Discord";	"https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)";						"https://ssp.shillest.net/"
+	"SSP";						"https://ssp.shillest.net/"
 	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"YAYA Wiki (J)";				"https://emily.shillest.net/ayaya/index.php"
+	"AYAYA";				"https://ukagakadreamteam.github.io/ayaya/index"
 }
 
 portalsites_sakura_русский : array
 {
 	"Вики Ukagaka Dream Team";		"https://ukagakadreamteam.com/wiki/home"
 	"Дискорд Ukagaka Dream Team";	"https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)";						"https://ssp.shillest.net/"
+	"SSP";						"https://ssp.shillest.net/"
 	"Укадок";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"Вики YAYA (J)";				"https://emily.shillest.net/ayaya/index.php"
+	"Вики YAYA (J)";				"https://ukagakadreamteam.github.io/ayaya/index"
 }
 
 portalsites_sakura_french : array 
 {
 	"Ukagaka Dream Team Wiki";			"https://ukagakadreamteam.com/wiki/home" //TODO FRENCH
 	"Discord de l'Ukagaka Dream Team";	"https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)";							"https://ssp.shillest.net/"
+	"SSP";							"https://ssp.shillest.net/"
 	"Ukadoc";							"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"Wiki du YAYA (J)";					"https://emily.shillest.net/ayaya/index.php"
+	"Wiki du YAYA (J)";					"https://ukagakadreamteam.github.io/ayaya/index"
 }
 
 portalsites_sakura_polski : array 
 {
 	"Ukagaka Dream Team Wiki";		"https://ukagakadreamteam.com/wiki/home" //TODO POLISH
 	"Ukagaka Dream Team Discord";	"https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)";						"https://ssp.shillest.net/"
+	"SSP";						"https://ssp.shillest.net/"
 	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"YAYA Wiki (J)";				"https://emily.shillest.net/ayaya/index.php"
+	"AYAYA";				"https://ukagakadreamteam.github.io/ayaya/index"
 }
 
 portalsites_sakura_english : array 
 {
 	"Ukagaka Dream Team Wiki";		"https://ukagakadreamteam.com/wiki/home"
 	"Ukagaka Dream Team Discord"; 	"https://ukagakadreamteam.tumblr.com/discord"
-	"SSP (J)"; 						"https://ssp.shillest.net/"
+	"SSP"; 						"https://ssp.shillest.net/"
 	"Ukadoc";						"https://ukagakadreamteam.github.io/ukadoc/manual/index.html"
-	"YAYA Wiki (J)";				"https://emily.shillest.net/ayaya/index.php"
+	"AYAYA";				"https://ukagakadreamteam.github.io/ayaya/index"
 }
 
 FormatLinks
