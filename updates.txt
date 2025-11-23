@@ -12,7 +12,7 @@ file,ghost/master/descript.txtdf19584700d849e74f26304cf8af0c9bsize=292date=20
 file,ghost/master/flux.ico4511ed801d96e347bdedc86ffed57a3asize=103522date=2021-02-23T19:37:10
 file,ghost/master/fx_aitalk.dic4aec933cdefcb63084311a94e10409dcsize=7121date=2025-11-23T14:21:10
 file,ghost/master/fx_anchor.dice3caaef6d75b219e1f0ba75a57b476fesize=2775date=2025-11-23T14:21:10
-file,ghost/master/fx_bootend.dic8432d7be3089183d44fb73f6707ab761size=20304date=2025-11-23T14:21:10
+file,ghost/master/fx_bootend.dice3e0edb694928b1a6e2d22b040e6aa80size=20379date=2025-11-23T16:39:03
 file,ghost/master/fx_commu.dic7955102f49cc7fad649d634570aa1a6dsize=2462date=2025-11-23T14:21:10
 file,ghost/master/fx_etc.dic6ba9971ff501cef57de567be3bf92f7asize=71457date=2025-11-23T16:35:07
 file,ghost/master/fx_menu.dic3adca5b5376ee8fc7a3fccc79eee4227size=63357date=2025-11-23T14:21:10

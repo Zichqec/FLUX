@@ -38,7 +38,7 @@ OnFirstLangMenu : all
 {
 	_lang = reference0
 	
-	"\0\*\t\b[2]\_q"
+	"\C\![lock,balloonrepaint]\c\0\*\t\b[2]\![quicksection,1]"
 	
 	if _lang == "Placeholder" //TRANSLATORS: Firstboot language select dialogue. When the user hovers over a language, this text will change to that language. If this text is very long for your language, such that it overlaps the language options, let me know and I can adjust it. It's very important that the buttons not jump around when hovered over.
 	{
@@ -72,6 +72,8 @@ OnFirstLangMenu : all
 	"\_l[0,60]"
 	
 	LanguageMenuDisplay("OnLanguageChosen")
+	
+	"\![unlock,balloonrepaint]"
 }
 
 OnChoiceHover
