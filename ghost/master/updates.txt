@@ -51,7 +51,6 @@ file,make_your_own_shell/surfaces.txtce180b02350895fee9f6439cf1c1448esize=1267
 file,make_your_own_shell/surfacetable.txt884d422749d5cafeabe673287659287dsize=155date=2025-11-23T14:21:10
 file,make_your_own_shell/thumbnail.pnac29d1a96c3cab49bac25363969547033size=307date=2021-02-24T00:38:05
 file,make_your_own_shell/thumbnail.png0ff74e6845dd5a95bf2ab36662f0e517size=9133date=2021-02-24T00:55:59
-file,shell/master/changelog.txt9341f04d479d5267ba4a34bf400bb367size=6067date=2022-01-29T01:42:46
 file,shell/master/descript.txt4dcb1fc05a369368b83de1b5b16ccd22size=2055date=2021-02-24T02:42:20
 file,shell/master/dialogue.dic2903b7a859824d2d2208100a0f59a16csize=5919date=2021-11-05T02:57:13
 file,shell/master/install.txt2f3dbd2f1d9ee85200232510cd8b3538size=52date=2021-02-24T00:40:02
