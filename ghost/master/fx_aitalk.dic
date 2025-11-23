@@ -125,6 +125,20 @@ OnSecondChange
 	{
 		MusicPlayer.Playtime++
 	}
+	
+	if Latch.BirthdayTodayComment && SHIORI3FW.CanTalk
+	{
+		Latch.BirthdayTodayComment = 0
+		//I *guess*... there is a world... in which the menu might be open when you change your birthday and you might turn these functions off.
+		if ISFUNC("OnCustom_BirthdaySet") && CustomFuncs[0] == 1
+		{
+			//DEPRECATED
+			//This is here *purely* because some shells made use of it and I want to preserve that content, it is DEPRECATED and may be restricted to use by those shells in the future
+			REPLACE(OnCustom_BirthdaySet,"\e","")
+			return
+		}
+	}
+	
 	if MusicPlayer.DiscordDisplayFlag == 2 && SHIORI3FW.CanTalk //If this ghost was chosen in the Discord plugin, and that hasn't been handled yet
 	{
 		MusicPlayer.DiscordDisplayFlag = 1

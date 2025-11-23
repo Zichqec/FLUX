@@ -123,6 +123,8 @@ OnLanguageChosen
 
 OnInitialize
 {
+	Latch.BirthdayTodayComment = 0
+	
 	Latch.ShellFunctionsFileMissing = 0
 	_path = "shell_functions.txt"
 	if FATTRIB(_path) == -1 && !Latch.ShellFunctionsFileMissing //TODO this at least creates the file, but until you reload it's not going to have loaded those functions... hm. I coooooooulllllld make it so that the old URL drops this file in for you...? but, it will still likely be wrong... hmmm!! maybe a latch??
