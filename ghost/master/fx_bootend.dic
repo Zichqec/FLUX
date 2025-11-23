@@ -357,7 +357,6 @@ OnGhostChanged //After switching.
 OnShellChanging : all //Starting to change the shell
 {
 	CurrentlyChangingShells = 1
-	MusicSettings[6] = SHIORI3FW.LastSurface[0]
 	shellchange = IARRAY
 	"\1\s[-1]\0\![get,property,OnGetCoords,currentghost.scope(0).rect]" //This gets the current ghost coordinates so that they don't jump around the screen when they change shells
 	
@@ -554,9 +553,8 @@ RestartSinging
 	}
 	
 	--
-	SHIORI3FW.LastSurface[0] = MusicSettings[6]
-	MusicSettings[6] = IARRAY
 	if Singing || CurrentlyChangingShells == 2; "%(SingingSurfaces)" //Note to self: this was %(SingingSurfaces) before, but the variable to tell what surface they were last in seems like it doesn't carry across shells? Perhaps warrants further testing, but I think this will fix the issue where they don't go back to the singing pose after changing shells while singing...
+	//Literally no idea what the above is about, why would I want to carry over that variable, they need to refresh that surface ???
 	CurrentlyChangingShells = 0
 }
 
