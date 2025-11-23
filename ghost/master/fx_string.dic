@@ -55,8 +55,7 @@ recommendsites_sakura_placeholder : array //TRANSLATORS: This is where the actua
 recommendsites_sakura_español : array
 {
 	"Reproductor FLUX creado por Zichqec";				"https://ukagaka.zichqec.com/"
-	"Traducción al español por Celeste";				"https://rosecelestereblog.tumblr.com/
-"
+	"Traducción al español por Celeste";				"https://rosecelestereblog.tumblr.com/"
 	"Shell %(nowshell) creado por %(shellauthor[0])";	"%(shellauthor[2])"
 }
 
