@@ -867,36 +867,34 @@ OnNarCreated //Finished creating
 	}
 	elseif language == "Español"
 	{
-		"[Creación de \_a[OnNarLocation,%(reference1)]%(reference0)\_a completada.]\e"
+		"[Creación de \_a[OnNarLocation,""%(reference1)""]%(reference0)\_a completada.]\e"
 	}
 	elseif language == "Deutsch"
 	{
-		"[\_a[OnNarLocation,%(reference1)]%(reference0)\_a wurde erfolgreich erstellt.]\e"
+		"[\_a[OnNarLocation,""%(reference1)""]%(reference0)\_a wurde erfolgreich erstellt.]\e"
 	}
 	elseif language == "Русский"
 	{
-		"[Создал \_a[OnNarLocation,%(reference1)]%(reference0)\_a.]\e"
+		"[Создал \_a[OnNarLocation,""%(reference1)""]%(reference0)\_a.]\e"
 	}
 	elseif language == "Français"
 	{
-		"[Création de \_a[OnNarLocation,%(reference1)]%(reference0)\_a finie.]\e"
+		"[Création de \_a[OnNarLocation,""%(reference1)""]%(reference0)\_a finie.]\e"
 	}
 	elseif language == "Polski"
 	{
-		"[Zakończono tworzenie \_a[OnNarLocation,%(reference1)]%(reference0)\_a.]\e"
+		"[Zakończono tworzenie \_a[OnNarLocation,""%(reference1)""]%(reference0)\_a.]\e"
 	}
 	else //English
 	{
-		"[Finished creating \_a[OnNarLocation,%(reference1)]%(reference0)\_a.]\e"
+		"[Finished creating \_a[OnNarLocation,""%(reference1)""]%(reference0)\_a.]\e"
 	}
 }
 
 //When you click on the anchor in the OnNarCreated dialogue, this function will open the folder you created the .nar in
 OnNarLocation
 {
-	_path = SPLITPATH(reference0)[0] + SPLITPATH(reference0)[1]
-	
-	"\C\![open,file,%(_path)]"
+	"\C\![open,explorer,""%(reference0)""]"
 }
 
 //----Uninstalling----
