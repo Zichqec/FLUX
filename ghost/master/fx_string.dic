@@ -47,7 +47,7 @@ On_sakura.recommendsites //Websites under the top dropdown menu, make em whateve
 	}
 }
 
-recommendsites_sakura_placeholder : array //TRANSLATORS: This is where the actual links go, observe the ones below for how to set this up. Make sure there's always a space before and after the | ! Also, be sure to add your name and link here for your translation! And all of my thanks for bringing FLUX to a wider audience <3 Also note, shellauthor[0] will be the name of the dev for the current shell, and shellauthor[2] is their craftmanurl
+recommendsites_sakura_placeholder : array //TRANSLATORS: This is where the actual links go, observe the ones below for how to set this up. Also, be sure to add your name and link here for your translation! And all of my thanks for bringing FLUX to a wider audience <3 Also note, shellauthor[0] will be the name of the dev for the current shell, and shellauthor[2] is their craftmanurl
 {
 	
 }
