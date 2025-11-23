@@ -19,7 +19,7 @@ file,ghost/master/fx_menu.dic3adca5b5376ee8fc7a3fccc79eee4227size=63357date=2
 file,ghost/master/fx_mouse.dic003f4a0e2872d24b8786a471e698c6c6size=1690date=2024-05-20T15:12:28
 file,ghost/master/fx_music.dic4e82db0f0711508d2f07b2aaefef6054size=195404date=2025-11-23T14:44:38
 file,ghost/master/fx_nameteach.dic06a4cb7b0b67ebaa99211854c4c6aa4csize=4073date=2025-11-23T14:21:10
-file,ghost/master/fx_string.dicf8b0eceb53a1585d22ee0f3b4e339701size=7676date=2025-11-23T15:30:08
+file,ghost/master/fx_string.dic66451b6f525704fee2bec36cca369733size=7643date=2025-11-23T15:45:54
 file,ghost/master/fx_word.dic6b506a3df1a8931657c270432ea84359size=6917date=2025-11-23T14:21:10
 file,ghost/master/time_check.dll07b7dabf0de6b5ea0a23178efc4d1c4fsize=105472date=2003-10-02T16:53:32
 file,ghost/master/yaya.dll6472872410483dfdcdd0c27e51fe0362size=880640date=2025-11-23T14:21:10
